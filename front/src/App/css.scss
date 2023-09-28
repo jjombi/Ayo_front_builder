@@ -1,0 +1,569 @@
+@import './media.scss';
+
+*{
+    margin : 0;
+    padding: 0;
+    border: 0;
+    color: white;
+}
+body {
+    // background-color: black;
+}
+$display_width : 100vw;
+$display_height : 100vh;
+iframe {
+    width : 200px;
+    height: 100px;
+    border-width:0px;
+    border-color:white; 
+    border-style:solid;
+}
+input {
+    text-align: center;
+    color: black;
+}
+select,option {
+    color: black;
+}
+/*----------icon--logo------------------*/
+header {
+    height: 5%;
+    width: 100%;
+    // background-color: aqua;
+    display: flex;
+    flex-direction: row;
+}
+.Icon {
+    height: 5vh;
+    width : 5vw;
+    // background-image: url('../logo.svg');
+}
+/*----------------회원가입 창----------------*/
+.signup_area {
+    margin-left: 20%;
+    margin-top: 5%;
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid black;
+}
+.search_school_area {  
+    width : 100%;
+    height: 20%;
+    background-color: azure;
+    margin-top: 5%;
+}
+.input_id_area {
+    width : 100%;
+    height: 20%;
+    margin-top: 5%;
+}
+
+.text-area {
+    width: 100%;
+    height: 20%;
+    
+}
+.instar_signup_btn{
+    width: 100%;
+    height: 20%;
+    margin-top: 5%;
+}
+/*------------------회원가입 창 222222222222222222 -------------------------*/
+.Main_root {
+    width: $display_width;
+    height: $display_height;
+    // background-color: black;
+    display: flex;;
+    flex-direction: column;
+}
+.content_area {
+    //임시
+    position: relative;
+    width: 100%;
+    height: 100%;
+    // margin-top: 2.5%;
+    background-color: rgb(0, 0, 0);
+    //margin-left: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Border_radius{
+    border-radius: 10px;
+}
+.Logo {
+    margin-top: 15%;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(136, 136, 136);
+}
+.Input_basic { /*---기본 input 스타일-----*/
+    margin-top: 4%;
+    width: 80%;
+    height: 7%;
+    background-color: rgb(241, 241, 241);
+    color:  black;
+}
+/*-----------------학교 찾는 창 3333333333333333333333333333-----*/
+.School_search {/*안쓰이는 중 190School_chose*/
+    margin-top: 20%;
+    width: 80%;
+    height: 7%;
+    background-color: aqua;
+}
+.guid_message{
+    width: 80%;
+    font-size: 12px;
+    //color: rgb(0, 0, 0); // 투명도 주기
+}
+.Guid_message_ {
+    margin-top: 70%;
+    font-size: 16px;
+    text-align: center;
+}
+
+.Input_id{ // 22 12 = 34 오른쪽에 버튼 있던거
+    width: 100%;
+    height: 100%;
+
+}
+// .Input_id_btn{ /*구버전 버튼 */
+//     width: 20%;
+//     height: 100%;
+// }
+.Input_id_btn{
+    margin-bottom: 3%;
+    height: 6%;
+}
+.Submit_btn{
+    position: absolute;
+    width: 20%;
+    height: 5%;
+    border-radius: 10px;
+    top: 80%;
+}
+.Submit_btn_{
+    // margin-top: 26%;
+}
+
+
+/*----------------로그인 방식, 또는 회원가입 할지 선택하는 페이지------------*/
+.Top {
+    margin-top: 15%;
+}
+.Page_num {
+    position: absolute;
+    top: 90%;
+    font-size: 14px;
+}
+/*-------------질문 나오는 창-------------*/
+
+/*---------------------------------------*/
+/*--------------------추천검색어 디자인--------------*/
+// input {
+//     text-align: center;
+//     align-items: center;
+// }
+.id_area{          /*애도 추천 겁색어 디자인*/
+    margin-top: 5%;
+    width: 80%;
+    height: 7%;
+    display: flex;
+    flex-direction: row;
+} 
+.Suggested_Search {
+    margin-top: 0%;
+    width: 80%;
+    height: 4%;
+    // border: 1px solid black;
+    font-size: 12px;
+}
+/*---------------------------------------------*/
+/*----------queze페잉지-----------------------*/
+.btn1, .btn2 {
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    background-color: black;
+    opacity: 0%;
+}
+.btn1 {
+    left: 1%;
+
+}
+.btn2{
+    left: 99%;
+    transform: translate(-100%,);
+}
+.submit_btn {
+    width: 96%;
+    height: 5%;
+    margin-top: 5%;
+}
+header {
+    width: 100%;
+    height: 7%;
+    background-color: rgb(0, 0, 0);
+}
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+}
+/*----------------------popup창 디자인-------------------*/
+.popup { //공통 요소
+    position: absolute;
+    transform: translate(0,-85%);
+    opacity: 1;
+}
+.Popup_main {
+    width: 60%;
+    height: 20%;
+    top : 50%;
+    left: 20%;
+    background-color: aquamarine;
+    opacity: 1;
+}
+.popup_p {
+    width: 60%;
+    height: 3%;
+    top : 30%;
+    left: 20%;
+    text-align: center;
+    opacity: 1;
+}
+.popup_btn {
+    width: 30%;
+    height: 10%;
+    top : 70%;
+    left : 50%;
+    transform: translate(-50%);
+}
+/*slide 디자인*/
+.Q_main {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 10%;
+}
+.Q_area {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    // text-align: center;
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+$Q_ul_width : 500%;
+.Q_ul {
+    // width: 100%;
+    // height: 100%;
+    float: left;
+    transition: left 0.5s ease-out; 
+    display: flex;
+    flex-direction: row;
+}
+.Queze_li {
+    position: relative;
+    width: 100vw;
+    height: 30vh;
+    float: left;
+    list-style: none;
+    transition: 0.3s ease-in-out; 
+    text-align: center;
+    align-items: center;
+
+}
+.ul_2 {
+}
+li > ul {
+    background-color: aqua;
+    width: 30%;
+    height: 300%;
+    position: relative;
+    overflow: hidden;
+    position: relative;
+}
+li > ul > li {
+    width: 100%;
+    height: 33.33333%;
+
+}
+.Queze_p {
+    // margin-top: 30%;
+    color: black;
+    // height: 100%;
+    // width: 70%;
+    text-align: center;
+    align-items: center;
+    margin-top: 25%;
+    transform: translate(0,-100%);
+}
+.btn3, .btn4 {
+    width: 100%;
+    height: 5%;
+
+}
+.top_bottom {
+    width: 30%;
+    height: 100%;
+}
+/*-------학교,학급,반 설정------------*/
+.Q_chooser {
+    margin-top: 3%;
+    width: 70%;
+    height: 5%;
+    background-color: white;
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+.Q_chooser_ul{
+    float: left;
+    transition: left 0.5s ease-out; 
+    display: flex;
+    flex-direction: row;
+}
+.Q_chooser_li {
+    position: relative;
+    width: 70vw;
+    height: 5vh;
+    float: left;
+    list-style: none;
+    transition: 0.3s ease-in-out; 
+    text-align: center;
+    align-items: center;
+    color: black;
+}
+/*----------------------------------------------*/
+// 데스크탑
+@include desktop {
+    .content_area {
+        //width: 40%;
+        //background-color: rgb(255, 0, 0);
+    }
+    .Q_area {
+        width: 60%;
+        height: 45%;
+        margin-top: 10%;
+    }
+    .submit_btn {
+        width: 40%;
+    }
+    //main---------------------------------
+    .Input_basic {
+        width: 25%;
+    }
+    .guid_message {
+        width: 25%;
+    }
+    .Logo {
+        margin-top: 5%;
+    }
+    .Guid_message_ {
+        margin-top: 10%;
+    }
+    .Top {
+        margin-top: 10%;
+    }
+    //---------------------------------------
+}
+
+
+// 노트북에서 데스크탑
+@include desktopToLaptop {
+
+    .content_area {
+        //width: 30%;
+        //margin-left: 35%;
+        //background-color: rgb(255, 145, 0);
+    }
+    .Q_area {
+        width: 60%;
+        height: 40%;
+    }   
+    .submit_btn {
+        width: 40%;
+    }
+    //main---------------------------------
+    .Input_basic {
+        width: 30%;
+    }
+    .guid_message {
+        width: 30%;
+    }
+    .Logo {
+        margin-top: 10%;
+    }
+    .Guid_message_ {
+        margin-top: 10%;
+    }
+    //---------------------------------------
+}
+
+
+// 노트북
+@include laptop {
+    //queze------------------------------
+    .content_area {
+        //width: 40%;
+        // background-color: rgb(255, 247, 0);
+    }
+    .Q_area {
+        width: 60%;
+        height: 40%;
+    }   
+    .submit_btn {
+        width: 40%;
+    }
+    //-----------------------------------
+    //main---------------------------------
+    .Input_basic {
+        width: 35%;
+    }
+    .guid_message {
+        width: 35%;
+    }
+    .Logo {
+        margin-top: 10%;
+    }
+    .Guid_message_ {
+        margin-top: 10%;
+    }
+    //---------------------------------------
+}
+
+
+// 태블릿에서 노트북
+@include laptopToTablet {
+    .content_area {
+        //width: 40%;
+        //background-color: rgb(4, 255, 0);
+    }
+    .Q_area {
+        width: 65%;
+        height: 40%;
+    }   
+    .submit_btn {
+        width: 45%;   
+    }
+    //main---------------------------------
+    .Input_basic {
+        width: 40%;
+    }
+    .guid_message {
+        width: 40%;
+    }
+    .Logo {
+        margin-top: 10%;
+    }
+    .Guid_message_ {
+        margin-top: 10%;
+    }
+    //---------------------------------------
+}
+
+
+// 태블릿
+@include tablet {
+    .content_area {
+        //width: 50%;
+        //margin-left: 25%;
+        //background-color: rgb(0, 34, 255);
+    }
+    .Q_area {
+        width: 80%;
+        
+    }   
+    .submit_btn {
+        width: 60%;
+    }
+    //main---------------------------------
+    .Input_basic {
+        width: 50%;
+    }
+    .guid_message {
+        width: 50%;
+    }
+    .Logo {
+        margin-top: 10%;
+    }
+    .Guid_message_ {
+        margin-top: 10%;
+    }
+    //---------------------------------------
+}
+
+
+// 모바일에서 태블릿
+@include tabletToMobile  {
+    .content_area {
+       // width: 70%;
+       // margin-left: 15%;
+        //background-color: rgb(179, 0, 255);
+    }
+    .Input_basic {
+        width: 60%;
+    }
+    .guid_message {
+        width: 60%;
+    }
+    .Q_area {
+        height: 40%;
+    }   
+    .submit_btn {
+        width: 70%;
+    }
+    //main---------------------------------
+    // .Input_basic {
+    //     width: 30%;
+    // }
+    // .guid_message {
+    //     width: 30%;
+    // }
+    .Logo {
+        margin-top: 10%;
+    }
+    .Guid_message_ {
+        margin-top: 10%;
+    }
+    //---------------------------------------
+}
+
+
+// 모바일
+@include mobile  {
+    .content_area {
+        //width: 100%;
+        height: 100%;
+        margin: 0;
+        // margin-top: 5%;
+        
+    }
+    .Q_area {
+
+    }   
+    .submit_btn {
+        
+    }
+    //main---------------------------------
+    // .Input_basic {
+    //     width: 30%;
+    // }
+    // .guid_message {
+    //     width: 30%;
+    // }
+    // .Logo {
+    //     margin-top: 10%;
+    // }
+    .Guid_message_ {
+        margin-top: 10%;
+    }
+    //---------------------------------------
+    
+}
