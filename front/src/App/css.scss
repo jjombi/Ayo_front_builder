@@ -78,34 +78,106 @@ header {
     // background-color: black;
     display: flex;;
     flex-direction: column;
+    background-color: black;
 }
 .content_area {
     //임시
     position: relative;
-    width: 100%;
+    width: 30%;
     height: 100%;
-    // margin-top: 2.5%;
     background-color: rgb(0, 0, 0);
-    //margin-left: 35%;
+    margin-left: 35%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    text-align: center;
+}
+.main_line_contents {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 7%;
+    height: 5%;
+    // margin-bottom: 5%;
+}
+.main_line_contents > p {
+    margin-left: 5%;
+    width: 5%; //75 85 5 5 
+    
+}
+.line2 { //in main
+    width: 35%;
+    margin-left: 7.5%;
+    background-color: white;
+    height: 1px;
+}
+.line3 {
+    width: 35%;
+    margin-left: 5%;
+    background-color: white;
+    height: 1px;
+}
+.line4 {
+    width: 80%;
+    height: 2px;
+    background-color: white;
+    margin-top: 4%;
 }
 .Border_radius{
     border-radius: 10px;
 }
 .Logo {
     margin-top: 15%;
-    width: 50px;
-    height: 50px;
-    background-color: rgb(136, 136, 136);
+    width: 70px;
+    height: 70px;
+    // background-color: rgb(136, 136, 136);
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+.Logo > p {
+    font-size: 21px;
+    letter-spacing: 3px;
+    margin-top: 45%;
+    margin-left: 48%;
+    transform: translate(-50%,-50%);
 }
 .Input_basic { /*---기본 input 스타일-----*/
     margin-top: 4%;
-    width: 80%;
+    width: 100%;
     height: 7%;
     background-color: rgb(241, 241, 241);
     color:  black;
+    position: relative;
+    cursor: pointer;
+}
+.btn_basic > div {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(0,-50%);
+    color: black;
+}
+.btn_basic > p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: black;
+}
+.btn_basic {
+    margin-top: 4%;
+    width: 50%;
+    height: 5%;
+    background-color: rgb(241, 241, 241);
+    color:  black;
+    position: relative;
+    border-radius: 30px;
+    cursor: pointer;
 }
 /*-----------------학교 찾는 창 3333333333333333333333333333-----*/
 .School_search {/*안쓰이는 중 190School_chose*/
@@ -115,7 +187,7 @@ header {
     background-color: aqua;
 }
 .guid_message{
-    width: 80%;
+    width: 100%;
     font-size: 12px;
     //color: rgb(0, 0, 0); // 투명도 주기
 }
@@ -181,12 +253,28 @@ header {
     // border: 1px solid black;
     font-size: 12px;
 }
+.passchecker {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: aqua;
+    top: 52%;
+    z-index: 1;
+}
+.passchecker2 {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: aqua;
+    top: 62%;
+    z-index: 1;
+}
 /*---------------------------------------------*/
 /*----------queze페잉지-----------------------*/
 .btn1, .btn2 {
     position: absolute;
     width: 20%;
-    height: 100%;
+    height: 80%;
     background-color: black;
     opacity: 0%;
 }
@@ -244,16 +332,16 @@ header {
 }
 /*slide 디자인*/
 .Q_main {
-    width: 100%;
+    width: 70%;
     height: 30%;
     display: flex;
     flex-direction: row;
-    margin-top: 10%;
+    margin-top: 4%;
 }
 .Q_area {
     width: 100%;
     height: 100%;
-    background-color: white;
+    // background-color: white;
     // text-align: center;
     float: left;
     overflow: hidden;
@@ -269,9 +357,10 @@ $Q_ul_width : 500%;
     flex-direction: row;
 }
 .Queze_li {
+    background-color: white;
     position: relative;
-    width: 100vw;
-    height: 30vh;
+    width: 21vw; //30
+    height: 24vh;
     float: left;
     list-style: none;
     transition: 0.3s ease-in-out; 
@@ -281,19 +370,7 @@ $Q_ul_width : 500%;
 }
 .ul_2 {
 }
-li > ul {
-    background-color: aqua;
-    width: 30%;
-    height: 300%;
-    position: relative;
-    overflow: hidden;
-    position: relative;
-}
-li > ul > li {
-    width: 100%;
-    height: 33.33333%;
 
-}
 .Queze_p {
     // margin-top: 30%;
     color: black;
@@ -325,13 +402,13 @@ li > ul > li {
 }
 .Q_chooser_ul{
     float: left;
-    transition: left 0.5s ease-out; 
+    transition: left 0.5s fease-out; 
     display: flex;
     flex-direction: row;
 }
 .Q_chooser_li {
     position: relative;
-    width: 70vw;
+    width: 21vw;
     height: 5vh;
     float: left;
     list-style: none;
@@ -348,22 +425,17 @@ li > ul > li {
         //background-color: rgb(255, 0, 0);
     }
     .Q_area {
-        width: 60%;
-        height: 45%;
-        margin-top: 10%;
+
     }
     .submit_btn {
         width: 40%;
     }
     //main---------------------------------
     .Input_basic {
-        width: 25%;
-    }
-    .guid_message {
-        width: 25%;
+        width: 70%;
     }
     .Logo {
-        margin-top: 5%;
+        margin-top: 10%;
     }
     .Guid_message_ {
         margin-top: 10%;
@@ -391,12 +463,10 @@ li > ul > li {
         width: 40%;
     }
     //main---------------------------------
-    .Input_basic {
-        width: 30%;
-    }
-    .guid_message {
-        width: 30%;
-    }
+    // .Input_basic {
+    //     width: 30%;
+    // }
+
     .Logo {
         margin-top: 10%;
     }
@@ -426,9 +496,6 @@ li > ul > li {
     .Input_basic {
         width: 35%;
     }
-    .guid_message {
-        width: 35%;
-    }
     .Logo {
         margin-top: 10%;
     }
@@ -454,9 +521,6 @@ li > ul > li {
     }
     //main---------------------------------
     .Input_basic {
-        width: 40%;
-    }
-    .guid_message {
         width: 40%;
     }
     .Logo {
@@ -487,9 +551,6 @@ li > ul > li {
     .Input_basic {
         width: 50%;
     }
-    .guid_message {
-        width: 50%;
-    }
     .Logo {
         margin-top: 10%;
     }
@@ -508,9 +569,6 @@ li > ul > li {
         //background-color: rgb(179, 0, 255);
     }
     .Input_basic {
-        width: 60%;
-    }
-    .guid_message {
         width: 60%;
     }
     .Q_area {
@@ -552,15 +610,7 @@ li > ul > li {
         
     }
     //main---------------------------------
-    // .Input_basic {
-    //     width: 30%;
-    // }
-    // .guid_message {
-    //     width: 30%;
-    // }
-    // .Logo {
-    //     margin-top: 10%;
-    // }
+
     .Guid_message_ {
         margin-top: 10%;
     }

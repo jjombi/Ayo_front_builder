@@ -159,7 +159,7 @@ const Queze_screen = (props) => {
             key.current += 1;
             return(
     
-                <li className='Queze_li' style={{transform : `translateX(${translate_state}%)`}} key={key.current}>
+                <li className='Queze_li Border_radius' style={{transform : `translateX(${translate_state}%)`}} key={key.current}>
                     <p className="Queze_p">{e}</p>
                 </li>
             );
@@ -358,8 +358,7 @@ const Queze_screen = (props) => {
             <div className='content_area'>
 
                 
-                <Queze_box></Queze_box>
-                <div className='Q_chooser'>
+                <div className='Q_chooser Border_radius Top'>
                     <ul className="Q_chooser_ul">
                         <li className='Q_chooser_li'  style={{transform : `translateX(${chooser_translate_state}%)`}} onClick={(e)=>{switch_btn(e.target)}}  title={0} >학교 전체</li>
                         <li className='Q_chooser_li'  style={{transform : `translateX(${chooser_translate_state}%)`}} onClick={(e)=>{switch_btn(e.target)}}  title={1} >학급 전체</li>
@@ -369,14 +368,19 @@ const Queze_screen = (props) => {
                     <button className='btn2' onClick={chooser_l_btn}></button>
                     
                 </div>
-                <input type='text' onClick={login_checker} onKeyUp={processChange} ref={input_value} className='submit_btn' placeholder='이름 입력'></input>
+
+                <Queze_box></Queze_box>
+
+                <div className='line4'></div>
+
+                <input type='text' onClick={login_checker} onKeyUp={processChange} ref={input_value} className='Input_basic Border_radius' placeholder='이름 입력'></input>
                 <Component props={components_arr.current}></Component>
-                <input type='button' onClick={vote} value="투표하기" className='submit_btn'></input>
-                <input type='button' onClick={logout} className='submit_btn' value="로그아웃"></input>
-                <input type='button' onClick={()=>navigate('/makequeze')} className='submit_btn' value="질문 만들기"></input>
-                {/* <input className="submit_btn" type="button" onClick={(e)=>{switch_btn(e.target)}} style={{}} name={0} value="학교"></input>
-                <input className="submit_btn" type="button" onClick={(e)=>{switch_btn(e.target)}} style={{}} name={1} value="학급"></input>
-                <input className="submit_btn" type="button" onClick={(e)=>{switch_btn(e.target)}} style={{}} name={2} value="반"></input> */}
+                <input type='button' onClick={vote} value="투표하기" className='btn_basic'></input>
+                <input type='button' onClick={logout} className='btn_basic' value="로그아웃"></input>
+                <input type='button' onClick={()=>navigate('/makequeze')} className='btn_basic' value="질문 만들기"></input>
+                {/* <input className="btn_basic" type="button" onClick={(e)=>{switch_btn(e.target)}} style={{}} name={0} value="학교"></input>
+                <input className="btn_basic" type="button" onClick={(e)=>{switch_btn(e.target)}} style={{}} name={1} value="학급"></input>
+                <input className="btn_basic" type="button" onClick={(e)=>{switch_btn(e.target)}} style={{}} name={2} value="반"></input> */}
                     
             </div>
             {

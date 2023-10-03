@@ -5,7 +5,6 @@
   border: 0;
   color: white;
 }
-/*ss*/
 
 iframe {
   width: 200px;
@@ -79,16 +78,55 @@ header {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: black;
 }
 
 .content_area {
   position: relative;
-  width: 100%;
+  width: 30%;
   height: 100%;
   background-color: rgb(0, 0, 0);
+  margin-left: 35%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+  text-align: center;
+}
+
+.main_line_contents {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 7%;
+  height: 5%;
+}
+
+.main_line_contents > p {
+  margin-left: 5%;
+  width: 5%;
+}
+
+.line2 {
+  width: 35%;
+  margin-left: 7.5%;
+  background-color: white;
+  height: 1px;
+}
+
+.line3 {
+  width: 35%;
+  margin-left: 5%;
+  background-color: white;
+  height: 1px;
+}
+
+.line4 {
+  width: 80%;
+  height: 2px;
+  background-color: white;
+  margin-top: 4%;
 }
 
 .Border_radius {
@@ -97,17 +135,55 @@ header {
 
 .Logo {
   margin-top: 15%;
-  width: 50px;
-  height: 50px;
-  background-color: rgb(136, 136, 136);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+.Logo > p {
+  font-size: 21px;
+  letter-spacing: 3px;
+  margin-top: 45%;
+  margin-left: 48%;
+  transform: translate(-50%, -50%);
 }
 
 .Input_basic { /*---기본 input 스타일-----*/
   margin-top: 4%;
-  width: 80%;
+  width: 100%;
   height: 7%;
   background-color: rgb(241, 241, 241);
   color: black;
+  position: relative;
+  cursor: pointer;
+}
+
+.btn_basic > div {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translate(0, -50%);
+  color: black;
+}
+
+.btn_basic > p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+
+.btn_basic {
+  margin-top: 4%;
+  width: 50%;
+  height: 5%;
+  background-color: rgb(241, 241, 241);
+  color: black;
+  position: relative;
+  border-radius: 30px;
+  cursor: pointer;
 }
 
 /*-----------------학교 찾는 창 3333333333333333333333333333-----*/
@@ -119,7 +195,7 @@ header {
 }
 
 .guid_message {
-  width: 80%;
+  width: 100%;
   font-size: 12px;
 }
 
@@ -176,12 +252,30 @@ header {
   font-size: 12px;
 }
 
+.passchecker {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: aqua;
+  top: 52%;
+  z-index: 1;
+}
+
+.passchecker2 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: aqua;
+  top: 62%;
+  z-index: 1;
+}
+
 /*---------------------------------------------*/
 /*----------queze페잉지-----------------------*/
 .btn1, .btn2 {
   position: absolute;
   width: 20%;
-  height: 100%;
+  height: 80%;
   background-color: black;
   opacity: 0%;
 }
@@ -248,17 +342,16 @@ header {
 
 /*slide 디자인*/
 .Q_main {
-  width: 100%;
+  width: 70%;
   height: 30%;
   display: flex;
   flex-direction: row;
-  margin-top: 10%;
+  margin-top: 4%;
 }
 
 .Q_area {
   width: 100%;
   height: 100%;
-  background-color: white;
   float: left;
   overflow: hidden;
   position: relative;
@@ -272,28 +365,15 @@ header {
 }
 
 .Queze_li {
+  background-color: white;
   position: relative;
-  width: 100vw;
-  height: 30vh;
+  width: 21vw;
+  height: 24vh;
   float: left;
   list-style: none;
   transition: 0.3s ease-in-out;
   text-align: center;
   align-items: center;
-}
-
-li > ul {
-  background-color: aqua;
-  width: 30%;
-  height: 300%;
-  position: relative;
-  overflow: hidden;
-  position: relative;
-}
-
-li > ul > li {
-  width: 100%;
-  height: 33.33333%;
 }
 
 .Queze_p {
@@ -327,14 +407,14 @@ li > ul > li {
 
 .Q_chooser_ul {
   float: left;
-  transition: left 0.5s ease-out;
+  transition: left 0.5s fease-out;
   display: flex;
   flex-direction: row;
 }
 
 .Q_chooser_li {
   position: relative;
-  width: 70vw;
+  width: 21vw;
   height: 5vh;
   float: left;
   list-style: none;
@@ -346,22 +426,14 @@ li > ul > li {
 
 /*----------------------------------------------*/
 @media (min-width: 1800px) {
-  .Q_area {
-    width: 60%;
-    height: 45%;
-    margin-top: 10%;
-  }
   .submit_btn {
     width: 40%;
   }
   .Input_basic {
-    width: 25%;
-  }
-  .guid_message {
-    width: 25%;
+    width: 70%;
   }
   .Logo {
-    margin-top: 5%;
+    margin-top: 10%;
   }
   .Guid_message_ {
     margin-top: 10%;
@@ -377,12 +449,6 @@ li > ul > li {
   }
   .submit_btn {
     width: 40%;
-  }
-  .Input_basic {
-    width: 30%;
-  }
-  .guid_message {
-    width: 30%;
   }
   .Logo {
     margin-top: 10%;
@@ -400,9 +466,6 @@ li > ul > li {
     width: 40%;
   }
   .Input_basic {
-    width: 35%;
-  }
-  .guid_message {
     width: 35%;
   }
   .Logo {
@@ -423,9 +486,6 @@ li > ul > li {
   .Input_basic {
     width: 40%;
   }
-  .guid_message {
-    width: 40%;
-  }
   .Logo {
     margin-top: 10%;
   }
@@ -443,9 +503,6 @@ li > ul > li {
   .Input_basic {
     width: 50%;
   }
-  .guid_message {
-    width: 50%;
-  }
   .Logo {
     margin-top: 10%;
   }
@@ -455,9 +512,6 @@ li > ul > li {
 }
 @media (min-width: 535px) and (max-width: 719px) {
   .Input_basic {
-    width: 60%;
-  }
-  .guid_message {
     width: 60%;
   }
   .Q_area {

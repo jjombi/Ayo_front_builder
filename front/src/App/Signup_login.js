@@ -10,25 +10,27 @@ const Signup_login = () =>  /*--------------------22222222222-------------------
     {
         const [cookie, setCookie, removeCookie] = useCookies();
 
-        useEffect(()=> {
-           //----------------------로그인 유지 시간 만료 됬으면--------------------
-            if(cookie.ayo_cookie && cookie.ayo_cookie !== null){
-                if(cookie.ayo_cookie.date <= Date.now()){
-                    console.log('로그인 기간 만료, 삭제 됨');
-                    removeCookie('ayo_cookie',{path: '/', domain: 'localhost'});
-                    localStorage.clear();
-                }
-                window.location.href = 'http://localhost:8080/queze';
-            }
-            //------------------------------------------------------------------
+        // useEffect(()=> {
+        //    //----------------------로그인 유지 시간 만료 됬으면--------------------
+        //     if(cookie.ayo_cookie && cookie.ayo_cookie !== null){
+        //         if(cookie.ayo_cookie.date <= Date.now()){
+        //             console.log('로그인 기간 만료, 삭제 됨');
+        //             removeCookie('ayo_cookie',{path: '/', domain: 'localhost'});
+        //             localStorage.clear();
+        //         }
+        //         window.location.href = 'http://localhost:8080/queze';
+        //     }
+        //     //------------------------------------------------------------------
             
-        })
+        // })
 
         const id_ref = useRef('');
     
         const name_ref = useRef('');
     
         const password_ref = useRef('');
+
+        const password_ref2 = useRef('');
 
         const navigate = useNavigate();     
 
@@ -42,15 +44,20 @@ const Signup_login = () =>  /*--------------------22222222222-------------------
 
             }else 
             {
-
-                navigate('/School_choose',{   
+                if(password_ref.current === password_ref2.current){
+                    //비번일치
+                    navigate('/School_choose',{   
                     
-                    state: {
-                        id: id_ref.current.value,
-                        name : name_ref.current.value,
-                        pass : password_ref.current.value,
-                    }
-                });
+                        state: {
+                            id: id_ref.current.value,
+                            name : name_ref.current.value,
+                            pass : password_ref.current.value,
+                        }
+                    });
+                }else{
+
+                }
+                
                 
 
             }
@@ -123,21 +130,29 @@ const Signup_login = () =>  /*--------------------22222222222-------------------
                     <div className='content_area'>
 
 
-                        <div className='Logo'></div>
+                        <div className='Logo'><p>Ayo</p></div>
 
                         <input type='text' className='Input_basic Border_radius Top' placeholder='이름을 입력해 주세요' ref={name_ref}></input>
                         
+                        <div className='line4'></div>
+
                         <input type='text' className='Input_basic Border_radius' placeholder='id 입력' ref={id_ref}></input>
                        
-                        <input type='button' className='Input_basic Input_id_btn Border_radius' value="아이디 중복 검사" onClick={check_userid}></input> 
+                        <input type='button' className='btn_basic' value="아이디 중복 검사" onClick={check_userid}></input> 
+
+                        <div className='line4'></div>
 
                         <input type='password' className='Input_basic Border_radius' placeholder='비밀번호를 입력해 주세요' ref={password_ref}></input>
                         
-                        <input type='password' className='Input_basic Border_radius' placeholder='비밀번호를 다시 입력해 주세요'></input>
+                        <diV className="passchecker"></diV>
+
+                        <input type='password' className='Input_basic Border_radius' placeholder='비밀번호를 다시 입력해 주세요' ref={password_ref2}></input>
                         
+                        <diV className='passchecker2'></diV>
+
                         <input type='button' className='Submit_btn Submit_btn_' value="다음" onClick={signup_done}></input>
                         
-                        <p className='Page_num'>2/3</p>
+                        {/* <p className='Page_num'>2/3</p> */}
                     
                     </div>
                         
