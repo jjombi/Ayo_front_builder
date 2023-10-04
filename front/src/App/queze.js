@@ -41,7 +41,7 @@ const Queze_screen = (props) => {
 
     const [value,setValue] = useState();
 
-    const val = useRef();
+    const val = useRef([]);
 
     const key_val = useRef(0);
 
@@ -65,72 +65,19 @@ const Queze_screen = (props) => {
 
     const [chooser_translate_state,chooser_setTranslate_state] = useState(0);
 
+    const arr_components = useRef();
+
+    const key = useRef(0);
+
+    const [translate_state,settranslate_state] = useState('');
+
     const take_queze = () =>{
-        axios({
-            url : 'http://localhost:45509/queze2',
-            method : "post",
-            headers : {
-                'Content-Type' : 'application/json'
-            },
-            data : {
-                school : datalist.current[0],
-                class : datalist.current[1],
-                number : datalist.current[2],
-                token  : token
-            }
-        }).then((res)=>{
-            // console.log(res.data[0].roomName);
-            const v = res.data.map((e)=>e.value); // 퀴즈 내용
-            roomNameRef.current = res.data.map((e)=>e.roomName); // 방번호
-            // console.log('roomNameRef is : ',roomNameRef.current);
-            // console.log('v',v[0]);
-            val.current = v;
-            setRender(0);
-        })
-    }
-
-    useEffect(()=>{
-
-        const jwt = localStorage.getItem('token');
-        console.log('take_name 으로 axios 보내짐 and rendered',' jwt is : ',jwt);
-        //같은 학교 친구들 이름 가져오기
-        axios({
-            url : 'http://localhost:45509/api/take_name',
-            method : 'POST',
-            headers : {
-                'Content-Type' : 'application/json'
-            },
-            data : {
-                school : jwt
-            },
-            
-        }).then((res)=>{
-            res_same_school_name_arr.current =  res.data;
-
-        })
-    },[])
-    //######################################################################################
-    //######################################################################################
-    //-----------------------queze_box------------------------------------------------------
-    //---------------------------------------------------------------------------------------
-    //--------------------------------------------------------------------------------------- 
-    const Queze_box = (props) =>{
-
-        const [render,setRender] = useState();
-        const val = useRef([]);
-        const [translate_state,settranslate_state] = useState('');
-        const key = useRef(0);
-        const arr_components = useRef();
-        
-        
-        
-        
-        useEffect(()=>{
-            console.log('props',translate_state);
-            console.log('Queze_box_page is rendered');
-    
-            console.log('text', props.text);
-    
+        console.log('token is : ',token);
+        if(token === null){
+            alert('로그인 만료');
+            navigate('/');
+        }
+        else{
             axios({
                 url : 'http://localhost:45509/queze2',
                 method : "post",
@@ -150,20 +97,94 @@ const Queze_screen = (props) => {
                 // console.log('roomNameRef is : ',roomNameRef.current);
                 // console.log('v',v[0]);
                 val.current = v;
-                mount.current = (res.data.length -1) * -100; // 데이터 양
                 setRender(0);
             })
+
+        }
+        
+    }
+
+    useEffect(()=>{
+
+        
+        console.log('take_name 으로 axios 보내짐 and rendered',' jwt is : ',token);
+        //같은 학교 친구들 이름 가져오기
+        if(token === null){
+            alert('로그인 만료');
+            navigate('/');
+        }
+        else{
+            axios({
+                url : 'http://localhost:45509/api/take_name',
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                data : {
+                    school : token
+                },
+                
+            }).then((res)=>{
+                res_same_school_name_arr.current =  res.data;
+    
+            })
+
+            
+        }
+        
+    },[])
+    //######################################################################################
+    //######################################################################################
+    //-----------------------queze_box------------------------------------------------------
+    //---------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------- 
+    const Queze_box = (props) =>{
+
+        const [render,setRender] = useState();                
+        
+        useEffect(()=>{
+            console.log('props',translate_state);
+            console.log('Queze_box_page is rendered');
+            if(token !== null){
+                axios({
+                    url : 'http://localhost:45509/queze2',
+                    method : "post",
+                    headers : {
+                        'Content-Type' : 'application/json'
+                    },
+                    data : {
+                        school : datalist.current[0],
+                        class : datalist.current[1],
+                        number : datalist.current[2],
+                        token  : token
+                    }
+                }).then((res)=>{
+                    // console.log(res.data[0].roomName);
+                    const v = res.data.map((e)=>e.value); // 퀴즈 내용
+                    roomNameRef.current = res.data.map((e)=>e.roomName); // 방번호
+                    console.log('roomNameRef is : ',roomNameRef.current);
+                    console.log('v',v[0]);
+                    val.current = v;
+                    mount.current = (res.data.length -1) * -100; // 데이터 양
+    
+                    arr_components.current = val.current.map((e)=>{
+                        key.current += 1;
+                        return(
+                
+                            <li className='Queze_li Border_radius' style={{transform : `translateX(${translate_state}%)`}} key={key.current}>
+                                <p className="Queze_p">{e}</p>
+                            </li>
+                        );
+                    })
+                    console.log('arrComponent 만듬',arr_components.current);
+                    setRender(0);
+                })
+            }
+
+            console.log(arr_components.current);
         },[])
         // console.log('arr components is : ',arr_components.current);
-        arr_components.current = val.current.map((e)=>{
-            key.current += 1;
-            return(
-    
-                <li className='Queze_li Border_radius' style={{transform : `translateX(${translate_state}%)`}} key={key.current}>
-                    <p className="Queze_p">{e}</p>
-                </li>
-            );
-        })
+        
         // console.log('arr_compotents is ',arr_components.current);
         
         const btn1_click = () => { // 왼쪽으로 가는 버튼 -해줘

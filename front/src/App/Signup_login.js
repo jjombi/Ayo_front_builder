@@ -32,8 +32,37 @@ const Signup_login = () =>  /*--------------------22222222222-------------------
 
         const password_ref2 = useRef('');
 
-        const navigate = useNavigate();     
+        const [ani1,setAni1] = useState(0);
 
+        const canvas_ref = useRef();
+        
+        const navigate = useNavigate();  
+        
+        const debounce = (func, timeout = 300) => {// 디바운스--------------
+            let timer;
+            return (...args) => {
+              clearTimeout(timer);
+              timer = setTimeout(() => {
+                func.apply(this, args);
+              }, timeout);
+            };
+        }
+
+        const processChange = debounce(() => passchecker());
+
+        const passchecker = () => {
+            console.log('passs');
+            if(password_ref.current.value == password_ref2.current.value){
+                console.log('correct');
+                setAni1(1);
+            }
+            else {
+                setAni1(0);
+            }
+        }
+        const a = () => {
+            console.log('ASD');
+        }
         const signup_done = () => 
         {
 
@@ -44,7 +73,7 @@ const Signup_login = () =>  /*--------------------22222222222-------------------
 
             }else 
             {
-                if(password_ref.current === password_ref2.current){
+                if(password_ref.current == password_ref2.current){
                     //비번일치
                     navigate('/School_choose',{   
                     
@@ -132,6 +161,8 @@ const Signup_login = () =>  /*--------------------22222222222-------------------
 
                         <div className='Logo'><p>Ayo</p></div>
 
+                        {/* <canvas ref={canvas_ref} ></canvas> */}
+
                         <input type='text' className='Input_basic Border_radius Top' placeholder='이름을 입력해 주세요' ref={name_ref}></input>
                         
                         <div className='line4'></div>
@@ -142,13 +173,13 @@ const Signup_login = () =>  /*--------------------22222222222-------------------
 
                         <div className='line4'></div>
 
-                        <input type='password' className='Input_basic Border_radius' placeholder='비밀번호를 입력해 주세요' ref={password_ref}></input>
+                        <input type='password' className='Input_basic Border_radius' placeholder='비밀번호를 입력해 주세요' ref={password_ref} onKeyUp={processChange}></input>
                         
-                        <diV className="passchecker"></diV>
+                        <div className="passchecker" style={{transform : `scale(${ani1})`}}></div>
 
-                        <input type='password' className='Input_basic Border_radius' placeholder='비밀번호를 다시 입력해 주세요' ref={password_ref2}></input>
+                        <input type='password' className='Input_basic Border_radius' placeholder='비밀번호를 다시 입력해 주세요' ref={password_ref2} onKeyUp={processChange}></input>
                         
-                        <diV className='passchecker2'></diV>
+                        <div className='passchecker2' style={{transform : `scale(${ani1})`}}></div>
 
                         <input type='button' className='Submit_btn Submit_btn_' value="다음" onClick={signup_done}></input>
                         

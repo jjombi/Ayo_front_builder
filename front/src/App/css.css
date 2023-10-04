@@ -19,8 +19,25 @@ input {
   color: black;
 }
 
+input:focus {
+  outline: none;
+}
+
 select, option {
   color: black;
+}
+
+p {
+  z-index: 1;
+}
+
+canvas {
+  position: absolute;
+  top: 10%;
+  width: 70px;
+  height: 70px;
+  border: 1px solid rgb(163, 53, 53);
+  border-radius: 50%;
 }
 
 /*----------icon--logo------------------*/
@@ -252,22 +269,24 @@ header {
   font-size: 12px;
 }
 
-.passchecker {
+.passchecker, .passchecker2 {
   position: absolute;
   width: 20px;
   height: 20px;
-  background-color: aqua;
-  top: 52%;
+  background-color: rgb(0, 255, 47);
   z-index: 1;
+  transition: 0.1s ease;
+  border-radius: 50%;
+}
+
+.passchecker {
+  top: 52.3%;
+  left: 79%;
 }
 
 .passchecker2 {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: aqua;
-  top: 62%;
-  z-index: 1;
+  top: 61.6%;
+  left: 79%;
 }
 
 /*---------------------------------------------*/

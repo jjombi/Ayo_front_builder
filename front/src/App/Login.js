@@ -13,21 +13,21 @@ const Login = () => {
 
     axios.defaults.withCredentials = true; // withCredentials 전역 설정
 
-    useEffect(()=> {
-        //----------------------로그인 유지 시간 만료 됬으면--------------------
-        if(cookie.ayo_cookie && cookie.ayo_cookie !== null){
-            if(cookie.ayo_cookie.date <= Date.now()){
-                console.log('로그인 기간 만료, 삭제 됨');
-                removeCookie('ayo_cookie',{path: '/', domain: 'localhost'});
-                localStorage.clear();
-            }
-            navigate('/queze')
+    // useEffect(()=> {
+    //     //----------------------로그인 유지 시간 만료 됬으면--------------------
+    //     if(cookie.ayo_cookie && cookie.ayo_cookie !== null){
+    //         if(cookie.ayo_cookie.date <= Date.now()){
+    //             console.log('로그인 기간 만료, 삭제 됨');
+    //             removeCookie('ayo_cookie',{path: '/', domain: 'localhost'});
+    //             localStorage.clear();
+    //         }
+    //         navigate('/queze')
             
-        }
-        //------------------------------------------------------------------
+    //     }
+    //     //------------------------------------------------------------------
         
 
-    },[])
+    // },[])
 
 
     const login_submit = () => { //로그인 완료
