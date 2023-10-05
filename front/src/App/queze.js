@@ -250,7 +250,7 @@ const Queze_screen = (props) => {
     //--------------------------------------------------------------------
     //-----------------------추천 이름 component 생성 함수----------------------
     const axios_fn = ()=>{
-        console.log('axios is start');
+        console.log('axios is start',input_value.current.style);
 
         const props_arr = res_same_school_name_arr.current.map((value)=>// test1,
             {   
@@ -276,6 +276,16 @@ const Queze_screen = (props) => {
             }
         );
         components_arr.current = props_arr;
+        if(components_arr.current[components_arr.current.length - 1] !== null) {
+            components_arr.current.push(<div className='bottom_name_input_area'></div>);
+            input_value.current.style.borderRadius = '0';
+            input_value.current.style.borderTopLeftRadius = '10px';
+            input_value.current.style.borderTopRightRadius = '10px';
+        }
+        else {
+            input_value.current.style.borderRadius = '10px';
+        }
+        console.log('_______________________',components_arr.current);
         setRender(render + 1);
         // console.log('components_arr : ', components_arr);
     }
@@ -394,10 +404,21 @@ const Queze_screen = (props) => {
 
                 <div className='line4'></div>
 
-                <input type='text' onClick={login_checker} onKeyUp={processChange} ref={input_value} className='Input_basic Border_radius' placeholder='이름 입력'></input>
-                <Component props={components_arr.current}></Component>
+                <div className='name_input_area'>
+                </div>
+
+                <input type='text' onClick={login_checker} onKeyUp={processChange} ref={input_value} className='Input_basic Border_radius name_input' placeholder='이름 입력'></input>
+                
+                {/* <Component props={components_arr.current}></Component> */}
+                {
+                    components_arr.current
+                }
+
+                
                 <input type='button' onClick={vote} value="투표하기" className='btn_basic'></input>
+                
                 <input type='button' onClick={logout} className='btn_basic' value="로그아웃"></input>
+                
                 <input type='button' onClick={()=>navigate('/makequeze')} className='btn_basic' value="질문 만들기"></input>
                 {/* <input className="btn_basic" type="button" onClick={(e)=>{switch_btn(e.target)}} style={{}} name={0} value="학교"></input>
                 <input className="btn_basic" type="button" onClick={(e)=>{switch_btn(e.target)}} style={{}} name={1} value="학급"></input>
@@ -411,20 +432,5 @@ const Queze_screen = (props) => {
     );
 }
 
-const Component = (props) => /*---------------------------------------------------------*/
-    {
-        
-
-        console.log('props',props.props);
-
-        return(
-
-
-            <>
-                {props.props}
-            </>
-
-        );
-    }
 export default Queze;
 
