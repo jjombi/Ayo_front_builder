@@ -8,10 +8,10 @@ const MakeQueze = () => {
     const [controller, setController] = useState(false);
     const input_value = useRef();
     const [swich_btn_controller,setSwich_btn_controller] = useState(false); 
-    const datalist = useRef([false,false,false]);
+    const datalist = useRef([true,false,false]);
     const token = localStorage.getItem('token');
     const [chooser_translate_state,chooser_setTranslate_state] = useState(0);
-
+    const type = useRef();
 
     const login_checker = () => {
         cookie.ayo_user_id !== undefined ? setController(true) : setController(false)
@@ -71,25 +71,37 @@ const MakeQueze = () => {
             chooser_setTranslate_state(chooser_translate_state - 100);
         }
     }
-
+    const switch_ = (e)=>{
+        console.log('e.value : ',e.value);
+        if(e.value == 0){
+            datalist.current[0] = true;
+        }
+        else if(e.value == 1){
+            datalist.current[0] = true;
+            datalist.current[1] = true;
+        }
+        else if(e.value == 2){
+            datalist.current[0] = true;
+            datalist.current[1] = true;
+            datalist.current[2] = true;
+        }
+        console.log('datalist : ',datalist.current);
+    }
     return(
         <div className='content_area'>
-            <input type='text' onClick={login_checker}  ref={input_value} className='submit_btn' placeholder='이름 입력'></input>
+            <input type='text' onClick={login_checker}  ref={input_value} className='makequeze_input Border_radius' placeholder='질문을 입력하세요'></input>
             <p className='guid_message'>범위 선택</p>
-            {/* <input className="submit_btn" type="button" onClick={(e)=>{switch_btn(e.target)}} style={{}} name={0} value="학교"></input>
-            <input className="submit_btn" type="button" onClick={(e)=>{switch_btn(e.target)}} style={{}} name={1} value="학급"></input>
-            <input className="submit_btn" type="button" onClick={(e)=>{switch_btn(e.target)}} style={{}} name={2} value="반"></input> */}
-            <div className='Q_chooser Border_radius Top'>
-                    <ul className="Q_chooser_ul">
-                        <li className='Q_chooser_li'  style={{transform : `translateX(${chooser_translate_state}%)`}} onClick={(e)=>{switch_btn(e.target)}}  title={0} >학교 전체</li>
-                        <li className='Q_chooser_li'  style={{transform : `translateX(${chooser_translate_state}%)`}} onClick={(e)=>{switch_btn(e.target)}}  title={1} >학급 전체</li>
-                        <li className='Q_chooser_li'  style={{transform : `translateX(${chooser_translate_state}%)`}} onClick={(e)=>{switch_btn(e.target)}}  title={2} >우리 반 전체</li>
-                    </ul>
-                    <button className='btn1' onClick={chooser_r_btn}></button>
-                    <button className='btn2' onClick={chooser_l_btn}></button>
-                    
-                </div>
-            <input type='button' onClick={makeQueze} value="질문 만들기" className='submit_btn'></input>
+            
+            <div className='Q_chooser2 Border_radius' title = "문제 범위를 설정할 수 있습니다">
+
+                공개 범위 선택
+                <select className='Border_radius' onChange={(e)=>{switch_(e.target)}}>
+                    <option value={0}>학교 공개</option>
+                    <option value={1}>학급 공개</option>
+                    <option value={2}>반 공개</option>
+                </select>
+            </div>
+            <input type='button' onClick={makeQueze} value="질문 만들기" className='Submit_btn Submit_btn_'></input>
             
         </div>
     );

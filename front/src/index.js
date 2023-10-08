@@ -7,11 +7,13 @@ import School_choose from './App/School_chose';
 import Login from './App/Login';
 import GotoLogin from './App/GoToLogin'
 import MakeQueze from './App/MakeQueze';
+import Header from './App/Header';
 
 // import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route,useNavigate } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
 import { createRoot } from 'react-dom/client';
+
 
 
 
@@ -23,7 +25,7 @@ root.render(
       {/* <div className='Icon'></div> */}
       
       <div className='Main_root'>
-        <header></header>
+        <Header></Header>
         <div className='line'></div>
         <BrowserRouter>
           <Routes>
