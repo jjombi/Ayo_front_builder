@@ -30,6 +30,10 @@ module.exports = {
           name: '[name].[ext]',
         }
       },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      }
     ],
   },
   devServer: {

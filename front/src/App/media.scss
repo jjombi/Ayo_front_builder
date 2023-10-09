@@ -37,7 +37,12 @@
   
   // 노트북에서 데스크탑 : 최소 '노트북에서 데스크탑'사이즈부터 ~ 최대 '데스크탑'사이즈까지 
   @mixin desktopToLaptop {
-    @media (min-width: #{$breakpoint-desktopToLaptop}) and (max-width: #{$breakpoint-desktop - 1px}) {
+    @media (min-width: #{$breakpoint-desktopToLaptop}) and (max-width: #{$breakpoint-desktopToLaptop2 - 1px}) {
+      @content;
+    }
+  }
+  @mixin desktopToLaptop2 {
+    @media (min-width: #{$breakpoint-desktopToLaptop2}) and (max-width: #{$breakpoint-desktop - 1px}) {
       @content;
     }
   }

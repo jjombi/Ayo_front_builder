@@ -10,12 +10,12 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
     {  
         const [cookie, setCookie, removeCookie] = useCookies();
 
-        useEffect(()=> {
-            console.log(cookie.ayo_user_id);
-            if(cookie.ayo_user_id && cookie.ayo_user_id !== null){
-                window.location.href = 'http://localhost:8080/queze';
-            }
-        })
+        // useEffect(()=> {
+        //     console.log(cookie.ayo_user_id);
+        //     if(cookie.ayo_user_id && cookie.ayo_user_id !== null){
+        //         window.location.href = 'http://localhost:8080/queze';
+        //     }
+        // })
 
         const location = useLocation();
 
@@ -23,7 +23,7 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
 
         const key_val = useRef(0);
 
-        const ref = useRef(); 
+        const input_value = useRef(); 
 
         const class_ = useRef();
 
@@ -41,57 +41,61 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
 
         const access_token = useRef();
 
+        const [modal_state,setModal_state] = useState('15');
+
         const target_id = useRef(); //카카오 targeg_id
 
         const kakao_nickname = useRef(); // 카카오 로그인 유저 이름
 
-        useEffect(()=>{
-            const code = new URL(window.location.href).searchParams.get("code");
-            const client_id = '06a99c89dcf41c4f83132512d600f00d'; //rest
-            const redirect_uri = 'http://localhost:8080/school_choose';
-            if(code !== null && cookie.kakao_access_token == undefined){
-                console.log(code, ' : code');
-                axios({//                 토큰 받기
-                    method : 'POST',
-                    url : `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=06a99c89dcf41c4f83132512d600f00d&refresh_token=${redirect_uri}&code=${code}`,
-                    headers : {
-                        'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-                    }
-                }).then((res)=> {
-                    console.log(res.data);
-                    access_token.current = res.data.access_token;
-                    console.log(access_token.current,'58 access_token');
-                    axios({ //                        카카오 사용자 정보 가져오기
-                        url : `https://kapi.kakao.com/v2/user/me`,
-                        method : 'POST',
-                        headers : {
-                            'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-                            'Authorization' : `Bearer ${access_token.current}`
-                        },  
-                    }).then((res)=>{
-                        console.log(res.data.id);
-                        axios({
-                            url : 'http://localhost:45509/api/signup_check',
-                            method : 'POST',
-                            headers : {
-                                'Content-type': 'application/json'
-                            },
-                            data : {
-                                id : res.data.id
-                            }
-                        }).then((res)=>{
-                            console.log('내 서버 요청',res); //이미 있는 카카오 계정
-                            alert('이미 있는 계정 입니다');
-                            if(res.data == 'that is already signuped') navigate('/');
-                        })
-                    })
-                })
-                
-                
-            }
+        const back = useRef();
 
-            console.log(access_token);
-        },[code])
+        // useEffect(()=>{
+        //     const code = new URL(window.location.href).searchParams.get("code");
+        //     const client_id = '06a99c89dcf41c4f83132512d600f00d'; //rest
+        //     const redirect_uri = 'http://localhost:8080/school_choose';
+        //     if(code !== null && cookie.kakao_access_token == undefined){
+        //         console.log(code, ' : code');
+        //         axios({//                 토큰 받기
+        //             method : 'POST',
+        //             url : `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=06a99c89dcf41c4f83132512d600f00d&refresh_token=${redirect_uri}&code=${code}`,
+        //             headers : {
+        //                 'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+        //             }
+        //         }).then((res)=> {
+        //             console.log(res.data);
+        //             access_token.current = res.data.access_token;
+        //             console.log(access_token.current,'58 access_token');
+        //             axios({ //                        카카오 사용자 정보 가져오기
+        //                 url : `https://kapi.kakao.com/v2/user/me`,
+        //                 method : 'POST',
+        //                 headers : {
+        //                     'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+        //                     'Authorization' : `Bearer ${access_token.current}`
+        //                 },  
+        //             }).then((res)=>{
+        //                 console.log(res.data.id);
+        //                 axios({
+        //                     url : 'http://localhost:45509/api/signup_check',
+        //                     method : 'POST',
+        //                     headers : {
+        //                         'Content-type': 'application/json'
+        //                     },
+        //                     data : {
+        //                         id : res.data.id
+        //                     }
+        //                 }).then((res)=>{
+        //                     console.log('내 서버 요청',res); //이미 있는 카카오 계정
+        //                     alert('이미 있는 계정 입니다');
+        //                     if(res.data == 'that is already signuped') navigate('/');
+        //                 })
+        //             })
+        //         })
+                
+                
+        //     }
+
+        //     console.log(access_token);
+        // },[code])
 
 
         const apifun = () => //회원 가입 완료 버튼
@@ -99,50 +103,51 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
 
             console.log('props, export_school_name',props, export_school_name);
             // console.log('access_token : ',access_token);
-            if(access_token.current !== undefined){// access_token에 값이 있으면(카카오 로그인 상태) 카카오 회원가입
-                console.log('access tokenm : ',access_token.current);
-                axios({ //                        카카오 사용자 정보 가져오기
-                    url : `https://kapi.kakao.com/v2/user/me`,
-                    method : 'POST',
-                    headers : {
-                        'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-                        'Authorization' : `Bearer ${access_token.current}`
-                    },  
-                }).then((res)=>{
-                    console.log(res);
-                    target_id.current = res.data.id; // 카카오 아이디 넣고
-                    kakao_nickname.current = res.data.properties.nickname;// 카카오 이름 넣고
-                    console.log(target_id,kakao_nickname);
+            // if(access_token.current !== undefined){// access_token에 값이 있으면(카카오 로그인 상태) 카카오 회원가입
+            //     console.log('access tokenm : ',access_token.current);
+            //     axios({ //                        카카오 사용자 정보 가져오기
+            //         url : `https://kapi.kakao.com/v2/user/me`,
+            //         method : 'POST',
+            //         headers : {
+            //             'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+            //             'Authorization' : `Bearer ${access_token.current}`
+            //         },  
+            //     }).then((res)=>{
+            //         console.log(res);
+            //         target_id.current = res.data.id; // 카카오 아이디 넣고
+            //         kakao_nickname.current = res.data.properties.nickname;// 카카오 이름 넣고
+            //         console.log(target_id,kakao_nickname);
 
-                    axios({
+            //         axios({
 
-                    method           : 'Post',
-                    url              : 'http://localhost:45509/infor/', // 내 서버에
-                    data             : 
-                    {
+            //         method           : 'Post',
+            //         url              : 'http://localhost:45509/infor/', // 내 서버에
+            //         data             : 
+            //         {
     
-                        'userName'     : kakao_nickname.current, // 카카오 이름 이랑
-                        'userid'       : target_id.current,      // 카카오 아이디랑
-                        'userPassword' : 'kakao',
-                        'schoolName'   : ref.current,           //  학교이름 이랑 보냄
-                        'kakao_access_token' : access_token.current,
-                        'age'          : age.current.value,
-                        'class'        : class_.current.value,
-                        'number'       : number.current.value
-                    },
-                    headers          : 
-                    {
+            //             'userName'     : kakao_nickname.current, // 카카오 이름 이랑
+            //             'userid'       : target_id.current,      // 카카오 아이디랑
+            //             'userPassword' : 'kakao',
+            //             'schoolName'   : input_value.current,           //  학교이름 이랑 보냄
+            //             'kakao_access_token' : access_token.current,
+            //             'age'          : age.current.value,
+            //             'class'        : class_.current.value,
+            //             'number'       : number.current.value
+            //         },
+            //         headers          : 
+            //         {
     
-                        "Content-Type" : "application/json",
+            //             "Content-Type" : "application/json",
     
-                    }
-                    }).then((res)=>{
-                        localStorage.setItem('token',res.data);
-                    })
-                })
-                //로그인 유지를 위해 서버에서 토큰 보내줘야함 토큰은 카카오 access_token 값 가지고 있어야 함
+            //         }
+            //         }).then((res)=>{
+            //             localStorage.setItem('token',res.data);
+            //         })
+            //     })
+            //     //로그인 유지를 위해 서버에서 토큰 보내줘야함 토큰은 카카오 access_token 값 가지고 있어야 함
                 
-            }else {
+            // }
+            //else {
             axios({ //          ayo 회원가입
                 
                 method           : 'Post',
@@ -153,7 +158,7 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
                     'userName'     : location.state.name,
                     'userid'       : location.state.id,
                     'userPassword' : location.state.pass,
-                    'schoolName'   : ref.current.value,
+                    'schoolName'   : input_value.current.value,
                     'age'          : age.current.value,
                     'class'        : class_.current.value,
                     'number'       : number.current.value
@@ -171,31 +176,15 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
                 console.log('success');
 
             })
-            }
-            navigate('/queze',{   
-                    
-                state: {
-                    access_token : access_token.current
-                }
-            });
-        }
-
-
-        const Component = (props) => /*---------------------------------------------------------*/
-        {
             
-
-            console.log(props.props);
-
-            return(
-
-
-                <>
-                    {props.props.current}
-                </>
-
-            );
+            // navigate('/queze',{   
+                    
+            //     // state: {
+            //     //     access_token : access_token.current
+            //     // }
+            // });
         }
+
 
         const debounce = (func, timeout = 300) => {
             let timer;
@@ -207,19 +196,22 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
             };
         }
         const processChange = debounce(() => Axios_fn());
-
+        const fn = (e)=> {
+            console.log('bluer');
+            // export_school_name.current = [];
+            setModal_state('0');
+            back.current = null;
+            input_value.current.style.borderRadius = '10px';
+            setRender(render + 1);
+            
+        }
         const Axios_fn =() => /*--------------------------------------------------------------*/
         {   
 
-            
-            const fn = (e)=> {
-
-                console.log('sad',e.target.value);
-                ref.current.value = e.target.value;
-
-            }
-            console.log('ref : ',ref.current.value);
-            fetch(`https://open.neis.go.kr/hub/schoolInfo?SCHUL_NM=${ref.current.value}&Type=json&key=7bb28e84d18c4b3c9455a81e663d6e6e`)
+            console.log('input 안에 뭐',<input></input>,'debounce로 실행 됨');
+            setModal_state('15');
+            console.log('ref : ',input_value.current.value);
+            fetch(`https://open.neis.go.kr/hub/schoolInfo?SCHUL_NM=${input_value.current.value}&Type=json&key=7bb28e84d18c4b3c9455a81e663d6e6e`)
             .then((response) => response.json())
             .then((data) => 
             {   
@@ -273,7 +265,7 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
                 }
             })
             .then(()=> {
-
+                
                 console.log('Line 224  school_name value : ',school_name_ref.current);
 
                 const props_arr = school_name_ref.current.map((value)=>
@@ -283,18 +275,31 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
 
                     return (
 
-                        <input type='button' className=' id_area Suggested_Search' key={key_val.current} onClick={fn} value={value}></input>
+                        <input type='button' className=' id_area Suggested_Search' key={key_val.current} onClick={(e)=>{input_value.current.value = e.target.value;fn()}} value={value}></input>
+
 
                     );
 
                 });
 
                 console.log('Line 230 props_arr value : ',props_arr);
-    
+
                 export_school_name.current = props_arr;
+                console.log('export_school_name component배열 만든 직후 : ',export_school_name.current);
+
+
+                if(export_school_name.current[export_school_name.current.length - 1] !== null) {
+                    export_school_name.current.push(<div className='bottom_name_input_area'></div>);
+                    input_value.current.style.borderRadius = '0';
+                    input_value.current.style.borderTopLeftRadius = '10px';
+                    input_value.current.style.borderTopRightRadius = '10px';
+                }
+                else {
+                    input_value.current.style.borderRadius = '10px';
+                }
 
                 console.log('EXPORT ref',export_school_name.current,'props',props_arr);
-                
+                back.current = [<div className='back' onClick={fn}></div>]
                 setRender(render + 1);
 
             })
@@ -303,18 +308,22 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
     }
     
         return(
-
+            <>
             <div className='Main_root'>
-
             <div className='content_area'>
+            {back.current}
 
-                <div className='Logo'></div>
+            <div className='Logo'><p>Ayo</p></div>
 
-                <input type='text' className='Input_basic Border_radius' placeholder='학교 검색' ref={ref} onKeyUp={processChange}></input>
+                <input type='select' className='Input_basic Border_radius z_index' placeholder='학교 검색' ref={input_value} onKeyUp={processChange} ></input>
+                <div className='modal2' style={{height : `${modal_state}%`}}>
+                    {
+                        export_school_name.current
+                    }
+                </div>
+                {/* <Component props={export_school_name}></Component> */}
                 
-                <Component props={export_school_name}></Component>
-                
-                <input type='button' className='Input_basic Input_id_btn Border_radius' value="enter" onClick={Axios_fn}></input>
+                {/* <input type='button' className='Input_basic Input_id_btn Border_radius' value="enter" onClick={Axios_fn}></input> */}
                                                
                 <select name="class" className='Input_basic Input_id_btn Border_radius' ref={class_}>
                     <option value="1">1</option>
@@ -355,6 +364,8 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
             </div>
             
         </div>
+        </>
+
         )
     }
     export default School_choose;

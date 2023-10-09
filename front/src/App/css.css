@@ -4,6 +4,7 @@
   padding: 0;
   border: 0;
   color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 iframe {
@@ -38,6 +39,19 @@ canvas {
   height: 70px;
   border: 1px solid rgb(163, 53, 53);
   border-radius: 50%;
+}
+
+.svg_, .svg_2 {
+  width: 25px;
+  height: 25px;
+}
+
+.svg_ {
+  transform: rotate(-45deg);
+}
+
+.svg_2 {
+  transform: rotate(135deg);
 }
 
 /*----------icon--logo------------------*/
@@ -147,6 +161,7 @@ header > div {
   border-left: 2px solid white;
   border-right: 2px solid white;
   text-align: center;
+  z-index: 0;
 }
 
 .main_line_contents {
@@ -313,6 +328,10 @@ header > div {
   cursor: pointer;
 }
 
+.z_index {
+  z-index: 2;
+}
+
 .abc {
   overflow: hidden;
   width: 70%;
@@ -359,6 +378,7 @@ header > div {
   background-color: white;
   z-index: 0;
   color: black;
+  cursor: pointer;
 }
 
 .btn1 {
@@ -444,11 +464,27 @@ header {
   z-index: 1;
 }
 
+.modal2 {
+  height: 10%;
+  width: 70%;
+  overflow-y: auto;
+  position: absolute;
+  top: 24%;
+  z-index: 1;
+}
+
 .option {
   margin-top: 0%;
 }
 
 /*----------------------popup창 디자인-------------------*/
+.back {
+  position: absolute;
+  opacity: 1;
+  width: 100vw;
+  height: 90vh;
+}
+
 .popup {
   position: absolute;
   opacity: 1;
@@ -562,6 +598,10 @@ header {
   flex-direction: row;
   color: black;
   align-items: center;
+  font-size: 14px;
+}
+.Q_chooser2 select {
+  margin-left: auto;
 }
 
 .Q_chooser_ul {
@@ -588,13 +628,6 @@ option {
   height: 100%;
 }
 
-select {
-  width: 40%;
-  height: 100%;
-  margin-left: auto;
-  cursor: pointer;
-}
-
 select:focus {
   outline: none;
 }
@@ -617,7 +650,29 @@ select:focus {
     width: 70%;
   }
 }
-@media (min-width: 1300px) and (max-width: 1799px) {
+@media (min-width: 1400px) and (max-width: 1799px) {
+  .content_area {
+    width: 35vw;
+    background-color: rgb(255, 145, 0);
+    margin-left: 30vw;
+  }
+  .Input_basic {
+    width: 70%;
+  }
+  .Queze_li {
+    width: 23.5vw;
+  }
+  header > div {
+    width: 25%;
+  }
+  .Popup_main_content {
+    width: 25%;
+    height: 30%;
+    margin-left: 35%;
+    margin-top: 15%;
+  }
+}
+@media (min-width: 1300px) and (max-width: 1399px) {
   .content_area {
     width: 40vw;
     background-color: rgb(255, 145, 0);
@@ -631,6 +686,12 @@ select:focus {
   }
   header > div {
     width: 25%;
+  }
+  .Popup_main_content {
+    width: 25%;
+    height: 30%;
+    margin-left: 37.5%;
+    margin-top: 15%;
   }
 }
 @media (min-width: 1024px) and (max-width: 1299px) {
@@ -648,6 +709,12 @@ select:focus {
   header > div {
     width: 35%;
   }
+  .Popup_main_content {
+    width: 30%;
+    height: 30%;
+    margin-left: 35%;
+    margin-top: 20%;
+  }
 }
 @media (min-width: 960px) and (max-width: 1023px) {
   .content_area {
@@ -663,6 +730,12 @@ select:focus {
   }
   header > div {
     width: 42%;
+  }
+  .Popup_main_content {
+    width: 30%;
+    height: 30%;
+    margin-left: 35%;
+    margin-top: 25%;
   }
 }
 @media (min-width: 720px) and (max-width: 959px) {
@@ -680,6 +753,12 @@ select:focus {
   header > div {
     width: 45%;
   }
+  .Popup_main_content {
+    width: 30%;
+    height: 30%;
+    margin-left: 35%;
+    margin-top: 25%;
+  }
 }
 @media (min-width: 535px) and (max-width: 719px) {
   .content_area {
@@ -695,6 +774,12 @@ select:focus {
   }
   header > div {
     width: 50%;
+  }
+  .Popup_main_content {
+    width: 45%;
+    height: 30%;
+    margin-left: 27.5%;
+    margin-top: 30%;
   }
 }
 @media (min-width: 335px) and (max-width: 534px) {

@@ -6,23 +6,10 @@ import './css.css';
 import axios from 'axios';
 import { useCookies } from "react-cookie";
 import Queze_box from './Queze_box';
-// import io from "socket.io-client";
 
 import Popup from './Popup';
 
 const Queze = () => {
-
-    return(
-        <div className='Main_root'>
-            <Queze_screen></Queze_screen>
-        </div>
-    )
-}
-
-
-
-const Queze_screen = (props) => {
-
     const [con, setCon] = useState('');
 
     const navigate = useNavigate();
@@ -34,7 +21,7 @@ const Queze_screen = (props) => {
     const [render, setRender] = useState(0);
 
     const res_same_school_name_arr = useRef(); //같은 학교 친구들 이름이 배열로 나열되있음
-
+    
     const input_value = useRef();
 
     const roomNameRef = useRef();
@@ -48,13 +35,12 @@ const Queze_screen = (props) => {
     const queze_result = useRef(null);
 
     const opacity_ = useRef();
-
     useEffect(()=>{
 
         
         console.log('take_name 으로 axios 보내짐 and rendered',' jwt is : ',token);
         //같은 학교 친구들 이름 가져오기
-        if(token === null){
+        if(false){ //token === null
             alert('로그인 만료');
             navigate('/');
         }
@@ -173,30 +159,38 @@ const Queze_screen = (props) => {
     }
     const vote = () => {
         // socket.emit('server1',`${input_value.current.value}`); 
-        console.log('roomNameRef is : ',roomNameRef.current[num.current]);
-        console.log('input val',input_value.current.value);
-        axios({
-            url : 'http://localhost:45509/vote',
-            method : 'POST',
-            headers : {
-                'Content-Type' : 'application/json'
-            },
-            data : {
-                //방 번호
-                //뽑은 사람
-                roomName : roomNameRef.current[num.current],
-                voteName : `${input_value.current.value}`
-            }
-        }).then((res)=>{
-            console.log('vote api res is',res);
-            
-        })
-        setCon('투표 완료');
-        opacity_.current = 1;
-        // setTimeout(() => {
-        //     opacity_.current = 0;
-        //     setCon('');
-        // }, 500);
+        console.log(input_value.current);
+        if(input_value.current == '' || input_value.current == null){
+            alert('뽑는이를 적어주세요');
+        }
+        else{
+
+        
+            console.log('roomNameRef is : ',roomNameRef.current[num.current]);
+            console.log('input val',input_value.current.value);
+            axios({
+                url : 'http://localhost:45509/vote',
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                data : {
+                    //방 번호
+                    //뽑은 사람
+                    roomName : roomNameRef.current[num.current],
+                    voteName : `${input_value.current.value}`
+                }
+            }).then((res)=>{
+                console.log('vote api res is',res);
+                
+            })
+            setCon('투표 완료');
+            opacity_.current = 1;
+            // setTimeout(() => {
+            //     opacity_.current = 0;
+            //     setCon('');
+            // }, 500);
+        }
     }
 
     const navi_fun = () =>{
@@ -207,8 +201,7 @@ const Queze_screen = (props) => {
 
     }
     return(
-        <>  
-            
+        <div className='Main_root'>
             <div className='content_area'>
                 
 
@@ -246,9 +239,11 @@ const Queze_screen = (props) => {
             {
                 con === "투표 완료" ? <Popup text={con} func={votesuccess} opacity_={opacity_}></Popup> : null
             }
-        </>
-    );
+        </div>
+    )
 }
+
+
 
 
 

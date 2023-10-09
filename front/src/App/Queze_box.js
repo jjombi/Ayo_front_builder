@@ -3,7 +3,7 @@ import React, { useEffect,useRef, useState } from "react";
 import axios from 'axios';
 // import {ReactComponent as svg_} from '../img/arrow.svg';
 // import svg_ from './arrow.svg';
-// import svg_ from '../Img_folder';
+import Svg_ from '/src/App/Img_folder/arrow_figma.svg';
 
 const Coo = (props) => {
     const [render,setRender] = useState(0);
@@ -159,10 +159,11 @@ const Queze_box = (props) =>{
                         <Coo arr_chooser={arr_chooser} queze_length= {queze_length} setQueze_length={setQueze_length} con={con} props={props}></Coo>
                     </ul>
                     <button className='btn1' onClick={btn1_click}>
-                        a
+                        {/* <svg_ className="svg_"></svg_> */}
+                        <Svg_   className="svg_"></Svg_>
                     </button>
                     <button className='btn2' onClick={btn2_click}>
-                        b
+                        <Svg_   className="svg_2"></Svg_>
                     </button>
                     
                 </div>

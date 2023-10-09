@@ -5,6 +5,7 @@
     padding: 0;
     border: 0;
     color: white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
     // background-color: black;
@@ -38,6 +39,17 @@ canvas {
     height: 70px;
     border: 1px solid rgb(163, 53, 53);
     border-radius: 50%;
+}
+.svg_, .svg_2 {
+    width: 25px;
+    height: 25px;
+}
+.svg_ {
+    transform: rotate(-45deg);
+}
+.svg_2 {
+    transform: rotate(135deg);
+
 }
 /*----------icon--logo------------------*/
 header {
@@ -140,6 +152,7 @@ header > div {
     border-left: 2px solid white;
     border-right: 2px solid white;
     text-align: center;
+    z-index: 0;
 }
 .main_line_contents {
     display: flex;
@@ -306,6 +319,9 @@ header > div {
     background-color: white;
     cursor: pointer;
 } 
+.z_index {
+    z-index: 2;
+}
 .abc {
     overflow: hidden;
     width: 70%;
@@ -348,6 +364,7 @@ header > div {
     background-color: white;
     z-index: 0;
     color: black;
+    cursor: pointer;
 }
 
 .btn1 {
@@ -424,6 +441,14 @@ header {
     top : 68%;
     z-index: 1;
 }
+.modal2 {
+    height: 10%;
+    width: 70%;
+    overflow-y: auto;
+    position: absolute;
+    top : 24%;
+    z-index: 1;
+}
 // .name_input {
 //     border-radius: ;
 // }
@@ -431,6 +456,12 @@ header {
     margin-top: 0%;
 }
 /*----------------------popup창 디자인-------------------*/
+.back {
+    position: absolute;
+    opacity: 1;
+    width: 100vw;
+    height: 90vh;
+}
 .popup { //공통 요소
     position: absolute;
     // transform: translate(0,-85%);
@@ -555,6 +586,11 @@ $Q_ul_width : 500%;
     flex-direction: row;
     color: black;
     align-items: center;
+    font-size: 14px;
+    // font-size: medium;
+    select {
+        margin-left: auto;
+    }
 }
 .Q_chooser_ul{
     float: left;
@@ -577,12 +613,12 @@ option {
     width: 30%;
     height: 100%;
 }
-select {
-    width: 40%;
-    height: 100%;
-    margin-left: auto;
-    cursor: pointer;
-}
+// select {
+//     width: 40%;
+//     height: 100%;
+//     margin-left: auto;
+//     cursor: pointer;
+// }
 select:focus {
     outline: none;
 }
@@ -613,7 +649,31 @@ select:focus {
     }
     //---------------------------------------
 }
+@include desktopToLaptop2 {
 
+    .content_area {
+        width: 35vw;
+        //margin-left: 35%;
+        background-color: rgb(255, 145, 0);
+        margin-left: 30vw;
+    }
+    .Input_basic {
+        width: 70%;
+    }
+    .Queze_li {
+        width: 23.5vw;
+    }
+    header > div {
+        width: 25%;
+    }
+    .Popup_main_content {
+        width: 25%;
+        height: 30%;
+        margin-left: 35%;
+        margin-top: 15%;
+    }
+    //---------------------------------------
+}
 
 // 노트북에서 데스크탑
 @include desktopToLaptop {
@@ -632,6 +692,12 @@ select:focus {
     }
     header > div {
         width: 25%;
+    }
+    .Popup_main_content {
+        width: 25%;
+        height: 30%;
+        margin-left: 37.5%;
+        margin-top: 15%;
     }
     //---------------------------------------
 }
@@ -654,6 +720,12 @@ select:focus {
     header > div {
         width: 35%;
     }
+    .Popup_main_content {
+        width: 30%;
+        height: 30%;
+        margin-left: 35%;
+        margin-top: 20%;
+    }
     //-----------------------------------
 }
 
@@ -675,6 +747,12 @@ select:focus {
     header > div {
         width: 42%;
     }
+    .Popup_main_content {
+        width: 30%;
+        height: 30%;
+        margin-left: 35%;
+        margin-top: 25%;
+    }   
     //---------------------------------------
 }
 
@@ -695,6 +773,12 @@ select:focus {
     header > div {
         width: 45%;
     }
+    .Popup_main_content {
+        width: 30%;
+        height: 30%;
+        margin-left: 35%;
+        margin-top: 25%;
+    }
     //---------------------------------------
 }
 
@@ -714,6 +798,12 @@ select:focus {
     }
     header > div {
         width: 50%;
+    }
+    .Popup_main_content {
+        width: 45%;
+        height: 30%;
+        margin-left: 27.5%;
+        margin-top: 30%;
     }
     //main---------------------------------
 
