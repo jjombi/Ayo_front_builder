@@ -5,7 +5,6 @@ import Queze from './App/queze';
 import Signup_login from './App/Signup_login';
 import School_choose from './App/School_chose';
 import Login from './App/Login';
-import GotoLogin from './App/GoToLogin'
 import MakeQueze from './App/MakeQueze';
 import Header from './App/Header';
 
@@ -34,7 +33,6 @@ root.render(
             <Route path='/signup_login' element={<Signup_login />}></Route>
             <Route path='/School_choose' element={<School_choose />}></Route>
             <Route path='/login' element={<Login/>}></Route>
-            <Route path='/gotologin' element={<GotoLogin/>}></Route>
             <Route path='/makequeze' element={<MakeQueze/>}></Route>
 
           </Routes>

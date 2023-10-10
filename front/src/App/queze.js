@@ -35,36 +35,39 @@ const Queze = () => {
     const queze_result = useRef(null);
 
     const opacity_ = useRef();
-    useEffect(()=>{
+    useEffect(()=> {
+        if(localStorage.getItem('token') !== undefined){
+            if(localStorage.getItem('end_time') <= Date.now()){
+                //localStorage.clear();
+                alert('로그인 만료');
+                navigate('/');
+            }
+            else{
 
-        
-        console.log('take_name 으로 axios 보내짐 and rendered',' jwt is : ',token);
-        //같은 학교 친구들 이름 가져오기
-        if(false){ //token === null
+                axios({
+                    url : 'http://localhost:45509/api/take_name',
+                    method : 'POST',
+                    headers : {
+                        'Content-Type' : 'application/json'
+                    },
+                    data : {
+                        token : token,
+                        type  : type_.current
+                    },
+                    
+                }).then((res)=>{
+                    res_same_school_name_arr.current =  res.data;
+                    console.log('같은 힉교 친구들 이름',res_same_school_name_arr.current);
+                })
+                
+            }
+        }else {
             alert('로그인 만료');
             navigate('/');
         }
-        else{
-
-            axios({
-                url : 'http://localhost:45509/api/take_name',
-                method : 'POST',
-                headers : {
-                    'Content-Type' : 'application/json'
-                },
-                data : {
-                    token : token,
-                    type  : type_.current
-                },
-                
-            }).then((res)=>{
-                res_same_school_name_arr.current =  res.data;
-                console.log('같은 힉교 친구들 이름',res_same_school_name_arr.current);
-            })
-            
-        }
         
     },[])
+
 
 
     const debounce = (func, timeout = 300) => {// 디바운스--------------
@@ -119,13 +122,7 @@ const Queze = () => {
         setRender(render + 1);
         // console.log('components_arr : ', components_arr);
     }
-    //-----------------------------------------------------------------------------
-    //---------------------------로그인 되어있는지 확인--------------------
-    // const login_checker = () => {
-    //     cookie.ayo_user_id !== undefined ? setController(true) : setController(false)
-    // }
-    //----------------------------------------------------------------------------------
-    const [cookie, setCookie, removeCookie] = useCookies();
+
 
     const show_result = () => {
         console.log('roomname : ',roomNameRef.current,num.current);

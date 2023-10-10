@@ -12,13 +12,7 @@ body {
 }
 $display_width : 100vw;
 $display_height : 100vh;
-iframe {
-    width : 200px;
-    height: 100px;
-    border-width:0px;
-    border-color:white; 
-    border-style:solid;
-}
+
 input {
     text-align: center;
     color: black;
@@ -31,14 +25,6 @@ select,option {
 }
 p {
     z-index: 1;
-}
-canvas {
-    position: absolute;
-    top: 10%;
-    width: 70px;
-    height: 70px;
-    border: 1px solid rgb(163, 53, 53);
-    border-radius: 50%;
 }
 .svg_, .svg_2 {
     width: 25px;
@@ -92,22 +78,18 @@ header > div {
     background: linear-gradient(-45deg,rgb(204, 0, 255), #5c6aff);
     transition: 0.3s ease-in-out;
 }
-.Icon {
-    height: 5vh;
-    width : 5vw;
-    // background-image: url('../logo.svg');
-}
+
 /*----------------회원가입 창----------------*/
-.signup_area {
-    margin-left: 20%;
-    margin-top: 5%;
-    width: 60%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    border: 1px solid black;
-}
+// .signup_area {
+//     margin-left: 20%;
+//     margin-top: 5%;
+//     width: 60%;
+//     height: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     text-align: center;
+//     border: 1px solid black;
+// }
 .search_school_area {  
     width : 100%;
     height: 20%;
@@ -337,22 +319,71 @@ header > div {
     text-align: center;
     align-items: center;
 }
-.passchecker, .passchecker2 {
-    position: absolute;
+// .passchecker, .passchecker2 {
+//     position: absolute;
+//     width: 20px;
+//     height: 20px;
+//     background-color: rgb(0, 255, 47);
+//     z-index: 1;
+//     transition: 0.1s ease;
+//     border-radius: 50%;
+// }
+// .passchecker {
+//     top: 52.3%;
+//     left: 79%;
+// }
+// .passchecker2 {
+//     top: 61.6%;
+//     left: 79%;
+// }
+//비번 책크
+// margin-top: 4%;
+// width: 100%;
+// height: 7%;
+// background-color: rgb(241, 241, 241);
+// color:  black;
+// position: relative;
+// border: 2px solid;
+// cursor: pointer;
+//     position: absolute;
+//     width: 20px;
+//     height: 20px;
+//     background-color: rgb(0, 255, 47);
+//     z-index: 1;
+//     transition: 0.1s ease;
+//     border-radius: 50%;
+.pass_checker_area {
+    width: 100%;
+    height: 7%;
+    // background-color: rgb(241, 241, 241);
+    color:  black;
+    position: relative;
+    cursor: pointer;
+    margin-top: 4%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.pass_cheker_input {
+    width: 70%;
+    height: 100%;
+    border-radius: 10px;
+}
+.pass_checker_icon_area{
+    width: 15%;
+    height: 100%;
+    // background-color: red;
+    display: flex;
+    align-items: center;
+}
+.pass_checker_icon_area > div{
     width: 20px;
     height: 20px;
-    background-color: rgb(0, 255, 47);
-    z-index: 1;
+    background-color: #5c6aff;
+    margin-left: auto;
+    margin-right: 10%;
     transition: 0.1s ease;
     border-radius: 50%;
-}
-.passchecker {
-    top: 52.3%;
-    left: 79%;
-}
-.passchecker2 {
-    top: 61.6%;
-    left: 79%;
 }
 /*---------------------------------------------*/
 /*----------queze페잉지-----------------------*/
@@ -654,7 +685,7 @@ select:focus {
     .content_area {
         width: 35vw;
         //margin-left: 35%;
-        background-color: rgb(255, 145, 0);
+        //background-color: rgb(255, 145, 0);
         margin-left: 30vw;
     }
     .Input_basic {
@@ -681,7 +712,7 @@ select:focus {
     .content_area {
         width: 40vw;
         //margin-left: 35%;
-        background-color: rgb(255, 145, 0);
+        //background-color: rgb(255, 145, 0);
         margin-left: 30vw;
     }
     .Input_basic {
@@ -708,7 +739,7 @@ select:focus {
     //queze------------------------------
     .content_area {
         width: 40vw;
-        background-color: rgb(255, 247, 0);
+        // background-color: rgb(255, 247, 0);
         margin-left: 30vw;
     }
     .Input_basic {
@@ -734,7 +765,7 @@ select:focus {
 @include laptopToTablet {
     .content_area {
         width: 50vw;
-        background-color: rgb(4, 255, 0);
+        // background-color: rgb(4, 255, 0);
         margin-left: 25vw;
 
     }
@@ -762,7 +793,7 @@ select:focus {
     .content_area {
         width: 60vw;
         margin-left: 20%;
-        background-color: rgb(0, 34, 255);
+        // background-color: rgb(0, 34, 255);
     }
     .Input_basic {
         width: 70%;
@@ -788,7 +819,7 @@ select:focus {
     .content_area {
        width: 70%;
        margin-left: 15%;
-        background-color: rgb(179, 0, 255);
+        // background-color: rgb(179, 0, 255);
     }
     .Input_basic {
         width: 70%;

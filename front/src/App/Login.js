@@ -13,21 +13,21 @@ const Login = () => {
 
     axios.defaults.withCredentials = true; // withCredentials 전역 설정
 
-    // useEffect(()=> {
     //     //----------------------로그인 유지 시간 만료 됬으면--------------------
-        if(cookie.ayo_cookie && cookie.ayo_cookie !== null){
-            if(cookie.ayo_cookie.date <= Date.now()){
-                console.log('로그인 기간 만료, 삭제 됨');
-                removeCookie('ayo_cookie',{path: '/', domain: 'localhost'});
+    useEffect(()=> {
+        if(localStorage.getItem('token') != undefined){
+            if(localStorage.getItem('end_time') <= Date.now()){
                 localStorage.clear();
             }
-            //navigate('/queze')
-            
+            else{
+                alert('로그인 중');
+            }
         }
+        
+    },[])
     //     //------------------------------------------------------------------
         
 
-    // },[])
 
 
     const login_submit = () => { //로그인 완료
@@ -51,8 +51,15 @@ const Login = () => {
                 
             }).then((res)=>{
                 console.log(res.data);
-                localStorage.setItem('token',res.data);
-                navigate('/queze');
+                
+                if(res.data === '불일치'){
+                    alert('비밀번호 불일치');
+                }
+                else {
+                    localStorage.setItem('token',res.data);
+                    localStorage.setItem('end_time',Date.now() + 7200000);
+                    navigate('/queze');
+                }
             })
         }
         

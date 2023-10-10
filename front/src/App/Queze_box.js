@@ -28,7 +28,7 @@ const Coo = (props) => {
             }).then((res)=>{
                 console.log(res.data);
                 queze_value.current = res.data.map(e => e.value);
-                props.setQueze_length(res.data.length - 1);
+                props.setQueze_length(res.data.length - 2);
                 props.props.roomNameRef.current = res.data.map(e=>{return(e.roomName)});
                 console.log('roomNameRef in quezeBoc in Coo : ',props.props.roomNameRef.current);
                 // props.roomNameRef.current = res.data.map(e => e.roomName);

@@ -34,6 +34,8 @@ const Signup_login = () =>  /*--------------------22222222222-------------------
 
         const [ani1,setAni1] = useState(0);
 
+        const [id_check,setId_check] = useState(0);
+
         const canvas_ref = useRef();
         
         const navigate = useNavigate();  
@@ -139,7 +141,7 @@ const Signup_login = () =>  /*--------------------22222222222-------------------
 
                     console.log('you can use it');
                     alert('사용가능한 아이디 입니다');
-
+                    setId_check(1);
                 }
 
             })
@@ -167,19 +169,41 @@ const Signup_login = () =>  /*--------------------22222222222-------------------
                         
                         <div className='line4'></div>
 
-                        <input type='text' className='Input_basic Border_radius' placeholder='id 입력' ref={id_ref}></input>
+                        {/* <input type='text' className='Input_basic Border_radius' placeholder='id 입력' ref={id_ref}></input> */}
+                       
+                        <div className='pass_checker_area' >
+                            
+                            <div className='pass_checker_icon_area'>
+                                <div style={{transform : `scale(${id_check})`}}></div>
+                            </div>
+                            <input type='text' className='pass_cheker_input' placeholder='id 입력' ref={id_ref}></input>
+
+                        </div>
                        
                         <input type='button' className='btn_basic' value="아이디 중복 검사" onClick={check_userid}></input> 
 
                         <div className='line4'></div>
 
-                        <input type='password' className='Input_basic Border_radius' placeholder='비밀번호를 입력해 주세요' ref={password_ref} onKeyUp={processChange}></input>
-                        
-                        <div className="passchecker" style={{transform : `scale(${ani1})`}}></div>
+                        <div className='pass_checker_area'>
 
-                        <input type='password' className='Input_basic Border_radius' placeholder='비밀번호를 다시 입력해 주세요' ref={password_ref2} onKeyUp={processChange}></input>
+                            <div className='pass_checker_icon_area'>
+                                <div style={{transform : `scale(${ani1})`}}></div>
+                            </div>
+                            <input type='password' className='pass_cheker_input ' placeholder='비밀번호를 입력해 주세요' ref={password_ref} onKeyUp={processChange}></input>
                         
-                        <div className='passchecker2' style={{transform : `scale(${ani1})`}}></div>
+                        </div>
+                        
+                        {/* <div className="passchecker" style={{transform : `scale(${ani1})`}}></div> */}
+                        <div className='pass_checker_area' >
+                            
+                            <div className='pass_checker_icon_area'>
+                                <div style={{transform : `scale(${ani1})`}}></div>
+                            </div>
+                            <input type='password' className='pass_cheker_input ' placeholder='비밀번호를 다시 입력해 주세요' ref={password_ref2} onKeyUp={processChange}></input>
+
+                        </div>
+                        
+                        {/* <div className='passchecker2' style={{transform : `scale(${ani1})`}}></div> */}
 
                         <input type='button' className='Submit_btn Submit_btn_' value="다음" onClick={signup_done}></input>
                         

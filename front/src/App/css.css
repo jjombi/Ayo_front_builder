@@ -7,14 +7,6 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-iframe {
-  width: 200px;
-  height: 100px;
-  border-width: 0px;
-  border-color: white;
-  border-style: solid;
-}
-
 input {
   text-align: center;
   color: black;
@@ -30,15 +22,6 @@ select, option {
 
 p {
   z-index: 1;
-}
-
-canvas {
-  position: absolute;
-  top: 10%;
-  width: 70px;
-  height: 70px;
-  border: 1px solid rgb(163, 53, 53);
-  border-radius: 50%;
 }
 
 .svg_, .svg_2 {
@@ -99,23 +82,7 @@ header > div {
   transition: 0.3s ease-in-out;
 }
 
-.Icon {
-  height: 5vh;
-  width: 5vw;
-}
-
 /*----------------회원가입 창----------------*/
-.signup_area {
-  margin-left: 20%;
-  margin-top: 5%;
-  width: 60%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  border: 1px solid black;
-}
-
 .search_school_area {
   width: 100%;
   height: 20%;
@@ -348,24 +315,39 @@ header > div {
   align-items: center;
 }
 
-.passchecker, .passchecker2 {
-  position: absolute;
+.pass_checker_area {
+  width: 100%;
+  height: 7%;
+  color: black;
+  position: relative;
+  cursor: pointer;
+  margin-top: 4%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pass_cheker_input {
+  width: 70%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.pass_checker_icon_area {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.pass_checker_icon_area > div {
   width: 20px;
   height: 20px;
-  background-color: rgb(0, 255, 47);
-  z-index: 1;
+  background-color: #5c6aff;
+  margin-left: auto;
+  margin-right: 10%;
   transition: 0.1s ease;
   border-radius: 50%;
-}
-
-.passchecker {
-  top: 52.3%;
-  left: 79%;
-}
-
-.passchecker2 {
-  top: 61.6%;
-  left: 79%;
 }
 
 /*---------------------------------------------*/
@@ -653,7 +635,6 @@ select:focus {
 @media (min-width: 1400px) and (max-width: 1799px) {
   .content_area {
     width: 35vw;
-    background-color: rgb(255, 145, 0);
     margin-left: 30vw;
   }
   .Input_basic {
@@ -675,7 +656,6 @@ select:focus {
 @media (min-width: 1300px) and (max-width: 1399px) {
   .content_area {
     width: 40vw;
-    background-color: rgb(255, 145, 0);
     margin-left: 30vw;
   }
   .Input_basic {
@@ -697,7 +677,6 @@ select:focus {
 @media (min-width: 1024px) and (max-width: 1299px) {
   .content_area {
     width: 40vw;
-    background-color: rgb(255, 247, 0);
     margin-left: 30vw;
   }
   .Input_basic {
@@ -719,7 +698,6 @@ select:focus {
 @media (min-width: 960px) and (max-width: 1023px) {
   .content_area {
     width: 50vw;
-    background-color: rgb(4, 255, 0);
     margin-left: 25vw;
   }
   .Input_basic {
@@ -742,7 +720,6 @@ select:focus {
   .content_area {
     width: 60vw;
     margin-left: 20%;
-    background-color: rgb(0, 34, 255);
   }
   .Input_basic {
     width: 70%;
@@ -764,7 +741,6 @@ select:focus {
   .content_area {
     width: 70%;
     margin-left: 15%;
-    background-color: rgb(179, 0, 255);
   }
   .Input_basic {
     width: 70%;

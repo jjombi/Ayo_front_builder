@@ -1,21 +1,31 @@
-import React,{useState, useRef} from "react";
+import React,{useState, useRef,useEffect} from "react";
 import axios from 'axios'
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const MakeQueze = () => {
 
     const [cookie, setCookie, removeCookie] = useCookies();
-    const [controller, setController] = useState(false);
     const input_value = useRef();
-    const [swich_btn_controller,setSwich_btn_controller] = useState(false); 
     const datalist = useRef([true,false,false]);
     const token = localStorage.getItem('token');
-    const [chooser_translate_state,chooser_setTranslate_state] = useState(0);
-    const type = useRef();
+    const navigate = useNavigate();
 
-    const login_checker = () => {
-        cookie.ayo_user_id !== undefined ? setController(true) : setController(false)
-    }
+    useEffect(()=> {
+        if(localStorage.getItem('token') != undefined){
+            if(localStorage.getItem('end_time') <= Date.now()){
+                localStorage.clear();
+                alert('로그인 만료');
+                navigate('/');
+            }
+        }else {
+            alert('로그인 만료');
+            navigate('/');
+        }
+        
+    },[])
+
+    
 
     const makeQueze = () => {
         console.log('datalist : ',datalist.current[0],datalist.current[1],datalist.current[2]);
@@ -42,43 +52,18 @@ const MakeQueze = () => {
         })
     }
 
-    const switch_btn = (e) => {
-        console.log('e is : ',e.style);
-        console.log('key is : ',e.title);
-        if(e.style.backgroundColor !== 'blue'){
-            e.style.backgroundColor = 'blue';
-            datalist.current[e.title] = true;
-        }else {
-            e.style.backgroundColor = 'white';
-            datalist.current[e.title] = false;
-        }
 
-        makeQueze();
-    }
-
-    const chooser_r_btn = () => {
-        if(chooser_translate_state >= 0){
-        }
-        else {
-            console.log('left');
-            chooser_setTranslate_state(chooser_translate_state + 100);
-        }
-    }
-    const chooser_l_btn = () => {
-        if((chooser_translate_state <= -200)){
-                
-        }else {
-            chooser_setTranslate_state(chooser_translate_state - 100);
-        }
-    }
     const switch_ = (e)=>{
         console.log('e.value : ',e.value);
         if(e.value == 0){
             datalist.current[0] = true;
+            datalist.current[1] = false;
+            datalist.current[2] = false;
         }
         else if(e.value == 1){
             datalist.current[0] = true;
             datalist.current[1] = true;
+            datalist.current[2] = false;
         }
         else if(e.value == 2){
             datalist.current[0] = true;
@@ -89,7 +74,7 @@ const MakeQueze = () => {
     }
     return(
         <div className='content_area'>
-            <input type='text' onClick={login_checker}  ref={input_value} className='makequeze_input Border_radius' placeholder='질문을 입력하세요'></input>
+            <input type='text'   ref={input_value} className='makequeze_input Border_radius' placeholder='질문을 입력하세요'></input>
             <p className='guid_message'>범위 선택</p>
             
             <div className='Q_chooser2 Border_radius' title = "문제 범위를 설정할 수 있습니다">
