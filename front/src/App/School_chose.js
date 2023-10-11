@@ -12,7 +12,7 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
 
         useEffect(()=> {
             if(localStorage.getItem('token') != undefined){
-                if(localStorage.getItem('end_time') >= Date.now()){
+                if(localStorage.getItem('end_time') <= Date.now()){
                     localStorage.clear();
                 }
             }else {

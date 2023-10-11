@@ -35,10 +35,15 @@ const Queze = () => {
     const queze_result = useRef(null);
 
     const opacity_ = useRef();
+
+    const back = useRef([]);
+
+    const [modal_state,setModal_state] = useState('0');
+
     useEffect(()=> {
         if(localStorage.getItem('token') !== undefined){
             if(localStorage.getItem('end_time') <= Date.now()){
-                //localStorage.clear();
+                localStorage.clear();
                 alert('로그인 만료');
                 navigate('/');
             }
@@ -82,8 +87,19 @@ const Queze = () => {
     const processChange = debounce(() => axios_fn());
     //--------------------------------------------------------------------
     //-----------------------추천 이름 component 생성 함수----------------------
+    const fn = (e)=> {
+        console.log('bluer');
+        // export_school_name.current = [];
+        setModal_state('0');
+        back.current = null;
+        input_value.current.style.borderRadius = '10px';
+        setRender(render + 1);
+        
+    }
     const axios_fn = ()=>{
         console.log('axios is start',input_value.current.style);
+        setModal_state('15');
+
 
         const props_arr = res_same_school_name_arr.current.map((value)=>// test1,
             {   
@@ -119,6 +135,7 @@ const Queze = () => {
             input_value.current.style.borderRadius = '10px';
         }
         console.log('_______________________',components_arr.current);
+        back.current = [<div className='back' onClick={fn}></div>]
         setRender(render + 1);
         // console.log('components_arr : ', components_arr);
     }
@@ -140,15 +157,24 @@ const Queze = () => {
             
         }).then((res)=>{
             let i = 0;
-            queze_result.current = res.data.map(e=>{
-                i = i+1;
-                return(
+            if(res.data.length === 0){
+                queze_result.current = [ 
                     <li className='show_reslut_li'>
-                        <p className='show_result_p'>{i}등</p>
-                        <p className='show_result_p2'>{e.name}</p>
+                        <p className='show_result_p'>아무도</p>
+                        <p className='show_result_p2'>없음</p>
                     </li>
-                )
-            })
+                ]
+            }else {
+                queze_result.current = res.data.map(e=>{
+                    i = i+1;
+                    return(
+                        <li className='show_reslut_li'>
+                            <p className='show_result_p'>{i}등</p>
+                            <p className='show_result_p2'>{e.name}</p>
+                        </li>
+                    )
+                })
+            }
             console.log('순위 3명',res.data);
             setRender(render + 1);
 
@@ -200,7 +226,9 @@ const Queze = () => {
     return(
         <div className='Main_root'>
             <div className='content_area'>
-                
+                {
+                    back.current
+                }
 
                 <Queze_box num={num} roomNameRef={roomNameRef} type={type_} res_same_school_name_arr={res_same_school_name_arr}></Queze_box>
 
@@ -220,11 +248,16 @@ const Queze = () => {
 
                 <input type='text' onKeyUp={processChange} ref={input_value} className='Input_basic Border_radius name_input' placeholder='이름 입력'></input>
                  
-                <div className='modal'>
+                {/* <div className='modal'>
                     {
                         components_arr.current
                     }
-                </div>                
+                </div>           */}
+                <div className='modal' style={{height : `${modal_state}%`}}>
+                    {
+                       components_arr.current
+                    }
+                </div>
                 
                 <input type='button' onClick={vote} value="투표하기" className='Submit_btn Submit_btn_'></input>
                 

@@ -12,7 +12,7 @@ const Main = () => {
 
     useEffect(()=> {
         if(localStorage.getItem('token') != undefined){
-            if(localStorage.getItem('end_time') >= Date.now()){
+            if(localStorage.getItem('end_time') <= Date.now()){
                 localStorage.clear();
                 alert('로그인 만료');
                 navigate('/');
