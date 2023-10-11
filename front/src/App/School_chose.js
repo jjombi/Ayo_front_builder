@@ -54,7 +54,7 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
             axios({ //          ayo 회원가입
                 
                 method           : 'Post',
-                url              : 'http://localhost:45509/infor',
+                url              : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app//infor',
                 data             : 
                 {
 

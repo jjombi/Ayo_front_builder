@@ -30,7 +30,7 @@ const MakeQueze = () => {
     const makeQueze = () => {
         console.log('datalist : ',datalist.current[0],datalist.current[1],datalist.current[2]);
         axios({
-            url     :'http://localhost:45509/create_queze',
+            url     :'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app//create_queze',
             method  : 'POST',
             headers : {
 

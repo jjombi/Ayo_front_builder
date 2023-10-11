@@ -16,7 +16,7 @@ const Coo = (props) => {
         
         if(token !== null){
             axios({
-                url : 'http://localhost:45509/queze_type',
+                url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app//queze_type',
                 method : "post",
                 headers : {
                     'Content-Type' : 'application/json'
@@ -41,7 +41,7 @@ const Coo = (props) => {
     },[])
     if(props.con.current === true){
         axios({
-            url : 'http://localhost:45509/queze_type',
+            url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app//queze_type',
             method : "post",
             headers : {
                 'Content-Type' : 'application/json'
@@ -124,7 +124,7 @@ const Queze_box = (props) =>{
 
     const change_take_name = () => {
         axios({
-            url : 'http://localhost:45509/api/take_name',
+            url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app//api/take_name',
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json'

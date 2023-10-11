@@ -113,7 +113,7 @@ const Signup_login = () =>  /*--------------------22222222222-------------------
             ({
 
                 method   : 'post',
-                url      : 'http://localhost:45509/check_id',
+                url      : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app//check_id',
                 data     : 
                 {
                     'userid' : id_ref.current.value

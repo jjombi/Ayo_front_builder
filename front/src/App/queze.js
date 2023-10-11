@@ -50,7 +50,7 @@ const Queze = () => {
             else{
 
                 axios({
-                    url : 'http://localhost:45509/api/take_name',
+                    url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app//api/take_name',
                     method : 'POST',
                     headers : {
                         'Content-Type' : 'application/json'
@@ -144,7 +144,7 @@ const Queze = () => {
     const show_result = () => {
         console.log('roomname : ',roomNameRef.current,num.current);
         axios({
-            url : 'http://localhost:45509/queze_result',
+            url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app//queze_result',
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json'
@@ -192,7 +192,7 @@ const Queze = () => {
             console.log('roomNameRef is : ',roomNameRef.current[num.current]);
             console.log('input val',input_value.current.value);
             axios({
-                url : 'http://localhost:45509/vote',
+                url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app//vote',
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json'

@@ -39,7 +39,7 @@ const Login = () => {
         else {
             axios.defaults.withCredentials = true; // withCredentials 전역 설정
             axios({
-                url : 'http://localhost:45509/login',
+                url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app//login',
                 method : 'post',    
                 data : {
                     id : id.current.value,
