@@ -29,7 +29,7 @@ const Login = () => {
         
 
 
-
+//https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app
     const login_submit = () => { //로그인 완료
         console.log('id', ':', id.current.value);
         console.log('pass', ':', pass.current.value);
@@ -39,7 +39,7 @@ const Login = () => {
         else {
             axios.defaults.withCredentials = true; // withCredentials 전역 설정
             axios({
-                url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app//login',
+                url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/login',
                 method : 'post',    
                 data : {
                     id : id.current.value,
