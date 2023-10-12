@@ -16,7 +16,7 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
                     localStorage.clear();
                 }
             }else {
-                alert('로그인 만료');
+                
             }
             
         },[])
@@ -78,7 +78,7 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
                 localStorage.setItem('token',res.data);
                 localStorage.setItem('end_time',Date.now() + 7200000);
                 console.log('success');
-
+                navigate('/queze');
             })
             
 

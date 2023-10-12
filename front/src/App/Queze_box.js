@@ -100,7 +100,7 @@ const Queze_box = (props) =>{
     }
     const btn2_click = () => {
         console.log('right clicked',arr_chooser.current,queze_length);
-        if(queze_length >= arr_chooser.current){
+        if(queze_length > arr_chooser.current){
 
             arr_chooser.current += 1;
             props.num.current = arr_chooser.current;

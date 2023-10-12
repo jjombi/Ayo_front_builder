@@ -142,7 +142,7 @@ const Queze = () => {
 
 
     const show_result = () => {
-        console.log('roomname : ',roomNameRef.current,num.current);
+        console.log('roomname : ',roomNameRef.current,num.current,roomNameRef.current[num.current]);
         axios({
             url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result',
             method : 'POST',
@@ -157,6 +157,7 @@ const Queze = () => {
             
         }).then((res)=>{
             let i = 0;
+            console.log('res.data.length : ',res.data.length,res.data);
             if(res.data.length === 0){
                 queze_result.current = [ 
                     <li className='show_reslut_li'>
