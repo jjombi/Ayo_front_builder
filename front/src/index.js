@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from './App/Main';
 import Queze from './App/queze';
-import Signup_login from './App/Signup_login';
 import School_choose from './App/School_chose';
-import Login from './App/Login';
 import MakeQueze from './App/MakeQueze';
 import Header from './App/Header';
 
@@ -28,11 +25,8 @@ root.render(
         <div className='line'></div>
         <BrowserRouter>
           <Routes>
-            <Route path='/'   element={<Main/>}></Route>
             <Route path='/queze' element={<Queze />}></Route>
-            <Route path='/signup_login' element={<Signup_login />}></Route>
-            <Route path='/School_choose' element={<School_choose />}></Route>
-            <Route path='/login' element={<Login/>}></Route>
+            <Route path='/' element={<School_choose />}></Route>
             <Route path='/makequeze' element={<MakeQueze/>}></Route>
 
           </Routes>

@@ -52,36 +52,23 @@ const Queze = () => {
         console.log('qeuze rendering');
     })
     useEffect(()=> {
-        if(localStorage.getItem('token') !== undefined){
-            if(localStorage.getItem('end_time') <= Date.now()){
-                localStorage.clear();
-                alert('로그인 만료');
-                navigate('/');
-            }
-            else{
 
-                axios({
-                    url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/api/take_name',
-                    method : 'POST',
-                    headers : {
-                        'Content-Type' : 'application/json'
-                    },
-                    data : {
-                        token : token,
-                        type  : type_.current
-                    },
-                    
-                }).then((res)=>{
-                    res_same_school_name_arr.current =  res.data;
-                    console.log('같은 힉교 친구들 이름',res_same_school_name_arr.current);
-                })
-                
-            }
-        }else {
-            alert('로그인 만료');
-            navigate('/');
-        }
-        
+        axios({
+            url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/api/take_name',
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            data : {
+                token : token,
+                type  : type_.current
+            },
+            
+        }).then((res)=>{
+            res_same_school_name_arr.current =  res.data;
+            console.log('같은 힉교 친구들 이름',res_same_school_name_arr.current);
+        })
+            
     },[])
 
 
