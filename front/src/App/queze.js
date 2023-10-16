@@ -6,7 +6,8 @@ import './css.css';
 import axios from 'axios';
 import { useCookies } from "react-cookie";
 import Queze_box from './Queze_box';
-
+import Adfit from './adfit';
+import SelectBox from './Select_box';
 import Popup from './Popup';
 
 const Queze = () => {
@@ -40,6 +41,16 @@ const Queze = () => {
 
     const [modal_state,setModal_state] = useState('0');
 
+    const [selectbox_con,setSelectbox_con] = useState(false);
+
+    const props_option = useRef([]);
+
+    const btn_content_value_con = useRef(true);
+
+    const back_con = useRef(true);
+    useEffect(()=>{
+        console.log('qeuze rendering');
+    })
     useEffect(()=> {
         if(localStorage.getItem('token') !== undefined){
             if(localStorage.getItem('end_time') <= Date.now()){
@@ -87,56 +98,100 @@ const Queze = () => {
     const processChange = debounce(() => axios_fn());
     //--------------------------------------------------------------------
     //-----------------------추천 이름 component 생성 함수----------------------
-    const fn = (e)=> {
-        console.log('bluer');
-        // export_school_name.current = [];
-        setModal_state('0');
-        back.current = null;
-        input_value.current.style.borderRadius = '10px';
-        setRender(render + 1);
+    // const fn = (e)=> {
+    //     console.log('bluer');
+    //     // export_school_name.current = [];
+    //     setModal_state('0');
+    //     back.current = null;
+    //     input_value.current.style.borderRadius = '10px';
+    //     setRender(render + 1);
         
-    }
+    // }
     const axios_fn = ()=>{
-        console.log('axios is start',input_value.current.style);
-        setModal_state('15');
-
-
-        const props_arr = res_same_school_name_arr.current.map((value)=>// test1,
-            {   
-                console.log('input_val.curent',input_value.current.value);
-                if(input_value.current.value == ''){
-                    return null;
+        setSelectbox_con(true);
+        // console.log('axios is start',input_value.current.value, res_same_school_name_arr.current);
+        // const strarr = ['qwer','asdf'];
+        // console.log(strarr[0].includes('q'));
+        props_option.current = [];
+        if(input_value.current.value != ''){
+            for(let i=0;i < res_same_school_name_arr.current.length;i++){
+                if(res_same_school_name_arr.current[i].includes(`${input_value.current.value}`)){
+                    props_option.current.push(res_same_school_name_arr.current[i]);
                 }
-                key_val.current = (key_val.current + 1);
-
-                if(value.includes(input_value.current.value)){
-                    console.log('입력한 값을 포함함');
-                    return (
-
-                        <input type='button' className=' id_area Suggested_Search' key={key_val.current} onClick={(e)=>{input_value.current.value = e.target.value;components_arr.current = null; setRender(7)}} value={value}></input>
-    
-                    );
-                }
-                else {
-                    return null;
-                }
-
-
             }
-        );
-        components_arr.current = props_arr;
-        if(components_arr.current[components_arr.current.length - 1] !== null) {
-            components_arr.current.push(<div className='bottom_name_input_area'></div>);
-            input_value.current.style.borderRadius = '0';
-            input_value.current.style.borderTopLeftRadius = '10px';
-            input_value.current.style.borderTopRightRadius = '10px';
+            
+            setRender(render + 1);
         }
         else {
-            input_value.current.style.borderRadius = '10px';
+            props_option.current = [];
+            setRender(render + 1);
         }
-        console.log('_______________________',components_arr.current);
-        back.current = [<div className='back' onClick={fn}></div>]
-        setRender(render + 1);
+        console.log('바뀐 option 값 at queze : ',props_option);
+        btn_content_value_con.current = true;
+        back_con.current = true;
+        input_value.current.style.borderRadius = '0';
+        input_value.current.style.borderTopLeftRadius = '10px';
+        input_value.current.style.borderTopRightRadius = '10px';
+        input_value.current.style.border = '0px';
+        input_value.current.style.borderBottom = '2px solid rgb(148, 148, 148)';
+
+        console.log('con : ',btn_content_value_con.current);
+        // props_option.current = res_same_school_name_arr.current.map(e=>{
+        //     if(e.includes(input_value.current.value))
+        //     {
+        //         return(
+        //             e
+        //         )
+        //     }
+        //     else 
+        //     {
+        //         return null;
+        //     }
+        // })
+        console.log('바뀐 props option : ',props_option.current);
+        // if(res_same_school_name_arr.current.includes(input_value.current.value)){
+        //     props_option.current = 
+        // }
+
+        // setModal_state('15');
+
+
+        // const props_arr = res_same_school_name_arr.current.map((value)=>// test1,
+        //     {   
+        //         console.log('input_val.curent',input_value.current.value);
+        //         if(input_value.current.value == ''){
+        //             return null;
+        //         }
+        //         key_val.current = (key_val.current + 1);
+
+        //         if(value.includes(input_value.current.value)){
+        //             console.log('입력한 값을 포함함');
+        //             return (
+
+        //                 <input type='button' className=' id_area Suggested_Search' key={key_val.current} onClick={(e)=>{input_value.current.value = e.target.value;components_arr.current = null; setRender(7)}} value={value}></input>
+    
+        //             );
+        //         }
+        //         else {
+        //             return null;
+        //         }
+
+
+        //     }
+        // );
+        // components_arr.current = props_arr;
+        // if(components_arr.current[components_arr.current.length - 1] !== null) {
+        //     components_arr.current.push(<div className='bottom_name_input_area'></div>);
+        //     input_value.current.style.borderRadius = '0';
+        //     input_value.current.style.borderTopLeftRadius = '10px';
+        //     input_value.current.style.borderTopRightRadius = '10px';
+        // }
+        // else {
+        //     input_value.current.style.borderRadius = '10px';
+        // }
+        // console.log('_______________________',components_arr.current);
+        // back.current = [<div className='back' onClick={fn}></div>]
+        // setRender(render + 1);
         // console.log('components_arr : ', components_arr);
     }
 
@@ -254,11 +309,9 @@ const Queze = () => {
                         components_arr.current
                     }
                 </div>           */}
-                <div className='modal' style={{height : `${modal_state}%`}}>
-                    {
-                       components_arr.current
-                    }
-                </div>
+                {
+                    selectbox_con === true ? <SelectBox option={props_option} input_value={input_value} btn_content_value_con={btn_content_value_con} back={back_con}></SelectBox> : null
+                }
                 
                 <input type='button' onClick={vote} value="투표하기" className='Submit_btn Submit_btn_'></input>
                 
@@ -270,6 +323,7 @@ const Queze = () => {
             {
                 con === "투표 완료" ? <Popup text={con} func={votesuccess} opacity_={opacity_}></Popup> : null
             }
+            <Adfit unit="DAN-moiryOKSlck2hjOA"></Adfit>
         </div>
     )
 }

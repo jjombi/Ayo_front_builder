@@ -3,12 +3,14 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import './css.css';
 import {useCookies} from 'react-cookie';
-
+import Adfit from './adfit';
 
 
 const Main = () => {
     const [cookie, setCookie, removeCookie] = useCookies();
     const navigate = useNavigate();
+
+    
 
     useEffect(()=> {
         if(localStorage.getItem('token') != undefined){
@@ -54,7 +56,7 @@ const Main = () => {
                 
 
             </div>
-            
+            <Adfit unit="DAN-vMhfXgd95eD3zm1l"></Adfit>
         </div>
     )
     

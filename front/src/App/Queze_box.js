@@ -1,5 +1,4 @@
 import React, { useEffect,useRef, useState } from "react";
-
 import axios from 'axios';
 // import {ReactComponent as svg_} from '../img/arrow.svg';
 // import svg_ from './arrow.svg';
@@ -64,7 +63,7 @@ const Coo = (props) => {
     }
     return(
         <>
-            <li className='Queze_li Border_radius' >
+            <li className='Queze_li ' >
                 <p className="Queze_p">{queze_value.current[props.arr_chooser.current]}</p>
             </li>
         </>

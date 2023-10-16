@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --progress --mode development",
     "build": "webpack --progress --mode production",
-    "sass": "node-sass styles/main.scss style.css"
+    "sass": "node-sass styles/main.scss style.css",
+    "cd." : "cd front/src/App"
   },
   "author": "",
   "license": "ISC",

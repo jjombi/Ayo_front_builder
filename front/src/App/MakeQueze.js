@@ -2,6 +2,7 @@ import React,{useState, useRef,useEffect} from "react";
 import axios from 'axios'
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import Adfit from "./adfit";
 
 const MakeQueze = () => {
 
@@ -87,7 +88,7 @@ const MakeQueze = () => {
                 </select>
             </div>
             <input type='button' onClick={makeQueze} value="질문 만들기" className='Submit_btn Submit_btn_'></input>
-            
+            <Adfit unit="DAN-pyEL8l54ynx8GrIr"></Adfit>
         </div>
     );
 }

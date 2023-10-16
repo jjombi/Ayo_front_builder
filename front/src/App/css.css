@@ -442,7 +442,7 @@ header {
   width: 70%;
   overflow-y: auto;
   position: absolute;
-  top: 68%;
+  top: 76%;
   z-index: 1;
 }
 
@@ -456,7 +456,7 @@ header {
 }
 
 .option {
-  margin-top: 0%;
+  margin-top: 5%;
 }
 
 /*----------------------popup창 디자인-------------------*/
@@ -507,8 +507,8 @@ header {
 
 /*slide 디자인*/
 .Q_main {
-  width: 70%;
-  height: 28%;
+  width: 100%;
+  height: 32%;
   display: flex;
   flex-direction: row;
   margin-top: 4%;
@@ -532,13 +532,13 @@ header {
 .Queze_li {
   background-color: white;
   position: relative;
-  width: 21vw;
-  height: 24vh;
+  width: 30vw;
   float: left;
   list-style: none;
   transition: 0.3s none;
   text-align: center;
   align-items: center;
+  height: 32vh;
 }
 
 .Queze_p {
@@ -620,6 +620,14 @@ select:focus {
   margin-top: 5%;
 }
 
+.select_box {
+  width: 70%;
+  height: 5%;
+  border-bottom: 2px solid rgb(148, 148, 148);
+  color: black;
+  z-index: 3;
+}
+
 /*----------------------------------------------*/
 @media (min-width: 1800px) {
   .submit_btn {
@@ -634,14 +642,14 @@ select:focus {
 }
 @media (min-width: 1400px) and (max-width: 1799px) {
   .content_area {
-    width: 35vw;
-    margin-left: 30vw;
+    width: 30vw;
+    margin-left: 35vw;
   }
   .Input_basic {
     width: 70%;
   }
   .Queze_li {
-    width: 23.5vw;
+    width: 30vw;
   }
   header > div {
     width: 25%;
@@ -662,7 +670,7 @@ select:focus {
     width: 70%;
   }
   .Queze_li {
-    width: 28vw;
+    width: 40vw;
   }
   header > div {
     width: 25%;
@@ -683,7 +691,7 @@ select:focus {
     width: 70%;
   }
   .Queze_li {
-    width: 28vw;
+    width: 40vw;
   }
   header > div {
     width: 35%;
@@ -704,7 +712,7 @@ select:focus {
     width: 70%;
   }
   .Queze_li {
-    width: 35vw;
+    width: 50vw;
   }
   header > div {
     width: 42%;
@@ -718,14 +726,14 @@ select:focus {
 }
 @media (min-width: 720px) and (max-width: 959px) {
   .content_area {
-    width: 60vw;
-    margin-left: 20%;
+    width: 50vw;
+    margin-left: 25%;
   }
   .Input_basic {
     width: 70%;
   }
   .Queze_li {
-    width: 42vw;
+    width: 50vw;
   }
   header > div {
     width: 45%;
@@ -741,12 +749,13 @@ select:focus {
   .content_area {
     width: 70%;
     margin-left: 15%;
+    background-color: rgb(179, 0, 255);
   }
   .Input_basic {
     width: 70%;
   }
   .Queze_li {
-    width: 49vw;
+    width: 70vw;
   }
   header > div {
     width: 50%;
@@ -768,7 +777,8 @@ select:focus {
     width: 70%;
   }
   .Queze_li {
-    width: 70vw;
+    width: 100vw;
+    height: 32vh;
   }
   header > div {
     width: 60%;
