@@ -32,7 +32,7 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
             console.log('완료',input_value.current.value);
             localStorage.removeItem('school_name');
             localStorage.setItem('school_name',input_value.current.value);
-            
+            navigate(`/queze?school_name=${input_value.current.value}`)
         }
 
 

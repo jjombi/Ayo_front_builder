@@ -1,7 +1,7 @@
 
 import React, { useState, useRef } from 'react';
 import { useEffect } from "react";
-import { useNavigate,useParams, useLocation, useSearchParams } from "react-router-dom";
+import { useNavigate,useParams, useLocation,useSearchParams } from "react-router-dom";
 import './css.css';
 import axios from 'axios';
 import { useCookies } from "react-cookie";
@@ -11,67 +11,57 @@ import SelectBox from './Select_box';
 import Popup from './Popup';
 import Queze_result from './Queze_result';
 
-const Queze = () => {
-
-    const [searchParams, setSearchParams] = useSearchParams();
-
+const A_queze = () => {
     const [con, setCon] = useState('');
 
     const navigate = useNavigate();
 
-    const key_val = useRef(0);
-
-    const components_arr = useRef();
-
-    const [render, setRender] = useState(0);
-
-    const res_same_school_name_arr = useRef(); //같은 학교 친구들 이름이 배열로 나열되있음
-    
     const input_value = useRef();
 
     const roomNameRef = useRef();
-
-    const num = useRef(0);
-
-    const token = localStorage.getItem('token');
-        
-    const type_ = useRef('학교');
-
-    const queze_result = useRef(null);
 
     const opacity_ = useRef();
 
     const back = useRef([]);
 
-    const [modal_state,setModal_state] = useState('0');
-
-    const [selectbox_con,setSelectbox_con] = useState(false);
-
-    const props_option = useRef([]);
-
-    const btn_content_value_con = useRef(true);
-
-    const back_con = useRef(true);
-
     const class_ = useRef();
 
     const number = useRef();
 
-    const school_name_params = useRef();;
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const school_name = useRef();
+
+    const [queze_value, setQueze_value] = useState('없음');
     useEffect(()=>{
-        console.log('qeuze rendering');
-    })
+        roomNameRef.current = searchParams.get('roomName');
+        school_name.current = searchParams.get('school_name');
+        console.log(roomNameRef,school_name); 
+
+        axios({
+            url      : 'http://localhost:45509/Q_queze_value',
+            method   : 'POST',
+            headers  : {
+                'Content-Type' : 'application/json'
+            },
+            data     : {
+                roomName : roomNameRef.current                
+            }
+        }).then((res)=>{
+            console.log('res a queze value',res.data[0].value);
+            setQueze_value(res.data[0].value);
+        })
+
+    },[])
+
     
     const vote = () => {
         console.log(input_value.current);
-        if(input_value.current.value == '' || input_value.current.value == null){
+        if(input_value.current == '' || input_value.current == null){
             alert('뽑는이를 적어주세요');
         }
         else{
 
-        
-            console.log('roomNameRef is : ',roomNameRef.current[num.current]);
-            console.log('input val',input_value.current.value);
             axios({
                 //url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
                 url : 'http://localhost:45509/vote',
@@ -81,13 +71,11 @@ const Queze = () => {
                 },
                 data : {
                     //방 번호
-                    //뽑은 사람 이름
-                    //학급,
-                    //반
-                    roomName : roomNameRef.current[num.current],
+                    //뽑은 사람
+                    roomName : roomNameRef.current,
                     voteName : `${input_value.current.value}`,
-                    class    : `${class_.current.value}`,
-                    number   : `${number.current.value}`
+                    class    : Number(class_.current.value),
+                    number   : Number(number.current.value)
                 }
             }).then((res)=>{
                 console.log('vote api res is',res);
@@ -112,18 +100,17 @@ const Queze = () => {
                     back.current
                 }
 
-                <Queze_box num={num} roomNameRef={roomNameRef} type={type_} res_same_school_name_arr={res_same_school_name_arr}></Queze_box>
+            <div className="A_queze_content">
+                <p>{queze_value}</p>
+            </div>                
 
                 <div className='line4'></div>
 
-                {/* <div className='name_input_area'>
-                </div> */}
-
                 <input type='text' ref={input_value} className='Input_basic Border_radius name_input' placeholder='이름 입력'></input>
                 
-                <div className='Input_basic Border_radius'>
+                <div className='Input_basic Border_radius select_parents_div'>
 
-                    <select name="class" className=' Border_radius' ref={class_}>
+                    <select name="class" className='Border_radius select_basic' ref={class_}>
                         <option value="-1">모름</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -133,7 +120,7 @@ const Queze = () => {
                         <option value="6">6</option>
                     </select>
 
-                    <select name="class" className=' Border_radius' ref={number}>
+                    <select name="class" className=' Border_radius select_basic' ref={number}>
                         <option value="-1">모름</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -153,8 +140,8 @@ const Queze = () => {
                     </select>
 
                 </div>
-                
-                <Queze_result></Queze_result>
+
+                <Queze_result roomNameRef={roomNameRef}></Queze_result>
 
                 <input type='button' onClick={vote} value="투표하기" className='Submit_btn Submit_btn_'></input>
                 
@@ -172,5 +159,5 @@ const Queze = () => {
 
 
 
-export default Queze;
+export default A_queze;
 
