@@ -6,6 +6,7 @@ import Adfit from "./adfit";
 const MakeQueze = () => {
 
     const input_value = useRef();
+    const input_maker_ref = useRef();
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const school_name = useRef();
@@ -13,6 +14,10 @@ const MakeQueze = () => {
     useEffect(()=> {
         school_name.current = searchParams.get('school_name');
         console.log('params id ; ',school_name.current);
+        if(school_name.current === 'null'){
+            alert('학교를 다시 선택해 주세요');
+            navigate('/');
+        }
     },[])
 
     
@@ -30,19 +35,26 @@ const MakeQueze = () => {
             data    : {
                 queze          : input_value.current.value,
                 school         : `${school_name.current}`,
+                date           : Math.floor(Date.now() / 86400000),
+                maker          : `${input_maker_ref.current.value}`
             }
         }).then((res)=>{
             console.log('질문 올림',res);
             navigate(`/A_queze?roomName=${res.data}&school_name=${school_name.current}`);
         })
+        console.log(Math.floor(Date.now() / 86400000));
+        
     }
 
     return(
-        <div className='content_area'>
-            <input type='text'   ref={input_value} className='makequeze_input Border_radius' placeholder='질문을 입력하세요'></input>
-            <input type='button' onClick={makeQueze} value="질문 만들기" className='Submit_btn Submit_btn_'></input>
+        <>
+            <div className='content_area'>
+                <input type='text'   ref={input_value} className='makequeze_input Border_radius' placeholder='질문을 입력하세요'></input>
+                <input type='button' onClick={makeQueze} value="질문 만들기" className='Submit_btn Submit_btn_'></input>
+                <input className="Input_basic Border_radius" ref={input_maker_ref} type="text" placeholder="작성자 소개"></input>
+            </div>
             <Adfit unit="DAN-pyEL8l54ynx8GrIr"></Adfit>
-        </div>
+        </>
     );
 }
 export default MakeQueze

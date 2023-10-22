@@ -26,13 +26,27 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
 
         const back = useRef([]);
 
+
         const apifun = () => //회원 가입 완료 버튼
         {
 
             console.log('완료',input_value.current.value);
             localStorage.removeItem('school_name');
             localStorage.setItem('school_name',input_value.current.value);
-            navigate(`/queze?school_name=${input_value.current.value}`)
+            axios({
+                //url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
+                url : 'http://localhost:45509/queze',
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                data : {
+                    school : input_value.current.value,
+                }
+            }).then((res)=>{
+                console.log(res);
+                navigate(`/queze?school_name=${input_value.current.value}`);
+            })
         }
 
 
