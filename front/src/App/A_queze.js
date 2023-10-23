@@ -5,11 +5,10 @@ import { useNavigate,useParams, useLocation,useSearchParams } from "react-router
 import './css.css';
 import axios from 'axios';
 import { useCookies } from "react-cookie";
-import Queze_box from './Queze_box';
 import Adfit from './adfit';
-import SelectBox from './Select_box';
 import Popup from './Popup';
-import Queze_result from './Queze_result';
+import Svg_great from '/src/App/Img_folder/thumb_up-1.svg';
+import Svg_great2 from '/src/App/Img_folder/great_icon.svg';
 
 const A_queze = () => {
     const [con, setCon] = useState('');
@@ -41,6 +40,10 @@ const A_queze = () => {
     const [maker,setMaker] = useState('');
 
     const [likes,setLikes] = useState();
+
+    const queze_result_vcn_ref = useRef();
+
+    const [great_icon_con,setGreat_icon_con] = useState(true);
 
     useEffect(()=>{
         roomNameRef.current = searchParams.get('roomName');
@@ -97,9 +100,11 @@ const A_queze = () => {
                         if(res.data[i-1].number !== -1){
                             queze_result_number = res.data[i-1].number;
                         }
+                        queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
                         queze_result_arr_let.push(
                             <button onClick={()=>{console.log('bbbbb')}} className='show_reslut_li' key={i}>
                                 <p className='show_result_p'>{i}등</p>
+                                <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
                                 <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
                             </button>
                         )
@@ -113,6 +118,36 @@ const A_queze = () => {
 
     },[])
 
+    const click_vote = (e) => {
+        
+        let split_str = e.value.split(',');
+        if(split_str[1] === '모름'){
+            split_str[1] = -1;
+        }if(split_str[2] === '모름'){
+            split_str[2] = -1;
+        }
+        axios({
+            //url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
+            url : 'http://localhost:45509/vote',    
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            data : {
+                //방 번호
+                //뽑은 사람
+                roomName : roomNameRef.current,
+                voteName : split_str[0],
+                class    : Number(split_str[1]),
+                number   : Number(split_str[2])
+            }
+        }).then((res)=>{
+            console.log('vote api res is',res);
+            
+        })
+        setCon('투표 완료');
+        opacity_.current = 1;
+    }
     
     const vote = () => {
         console.log(input_value.current);
@@ -146,18 +181,22 @@ const A_queze = () => {
     }
 
     const popularity_order = () =>{
-        axios({
-            url      : 'http://localhost:45509/up_queze_popularity',
-            method   : 'POST',
-            headers  : {
-                'Content-Type' : 'application/json'
-            },  
-            data     : {
-                roomName : roomNameRef.current               
-            }
-        }).then((res)=>{
-            console.log('좋아요 누른뒤 axios요청 후 res : ',res);
-        })
+        if(great_icon_con){
+            axios({
+                url      : 'http://localhost:45509/up_queze_popularity',
+                method   : 'POST',
+                headers  : {
+                    'Content-Type' : 'application/json'
+                },  
+                data     : {
+                    roomName : roomNameRef.current               
+                }
+            }).then((res)=>{
+                console.log('좋아요 누른뒤 axios요청 후 res : ',res);
+                setLikes(likes + 1);
+                setGreat_icon_con(false);
+            })
+        }
     }
     const quze_sequence = () => {
         axios({
@@ -177,6 +216,51 @@ const A_queze = () => {
         })
     }
     const votesuccess = () =>{
+        axios({
+            url      : 'http://localhost:45509/queze_result',
+            method   : 'POST',
+            headers  : {
+                'Content-Type' : 'application/json'
+            },  
+            data     : {
+                roomName : roomNameRef.current              
+            }
+        }).then((res)=>{
+
+            let queze_result_value = '없음';
+            let queze_result_class = '모름';
+            let queze_result_number = '모름';
+            if(res.data === '없음'){
+
+                setQueze_result([
+                    <button  className='show_reslut_li' >
+                        <p className='show_result_p'>...</p>
+                        <p className='show_result_p2'>없음</p>
+                    </button>
+                ])
+                
+            }else{
+                let queze_result_arr_let = [];
+                for(let i=1; i <= res.data.length;i++){
+                    queze_result_value = res.data[i-1].id;
+                    if(res.data[i-1].class !== -1){
+                        queze_result_class = res.data[i-1].class;
+                    }
+                    if(res.data[i-1].number !== -1){
+                        queze_result_number = res.data[i-1].number;
+                    }
+                    queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
+                    queze_result_arr_let.push(
+                        <button onClick={()=>{console.log('bbbbb')}} className='show_reslut_li' key={i}>
+                            <p className='show_result_p'>{i}등</p>
+                            <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
+                            <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
+                        </button>
+                    )
+                }
+                setQueze_result(queze_result_arr_let);
+            }
+        })
         setCon('');
 
     }
@@ -200,7 +284,7 @@ const A_queze = () => {
                             <option value="date asc">날짜순</option>
                         </select>
                     <p>{likes}</p>
-                    <button onClick={popularity_order}>asd</button>
+                    <button onClick={popularity_order}>{great_icon_con === true ? <Svg_great/> : <Svg_great2/>}</button>
                 </div>
                 <div className="A">
                     {
@@ -214,6 +298,7 @@ const A_queze = () => {
                 <div className='Input_basic Border_radius select_parents_div'>
 
                     <select name="class" className='Border_radius select_basic' ref={class_}>
+                        <option value="-1" disabled selected>학급</option>
                         <option value="-1">모름</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -224,6 +309,7 @@ const A_queze = () => {
                     </select>
 
                     <select name="class" className=' Border_radius select_basic' ref={number}>
+                        <option value="-1" disabled selected>반</option>
                         <option value="-1">모름</option>
                         <option value="1">1</option>
                         <option value="2">2</option>

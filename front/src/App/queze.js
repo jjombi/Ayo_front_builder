@@ -5,14 +5,12 @@ import { useNavigate,useParams, useLocation,useSearchParams } from "react-router
 import './css.css';
 import axios from 'axios';
 import { useCookies } from "react-cookie";
-import Queze_box from './Queze_box';
 import Adfit from './adfit';
-import SelectBox from './Select_box';
 import Popup from './Popup';
-import Queze_result from './Queze_result';
 import Svg_ from '/src/App/Img_folder/arrow_figma.svg';
 import Svg_great from '/src/App/Img_folder/thumb_up-1.svg';
 import Svg_great2 from '/src/App/Img_folder/great_icon.svg';
+
 
 const queze = () => {
     const [con, setCon] = useState('');
@@ -139,7 +137,7 @@ const queze = () => {
                                 queze_result_arr_let.push(
                                     <div className='show_reslut_li' key={i}>
                                         <p className='show_result_p'>{i}등</p>
-                                        <button>투표하기</button>
+                                        <button onClick={click_vote}>투표하기</button>
                                         <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
                                     </div>
                                 )
@@ -210,7 +208,7 @@ const queze = () => {
                     queze_result_arr_let.push(
                         <button onClick={()=>{console.log('bbbbb')}} className='show_reslut_li' key={i}>
                             <p className='show_result_p'>{i}등</p>
-                            <button onClick={click_vote}>투표하기</button>
+                            <button onClick={(e)=>{click_vote(e.value)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
                             <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
                         </button>
                     )
@@ -219,7 +217,13 @@ const queze = () => {
             }
         })
     }
-    const click_vote = () => {
+    const click_vote = (e) => {
+        let split_str = e.value.split(',');
+        if(split_str[1] === '모름'){
+            split_str[1] = -1;
+        }if(split_str[2] === '모름'){
+            split_str[2] = -1;
+        }
         axios({
             //url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
             url : 'http://localhost:45509/vote',
@@ -287,9 +291,6 @@ const queze = () => {
                 setLikes(likes + 1);
             })
         }
-        else{
-
-        }
     }
     const quze_sequence = () => {
         axios({
@@ -332,6 +333,51 @@ const queze = () => {
         })
     }
     const votesuccess = () =>{
+        axios({
+            url      : 'http://localhost:45509/queze_result',
+            method   : 'POST',
+            headers  : {
+                'Content-Type' : 'application/json'
+            },  
+            data     : {
+                roomName : roomNameRef.current              
+            }
+        }).then((res)=>{
+
+            let queze_result_value = '없음';
+            let queze_result_class = '모름';
+            let queze_result_number = '모름';
+            if(res.data === '없음'){
+
+                setQueze_result([
+                    <button  className='show_reslut_li' >
+                        <p className='show_result_p'>...</p>
+                        <p className='show_result_p2'>없음</p>
+                    </button>
+                ])
+                
+            }else{
+                let queze_result_arr_let = [];
+                for(let i=1; i <= res.data.length;i++){
+                    queze_result_value = res.data[i-1].id;
+                    if(res.data[i-1].class !== -1){
+                        queze_result_class = res.data[i-1].class;
+                    }
+                    if(res.data[i-1].number !== -1){
+                        queze_result_number = res.data[i-1].number;
+                    }
+                    queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
+                    queze_result_arr_let.push(
+                        <button onClick={()=>{console.log('bbbbb')}} className='show_reslut_li' key={i}>
+                            <p className='show_result_p'>{i}등</p>
+                            <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
+                            <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
+                        </button>
+                    )
+                }
+                setQueze_result(queze_result_arr_let);
+            }
+        })
         setCon('');
 
     }
