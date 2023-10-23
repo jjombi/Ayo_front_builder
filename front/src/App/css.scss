@@ -37,6 +37,22 @@ p {
     transform: rotate(135deg);
 
 }
+.bug {
+    // width: 30px;
+    // height: 30px;
+    background-color: white;
+    position: absolute;
+    top : 85%;
+    left: 1%;
+    border-radius: 5px;
+    height: 1.8em;
+    border: 2px solid #2B2A2A;
+}
+.bug:hover {
+    transition: 0.3s ease-in-out;
+    border: 2px solid rgb(139, 24, 24);
+    background-color: rgb(255, 191, 191);
+}
 /*----------icon--logo------------------*/
 header {
     height: 5%;

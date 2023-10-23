@@ -1,19 +1,18 @@
 
 import React, { useState, useRef } from 'react';
 import { useEffect } from "react";
-import { useNavigate,useParams, useLocation,useSearchParams } from "react-router-dom";
+import { useNavigate,useSearchParams } from "react-router-dom";
 import './css.css';
 import axios from 'axios';
-import { useCookies } from "react-cookie";
 import Adfit from './adfit';
 import Popup from './Popup';
 import Svg_great from '/src/App/Img_folder/thumb_up-1.svg';
 import Svg_great2 from '/src/App/Img_folder/great_icon.svg';
+import Svg_bug from '/src/App/Img_folder/Bug_light.svg';
+
 
 const A_queze = () => {
     const [con, setCon] = useState('');
-
-    const navigate = useNavigate();
 
     const input_value = useRef();
 
@@ -339,6 +338,12 @@ const A_queze = () => {
             {
                 con === "투표 완료" ? <Popup text={con} func={votesuccess} opacity_={opacity_}></Popup> : null
             }
+            {/* <div className='bug' title='버그 제보'>
+                <Svg_bug/>
+            </div> */}
+            <a href="mailto:dlworjs6@dgsw.hs.kr?subject=버그 제보" className='bug' title='버그 제보'>
+                <Svg_bug/>
+            </a>
             <Adfit unit="DAN-moiryOKSlck2hjOA"></Adfit>
         </div>
     )

@@ -2,6 +2,8 @@ import React,{useState, useRef,useEffect} from "react";
 import axios from 'axios'
 import { useNavigate,useParams,useSearchParams } from "react-router-dom";
 import Adfit from "./adfit";
+import Svg_bug from '/src/App/Img_folder/Bug_light.svg';
+
 
 const MakeQueze = () => {
 
@@ -53,6 +55,12 @@ const MakeQueze = () => {
                 <input type='button' onClick={makeQueze} value="질문 만들기" className='Submit_btn Submit_btn_'></input>
                 <input className="Input_basic Border_radius" ref={input_maker_ref} type="text" placeholder="작성자 소개"></input>
             </div>
+            {/* <div className='bug' title='버그 제보'>
+                <Svg_bug/>
+            </div> */}
+            <a href="mailto:dlworjs6@dgsw.hs.kr?subject=버그 제보" className='bug' title='버그 제보'>
+                <Svg_bug/>
+            </a>
             <Adfit unit="DAN-pyEL8l54ynx8GrIr"></Adfit>
         </>
     );

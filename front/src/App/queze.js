@@ -4,13 +4,12 @@ import { useEffect } from "react";
 import { useNavigate,useParams, useLocation,useSearchParams } from "react-router-dom";
 import './css.css';
 import axios from 'axios';
-import { useCookies } from "react-cookie";
 import Adfit from './adfit';
 import Popup from './Popup';
 import Svg_ from '/src/App/Img_folder/arrow_figma.svg';
 import Svg_great from '/src/App/Img_folder/thumb_up-1.svg';
 import Svg_great2 from '/src/App/Img_folder/great_icon.svg';
-
+import Svg_bug from '/src/App/Img_folder/Bug_light.svg';
 
 const queze = () => {
     const [con, setCon] = useState('');
@@ -75,8 +74,8 @@ const queze = () => {
                     sequence : select_ref.current.value
                 }
             }).then((res)=>{ // [A,B,C,D]
+                roomName_arr.current = [];
                 if(res.data !== '없음'){
-                    roomName_arr.current = [];
                     res.data.map((e)=>{
                         roomName_arr.current.push(e.roomName);
                     })
@@ -382,7 +381,8 @@ const queze = () => {
 
     }
     const btn_l = () => {
-        if(roomName_arr_chooser.current === 0){
+        console.log(roomName_arr_chooser.current)
+        if(roomName_arr_chooser.current === 0 || roomName_arr.current.length === 0){
 
         }else{
             roomName_arr_chooser.current -= 1;
@@ -396,7 +396,8 @@ const queze = () => {
         }
     }
     const btn_r = () => {
-        if(roomName_arr_chooser.current === roomName_arr.current.length-1){
+        console.log(roomName_arr_chooser.current)
+        if(roomName_arr_chooser.current === roomName_arr.current.length-1 || roomName_arr.current.length === 0){
 
         }else{
             roomName_arr_chooser.current += 1;
@@ -489,6 +490,12 @@ const queze = () => {
             {
                 con === "투표 완료" ? <Popup text={con} func={votesuccess} opacity_={opacity_}></Popup> : null
             }
+            {/* <div className='bug' title='버그 제보' onClick={location.href = "https://naver.com"}>
+                <Svg_bug/>
+            </div> */}
+            <a href="mailto:dlworjs6@dgsw.hs.kr?subject=버그 제보" className='bug' title='버그 제보'>
+                <Svg_bug/>
+            </a>
             <Adfit unit="DAN-moiryOKSlck2hjOA"></Adfit>
         </div>
     )
