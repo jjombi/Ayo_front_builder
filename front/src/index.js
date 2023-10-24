@@ -19,7 +19,7 @@ root.render(
         <Route path='/queze' element={<Queze />}></Route>
         <Route path='/' element={<School_choose />}></Route>
         <Route path='/makequeze' element={<MakeQueze/>}></Route>
-        <Route path='/A_queze' element={<A_queze/>}></Route>
+        <Route path='/a_queze' element={<A_queze/>}></Route>
       </Routes>      
     </BrowserRouter>
   </div>
