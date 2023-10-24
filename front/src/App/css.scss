@@ -205,6 +205,10 @@ header > div {
     margin-left: 48%;
     transform: translate(-50%,-50%);
 }
+.explain {
+    font-size: 14px;
+    margin-top: 90%;
+}
 .Input_basic { /*---기본 input 스타일-----*/
     margin-top: 4%;
     width: 100%;
@@ -315,13 +319,27 @@ header > div {
     //border-top: 1px solid rgb(241, 241, 241);
     
 }
-.B > button {
+.great_btn {
     width: 30px;
     height: 30px;
     background-color: white;
     color: #2B2A2A;
     margin-left: 1.5%;
     cursor: pointer;
+}
+.sharing_btn {
+    width: 70px;
+    height: 35px;
+    margin-left: 3%;
+    background-color: white;
+    color: #2B2A2A;
+    border: 2px solid rgb(241, 241, 241);
+    border-radius: 25px;
+    cursor: pointer;
+}
+.sharing_btn:hover{
+    background: linear-gradient(-45deg,rgb(204, 0, 255), #5c6aff);
+    transition: 0.3s ease-in-out;
 }
 .B > select {
     margin-left: 3%;
@@ -331,7 +349,7 @@ header > div {
 }
 .B > p {
     color: #2B2A2A;
-    margin-left: 67%;
+    margin-left: 50%;
     font-size: 14px;
 }
 /*---------------------------------------*/

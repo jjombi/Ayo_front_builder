@@ -25,9 +25,9 @@ const Header = () => {
 
           <div className='header_rogo'><p>Ayo</p></div>
           <div>
-            <input type='button' onClick={change_school} className='header_btn ' value="학교바꾸기"></input>
-            <input type='button' onClick={go_to_make_queze} className='header_btn ' value="질문 만들기"></input>
-            <input type='button' onClick={go_to_queze} className='header_btn ' value="투표하기"></input>
+            <input type='button' onMouseDown={(e) => {e.preventDefault()}} onClick={change_school} className='header_btn ' value="학교바꾸기"></input>
+            <input type='button' onMouseDown={(e) => {e.preventDefault()}} onClick={go_to_make_queze} className='header_btn ' value="질문 만들기"></input>
+            <input type='button' onMouseDown={(e) => {e.preventDefault()}} onClick={go_to_queze} className='header_btn ' value="투표하기"></input>
           </div>
           
         </header>

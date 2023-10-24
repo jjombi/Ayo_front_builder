@@ -3,12 +3,11 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate,useLocation } from "react-router-dom";
 import axios from "axios";
 import './css.css';
-import {useCookies} from 'react-cookie';
 import SelectBox from './Select_box';
 
 const School_choose = (props) => /*-----------------33333333333333333---------------------------------------------- */
     {  
-        const [cookie, setCookie, removeCookie] = useCookies();
+        const url_ = 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app';
 
         const navigate = useNavigate();     
 
@@ -30,23 +29,25 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
         const apifun = () => //회원 가입 완료 버튼
         {
 
-            console.log('완료',input_value.current.value);
-            localStorage.removeItem('school_name');
-            localStorage.setItem('school_name',input_value.current.value);
-            axios({
-                //url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
-                url : 'http://localhost:45509/queze',
-                method : 'POST',
-                headers : {
-                    'Content-Type' : 'application/json'
-                },
-                data : {
-                    school : input_value.current.value,
-                }
-            }).then((res)=>{
-                console.log(res);
-                navigate(`/queze?school_name=${input_value.current.value}`);
-            })
+            // console.log('완료',input_value.current.value);
+            // localStorage.removeItem('school_name');
+            // localStorage.setItem('school_name',input_value.current.value);
+            // axios({
+            //     url : `${url_}/queze`,
+            //     // url : 'http://localhost:45509/queze',
+            //     method : 'POST',
+            //     headers : {
+            //         'Content-Type' : 'application/json'
+            //     },
+            //     data : {
+            //         school : input_value.current.value,
+            //     }
+            // }).then((res)=>{
+            //     // console.log(res);
+            //     navigate(`/queze?school_name=${input_value.current.value}`);
+            // })
+            navigate(`./queze?school_name=${input_value.current.value}`);
+
         }
 
 
@@ -130,14 +131,14 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
 
                 {back.current}
 
-            <div className='Logo'><p>Ayo</p></div>
+                <div className='Logo'><p>Ayo</p></div>
 
                 <input type='select' className='Input_basic Border_radius z_index' placeholder='학교 검색' ref={input_value} onKeyUp={processChange} ></input>
                 {
                     selectbox_con === true ? <SelectBox option={props_option} input_value={input_value} btn_content_value_con={btn_content_value_con} back={back_con}></SelectBox> : null
                 }
-
-                <input type='button' className='Submit_btn' value="완료" onClick={apifun}></input>
+                <p className='explain'>학교 친구들의 순위를 가려보자!</p> {/*  */}
+                <input type='button' className='Submit_btn' value="완료" onMouseDown={(e) => {e.preventDefault()}} onClick={apifun}></input>
                     
             </div>
         

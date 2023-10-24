@@ -12,6 +12,8 @@ import Svg_bug from '/src/App/Img_folder/Bug_light.svg';
 
 
 const A_queze = () => {
+    const url_ = 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app';
+
     const [con, setCon] = useState('');
 
     const input_value = useRef();
@@ -50,7 +52,7 @@ const A_queze = () => {
         console.log(roomNameRef,school_name); 
 
         axios({
-            url      : 'http://localhost:45509/Q_queze_value',
+            url      : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/Q_queze_value`,
             method   : 'POST',
             headers  : {
                 'Content-Type' : 'application/json'
@@ -67,7 +69,7 @@ const A_queze = () => {
             
 
             axios({
-                url      : 'http://localhost:45509/queze_result',
+                url      : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result`,
                 method   : 'POST',
                 headers  : {
                     'Content-Type' : 'application/json'
@@ -101,7 +103,7 @@ const A_queze = () => {
                         }
                         queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
                         queze_result_arr_let.push(
-                            <button onClick={()=>{console.log('bbbbb')}} className='show_reslut_li' key={i}>
+                            <button className='show_reslut_li' key={i}>
                                 <p className='show_result_p'>{i}등</p>
                                 <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
                                 <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
@@ -127,7 +129,7 @@ const A_queze = () => {
         }
         axios({
             //url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
-            url : 'http://localhost:45509/vote',    
+            url : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote`,    
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json'
@@ -157,7 +159,7 @@ const A_queze = () => {
 
             axios({
                 //url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
-                url : 'http://localhost:45509/vote',
+                url : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote`,
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json'
@@ -182,7 +184,7 @@ const A_queze = () => {
     const popularity_order = () =>{
         if(great_icon_con){
             axios({
-                url      : 'http://localhost:45509/up_queze_popularity',
+                url      : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/up_queze_popularity`,
                 method   : 'POST',
                 headers  : {
                     'Content-Type' : 'application/json'
@@ -199,7 +201,7 @@ const A_queze = () => {
     }
     const quze_sequence = () => {
         axios({
-            url      : 'http://localhost:45509/Q_queze_value',
+            url      : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/Q_queze_value`,
             method   : 'POST',
             headers  : {
                 'Content-Type' : 'application/json'
@@ -216,7 +218,7 @@ const A_queze = () => {
     }
     const votesuccess = () =>{
         axios({
-            url      : 'http://localhost:45509/queze_result',
+            url      : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result`,
             method   : 'POST',
             headers  : {
                 'Content-Type' : 'application/json'
@@ -250,7 +252,7 @@ const A_queze = () => {
                     }
                     queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
                     queze_result_arr_let.push(
-                        <button onClick={()=>{console.log('bbbbb')}} className='show_reslut_li' key={i}>
+                        <button className='show_reslut_li' key={i}>
                             <p className='show_result_p'>{i}등</p>
                             <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
                             <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
@@ -263,6 +265,16 @@ const A_queze = () => {
         setCon('');
 
     }
+
+    const sharing_btn = async (text) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            
+            alert('복사 성공!');
+        } catch (error) {
+            alert('복사 실패!');
+        }
+    };
     return(
         <div className='Main_root'>
             <div className='content_area'>
@@ -277,13 +289,14 @@ const A_queze = () => {
                     <p>{queze_value}</p>
                 </div>                
                 <div className="B">
-                        <select ref={select_ref} onChange={quze_sequence}>
-                            <option value="date desc">최신순</option>
-                            <option value="likes desc">인기순</option>
-                            <option value="date asc">날짜순</option>
-                        </select>
+                    <select ref={select_ref} onChange={quze_sequence}>
+                        <option value="date desc">최신순</option>
+                        <option value="likes desc">인기순</option>
+                        <option value="date asc">날짜순</option>
+                    </select>
+                    <button className='sharing_btn' onMouseDown={(e) => {e.preventDefault()}} onClick={()=>{sharing_btn(`https://jjombi.github.io/A_queze?roomName=${searchParams.get('roomName')}&school_name=${searchParams.get('school_name')}`)}}>공유하기</button>
                     <p>{likes}</p>
-                    <button onClick={popularity_order}>{great_icon_con === true ? <Svg_great/> : <Svg_great2/>}</button>
+                    <button onMouseDown={(e) => {e.preventDefault()}} onClick={popularity_order}>{great_icon_con === true ? <Svg_great/> : <Svg_great2/>}</button>
                 </div>
                 <div className="A">
                     {
@@ -331,7 +344,7 @@ const A_queze = () => {
 
                 {/* <Queze_result roomNameRef={roomNameRef}></Queze_result> */}
 
-                <input type='button' onClick={vote} value="투표하기" className='Submit_btn Submit_btn_'></input>
+                <input type='button' onMouseDown={(e) => {e.preventDefault()}} onClick={vote} value="투표하기" className='Submit_btn Submit_btn_'></input>
                 
                     
             </div>

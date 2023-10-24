@@ -12,6 +12,8 @@ import Svg_great2 from '/src/App/Img_folder/great_icon.svg';
 import Svg_bug from '/src/App/Img_folder/Bug_light.svg';
 
 const queze = () => {
+    const url_ = 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app';
+    
     const [con, setCon] = useState('');
 
     const navigate = useNavigate();
@@ -64,7 +66,7 @@ const queze = () => {
         else{
             axios({
                 // url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_type',
-                url : 'http://localhost:45509/queze_option', //select * from queze where scn = schoolname
+                url : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_option`, //select * from queze where scn = schoolname
                 method : "post",
                 headers : {
                     'Content-Type' : 'application/json'
@@ -84,7 +86,7 @@ const queze = () => {
                         school_name : school_name.current
                     });
                     axios({
-                        url : 'http://localhost:45509/Q_queze_value',
+                        url : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/Q_queze_value`,
                         method : "post",
                         headers : {
                             'Content-Type' : 'application/json'
@@ -99,7 +101,7 @@ const queze = () => {
                         setMaker(res.data[0].maker);
                     })
                     axios({
-                        url      : 'http://localhost:45509/queze_result',
+                        url      : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result`,
                         method   : 'POST',
                         headers  : {
                             'Content-Type' : 'application/json'
@@ -157,7 +159,7 @@ const queze = () => {
         roomNameRef.current = searchParams.get('roomName');
         school_name.current = searchParams.get('school_name');
         axios({
-            url : 'http://localhost:45509/Q_queze_value',
+            url : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/Q_queze_value`,
             method : "post",
             headers : {
                 'Content-Type' : 'application/json'
@@ -171,7 +173,8 @@ const queze = () => {
             setMaker(res.data[0].maker);
         })
         axios({
-            url      : 'http://localhost:45509/queze_result',
+            
+            url      : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result`,
             method   : 'POST',
             headers  : {
                 'Content-Type' : 'application/json'
@@ -205,7 +208,7 @@ const queze = () => {
                     }      
                     queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
                     queze_result_arr_let.push(
-                        <button onClick={()=>{console.log('bbbbb')}} className='show_reslut_li' key={i}>
+                        <button className='show_reslut_li' key={i}>
                             <p className='show_result_p'>{i}등</p>
                             <button onClick={(e)=>{click_vote(e.value)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
                             <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
@@ -224,8 +227,8 @@ const queze = () => {
             split_str[2] = -1;
         }
         axios({
-            //url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
-            url : 'http://localhost:45509/vote',
+            url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
+            // url : 'http://localhost:45509/vote',
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json'
@@ -251,8 +254,8 @@ const queze = () => {
         else{
 
             axios({
-                //url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
-                url : 'http://localhost:45509/vote',
+                url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
+                // url : 'http://localhost:45509/vote',
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json'
@@ -277,7 +280,8 @@ const queze = () => {
     const popularity_order = () =>{
         if(great_icon_con){
             axios({
-                url      : 'http://localhost:45509/up_queze_popularity',
+                url      : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/up_queze_popularity',
+                // url      : 'http://localhost:45509/up_queze_popularity',
                 method   : 'POST',
                 headers  : {
                     'Content-Type' : 'application/json'
@@ -292,9 +296,10 @@ const queze = () => {
         }
     }
     const quze_sequence = () => {
+        console.log('옵션 바꿈');
         axios({
-            // url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_type',
-            url : 'http://localhost:45509/queze_option', //select * from queze where scn = schoolname
+            url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_option',
+            // url : 'http://localhost:45509/queze_option', //select * from queze where scn = schoolname
             method : "post",
             headers : {
                 'Content-Type' : 'application/json'
@@ -305,7 +310,9 @@ const queze = () => {
             }
         }).then((res)=>{
             if(res.data !== '없음'){
+                console.log('res',res.data);
                 roomName_arr.current = [];
+                roomName_arr_chooser.current = 0;
                 res.data.map((e)=>{
                     roomName_arr.current.push(e.roomName);
                 })
@@ -314,7 +321,7 @@ const queze = () => {
                     school_name : school_name.current
                 });
                 axios({
-                    url : 'http://localhost:45509/Q_queze_value',
+                    url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/Q_queze_value',
                     method : "post",
                     headers : {
                         'Content-Type' : 'application/json'
@@ -323,17 +330,18 @@ const queze = () => {
                         roomName : roomName_arr.current[roomName_arr_chooser.current]
                     }
                 }).then((res)=>{
-                        roomName_arr_chooser.current = 0;
                     setQueze_value(`${res.data[0].value}`);
                     setLikes(res.data[0].likes);
                     setMaker(res.data[0].maker);
+                    console.log(roomName_arr.current,'바ㅜ낀 후');
                 })
             }
         })
     }
     const votesuccess = () =>{
         axios({
-            url      : 'http://localhost:45509/queze_result',
+            // url      : 'http://localhost:45509/queze_result',
+            url      : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result',
             method   : 'POST',
             headers  : {
                 'Content-Type' : 'application/json'
@@ -367,7 +375,7 @@ const queze = () => {
                     }
                     queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
                     queze_result_arr_let.push(
-                        <button onClick={()=>{console.log('bbbbb')}} className='show_reslut_li' key={i}>
+                        <button className='show_reslut_li' key={i}>
                             <p className='show_result_p'>{i}등</p>
                             <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
                             <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
@@ -381,7 +389,7 @@ const queze = () => {
 
     }
     const btn_l = () => {
-        console.log(roomName_arr_chooser.current)
+        console.log(roomName_arr_chooser.current,roomName_arr.current)
         if(roomName_arr_chooser.current === 0 || roomName_arr.current.length === 0){
 
         }else{
@@ -396,7 +404,7 @@ const queze = () => {
         }
     }
     const btn_r = () => {
-        console.log(roomName_arr_chooser.current)
+        console.log(roomName_arr_chooser.current,roomName_arr.current)
         if(roomName_arr_chooser.current === roomName_arr.current.length-1 || roomName_arr.current.length === 0){
 
         }else{
@@ -409,6 +417,15 @@ const queze = () => {
             queze_value_render();
         }
     }
+    const sharing_btn = async (text) => { 
+        console.log('복사 시작',text);
+        try {
+            await navigator.clipboard.writeText(text);
+            alert('클립보드에 링크가 복사되었습니다.');
+          } catch (e) {
+            alert('복사에 실패하였습니다');
+          }
+    };
     return(
         <div className='Main_root'>
             <div className='content_area'>
@@ -422,10 +439,10 @@ const queze = () => {
                 </div>
                 <div className="A_queze_content">
                     <p>{queze_value}</p>
-                    <button className='btn1' onClick={btn_l}>
+                    <button className='btn1'onMouseDown={(e) => {e.preventDefault()}} onClick={btn_l}>
                         <Svg_   className="svg_"></Svg_>
                     </button>
-                    <button className='btn2' onClick={btn_r}>
+                    <button className='btn2'onMouseDown={(e) => {e.preventDefault()}} onClick={btn_r}>
                         <Svg_   className="svg_2"></Svg_>
                     </button>
                 </div>                
@@ -435,8 +452,9 @@ const queze = () => {
                         <option value="likes desc">인기순</option>
                         <option value="date asc">날짜순</option>
                     </select>
+                    <button className='sharing_btn' onMouseDown={e=>e.preventDefault()} onClick={()=>{sharing_btn(`https://jjombi.github.io/A_queze?roomName=${searchParams.get('roomName')}&school_name=${searchParams.get('school_name')}`)}}>공유하기</button> {/*https://jjombi.github.io/A_queze?roomName=${searchParams.get('roomName')}&school_name=${searchParams.get('school_name')} */}
                     <p>{likes}</p>
-                    <button onClick={popularity_order}>{great_icon_con === true ? <Svg_great/> : <Svg_great2/>}</button>
+                    <button className='great_btn' onClick={popularity_order}>{great_icon_con === true ? <Svg_great/> : <Svg_great2/>}</button>
                 </div>
                 <div className="A">
                     {
@@ -483,7 +501,7 @@ const queze = () => {
                 </div>
 
 
-                <input type='button' onClick={vote} value="투표하기" className='Submit_btn Submit_btn_'></input>
+                <input type='button'onMouseDown={(e) => {e.preventDefault()}} onClick={vote} value="투표하기" className='Submit_btn Submit_btn_'></input>
                 
                     
             </div>

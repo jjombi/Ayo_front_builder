@@ -15,7 +15,7 @@ const Popup = (props) => {
             <div className="Popup_main popup">
                 <div className="Popup_main_content" >{/*style={{backgroundColor : `rgba(0,0,0,${props.opacity_.current})`}}  style={{marginTop : `${margin_}%`}} onClick={props.func}*/}
                     <p className="popup_p ">{props.text}</p>
-                    <input type="button" value="확인" className=" btn_basic popup_btn" onClick={props.func}></input>
+                    <input type="button" value="확인" className=" btn_basic popup_btn" onMouseDown={(e) => {e.preventDefault()}} onClick={props.func}></input>
                 </div>
                 </div>
         </>
