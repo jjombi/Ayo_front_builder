@@ -1,7 +1,7 @@
 import React,{useState, useRef,useEffect} from "react";
 import axios from 'axios'
 import { useNavigate,useParams,useSearchParams } from "react-router-dom";
-import Adfit from "./adfit";
+import Adfit from "./Adfit";
 import Svg_bug from '/src/App/Img_folder/Bug_light.svg';
 
 

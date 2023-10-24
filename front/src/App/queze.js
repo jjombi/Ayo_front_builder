@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useNavigate,useParams, useLocation,useSearchParams } from "react-router-dom";
 import './css.css';
 import axios from 'axios';
-import Adfit from './adfit';
+import Adfit from './Adfit';
 import Popup from './Popup';
 import Svg_ from '/src/App/Img_folder/arrow_figma.svg';
 import Svg_great from '/src/App/Img_folder/thumb_up-1.svg';
