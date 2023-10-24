@@ -64,6 +64,7 @@ const queze = () => {
             navigate('/');
         }
         else{
+            alert('useeffect axios start');
             axios({
                 // url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_type',
                 url : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_option`, //select * from queze where scn = schoolname
@@ -85,6 +86,7 @@ const queze = () => {
                         roomName : roomName_arr.current[roomName_arr_chooser.current],
                         school_name : school_name.current
                     });
+                    alert('useeffect axios.take queze start');
                     axios({
                         url : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/Q_queze_value`,
                         method : "post",
@@ -100,6 +102,7 @@ const queze = () => {
                         setLikes(res.data[0].likes);
                         setMaker(res.data[0].maker);
                     })
+                    alert('useeffect axios. result start');
                     axios({
                         url      : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result`,
                         method   : 'POST',
