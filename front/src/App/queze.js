@@ -100,52 +100,9 @@ const queze = () => {
                         setLikes(res.data[0].likes);
                         setMaker(res.data[0].maker);
                     })
-                    axios({
-                        url      : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result`,
-                        method   : 'POST',
-                        headers  : {
-                            'Content-Type' : 'application/json'
-                        },  
-                        data     : {
-                            roomName : roomName_arr.current[roomName_arr_chooser.current]               
-                        }
-                    }).then((res)=>{
-            
-                        let queze_result_value = '없음';
-                        let queze_result_class = '모름';
-                        let queze_result_number = '모름';
-
-                        if(res.data === '없음'){
-                            queze_result_value = '없음';
-                            setQueze_result([
-                                <button  className='show_reslut_li' >
-                                    <p className='show_result_p'>...</p>
-                                    <p className='show_result_p2'>없음</p>
-                                </button>
-                            ])
-                            
-                        }else{
-                            let queze_result_arr_let = [];
-                            for(let i=1; i <= res.data.length;i++){
-                                queze_result_value = res.data[i-1].id;
-                                if(res.data[i-1].class !== -1){
-                                    queze_result_class = res.data[i-1].class;
-                                }
-                                if(res.data[i-1].number !== -1){
-                                    queze_result_number = res.data[i-1].number;
-                                }
-                                // queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
-                                queze_result_arr_let.push(
-                                    <button className='show_reslut_li' key={i}>
-                                        <p className='show_result_p'>{i}등</p>
-                                        <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
-                                        <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
-                                    </button>
-                                )
-                            }
-                            setQueze_result(queze_result_arr_let);
-                        }
-                    })
+                    setQueze_result_func();
+                   
+                    
                 }else{
                     alert('만들어진 문제가 없습니다');
                 }
@@ -154,6 +111,56 @@ const queze = () => {
 
     },[])
 
+
+    const setQueze_result_func = () =>{
+        axios({
+            // url      : 'http://localhost:45509/queze_result',
+            url      : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result',
+            method   : 'POST',
+            headers  : {
+                'Content-Type' : 'application/json'
+            },  
+            data     : {
+                roomName : roomNameRef.current     
+            }
+        }).then((res)=>{
+
+            let queze_result_value = '없음';
+            let queze_result_class = '모름';
+            let queze_result_number = '모름';
+            if(res.data === '없음'){
+
+                setQueze_result([
+                    <button  className='show_reslut_li' >
+                        <p className='show_result_p'>...</p>
+                        <p className='show_result_p2'>없음</p>
+                    </button>
+                ])
+                
+            }else{
+                let queze_result_arr_let = [];
+                for(let i=1; i <= res.data.length;i++){
+                    queze_result_value = res.data[i-1].id;
+                    if(res.data[i-1].class !== -1){
+                        queze_result_class = res.data[i-1].class;
+                    }
+                    if(res.data[i-1].number !== -1){
+                        queze_result_number = res.data[i-1].number;
+                    }
+                    // queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number]; 
+                    // console.log('select box 꺼지고 나서 result : ',queze_result_vcn_ref.current);     
+                    queze_result_arr_let.push(
+                        <button className='show_reslut_li' key={i}>
+                            <p className='show_result_p'>{i}등</p>
+                            <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
+                            <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
+                        </button>
+                    )
+                }
+                setQueze_result(queze_result_arr_let);
+            }
+        })
+    }
 
     const queze_value_render = () => {
         roomNameRef.current = searchParams.get('roomName');
@@ -172,52 +179,7 @@ const queze = () => {
             setLikes(res.data[0].likes);
             setMaker(res.data[0].maker);
         })
-        axios({
-            
-            url      : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result`,
-            method   : 'POST',
-            headers  : {
-                'Content-Type' : 'application/json'
-            },  
-            data     : {
-                roomName : roomName_arr.current[roomName_arr_chooser.current]            
-            }
-        }).then((res)=>{
-
-            let queze_result_value = '없음';
-            let queze_result_class = '모름';
-            let queze_result_number = '모름';
-
-            if(res.data === '없음'){
-                setQueze_result([
-                    <button  className='show_reslut_li' >
-                        <p className='show_result_p'>...</p>
-                        <p className='show_result_p2'>없음</p>
-                    </button>
-                ])
-                
-            }else{
-                let queze_result_arr_let = [];
-                for(let i=1; i <= res.data.length;i++){
-                    queze_result_value = res.data[i-1].id;
-                    if(res.data[i-1].class !== -1){
-                        queze_result_class = res.data[i-1].class;
-                    }
-                    if(res.data[i-1].number !== -1){
-                        queze_result_number = res.data[i-1].number;
-                    }
-                    // queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
-                    queze_result_arr_let.push(
-                        <button className='show_reslut_li' key={i}>
-                            <p className='show_result_p'>{i}등</p>
-                            <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
-                            <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
-                        </button>
-                    )
-                }
-                setQueze_result(queze_result_arr_let);
-            }
-        })
+        setQueze_result_func();
     }
     const click_vote = (e) => {
         console.log('e',e);
@@ -340,53 +302,7 @@ const queze = () => {
         })
     }
     const votesuccess = () =>{
-        axios({
-            // url      : 'http://localhost:45509/queze_result',
-            url      : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result',
-            method   : 'POST',
-            headers  : {
-                'Content-Type' : 'application/json'
-            },  
-            data     : {
-                roomName : roomNameRef.current              
-            }
-        }).then((res)=>{
-
-            let queze_result_value = '없음';
-            let queze_result_class = '모름';
-            let queze_result_number = '모름';
-            if(res.data === '없음'){
-
-                setQueze_result([
-                    <button  className='show_reslut_li' >
-                        <p className='show_result_p'>...</p>
-                        <p className='show_result_p2'>없음</p>
-                    </button>
-                ])
-                
-            }else{
-                let queze_result_arr_let = [];
-                for(let i=1; i <= res.data.length;i++){
-                    queze_result_value = res.data[i-1].id;
-                    if(res.data[i-1].class !== -1){
-                        queze_result_class = res.data[i-1].class;
-                    }
-                    if(res.data[i-1].number !== -1){
-                        queze_result_number = res.data[i-1].number;
-                    }
-                    // queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number]; 
-                    // console.log('select box 꺼지고 나서 result : ',queze_result_vcn_ref.current);     
-                    queze_result_arr_let.push(
-                        <button className='show_reslut_li' key={i}>
-                            <p className='show_result_p'>{i}등</p>
-                            <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
-                            <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
-                        </button>
-                    )
-                }
-                setQueze_result(queze_result_arr_let);
-            }
-        })
+        setQueze_result_func();
         setCon('');
 
     }

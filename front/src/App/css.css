@@ -99,30 +99,6 @@ header > div {
 }
 
 /*----------------회원가입 창----------------*/
-.search_school_area {
-  width: 100%;
-  height: 20%;
-  background-color: azure;
-  margin-top: 5%;
-}
-
-.input_id_area {
-  width: 100%;
-  height: 20%;
-  margin-top: 5%;
-}
-
-.text-area {
-  width: 100%;
-  height: 20%;
-}
-
-.instar_signup_btn {
-  width: 100%;
-  height: 20%;
-  margin-top: 5%;
-}
-
 /*------------------회원가입 창 222222222222222222 -------------------------*/
 .Main_root {
   width: 100vw;
@@ -130,8 +106,7 @@ header > div {
   display: flex;
   flex-direction: column;
   background-color: #2B2A2A;
-}
-
+} /****/
 .content_area {
   position: relative;
   width: 30%;
@@ -145,8 +120,7 @@ header > div {
   border-right: 2px solid white;
   text-align: center;
   z-index: 0;
-}
-
+} /****/
 .main_line_contents {
   display: flex;
   flex-direction: row;
@@ -191,8 +165,7 @@ header > div {
   height: 70px;
   border-radius: 50%;
   border: 1px solid white;
-}
-
+} /****/
 .Logo > p {
   font-size: 21px;
   letter-spacing: 3px;
@@ -249,34 +222,6 @@ header > div {
 }
 
 /*-----------------학교 찾는 창 3333333333333333333333333333-----*/
-.School_search { /*안쓰이는 중 190School_chose*/
-  margin-top: 20%;
-  width: 80%;
-  height: 7%;
-  background-color: aqua;
-}
-
-.guid_message {
-  width: 100%;
-  font-size: 12px;
-}
-
-.Guid_message_ {
-  margin-top: 70%;
-  font-size: 16px;
-  text-align: center;
-}
-
-.Input_id {
-  width: 100%;
-  height: 100%;
-}
-
-.Input_id_btn {
-  margin-bottom: 3%;
-  height: 6%;
-}
-
 .Submit_btn {
   position: absolute;
   width: 20%;
@@ -296,18 +241,7 @@ header > div {
   margin-top: 15%;
 }
 
-.Page_num {
-  position: absolute;
-  top: 90%;
-  font-size: 14px;
-}
-
 /*-------------질문 나오는 창-------------*/
-.queze_result {
-  height: 15%;
-  margin-top: 0%;
-}
-
 .A {
   width: 100%;
   height: 18%;
@@ -332,7 +266,7 @@ header > div {
 
 .sharing_btn {
   width: 70px;
-  height: 35px;
+  height: 80%;
   margin-left: 3%;
   background-color: white;
   color: #2B2A2A;
@@ -361,28 +295,6 @@ header > div {
 
 /*---------------------------------------*/
 /*--------------------추천검색어 디자인--------------*/
-.id_area { /*애도 추천 겁색어 디자인*/
-  margin-top: 5%;
-  width: 80%;
-  height: 7%;
-  display: flex;
-  flex-direction: row;
-  border-top: 1px solid rgb(227, 227, 227);
-  background-color: white;
-  cursor: pointer;
-}
-
-.z_index {
-  z-index: 2;
-}
-
-.abc {
-  overflow: hidden;
-  width: 70%;
-  height: 10%;
-  background-color: aqua;
-}
-
 .Suggested_Search {
   margin-top: 0%;
   width: 100%;
@@ -390,41 +302,6 @@ header > div {
   font-size: 12px;
   text-align: center;
   align-items: center;
-}
-
-.pass_checker_area {
-  width: 100%;
-  height: 7%;
-  color: #2B2A2A;
-  position: relative;
-  cursor: pointer;
-  margin-top: 4%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.pass_cheker_input {
-  width: 70%;
-  height: 100%;
-  border-radius: 10px;
-}
-
-.pass_checker_icon_area {
-  width: 15%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.pass_checker_icon_area > div {
-  width: 20px;
-  height: 20px;
-  background-color: #5c6aff;
-  margin-left: auto;
-  margin-right: 10%;
-  transition: 0.1s ease;
-  border-radius: 50%;
 }
 
 /*---------------------------------------------*/
@@ -498,7 +375,7 @@ header {
 
 .show_reslut_li > button {
   width: 70px;
-  height: 35px;
+  height: 80%;
   margin-left: 3%;
   background-color: white;
   color: #2B2A2A;
@@ -681,7 +558,7 @@ header {
 
 .Q_chooser_ul {
   float: left;
-  transition: left 0.5s fease-out;
+  transition: left 0.5s ease-out;
   display: flex;
   flex-direction: row;
 }

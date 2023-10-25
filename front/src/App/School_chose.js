@@ -137,7 +137,7 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
                 {
                     selectbox_con === true ? <SelectBox option={props_option} input_value={input_value} btn_content_value_con={btn_content_value_con} back={back_con}></SelectBox> : null
                 }
-                <p className='explain'>학교 친구들의 순위를 가려보자!</p> {/*  */}
+                <p className='explain'>학교 친구들의 순위를 가려보자!</p> {/* 동물상 테스트, 우리학교 월드컵 */}
                 <input type='button' className='Submit_btn' value="완료" onMouseDown={(e) => {e.preventDefault()}} onClick={apifun}></input>
                     
             </div>

@@ -1,26 +1,33 @@
-import React from 'react';
-import Header from './App/Header';
-import { createRoot } from 'react-dom/client';
-import Queze from './App/queze';
-import School_choose from './App/School_chose';
-import MakeQueze from './App/MakeQueze';
-import A_queze from './App/A_queze';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import React,{Suspense, lazy} from 'react';
+import ReactDOM from 'react-dom/client';
+// import Header from './App/Header';
+// import { createRoot } from 'react-dom/client';
+// import Queze from './App/queze';
+// import School_choose from './App/School_chose';
+// import MakeQueze from './App/MakeQueze';
+// import A_queze from './App/A_queze';
+import { BrowserRouter, Routes, Route, l } from 'react-router-dom';
+const Header = lazy(() => import('./App/Header'));
+const Queze = lazy(() => import('./App/queze'));
+const School_choose = lazy(() => import('./App/School_chose'));
+const MakeQueze = lazy(() => import('./App/MakeQueze'));
+const A_queze = lazy(() => import('./App/A_queze'));
 
 const rootElement = document.getElementById('root');
-const root = createRoot(rootElement);
+const root = ReactDOM.createRoot(rootElement);
 root.render(
   <div className='Main_root'>
     <BrowserRouter>
       <Header></Header>
       <div className='line'></div>
-      <Routes>
-        <Route path='/queze' element={<Queze />}></Route>
-        <Route path='/' element={<School_choose />}></Route>
-        <Route path='/makequeze' element={<MakeQueze/>}></Route>
-        <Route path='/a_queze' element={<A_queze/>}></Route>
-      </Routes>      
+      <Suspense fallback={<div>loadind...</div>}>
+        <Routes>
+          <Route path='/queze' element={<Queze />}></Route>
+          <Route path='/' element={<School_choose />}></Route>
+          <Route path='/makequeze' element={<MakeQueze/>}></Route>
+          <Route path='/a_queze' element={<A_queze/>}></Route>
+        </Routes>   
+      </Suspense>
     </BrowserRouter>
   </div>
 );

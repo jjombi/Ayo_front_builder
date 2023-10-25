@@ -20,15 +20,11 @@ const MakeQueze = () => {
             alert('학교를 다시 선택해 주세요');
             navigate('/');
         }
-        else{
-            alert(`school Name : ${school_name.current}`);
-        }
     },[])
 
     
 
     const makeQueze = () => {
-        alert(`make queze start`);
         try{
             axios({
                 //url      : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/create_queze',
@@ -48,7 +44,6 @@ const MakeQueze = () => {
                 }
             }).then((res)=>{
                 console.log('질문 올림',res);
-                alert('then start after makequeze axios');
                 navigate(`/A_queze?roomName=${res.data}&school_name=${school_name.current}`);
             })
         }
@@ -74,7 +69,6 @@ const MakeQueze = () => {
                 }
             }).then((res)=>{
                 console.log('질문 올림',res);
-                alert('then start after makequeze axios');
                 navigate(`/A_queze?roomName=${res.data}&school_name=${school_name.current}`);
             })
         }
