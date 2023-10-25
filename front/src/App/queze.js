@@ -64,7 +64,6 @@ const queze = () => {
             navigate('/');
         }
         else{
-            alert('useeffect axios start');
             axios({
                 // url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_type',
                 url    : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_option`, //select * from queze where scn = schoolname
@@ -86,7 +85,6 @@ const queze = () => {
                         roomName : roomName_arr.current[roomName_arr_chooser.current],
                         school_name : school_name.current
                     });
-                    alert('useeffect axios.take queze start');
                     axios({
                         url : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/Q_queze_value`,
                         method : "post",
@@ -102,7 +100,6 @@ const queze = () => {
                         setLikes(res.data[0].likes);
                         setMaker(res.data[0].maker);
                     })
-                    alert('useeffect axios. result start');
                     axios({
                         url      : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result`,
                         method   : 'POST',
@@ -137,13 +134,13 @@ const queze = () => {
                                 if(res.data[i-1].number !== -1){
                                     queze_result_number = res.data[i-1].number;
                                 }
-                                queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];
+                                // queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
                                 queze_result_arr_let.push(
-                                    <div className='show_reslut_li' key={i}>
+                                    <button className='show_reslut_li' key={i}>
                                         <p className='show_result_p'>{i}등</p>
-                                        <button onClick={click_vote}>투표하기</button>
+                                        <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
                                         <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
-                                    </div>
+                                    </button>
                                 )
                             }
                             setQueze_result(queze_result_arr_let);
@@ -208,12 +205,12 @@ const queze = () => {
                     }
                     if(res.data[i-1].number !== -1){
                         queze_result_number = res.data[i-1].number;
-                    }      
-                    queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
+                    }
+                    // queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
                     queze_result_arr_let.push(
                         <button className='show_reslut_li' key={i}>
                             <p className='show_result_p'>{i}등</p>
-                            <button onClick={(e)=>{click_vote(e.value)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
+                            <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
                             <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
                         </button>
                     )
@@ -223,6 +220,7 @@ const queze = () => {
         })
     }
     const click_vote = (e) => {
+        console.log('e',e);
         let split_str = e.value.split(',');
         if(split_str[1] === '모름'){
             split_str[1] = -1;
@@ -240,9 +238,9 @@ const queze = () => {
                 //방 번호
                 //뽑은 사람
                 roomName : roomNameRef.current,
-                voteName : queze_result_vcn_ref.current[0],
-                class    : Number(queze_result_vcn_ref.current[1]),
-                number   : Number(queze_result_vcn_ref.current[2])
+                voteName : split_str[0],
+                class    : split_str[1],
+                number   : split_str[2]
             }
         }).then((res)=>{
             console.log('vote api res is',res);
@@ -376,7 +374,8 @@ const queze = () => {
                     if(res.data[i-1].number !== -1){
                         queze_result_number = res.data[i-1].number;
                     }
-                    queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
+                    // queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number]; 
+                    // console.log('select box 꺼지고 나서 result : ',queze_result_vcn_ref.current);     
                     queze_result_arr_let.push(
                         <button className='show_reslut_li' key={i}>
                             <p className='show_result_p'>{i}등</p>
