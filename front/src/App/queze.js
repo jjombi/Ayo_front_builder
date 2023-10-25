@@ -172,7 +172,7 @@ const queze = () => {
                 'Content-Type' : 'application/json'
             },
             data : {
-                roomName : roomName_arr.current[roomName_arr_chooser.current]
+                roomName : roomNameRef.current
             }
         }).then((res)=>{
             setQueze_value(`${res.data[0].value}`);
