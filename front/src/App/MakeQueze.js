@@ -37,8 +37,8 @@ const MakeQueze = () => {
                 method  : 'POST',
                 headers : {
     
-                    'Content-Type' : 'application/json'
-    
+                    //'Content-Type' : 'application/json'
+                    'Content-Type': 'multipart/form-data'
                 },
                 data    : {
                     queze          : input_value.current.value,
