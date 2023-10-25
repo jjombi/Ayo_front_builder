@@ -78,6 +78,7 @@ const A_queze = () => {
         }if(split_str[2] === '모름'){
             split_str[2] = -1;
         }
+        console.log('결과 안에 있는 투표하기 버튼 누른 후 : ',split_str);
         axios({
             //url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
             url : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote`,    
@@ -186,9 +187,6 @@ const A_queze = () => {
             }
         }).then((res)=>{
 
-            let queze_result_value = '없음';
-            let queze_result_class = '모름';
-            let queze_result_number = '모름';
             if(res.data === '없음'){
 
                 setQueze_result([
@@ -201,6 +199,9 @@ const A_queze = () => {
             }else{
                 let queze_result_arr_let = [];
                 for(let i=1; i <= res.data.length;i++){
+                    let queze_result_value = '없음';
+                    let queze_result_class = '모름';
+                    let queze_result_number = '모름';
                     queze_result_value = res.data[i-1].id;
                     if(res.data[i-1].class !== -1){
                         queze_result_class = res.data[i-1].class;
