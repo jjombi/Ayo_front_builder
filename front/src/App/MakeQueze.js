@@ -20,11 +20,15 @@ const MakeQueze = () => {
             alert('학교를 다시 선택해 주세요');
             navigate('/');
         }
+        else{
+            alert(`school Name : ${school_name.current}`);
+        }
     },[])
 
     
 
     const makeQueze = () => {
+        alert(`make queze start`);
         axios({
             //url     : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/create_queze',
             url     : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/create_queze`,
@@ -52,7 +56,7 @@ const MakeQueze = () => {
         <>
             <div className='content_area'>
                 <input type='text'   ref={input_value} className='makequeze_input Border_radius' placeholder='질문을 입력하세요'></input>
-                <input type='button' onMouseDown={(e) => {e.preventDefault()}} onClick={makeQueze} value="질문 만들기" className='Submit_btn Submit_btn_'></input>
+                <input type='button' onClick={makeQueze} value="질문 만들기" className='Submit_btn Submit_btn_'></input>
                 <input className="Input_basic Border_radius" ref={input_maker_ref} type="text" placeholder="작성자 소개"></input>
             </div>
             {/* <div className='bug' title='버그 제보'>
