@@ -55,6 +55,29 @@ const MakeQueze = () => {
         catch(err){
             alert('err is : ',err);
         }
+        finally {
+            axios({
+                //url      : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/create_queze',
+            url            : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/create_queze`,
+                //url     : 'http://10.80.163.67:45509/create_queze',
+                method  : 'POST',
+                headers : {
+    
+                    //'Content-Type' : 'application/json'
+                    'Content-Type': 'multipart/form-data'
+                },
+                data    : {
+                    queze          : input_value.current.value,
+                    school         : `${school_name.current}`,
+                    date           : Math.floor(Date.now() / 86400000),
+                    maker          : `${input_maker_ref.current.value}`
+                }
+            }).then((res)=>{
+                console.log('질문 올림',res);
+                alert('then start after makequeze axios');
+                navigate(`/A_queze?roomName=${res.data}&school_name=${school_name.current}`);
+            })
+        }
         
         
         console.log(Math.floor(Date.now() / 86400000));
