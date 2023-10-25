@@ -67,7 +67,7 @@ const queze = () => {
             alert('useeffect axios start');
             axios({
                 // url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_type',
-                url : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_option`, //select * from queze where scn = schoolname
+                url    : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_option`, //select * from queze where scn = schoolname
                 method : "post",
                 headers : {
                     'Content-Type' : 'application/json'
@@ -255,7 +255,7 @@ const queze = () => {
             alert('뽑는이를 적어주세요');
         }
         else{
-            
+
             axios({
                 url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
                 // url : 'http://localhost:45509/vote',
