@@ -32,7 +32,7 @@ const MakeQueze = () => {
         axios({
             //url     : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/create_queze',
             // url     : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/create_queze`,
-            url     : '10.80.163.67:45509/create_queze',
+            url     : 'http://10.80.163.67:45509/create_queze',
             method  : 'POST',
             headers : {
 
