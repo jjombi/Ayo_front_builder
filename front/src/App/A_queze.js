@@ -197,20 +197,19 @@ const A_queze = () => {
                 ])
                 
             }else{
+                console.log('퀴즈 결과 받고 1,2,3등 그리기 위해 데이터 받기 : ',res.data);
                 let queze_result_arr_let = [];
                 for(let i=1; i <= res.data.length;i++){
                     let queze_result_value = '없음';
                     let queze_result_class = '모름';
                     let queze_result_number = '모름';
                     queze_result_value = res.data[i-1].id;
-                    if(res.data[i-1].class !== -1){
+                    if(res.data[i-1].class != -1){ // class = 1,2,3,
                         queze_result_class = res.data[i-1].class;
                     }
-                    if(res.data[i-1].number !== -1){
+                    if(res.data[i-1].number != -1){ //number = 1,2,3
                         queze_result_number = res.data[i-1].number;
                     }
-                    // queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number]; 
-                    // console.log('select box 꺼지고 나서 result : ',queze_result_vcn_ref.current);     
                     queze_result_arr_let.push(
                         <button className='show_reslut_li' key={i}>
                             <p className='show_result_p'>{i}등</p>
@@ -218,6 +217,9 @@ const A_queze = () => {
                             <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
                         </button>
                     )
+                    // queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number]; 
+                    // console.log('select box 꺼지고 나서 result : ',queze_result_vcn_ref.current);     
+                    
                 }
                 setQueze_result(queze_result_arr_let);
             }
