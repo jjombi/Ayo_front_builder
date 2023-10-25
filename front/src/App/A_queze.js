@@ -42,7 +42,6 @@ const A_queze = () => {
 
     const [likes,setLikes] = useState();
 
-    const queze_result_vcn_ref = useRef();
 
     const [great_icon_con,setGreat_icon_con] = useState(true);
 
@@ -66,55 +65,7 @@ const A_queze = () => {
             setQueze_value(res.data[0].value);
             setMaker(res.data[0].maker);
             setLikes(res.data[0].likes);
-            
-
-            axios({
-                url      : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result`,
-                method   : 'POST',
-                headers  : {
-                    'Content-Type' : 'application/json'
-                },  
-                data     : {
-                    roomName : roomNameRef.current              
-                }
-            }).then((res)=>{
-
-                let queze_result_value = '없음';
-                let queze_result_class = '모름';
-                let queze_result_number = '모름';
-                if(res.data === '없음'){
-   
-                    setQueze_result([
-                        <button  className='show_reslut_li' >
-                            <p className='show_result_p'>...</p>
-                            <p className='show_result_p2'>없음</p>
-                        </button>
-                    ])
-                    
-                }else{
-                    let queze_result_arr_let = [];
-                    for(let i=1; i <= res.data.length;i++){
-                        queze_result_value = res.data[i-1].id;
-                        if(res.data[i-1].class !== -1){
-                            queze_result_class = res.data[i-1].class;
-                        }
-                        if(res.data[i-1].number !== -1){
-                            queze_result_number = res.data[i-1].number;
-                        }
-                        queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
-                        queze_result_arr_let.push(
-                            <button className='show_reslut_li' key={i}>
-                                <p className='show_result_p'>{i}등</p>
-                                <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
-                                <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
-                            </button>
-                        )
-                    }
-                    setQueze_result(queze_result_arr_let);
-                }
-            })
-
-
+            setQueze_result_func();
         })
 
     },[])
@@ -217,14 +168,21 @@ const A_queze = () => {
         })
     }
     const votesuccess = () =>{
+        setQueze_result_func();
+        setCon('');
+
+    }
+
+    const setQueze_result_func = () =>{
         axios({
-            url      : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result`,
+            // url      : 'http://localhost:45509/queze_result',
+            url      : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/queze_result',
             method   : 'POST',
             headers  : {
                 'Content-Type' : 'application/json'
             },  
             data     : {
-                roomName : roomNameRef.current              
+                roomName : roomNameRef.current     
             }
         }).then((res)=>{
 
@@ -250,7 +208,8 @@ const A_queze = () => {
                     if(res.data[i-1].number !== -1){
                         queze_result_number = res.data[i-1].number;
                     }
-                    queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number];      
+                    // queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number]; 
+                    // console.log('select box 꺼지고 나서 result : ',queze_result_vcn_ref.current);     
                     queze_result_arr_let.push(
                         <button className='show_reslut_li' key={i}>
                             <p className='show_result_p'>{i}등</p>
@@ -262,9 +221,8 @@ const A_queze = () => {
                 setQueze_result(queze_result_arr_let);
             }
         })
-        setCon('');
-
     }
+
 
     const sharing_btn = async (text) => {
         try {
@@ -294,7 +252,7 @@ const A_queze = () => {
                         <option value="likes desc">인기순</option>
                         <option value="date asc">날짜순</option>
                     </select>
-                    <button className='sharing_btn' onMouseDown={(e) => {e.preventDefault()}} onClick={()=>{sharing_btn(`https://jjombi.github.io/A_queze?roomName=${searchParams.get('roomName')}&school_name=${searchParams.get('school_name')}`)}}>공유하기</button>
+                    <button className='sharing_btn' onMouseDown={(e) => {e.preventDefault()}} onClick={()=>{sharing_btn(`https://ay0.netlify.app/A_queze?roomName=${searchParams.get('roomName')}&school_name=${searchParams.get('school_name')}`)}}>공유하기</button>
                     <p>{likes}</p>
                     <button onMouseDown={(e) => {e.preventDefault()}} onClick={popularity_order}>{great_icon_con === true ? <Svg_great/> : <Svg_great2/>}</button>
                 </div>
