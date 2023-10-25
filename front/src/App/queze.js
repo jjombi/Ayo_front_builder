@@ -255,7 +255,7 @@ const queze = () => {
             alert('뽑는이를 적어주세요');
         }
         else{
-
+            
             axios({
                 url : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/vote',
                 // url : 'http://localhost:45509/vote',
