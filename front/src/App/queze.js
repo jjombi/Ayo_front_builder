@@ -168,6 +168,7 @@ const queze = () => {
     const queze_value_render = () => {
         roomNameRef.current = searchParams.get('roomName');
         school_name.current = searchParams.get('school_name');
+        console.log('roomname chooser',roomName_arr_chooser.current);
         axios({
             url : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/Q_queze_value`,
             method : "post",
