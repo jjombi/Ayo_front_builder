@@ -329,9 +329,10 @@ const queze = () => {
         if(roomName_arr_chooser.current === roomName_arr.current.length-1 || roomName_arr.current.length === 0){
 
         }else{
+            console.log('left btn');
             roomName_arr_chooser.current += 1;
             setSearchParams({
-                roomName : roomName_arr.current[roomName_arr_chooser.current],
+                roomName : roomName_arr.current[roomName_arr_chooser.current+1],
                 school_name : school_name.current
             });
             setGreat_icon_con(true);
