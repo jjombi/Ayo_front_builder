@@ -153,7 +153,10 @@ const queze = () => {
                         <button className='show_reslut_li' key={i}>
                             <p className='show_result_p'>{i}등</p>
                             <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
-                            <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
+                            <p className='show_result_p2'>{queze_result_class}학년</p>
+                            <p className='show_result_p2'>{queze_result_number}반</p>
+                            <p className='show_result_p2'>이름 : {queze_result_value}</p>
+
                         </button>
                     )
                 }
@@ -378,6 +381,13 @@ const queze = () => {
                     {
                         queze_result
                     }
+                    {/* <button className='show_reslut_li' >
+                        <p className='show_result_p'>1등</p>
+                        <button>투표하기</button>
+                        <p className='show_result_p2'>4학년</p>
+                        <p className='show_result_p2'>3반</p>
+                        <p className='show_result_p2'>이름 : ㄴㅇ린ㅇㄹㅁㄴㅇㄴㄹㅔㄹㄴㅁ</p>
+                    </button> */}
                 </div>
                 <div className='line4'></div>
 
