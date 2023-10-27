@@ -121,7 +121,7 @@ const queze = () => {
                 'Content-Type' : 'application/json'
             },  
             data     : {
-                roomName : roomNameRef.current     
+                roomName : roomName_arr.current[roomName_arr_chooser.current] 
             }
         }).then((res)=>{
 
@@ -176,7 +176,7 @@ const queze = () => {
                 'Content-Type' : 'application/json'
             },
             data : {
-                roomName : roomNameRef.current
+                roomName : roomName_arr.current[roomName_arr_chooser.current]
             }
         }).then((res)=>{
             setQueze_value(`${res.data[0].value}`);
@@ -333,7 +333,7 @@ const queze = () => {
             console.log('left btn');
             roomName_arr_chooser.current += 1;
             setSearchParams({
-                roomName : roomName_arr.current[roomName_arr_chooser.current+1],
+                roomName : roomName_arr.current[roomName_arr_chooser.current],
                 school_name : school_name.current
             });
             setGreat_icon_con(true);
