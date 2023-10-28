@@ -377,7 +377,7 @@ const queze = () => {
                     </select>
                     <button className='sharing_btn' onMouseDown={e=>e.preventDefault()} onClick={()=>{sharing_btn(`https://ay0.netlify.app/A_queze?roomName=${searchParams.get('roomName')}&school_name=${searchParams.get('school_name')}`)}}>공유하기</button> {/*https://jjombi.github.io/A_queze?roomName=${searchParams.get('roomName')}&school_name=${searchParams.get('school_name')} */}
                     <p>{likes}</p>
-                    <button className='great_btn' onClick={popularity_order}>{great_icon_con === true ? <Svg_great/> : <Svg_great2/>}</button>
+                    <button className='great_btn' title='좋아요' onClick={popularity_order}>{great_icon_con === true ? <Svg_great/> : <Svg_great2/>}</button>
                 </div>
                 <div className="A">
                     {

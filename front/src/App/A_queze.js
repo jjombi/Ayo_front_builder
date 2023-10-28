@@ -214,8 +214,10 @@ const A_queze = () => {
                         <button className='show_reslut_li' key={i}>
                             <p className='show_result_p'>{i}등</p>
                             <button onClick={(e)=>{click_vote(e.target)}} value={[queze_result_value,queze_result_class,queze_result_number]}>투표하기</button>
-                            <p className='show_result_p2'>학년 : {queze_result_class}| 반 : {queze_result_number}| 이름 : {queze_result_value}</p>
-                        </button>
+                                <p className='show_result_p2'>{queze_result_class}학년</p>
+                                <p className='show_result_p2'>{queze_result_number}반</p>
+                                <p className='show_result_p2'>이름 : {queze_result_value}</p>
+                            </button>
                     )
                     // queze_result_vcn_ref.current = [queze_result_value,queze_result_class,queze_result_number]; 
                     // console.log('select box 꺼지고 나서 result : ',queze_result_vcn_ref.current);     

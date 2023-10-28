@@ -116,8 +116,6 @@ header > div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-left: 2px solid white;
-  border-right: 2px solid white;
   text-align: center;
   z-index: 0;
 } /****/
@@ -172,11 +170,6 @@ header > div {
   margin-top: 45%;
   margin-left: 48%;
   transform: translate(-50%, -50%);
-}
-
-.explain {
-  font-size: 14px;
-  margin-top: 90%;
 }
 
 .Input_basic { /*---기본 input 스타일-----*/
@@ -234,6 +227,17 @@ header > div {
 .Submit_btn:hover {
   background: linear-gradient(-45deg, rgb(204, 0, 255), #5c6aff);
   transition: 0.3s ease-in-out;
+}
+
+.logo_explain_text {
+  margin-top: 20%;
+  font-size: 20px;
+}
+
+.explain {
+  margin-top: 10%;
+  line-height: 25px;
+  font-size: 18px;
 }
 
 /*----------------로그인 방식, 또는 회원가입 할지 선택하는 페이지------------*/
@@ -664,7 +668,7 @@ select:focus {
   .Popup_main_content {
     width: 25%;
     height: 30%;
-    margin-left: 35%;
+    margin-left: 37.5%;
     margin-top: 15%;
   }
 }
@@ -756,7 +760,6 @@ select:focus {
   .content_area {
     width: 70%;
     margin-left: 15%;
-    background-color: rgb(179, 0, 255);
   }
   .Input_basic {
     width: 70%;

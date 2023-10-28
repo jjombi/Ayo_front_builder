@@ -136,13 +136,13 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
 
                 {back.current}
 
-                <div className='Logo'><p>Ayo</p></div>
-
+                {/* <div className='Logo'><p>Ayo</p></div> */}
+                <p className='logo_explain_text'>우리학교 월드컵</p>
+                <p className='explain'>우리학교에서 가장 인기 있는 사람은 누굴까? <br/>나의 생각과 친구들의 생각을 들어보세요</p> {/* 동물상 테스트, 우리학교 월드컵, 우리학교에서 가장 인기 있는 사람은 누굴까? 나의 생각과 친구들의 생각을 들어보세요, 학교 친구들의 순위를 가려보자! */}
                 <input type='select' className='Input_basic Border_radius z_index' placeholder='학교 검색' ref={input_value} onKeyUp={processChange} ></input>
                 {
                     selectbox_con === true ? <SelectBox option={props_option} input_value={input_value} btn_content_value_con={btn_content_value_con} back={back_con}></SelectBox> : null
                 }
-                <p className='explain'>학교 친구들의 순위를 가려보자!</p> {/* 동물상 테스트, 우리학교 월드컵 */}
                 <input type='button' className='Submit_btn' value="완료" onMouseDown={(e) => {e.preventDefault()}} onClick={apifun}></input>
                     
             </div>
