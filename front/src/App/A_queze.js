@@ -317,9 +317,7 @@ const A_queze = () => {
             {/* <div className='bug' title='버그 제보'>
                 <Svg_bug/>
             </div> */}
-            <a href="mailto:dlworjs6@dgsw.hs.kr?subject=버그 제보" className='bug' title='버그 제보'>
-                <Svg_bug/>
-            </a>
+            
             <Adfit unit="DAN-LlvDXmV2NCBPcmC0"></Adfit>
         </div>
     )

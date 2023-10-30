@@ -15,6 +15,8 @@ const School_choose = lazy(() => import('./App/School_chose'));
 const MakeQueze = lazy(() => import('./App/MakeQueze'));
 const A_queze = lazy(() => import('./App/A_queze'));
 const Main = lazy(() => import('./App/Main'));
+const Footer = lazy(() => import('./App/Footer'));
+
 
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
@@ -32,6 +34,7 @@ root.render(
           <Route path='/a_queze' element={<A_queze/>}></Route>
         </Routes>   
       </Suspense>
+      <Footer></Footer>
     </BrowserRouter>
   </div>
 );
