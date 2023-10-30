@@ -1,8 +1,11 @@
 import { useEffect,useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Adfit from "./Adfit";
+
 
 const Popup = (props) => {
+
 
     // const [margin_,setMargin_] = useState();
 
@@ -17,7 +20,8 @@ const Popup = (props) => {
                     <p className="popup_p ">{props.text}</p>
                     <input type="button" value="확인" className=" btn_basic popup_btn" onMouseDown={(e) => {e.preventDefault()}} onClick={props.func}></input>
                 </div>
-                </div>
+            </div>
+            <Adfit unit="DAN-OqZFpbpvJ3BSj9UU"></Adfit>
         </>
     );
 }

@@ -25,7 +25,6 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
 
         const back = useRef([]);
 
-
         const apifun = () => //회원 가입 완료 버튼
         {
 
@@ -47,7 +46,7 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
             //     navigate(`/queze?school_name=${input_value.current.value}`);
             // })
             if(input_value.current.value !== ""){
-                navigate(`./queze?school_name=${input_value.current.value}`);
+                navigate(`../queze?school_name=${input_value.current.value}`);
             }
             else{
                 alert('학교를 다시 선택해 주세요');

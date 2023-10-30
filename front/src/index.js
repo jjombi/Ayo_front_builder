@@ -1,5 +1,7 @@
 import React,{Suspense, lazy} from 'react';
 import ReactDOM from 'react-dom/client';
+
+// import './App/css.scss';
 // import Header from './App/Header';
 // import { createRoot } from 'react-dom/client';
 // import Queze from './App/queze';
@@ -12,6 +14,7 @@ const Queze = lazy(() => import('./App/queze'));
 const School_choose = lazy(() => import('./App/School_chose'));
 const MakeQueze = lazy(() => import('./App/MakeQueze'));
 const A_queze = lazy(() => import('./App/A_queze'));
+const Main = lazy(() => import('./App/Main'));
 
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
@@ -23,7 +26,8 @@ root.render(
       <Suspense fallback={<div>loadind...</div>}>
         <Routes>
           <Route path='/queze' element={<Queze />}></Route>
-          <Route path='/' element={<School_choose />}></Route>
+          <Route path='/' element={<Main/>}></Route>
+          <Route path='/School_choose' element={<School_choose/>}></Route>
           <Route path='/makequeze' element={<MakeQueze/>}></Route>
           <Route path='/a_queze' element={<A_queze/>}></Route>
         </Routes>   

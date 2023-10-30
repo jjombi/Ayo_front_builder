@@ -63,7 +63,7 @@ const MakeQueze = () => {
             <a href="mailto:dlworjs6@dgsw.hs.kr?subject=버그 제보" className='bug' title='버그 제보 Gmail로 이동'>
                 <Svg_bug/>
             </a>
-            <Adfit unit="DAN-LlvDXmV2NCBPcmC0"></Adfit>
+            <Adfit unit="DAN-aetbVRG8hI9aLyW8"></Adfit>
         </>
     );
 }

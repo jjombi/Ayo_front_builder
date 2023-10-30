@@ -98,6 +98,43 @@ header > div {
   transition: 0.3s ease-in-out;
 }
 
+/*Main                  */
+.Main_Main {
+  width: 100%;
+  height: 100%;
+  background-color: #5c6aff;
+}
+
+.Main_Main_slide {
+  margin-top: 10%;
+  width: 100%;
+  height: 60%;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.Main_Main_ul {
+  position: relative;
+  width: 400%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.Main_Main_li {
+  width: 25%;
+  height: 100%;
+  color: #2B2A2A;
+  transition: 0.3s ease-in-out;
+}
+
+img {
+  object-fit: scale-down;
+  height: 100%;
+  margin-left: auto;
+}
+
 /*----------------회원가입 창----------------*/
 /*------------------회원가입 창 222222222222222222 -------------------------*/
 .Main_root {
@@ -318,6 +355,7 @@ header > div {
   background-color: white;
   z-index: 0;
   color: #2B2A2A;
+  background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
 }
 
@@ -492,7 +530,6 @@ header {
   width: 100%;
   height: 100%;
   float: left;
-  overflow: hidden;
   position: relative;
 }
 
@@ -540,7 +577,6 @@ header {
   height: 5%;
   background-color: white;
   float: left;
-  overflow: hidden;
   position: relative;
 }
 
