@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom/client';
 // import School_choose from './App/School_chose';
 // import MakeQueze from './App/MakeQueze';
 // import A_queze from './App/A_queze';
-import { BrowserRouter, Routes, Route, l } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 const Header = lazy(() => import('./App/Header'));
 const Queze = lazy(() => import('./App/queze'));
 const School_choose = lazy(() => import('./App/School_chose'));
