@@ -251,7 +251,7 @@ const A_queze = () => {
       }
     return(
         <div className='Main_root'>
-            <header>
+            <header className='A_queze_header'>
 
                 <div className='header_rogo' onClick={()=>navigate(`/?roomName=${roomNameRef.current}&school_name=${school_name.current}`)}><p>Ayo</p></div>
                 <div>

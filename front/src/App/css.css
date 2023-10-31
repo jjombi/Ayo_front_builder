@@ -68,6 +68,10 @@ header {
   border-bottom: 2px solid white;
 }
 
+.A_queze_header {
+  position: relative;
+}
+
 .header_rogo {
   width: 50px;
   height: 50px;
