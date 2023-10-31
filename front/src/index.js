@@ -21,20 +21,19 @@ const Footer = lazy(() => import('./App/Footer'));
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
 root.render(
-  <div className='Main_root'>
+  <div className='Main_root_'>
     <BrowserRouter>
-      <Header></Header>
-      <div className='line'></div>
+      {/* <Header props={<School_choose/>}></Header> */}
+      {/* <div className='line'></div> */}
       <Suspense fallback={<div>loadind...</div>}>
         <Routes>
-          <Route path='/queze' element={<Queze />}></Route>
+          {/* <Route path='/queze' element={<Queze />}></Route> */}
           <Route path='/' element={<Main/>}></Route>
-          <Route path='/School_choose' element={<School_choose/>}></Route>
-          <Route path='/makequeze' element={<MakeQueze/>}></Route>
+          {/* <Route path='/School_choose' element={<School_choose/>}></Route>
+          <Route path='/makequeze' element={<MakeQueze/>}></Route> */}
           <Route path='/a_queze' element={<A_queze/>}></Route>
         </Routes>   
       </Suspense>
-      <Footer></Footer>
     </BrowserRouter>
   </div>
 );

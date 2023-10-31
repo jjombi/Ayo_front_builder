@@ -7,11 +7,6 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.Main_root_ {
-  width: 100%;
-  height: 300%;
-}
-
 input {
   text-align: center;
   color: #2B2A2A;
@@ -68,6 +63,9 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: fixed;
+  z-index: 2;
+  border-bottom: 2px solid white;
 }
 
 .header_rogo {
@@ -99,6 +97,7 @@ header > div {
   margin-left: 2%;
   background-color: white;
   border-radius: 30px;
+  z-index: 3;
 }
 
 .header_btn:hover {
@@ -150,7 +149,7 @@ img {
 /*----------------회원가입 창----------------*/
 /*------------------회원가입 창 222222222222222222 -------------------------*/
 .Main_root {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;

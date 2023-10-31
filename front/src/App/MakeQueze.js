@@ -51,7 +51,7 @@ const MakeQueze = () => {
     }
 
     return(
-        <>
+        <div className="Main_root">
             <div className='content_area'>
                 <input type='text'   ref={input_value} className='makequeze_input Border_radius' placeholder='질문을 입력하세요'></input>
                 <input type='button' onClick={makeQueze} value="질문 만들기" className='Submit_btn Submit_btn_'></input>
@@ -64,7 +64,7 @@ const MakeQueze = () => {
                 <Svg_bug/>
             </a> */}
             <Adfit unit="DAN-aetbVRG8hI9aLyW8"></Adfit>
-        </>
+        </div>
     );
 }
 export default MakeQueze

@@ -9,7 +9,7 @@ import Popup from './Popup';
 import Svg_great from '/src/App/Img_folder/thumb_up-1.svg';
 import Svg_great2 from '/src/App/Img_folder/great_icon.svg';
 import Svg_bug from '/src/App/Img_folder/Bug_light.svg';
-
+import Header from './Header';
 
 const A_queze = () => {
     const url_ = 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app';
@@ -42,6 +42,7 @@ const A_queze = () => {
 
     const [likes,setLikes] = useState();
 
+    const navigate = useNavigate();
 
     const [great_icon_con,setGreat_icon_con] = useState(true);
 
@@ -238,8 +239,28 @@ const A_queze = () => {
             alert('복사 실패!');
         }
     };
+    const go_to_queze = () =>{
+        navigate(`/?school_name=${school_name.current}`)
+      }
+      const go_to_make_queze = () => {
+        navigate(`/?school_name=${school_name.current}`)
+    
+      }
+      const change_school = () => {
+        navigate(`/?school_name=${school_name.current}`);
+      }
     return(
         <div className='Main_root'>
+            <header>
+
+                <div className='header_rogo' onClick={()=>navigate(`/?roomName=${roomNameRef.current}&school_name=${school_name.current}`)}><p>Ayo</p></div>
+                <div>
+                <input type='button' onMouseDown={(e) => {e.preventDefault()}} onClick={change_school} className='header_btn ' value="학교바꾸기"></input>
+                <input type='button' onMouseDown={(e) => {e.preventDefault()}} onClick={go_to_make_queze} className='header_btn ' value="질문 만들기"></input>
+                <input type='button' onMouseDown={(e) => {e.preventDefault()}} onClick={go_to_queze} className='header_btn ' value="투표하기"></input>
+                </div>
+                {/* <div className='line'></div> */}
+            </header>
             <div className='content_area'>
                 {
                     back.current

@@ -5,6 +5,7 @@ import axios from "axios";
 import './css.css';
 import SelectBox from './Select_box';
 
+
 const School_choose = (props) => /*-----------------33333333333333333---------------------------------------------- */
     {  
         const url_ = 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app';
@@ -24,6 +25,10 @@ const School_choose = (props) => /*-----------------33333333333333333-----------
         const back_con = useRef(true);
 
         const back = useRef([]);
+
+        useEffect(()=>{
+            // props.school_choose_ref.current = 
+        })
 
         const apifun = () => //회원 가입 완료 버튼
         {
