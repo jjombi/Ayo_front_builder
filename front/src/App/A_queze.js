@@ -256,8 +256,8 @@ const A_queze = () => {
                 <div className='header_rogo' onClick={()=>navigate(`/?roomName=${roomNameRef.current}&school_name=${school_name.current}`)}><p>Ayo</p></div>
                 <div>
                 <input type='button' onMouseDown={(e) => {e.preventDefault()}} onClick={change_school} className='header_btn ' value="학교바꾸기"></input>
-                <input type='button' onMouseDown={(e) => {e.preventDefault()}} onClick={go_to_make_queze} className='header_btn ' value="질문 만들기"></input>
-                <input type='button' onMouseDown={(e) => {e.preventDefault()}} onClick={go_to_queze} className='header_btn ' value="투표하기"></input>
+                <input type='button' onMouseDown={(e) => {e.preventDefault()}} onClick={go_to_make_queze} className='header_btn ' value="학교 질문 만들기"></input>
+                <input type='button' onMouseDown={(e) => {e.preventDefault()}} onClick={go_to_queze} className='header_btn ' value="학교 질문 보기"></input>
                 </div>
                 {/* <div className='line'></div> */}
             </header>
