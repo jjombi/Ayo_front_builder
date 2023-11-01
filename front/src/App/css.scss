@@ -55,6 +55,88 @@ footer {
     border: 2px solid rgb(139, 24, 24);
     background-color: rgb(255, 191, 191);
 }
+.design_mark, .design_mark2,.design_mark3,.design_mark4 {
+    color: white;
+    position: absolute;
+    top: 30%;
+    left: 70%;
+    transform: rotate(15deg);
+    animation-duration: 7s;
+    animation-name: slidein;
+    animation-timing-function: ease;
+}
+@keyframes slidein {
+    from {
+        left: 10%;
+        top : 20%;
+    }
+  
+    to {
+      left: 70%;
+      top : 30%;
+    }
+  }
+  .design_mark2 {
+    top: 70%;
+    left: 10%;
+    color: red;
+    transform: rotate(45deg);
+    animation-name: slidein2;
+}
+@keyframes slidein2 {
+    from {
+        left: 50%;
+        top : 20%;
+    }
+  
+    to {
+      left: 10%;
+      top : 70%;
+    }
+  }
+  .design_mark3 {
+    color: blue;
+    top: 10%;
+    left: 10%;
+    transform: rotate(170deg);
+    animation-name: slidein3;
+}
+@keyframes slidein3 {
+    from {
+        left: 70%;
+        top : 50%;
+    }
+  
+    to {
+      left: 10%;
+      top : 10%;
+    }
+  }
+  .design_mark4 {
+    top: 50%;
+    left: 50%;
+    transform: rotate(15deg);
+    animation-name: slidein4;
+    color: green;
+
+}
+@keyframes slidein4 {
+    from {
+        left: 4%;
+        top : 13%;
+    }
+  
+    to {
+      left: 50%;
+      top : 50%;
+    }
+  }
+
+canvas {
+    width: 98vw;
+    height: 100vh;
+    position: absolute;
+}
 /*----------icon--logo------------------*/
 header {
     height: 5%;

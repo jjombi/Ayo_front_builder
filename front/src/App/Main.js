@@ -8,6 +8,7 @@ import Svg_great from '/src/App/Img_folder/thumb_up-1.svg';
 import Svg_great2 from '/src/App/Img_folder/great_icon.svg';
 import { useNavigate,useSearchParams } from "react-router-dom";
 import SelectBox from "./Select_box";
+import Canvas from "./Canvas";
 
 const Header = lazy(() => import('./Header'));
 
@@ -530,7 +531,16 @@ const Main = () => {
             <Header ref={[school_choose_ref,make_queze_ref,queze_ref]}></Header>
             {/**********************************************************************/}
             <div className='Main_root' ref={school_choose_ref}>
+                
+                {/* <p className="design_mark">_________________</p>
+                <p className="design_mark2">__________________________________</p>
+                <p className="design_mark3">_______________</p>
+                <p className="design_mark4">____________________</p> */}
+
+
                 <div className='content_area'>
+                    
+                    <Canvas></Canvas>
 
                     {back.current}
 
@@ -639,7 +649,7 @@ const Main = () => {
                 </div>
 
                 <Adfit unit="DAN-aetbVRG8hI9aLyW8"></Adfit>
-            </div>
+            </div>  
 
         </div>
         
