@@ -137,6 +137,303 @@ canvas {
     height: 100vh;
     position: absolute;
 }
+/*********************************  Main2  ******************************************/
+.Main2_root{
+    color: black;
+    // width: 100vw;
+    // height: 100vh;
+    align-items: center;
+    // justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.Main2_header {
+    height: 5vh;
+    width: 100vw;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 2;
+    border-bottom: 2px solid white;
+    position: relative;
+    
+} 
+.Main2_header > button {
+    // margin-left: auto;
+    width: 20%;
+    height: 90%;
+    border: 2px solid black;
+    color: black;
+}
+.margin_top {
+    margin-top: 20vh;
+}
+.form_main2 {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    // background-color: #5c6aff;
+}
+.main_title { // 문제 제목, 기본 이미이 선택 창 root
+    width: 100%;
+    height: 5%;
+    // background-color: blue;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    margin-bottom: 5%;
+}
+.main_title > input {
+    width: 80%;
+    height:  100%;  
+    min-width: 150px;
+    max-width: 450px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.main_title > p {
+    color: black;
+}
+.title_input, .img_select {
+    width: 80vw;
+    height: 4vh;
+    // background-color: #5c6aff;
+}
+.title_input {
+    // 제목 입력 창
+}
+.img_select {
+    margin-top: 2vh;
+}
+.queze_list {
+    margin-left: 1vw;
+    width: 98vw;
+    // height: 100vh;
+    max-width: 98%;
+    // background-color: black;
+    // margin-top: 5%;
+    // display: grid;
+    // grid-auto-flow: column;
+    // justify-content: start;
+    // align-content: start;
+    // grid-template-columns: 50% 50%;
+    // grid-auto-rows: 15%;
+    // align-items: center;
+}
+.queze_list { // main2 문제 
+    // border: 1px red solid;
+    display: grid;
+    // grid-template-rows: repeat(auto-fill,240px);
+    gap: 10px;
+    justify-items: center;
+}
+.queze_list {
+    grid-template-columns: repeat(5,minmax(100px,400px));
+}
+.queze_list > input {
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+.Main2_sumit_btn { // queze_list > input submi
+    width: 100%;
+    height: 5%;
+    text-align: center;
+    margin-top: 2%;
+}
+.Main2_sumit_btn > input {
+    width: 20%;
+    min-width: 100px;
+    max-width: 150px;
+    border-radius: 10px;
+    height: 100%;
+    cursor: pointer;
+}
+.plus_queze { // queze_list >
+    // width: 100%;
+    // height: 95%;
+    // width: 100%;
+    // height: 30%;
+    // max-width: 400px;
+    // max-height: 300px;
+    border: 2px solid black;
+    background-color: #282828;
+    margin-top: 2.5%;
+    max-width: 400px;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+}
+.plus_queze > img {
+    // margin-left: 1%;
+    // width: 100%;
+    // height: 95%;
+    // background-color: #000000;
+}
+.plus_queze > p {
+    width: 100%;
+    height: 10%;
+}
+.make_queze { //make queze 사진 부모
+    
+}
+/***************************************************************************/
+/*------------------main2_A_queze-----------------------------*/
+
+.Main2_a_queze_root {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    max-width:100%;
+}
+.main2_a_queze_btn_area {
+    width: 100%;
+    height: 5%;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+}
+.main2_a_queze_btn_area > button {
+    width: 20%;
+    height: 100%;
+    min-width: 100px;
+    max-width: 150px;
+    background-color: #5c6aff;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+.drag_area {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    max-width: 100%;
+    // height: 20%;
+    // background-color: #5c6aff;
+    position: fixed;
+    // top : 80%;
+    bottom: 0;
+    overflow-x: scroll;
+    
+}
+.drop_area{
+    display: flex;
+    flex-direction: column;
+    // width: 40%;
+    // height: 80%;
+    background-color: rgba($color: #000000, $alpha: 0);
+
+} // drag 이미지가 vw를 넘으면 x scroll 가능 하게 구현 하기
+.drag{
+    // min-width: 80px;
+    // min-height: 80px;
+    max-width: 300px;
+    max-height: 300px;
+    text-align: center;
+    // background-color: #5c6aff;
+}
+.drag > img {
+    // width: 80px;
+    // height: 80px;
+    // object-fit: none;
+    // width: 100%;
+    // height: 100%;
+    color: black;
+    // border: 2px solid black;
+}
+.drag > p {
+
+}
+.drop{
+    // width: 40%;
+    // height: 40%;
+    // width: 80px;
+    // height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+    // max-width: 300px;
+    max-height: 300px;
+    // background-color: aqua;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba($color: #000000, $alpha: 0);
+    z-index: 1;
+}
+.drop_rank {
+    color: #000000;
+}
+// .dorp > img {
+
+//     width: 80px;
+//     height: 80px;
+//     object-fit: none;
+// }
+.drop > p {
+    color: #282828;
+    margin-left: 5%;
+}
+//------------------------make a queze
+.queze_area {
+    width: 95%;
+    margin-left: 2.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.a_queze_img {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+    border: 2px solid black;
+
+} // 이미지 왼쪽 텍스트 오른쪽 으로 바꾸고 
+// 텍스트 줄 넘으면 height 간격늘리면서 쓰게하기
+// aqueze img 는 왼쪽 정렬
+.a_queze_img > img {
+    
+}
+.a_queze_img > input {
+
+}
+.drop_img_area {
+    width: 95%;
+    height: 40%;
+    margin-left: 2.5%;
+    // margin-bottom: %;
+    border: 2px black solid;
+    color: black;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+
+}
+.drop_img_area > input {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    
+}
+.drop_img_area > p {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    // width: 100%;
+    color: black;
+}
 /*----------icon--logo------------------*/
 header {
     height: 5%;
@@ -218,10 +515,10 @@ header > div {
 
 }
 img {
-    object-fit: scale-down;
+    // object-fit: scale-down;
     // width: 80%;
-    height: 100%;
-    margin-left: auto;
+    // height: 100%;
+    // margin-left: auto;
 }
 /*----------------회원가입 창----------------*/
 // .signup_area {
@@ -844,6 +1141,13 @@ select:focus {
     .Input_basic {
         width: 70%;
     }
+    .queze_list { // main2 문제 
+        border: 1px red solid;
+        display: grid;
+        grid-template-columns: 100px 200px 300px;
+        grid-template-rows: 300px;
+        gap: 10px;
+    }
     //---------------------------------------
 }
 @include desktopToLaptop2 {
@@ -857,6 +1161,10 @@ select:focus {
     .Input_basic {
         width: 70%;
     }
+    // .plus_queze {
+    //     width: 40%;
+    //     height: 60%;
+    // }
     .Queze_li {
         width: 30vw;
     }
@@ -868,6 +1176,9 @@ select:focus {
         height: 30%;
         margin-left: 37.5%;
         margin-top: 15%;
+    }
+    .queze_list {
+        grid-template-columns: repeat(5,minmax(100px,400px));
     }
     //---------------------------------------
 }
@@ -896,6 +1207,9 @@ select:focus {
         margin-left: 37.5%;
         margin-top: 15%;
     }
+    .queze_list {
+        grid-template-columns: repeat(4,minmax(100px,400px));
+    }
     //---------------------------------------
 }
 
@@ -923,6 +1237,9 @@ select:focus {
         margin-left: 35%;
         margin-top: 20%;
     }
+    .queze_list {
+        grid-template-columns: repeat(3,minmax(100px,500px));
+    }
     //-----------------------------------
 }
 
@@ -934,6 +1251,9 @@ select:focus {
         // background-color: rgb(4, 255, 0);
         margin-left: 25vw;
 
+    }
+    .queze_list {
+        grid-template-columns: repeat(3,minmax(100px,400px));
     }
     .Input_basic {
         width: 70%;
@@ -976,6 +1296,9 @@ select:focus {
         margin-left: 35%;
         margin-top: 25%;
     }
+    .queze_list {
+        grid-template-columns: repeat(2,minmax(100px,500px));
+    }
     //---------------------------------------
 }
 
@@ -986,6 +1309,12 @@ select:focus {
        width: 70%;
        margin-left: 15%;
         // background-color: rgb(179, 0, 255);
+    }
+    .queze_list {
+        grid-template-columns: repeat(2,minmax(100px,400px));
+    }
+    .plus_queze {/*Main2 */
+        // margin-left: 22.5%;
     }
     .Input_basic {
         width: 70%;
@@ -1016,6 +1345,12 @@ select:focus {
         border: 0;
         // margin-top: 5%;
         
+    }
+    .queze_list {
+        grid-template-columns: repeat(1,90%);
+    }
+    .plus_queze {/*Main2 */
+        // margin-left: 7.5%;
     }
     .Input_basic {
         width: 70%;

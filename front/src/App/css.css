@@ -137,6 +137,247 @@ canvas {
   position: absolute;
 }
 
+/*********************************  Main2  ******************************************/
+.Main2_root {
+  color: black;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.Main2_header {
+  height: 5vh;
+  width: 100vw;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  z-index: 2;
+  border-bottom: 2px solid white;
+  position: relative;
+}
+
+.Main2_header > button {
+  width: 20%;
+  height: 90%;
+  border: 2px solid black;
+  color: black;
+}
+
+.margin_top {
+  margin-top: 20vh;
+}
+
+.form_main2 {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+}
+
+.main_title {
+  width: 100%;
+  height: 5%;
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  margin-bottom: 5%;
+}
+
+.main_title > input {
+  width: 80%;
+  height: 100%;
+  min-width: 150px;
+  max-width: 450px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.main_title > p {
+  color: black;
+}
+
+.title_input, .img_select {
+  width: 80vw;
+  height: 4vh;
+}
+
+.img_select {
+  margin-top: 2vh;
+}
+
+.queze_list {
+  margin-left: 1vw;
+  width: 98vw;
+  max-width: 98%;
+}
+
+.queze_list {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.queze_list {
+  grid-template-columns: repeat(5, minmax(100px, 400px));
+}
+
+.queze_list > input {
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.Main2_sumit_btn {
+  width: 100%;
+  height: 5%;
+  text-align: center;
+  margin-top: 2%;
+}
+
+.Main2_sumit_btn > input {
+  width: 20%;
+  min-width: 100px;
+  max-width: 150px;
+  border-radius: 10px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.plus_queze {
+  border: 2px solid black;
+  background-color: #282828;
+  margin-top: 2.5%;
+  max-width: 400px;
+}
+
+.plus_queze > p {
+  width: 100%;
+  height: 10%;
+}
+
+/***************************************************************************/
+/*------------------main2_A_queze-----------------------------*/
+.Main2_a_queze_root {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+}
+
+.main2_a_queze_btn_area {
+  width: 100%;
+  height: 5%;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+}
+
+.main2_a_queze_btn_area > button {
+  width: 20%;
+  height: 100%;
+  min-width: 100px;
+  max-width: 150px;
+  background-color: #5c6aff;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-right: 1%;
+  margin-left: 1%;
+}
+
+.drag_area {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  max-width: 100%;
+  position: fixed;
+  bottom: 0;
+  overflow-x: scroll;
+}
+
+.drop_area {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.drag {
+  max-width: 300px;
+  max-height: 300px;
+  text-align: center;
+}
+
+.drag > img {
+  color: black;
+}
+
+.drop {
+  min-width: 80px;
+  min-height: 80px;
+  max-height: 300px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 1;
+}
+
+.drop_rank {
+  color: #000000;
+}
+
+.drop > p {
+  color: #282828;
+  margin-left: 5%;
+}
+
+.queze_area {
+  width: 95%;
+  margin-left: 2.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.a_queze_img {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+  border: 2px solid black;
+}
+
+.drop_img_area {
+  width: 95%;
+  height: 40%;
+  margin-left: 2.5%;
+  border: 2px black solid;
+  color: black;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.drop_img_area > input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.drop_img_area > p {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  color: black;
+}
+
 /*----------icon--logo------------------*/
 header {
   height: 5%;
@@ -223,12 +464,6 @@ header > div {
 
 .Main_Main_li > p {
   color: black;
-}
-
-img {
-  object-fit: scale-down;
-  height: 100%;
-  margin-left: auto;
 }
 
 /*----------------회원가입 창----------------*/
@@ -782,6 +1017,13 @@ select:focus {
   .Input_basic {
     width: 70%;
   }
+  .queze_list {
+    border: 1px red solid;
+    display: grid;
+    grid-template-columns: 100px 200px 300px;
+    grid-template-rows: 300px;
+    gap: 10px;
+  }
 }
 @media (min-width: 1400px) and (max-width: 1799px) {
   .content_area {
@@ -802,6 +1044,9 @@ select:focus {
     height: 30%;
     margin-left: 37.5%;
     margin-top: 15%;
+  }
+  .queze_list {
+    grid-template-columns: repeat(5, minmax(100px, 400px));
   }
 }
 @media (min-width: 1300px) and (max-width: 1399px) {
@@ -824,6 +1069,9 @@ select:focus {
     margin-left: 37.5%;
     margin-top: 15%;
   }
+  .queze_list {
+    grid-template-columns: repeat(4, minmax(100px, 400px));
+  }
 }
 @media (min-width: 1024px) and (max-width: 1299px) {
   .content_area {
@@ -845,11 +1093,17 @@ select:focus {
     margin-left: 35%;
     margin-top: 20%;
   }
+  .queze_list {
+    grid-template-columns: repeat(3, minmax(100px, 500px));
+  }
 }
 @media (min-width: 960px) and (max-width: 1023px) {
   .content_area {
     width: 50vw;
     margin-left: 25vw;
+  }
+  .queze_list {
+    grid-template-columns: repeat(3, minmax(100px, 400px));
   }
   .Input_basic {
     width: 70%;
@@ -887,12 +1141,19 @@ select:focus {
     margin-left: 35%;
     margin-top: 25%;
   }
+  .queze_list {
+    grid-template-columns: repeat(2, minmax(100px, 500px));
+  }
 }
 @media (min-width: 535px) and (max-width: 719px) {
   .content_area {
     width: 70%;
     margin-left: 15%;
   }
+  .queze_list {
+    grid-template-columns: repeat(2, minmax(100px, 400px));
+  }
+  .plus_queze { /*Main2 */ }
   .Input_basic {
     width: 70%;
   }
@@ -915,6 +1176,10 @@ select:focus {
     margin: 0;
     border: 0;
   }
+  .queze_list {
+    grid-template-columns: repeat(1, 90%);
+  }
+  .plus_queze { /*Main2 */ }
   .Input_basic {
     width: 70%;
   }
