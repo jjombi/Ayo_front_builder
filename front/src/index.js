@@ -33,13 +33,13 @@ root.render(
         <Routes>
           {/* <Route path='/queze' element={<Queze />}></Route> */}
           <Route path='/' element={<Main/>}></Route>
-          <Route path='/main' element={<Main2/>}></Route>
-          <Route path='/main2_make_queze' element={<Main2_make_queze/>}></Route>
+          <Route path='/ayoworldrank' element={<Main2/>}></Route>
+          <Route path='/ayoworldrankmakequeze' element={<Main2_make_queze/>}></Route>
           {/* <Route path='/School_choose' element={<School_choose/>}></Route>
           <Route path='/makequeze' element={<MakeQueze/>}></Route> */}
           <Route path='/a_queze' element={<A_queze/>}></Route>
           <Route path='/result' element={<Result/>}></Route>
-          <Route path='/main2_a_queze' element={<Main2_a_queze/>}></Route>
+          <Route path='/ayoworldrankaqueze' element={<Main2_a_queze/>}></Route>
         </Routes>   
       </Suspense>
     </BrowserRouter>
