@@ -41,7 +41,7 @@ const Result = () => {
             })
             setContent_arr(spread_arr);
         })
-        axios({
+        axios({withCredentials : true},{
             url : server_url +'/main_a_queze_comments',
             method : 'POST',
             data : {
@@ -60,7 +60,7 @@ const Result = () => {
                         <div id={e.parent_room_num} className="children_comment">
                             <p className="value">{e.value}</p>
                             <p className="likes">{e.likes}</p>
-                            <img src={likes_img}></img>
+                            <likes_img></likes_img>
                             <img ></img>
                         </div>
                         <form action= {server_url + '/main_a_queze_plus_comments'} method="POST" encType="applcation/json">
