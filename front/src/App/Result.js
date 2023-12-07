@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import Header from "./ayo_world_rank_header";
 import { server_url } from "./public/WorldRank";
 import './css.css';
-import likes_img from '/src/App/Img_folder/thumb_up-1.svg';
+import likes_img from '/src/App/Img_folder/thumb_up-1.svg'; //x
 // import {great_icon} from './Img_folder/great_icon.svg';
 const Result = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -41,8 +41,8 @@ const Result = () => {
             })
             setContent_arr(spread_arr);
         })
-        axios({withCredentials : true},{
-            url : server_url +'/main_a_queze_comments',
+        axios({
+            url : server_url+'/main_a_queze_comments',
             method : 'POST',
             data : {
                 roomName : roomName_ref.current
@@ -91,6 +91,7 @@ const Result = () => {
         })
     },[])
     const upload_comment = (e) => {
+        e.preventDefault();
         console.log('댓글 달기 함수 ',e);
         axios({
             url : server_url +'/main_a_queze_plus_comments',
@@ -107,28 +108,6 @@ const Result = () => {
             console.log(res);
         })
     }
-    // const children_comments = (e) => {
-    //     let arr = [...boolean];
-    //     arr[e.id] = true;
-    //     console.log(boolean,arr);
-    //     setBoolean(arr);
-    //     console.log(boolean,arr);
-    //     axios({
-    //         url : server_url +"/main_a_queze_children_comments",
-    //         method : "POST",
-    //         headers : {
-    //             'Content-Type' : 'application/json'
-    //         },
-    //         data : {
-    //             roomName : roomName_ref.current,
-    //             parent_room_num : e.target.id
-    //         }
-    //     }).then(res=>{
-    //         console.log(res);
-    //         let arr = [...content_arr];
-
-    //     })
-    // }
     return(
         <>
             <Header></Header>
