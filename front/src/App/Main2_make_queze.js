@@ -36,7 +36,8 @@ const Main2_make_queze = () => {
     useEffect(()=>{
         console.log('render');
     })
-    const img_upload = async () => {
+    const img_upload = async (e) => {
+        e.preventDefault();
         console.log('이미지 업로드 시작',server_url+'/selectroomname');
         axios({
             method : "GET",
@@ -246,7 +247,7 @@ const Main2_make_queze = () => {
                 {/* <iframe name='submitAction' ></iframe> */}
 
                 <div className="Main2_sumit_btn">
-                    <input val  ue="완료" onClick={(e)=>{e.preventDefault();img_upload}}></input>
+                    <input value="완료" onClick={img_upload}></input>
                 </div>
 
 
