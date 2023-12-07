@@ -37,7 +37,7 @@ const Main2_make_queze = () => {
         console.log('render');
     })
     const img_upload = async (e) => {
-        e.preventDefault();
+        
         console.log('이미지 업로드 시작',server_url+'/selectroomname');
         axios({
             method : "GET",
@@ -249,7 +249,7 @@ const Main2_make_queze = () => {
 
             </form>
             <div className="Main2_sumit_btn">
-                <button value="완료" onClick={img_upload} disabled={false}></button>
+                <button type="button" value="완료" onClick={img_upload} disabled={false}></button>
             </div>
         </div>
     )
