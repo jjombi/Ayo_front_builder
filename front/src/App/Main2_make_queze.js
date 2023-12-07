@@ -208,7 +208,7 @@ const Main2_make_queze = () => {
 
             <Header></Header>
             {/* <button onClick={img_rerender}>버튼</button> */}
-            <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action="http://localhost:45509/upload_img"> {/* action="http://localhost:45509/upload_img" method="POST" action={server_url+'/upload_img'} */}
+            <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={server_url+'/upload_img'}> {/* action="http://localhost:45509/upload_img" method="POST" action={server_url+'/upload_img'} */}
                 <div className="main_title">
                     <input type="text" placeholder="제목" name="title"></input>
                 </div>
@@ -223,7 +223,7 @@ const Main2_make_queze = () => {
                     img_arr
                     }
                 </div>
-                
+
                 <div className="Main2_sumit_btn">
                     <input type="button" value="완료"  onClick={img_upload}></input>
                 </div>
