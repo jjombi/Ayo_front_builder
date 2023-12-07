@@ -48,7 +48,7 @@ const Main2_a_queze = () => {
                 const src = 'data:image/jpeg;base64,'+img_arr[i];
                 queze_element_arr = [...queze_element_arr, 
                     <div className="drag" key={i+1}>
-                        <img src={src} key={i} onDragStart={drag} id={`{"text": "${text_arr[i]}","tinyint":"drag", "a":${i},"drag_index" : ${i}}`}></img> {/* e.target.currentSrc  = data:image;jpeg;base64 */}
+                        <img className="all_btn" src={src} key={i} onDragStart={drag} id={`{"text": "${text_arr[i]}","tinyint":"drag", "a":${i},"drag_index" : ${i}}`}></img> {/* e.target.currentSrc  = data:image;jpeg;base64 */}
                         <p key={i+2}>{text_arr[i]}</p>
                     </div>
                 ];
@@ -108,7 +108,7 @@ const Main2_a_queze = () => {
             console.log('drag_obj.tinyint === drag',drop_dbj_parent_e_id.type);
             queze_element_arr_d[Number(drag_obj.a)] = ( // 
                 <div className="drag" key={drag_obj.a+1}>
-                    <img src={drop_src} key={drag_obj.a} onDragStart={drag}  id={`{"text" : "${drop_obj.text}", "a" : ${drag_obj.a},"tinyint":"drag"}`}></img> {/* e.target.currentSrc  = data:image;jpeg;base64 */}
+                    <img className="all_btn" src={drop_src} key={drag_obj.a} onDragStart={drag}  id={`{"text" : "${drop_obj.text}", "a" : ${drag_obj.a},"tinyint":"drag"}`}></img> {/* e.target.currentSrc  = data:image;jpeg;base64 */}
                     <p key={drag_obj.a+2}>{drop_obj.text}</p>
                 </div>
                 // drop_ref.current[Number(drop_obj.a)]

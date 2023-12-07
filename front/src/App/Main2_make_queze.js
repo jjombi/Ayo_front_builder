@@ -1,19 +1,70 @@
 import React,{useEffect, useRef,useState} from "react";
+import { useForm } from "react-hook-form"
 import './css.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import img from './Img_folder/zzal2.jpg';
 import Header from "./ayo_world_rank_header";
-import { server_url, dragenter, dragover } from "./public/WorldRank";
+import { server_url, dragenter, dragover, processChange } from "./public/WorldRank";
+import AWS from "aws-sdk";
+
 const Main2_make_queze = () => {
     const navigate = useNavigate();
     const [render, setRender] = useState(0);
     const [img_arr, setImg_arr] = useState([]); 
+    const text_ref = useRef([]);
+    const img_name_ref = useRef([]);
     const img_arr_ref = useRef([]);
+    const text_dom_ref = useRef([]);
+    const { handleSubmit } = useForm();
+    const form_dom_ref = useRef();
     const file_ref = useRef();
+    const region = "ap-northeast-2";
+    const bucket = "dlworjs";
+    const accessKey = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
+    const secretAccessKey = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;
+
+
+    AWS.config.update({
+        region: region,
+        accessKeyId: accessKey,
+        secretAccessKey: secretAccessKey,
+    });
+
+    console.log('assecc kry',AWS.config.credentials,accessKey,secretAccessKey);
+
     useEffect(()=>{
         console.log('render');
     })
+    const img_upload = async () => {
+        console.log('이미지 업로드 시작',server_url+'/selectroomname');
+        axios({
+            method : "GET",
+            url : server_url+'/selectroomname',
+        }).then((res)=>{
+            console.log('select roomName res',res);
+            for(let i = 0;i < file_ref.current.files.length; i++){
+            
+                console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',i,' and body :',file_ref.current.files[i]);
+                const upload = new AWS.S3.ManagedUpload({
+                    params: {
+                        ACL: 'public-read',
+                        Bucket: bucket, // 버킷 이름
+                        Key: `${res.data}/img`+i + ".jpg", // 유저 아이디
+                        Body: file_ref.current.files[i], // 파일 객체
+                    },
+                });
+                console.log('upload',upload);
+                const promise = upload.promise();
+                promise.then(()=>{
+                    console.log('success upload',upload,i,file_ref.current.files.length-1);
+                    if(i === file_ref.current.files.length-1){
+                        form_dom_ref.current.submit();
+                    }
+                });
+            }       
+        })
+    }
     const preventDefault = (e) => {
         console.log('preventDefault and clicked this input');
         if(e.keyCode === 13){
@@ -27,7 +78,10 @@ const Main2_make_queze = () => {
         }
         
     }
-    
+    const change_text = (e) => {
+        const index = e.target.id;
+        text_ref.current[index] = e.target.value;
+    }
     const change_img_drop = (e) => {
         e.preventDefault();
         img_arr_ref.current = [...img_arr_ref.current,...e.dataTransfer.files]
@@ -49,9 +103,9 @@ const Main2_make_queze = () => {
                     <div className="a_queze_img" key={i}>
                         <img src={reader.result} key={i+2}></img>  
                         <button onClick={delete_img} id={i} key={i+5} title="이미지 삭제 버튼">X</button>                                 
-                        <textarea type="text" placeholder="설명" rows={1} name="text" key={i+3} onKeyDown={preventDefault}></textarea>
+                        <textarea type="text" placeholder="설명" rows={1} name="text" key={i+3}  onKeyDown={preventDefault}  ></textarea>
                         <input type="hidden" name="img_name" value={ev.name} key={i+4}></input>
-                    </div>
+                    </div> 
                 ]
                 datatransfer.items.add(ev);
                 e.target.files = datatransfer.files;
@@ -71,7 +125,7 @@ const Main2_make_queze = () => {
         console.log('change img func',e);
         console.log('change img func dataTransfer is undefind',e.target.files.length,'img_arr_ref.current : ',img_arr_ref.current);
         img_arr_ref.current = [...img_arr_ref.current,...e.target.files];
-
+        let text_dom_let = [...text_dom_ref.current];
         let img_arr_ = [];
         let i = 0;
         const datatransfer = new DataTransfer();
@@ -82,17 +136,19 @@ const Main2_make_queze = () => {
                 const reader = new FileReader();
                 reader.readAsDataURL(ev);
                 reader.onload = () => {
+                    console.log(i,img_arr_);
                     img_arr_ = [...img_arr_,
                         <div className="a_queze_img" key={i}>
                             <img src={reader.result} key={i+1}></img> 
-                            {/* <button onClick={delete_img} id={i} key={i+5} title="이미지 삭제 버튼">X</button>                                  */}
-                            <textarea type="text" placeholder="설명" rows={1} name="text" key={i+4} onKeyDown={preventDefault}></textarea>
+                            <button onClick={delete_img} id={i} key={i+5} title="이미지 삭제 버튼">X</button>                                 
+                            <textarea type="text" placeholder="설명" rows={1} name="text" key={i+4} onKeyDown={preventDefault} ></textarea>
                             <input type="hidden" name="img_name" value={ev.name} key={i+3}></input>
                         </div>
                     ]
                     datatransfer.items.add(ev);
+                    text_dom_ref.current = text_dom_let;
                     e.target.files = datatransfer.files;
-                    console.log('arr[i]',i,ev);
+                    console.log('arr[i]',text_dom_ref.current,i,ev);
                     setImg_arr(img_arr_);
                     i++;
                 }   
@@ -131,10 +187,10 @@ const Main2_make_queze = () => {
                     img_arr_ = [...img_arr_,
                         <div className="a_queze_img" key={i}>
                             <img src={reader.result} key={i+2}></img>  
-                            {/* <button onClick={delete_img} id={i} key={i+5} title="이미지 삭제 버튼">X</button>                                  */}
-                            <textarea type="text" placeholder="설명" rows={1} name="text" key={i+3} onKeyDown={preventDefault}></textarea>
+                            <button onClick={delete_img} id={i} key={i+5} title="이미지 삭제 버튼">X</button>                                 
+                            <textarea type="text" placeholder="설명" rows={1} name="text" key={i+3}  onKeyDown={preventDefault} ></textarea>
                             <input type="hidden" name="img_name" value={ev.name} key={i+4}></input>
-                        </div>
+                        </div>  
                     ]
                     datatransfer.items.add(ev);
                     file_ref.current.files = datatransfer.files;
@@ -151,7 +207,7 @@ const Main2_make_queze = () => {
 
             <Header></Header>
             {/* <button onClick={img_rerender}>버튼</button> */}
-            <form encType="multipart/form-data" className="form_main2" action={server_url+'/upload_img'} method="POST"> {/* action="http://localhost:45509/upload_img" method="POST" */}
+            <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={server_url+'/upload_img'}> {/* action="http://localhost:45509/upload_img" method="POST" action={server_url+'/upload_img'} */}
                 <div className="main_title">
                     {/* <p>제목 : </p> */}
                     <input type="text" placeholder="제목" name="title"></input>
@@ -187,9 +243,10 @@ const Main2_make_queze = () => {
                     <img  ></img>                    
                     <input type="text" placeholder="제목"></input>
                 </div> */}
+                {/* <iframe name='submitAction' ></iframe> */}
 
                 <div className="Main2_sumit_btn">
-                    <input type="submit" value="완료"></input>
+                    <input value="완료" onClick={img_upload}></input>
                 </div>
 
 
@@ -198,3 +255,4 @@ const Main2_make_queze = () => {
     )
 }
 export default Main2_make_queze;
+// onChange={processChange(change_text)}

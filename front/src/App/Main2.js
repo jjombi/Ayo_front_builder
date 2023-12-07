@@ -21,6 +21,8 @@ const Main2 = () => {
                 'Content-Type' : 'application/json'
             } 
         }).then((res)=>{
+            console.log('메인 이미지 res : ',res.data);
+
             let roomName_arr = [];
             let res_data_arr = [];
             let title_arr = [];

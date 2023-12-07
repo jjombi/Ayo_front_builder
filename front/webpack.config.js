@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+const dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -52,6 +54,16 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       publicPath: '/'
-    })
+    }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser.js',
+    }),
+    new webpack.EnvironmentPlugin( { ...process.env } ), // 빼두 될지고
+    new dotenv(),
+    // new webpack.DefinePlugin({
+    //   'process.env': JSON.stringify(dotenv.parsed),
+    //   'process.env.NODE_ENV': JSON.stringify(isDevelopment ? 'development' : 'production'),
+    // }),
   ]
+  
 };
