@@ -108,7 +108,10 @@ const Result = () => {
             }
         }).then(res=>{
             console.log(res);
-            if(res.data == 'success') setRender({...render, render : render +1});
+            if(res.data == 'success') {
+                console.log('페이지 리로딩');
+                setRender({...render, render : render +1});
+            }
         })
     }
     return(
