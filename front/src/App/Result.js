@@ -12,6 +12,8 @@ const Result = () => {
     const [comments_arr, setComments_arr] = useState([]);
     const comment_input_ref = useRef();
     const roomName_ref = useRef();
+    const [render, setRender] = useState(0);
+
     // const [boolean,setBoolean] = useState([]);
     useEffect(()=>{
         roomName_ref.current = searchParams.get('roomName');
@@ -106,6 +108,7 @@ const Result = () => {
             }
         }).then(res=>{
             console.log(res);
+            if(res.data === 'success') setRender({...render, render : render +1});
         })
     }
     return(
