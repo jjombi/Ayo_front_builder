@@ -26,38 +26,41 @@ const Main2 = () => {
             let roomName_arr = [];
             let res_data_arr = [];
             let title_arr = [];
-            console.log('res',res);
-            res.data.result.map(e=>{
-                console.log(e);
-                roomName_arr.push(e.roomName);
-                title_arr.push(e.title);
-            })
-
-            for(let e in res.data){
-                res_data_arr.push(res.data[e]); // res.data object -> array로 변환
-            }
-            console.log('res_data_arr',res_data_arr[1]); // base64 /wr2f234f/wrfw4f
-            a_ref.current = [];
-            for(let i=0; i < res_data_arr[1].length;i++){
-                console.log("i",i,'res_data_arr[i]',res_data_arr[1][i])
-                const str = 'data:image/jpeg;charset=utf\-8;base64,'+res_data_arr[1][i];
-                console.log('sds',str);
-                a_ref.current.push(
-                    <button className="plus_queze" key={i} onClick={(e)=>{e.preventDefault(); A_queze_click(roomName_arr[i])}}>
-                        <img src={str} key={i+1}></img>
-                        <div>
-                            <p key={i+2}>{title_arr[i]}</p>
+            if(res.data !== null){
+                res.data.result.map(e=>{
+                    console.log(e);
+                    roomName_arr.push(e.roomName);
+                    title_arr.push(e.title);
+                })
+    
+                for(let e in res.data){
+                    res_data_arr.push(res.data[e]); // res.data object -> array로 변환
+                }
+                console.log('res_data_arr',res_data_arr[1]); // base64 /wr2f234f/wrfw4f
+                a_ref.current = [];
+                for(let i=0; i < res_data_arr[1].length;i++){
+                    console.log("i",i,'res_data_arr[i]',res_data_arr[1][i])
+                    const str = 'data:image/jpeg;charset=utf\-8;base64,'+res_data_arr[1][i];
+                    console.log('sds',str);
+                    a_ref.current.push(
+                        <button className="plus_queze" key={i} onClick={(e)=>{e.preventDefault(); A_queze_click(roomName_arr[i])}}>
+                            <img src={str} key={i+1}></img>
                             <div>
-                                <input type="button" value="결과 보기" className="all_btn" onClick={(e)=>{e.preventDefault();e.stopPropagation();result_click(roomName_arr[i])}}></input>
-                                <input type="button" value="시작 하기" className="all_btn" onClick={(e)=>{e.preventDefault();e.stopPropagation();A_queze_click(roomName_arr[i])}}></input>
+                                <p key={i+2}>{title_arr[i]}</p>
+                                <div>
+                                    <input type="button" value="결과 보기" className="all_btn" onClick={(e)=>{e.preventDefault();e.stopPropagation();result_click(roomName_arr[i])}}></input>
+                                    <input type="button" value="시작 하기" className="all_btn" onClick={(e)=>{e.preventDefault();e.stopPropagation();A_queze_click(roomName_arr[i])}}></input>
+                                </div>
                             </div>
-                        </div>
-                    </button>
-                )
-                
+                        </button>
+                    )
+                    
+                }
+                console.log(a_ref.current);
+                setImg_base64_arr(a_ref.current);
             }
-            console.log(a_ref.current);
-            setImg_base64_arr(a_ref.current);
+            // console.log('res',res.data);
+            
         })
     },[])
     const A_queze_click = (roomName) => {
