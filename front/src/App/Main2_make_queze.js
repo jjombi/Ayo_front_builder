@@ -247,7 +247,7 @@ const Main2_make_queze = () => {
                 {/* <iframe name='submitAction' ></iframe> */}
 
                 <div className="Main2_sumit_btn">
-                    <input value="완료" onClick={(e)=>{e.preventDefault();img_upload(e)}} disabled={false}></input>
+                    <button value="완료" onClick={(e)=>{e.preventDefault();img_upload(e)}} disabled={false}></button>
                 </div>
 
 
