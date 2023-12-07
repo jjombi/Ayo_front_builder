@@ -1,21 +1,7 @@
 import React,{Suspense, lazy} from 'react';
 import ReactDOM from 'react-dom/client';
-
-// import './App/css.scss';
-// import Header from './App/Header';
-// import { createRoot } from 'react-dom/client';
-// import Queze from './App/queze';
-// import School_choose from './App/School_chose';
-// import MakeQueze from './App/MakeQueze';
-// import A_queze from './App/A_queze';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-const Header = lazy(() => import('./App/Header'));
-const Queze = lazy(() => import('./App/queze'));
-const School_choose = lazy(() => import('./App/School_chose'));
-const MakeQueze = lazy(() => import('./App/MakeQueze'));
-const A_queze = lazy(() => import('./App/A_queze'));
-const Main = lazy(() => import('./App/Main'));
-const Footer = lazy(() => import('./App/Footer'));
+
 const Main2 = lazy(()=> import('./App/Main2'));
 const Main2_a_queze = lazy(()=> import('./App/Main2_a_queze'));
 const Result = lazy(()=> import('./App/Result.js'));
@@ -32,12 +18,8 @@ root.render(
       <Suspense fallback={<div>loadind...</div>}>
         <Routes>
           {/* <Route path='/queze' element={<Queze />}></Route> */}
-          <Route path='/' element={<Main/>}></Route>
           <Route path='/ayoworldrank' element={<Main2/>}></Route>
           <Route path='/ayoworldrankmakequeze' element={<Main2_make_queze/>}></Route>
-          {/* <Route path='/School_choose' element={<School_choose/>}></Route>
-          <Route path='/makequeze' element={<MakeQueze/>}></Route> */}
-          <Route path='/a_queze' element={<A_queze/>}></Route>
           <Route path='/result' element={<Result/>}></Route>
           <Route path='/ayoworldrankaqueze' element={<Main2_a_queze/>}></Route>
         </Routes>   

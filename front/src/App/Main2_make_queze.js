@@ -7,6 +7,7 @@ import img from './Img_folder/zzal2.jpg';
 import Header from "./ayo_world_rank_header";
 import { server_url, dragenter, dragover, processChange } from "./public/WorldRank";
 import AWS from "aws-sdk";
+import Adfit from "./Adfit";
 
 const Main2_make_queze = () => {
     const navigate = useNavigate();
@@ -228,6 +229,7 @@ const Main2_make_queze = () => {
                     <input type="button" value="완료"  onClick={img_upload}></input>
                 </div>
             </form>
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
         </div>
     )
 }

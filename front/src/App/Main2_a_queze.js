@@ -5,6 +5,7 @@ import './css.css';
 import img from './Img_folder/zzal2.jpg';
 import img2 from './Img_folder/ayo_queze_1.png';
 import Header from "./ayo_world_rank_header";
+import Adfit from "./Adfit";
 import { dragenter, dragover, server_url } from "./public/WorldRank";
 const Main2_a_queze = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -274,6 +275,7 @@ const Main2_a_queze = () => {
                     <p >text</p>
                 </div> */}
             </div>
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
         </div>
     )
 }

@@ -5,6 +5,7 @@ import img from './Img_folder/zzal2.jpg';
 import Header from "./ayo_world_rank_header";
 import { useNavigate } from "react-router-dom";
 import { server_url } from "./public/WorldRank";
+import Adfit from "./Adfit";
 const Main2 = () => {
     const [img_base64_arr,setImg_base64_arr] = useState();
     const a_ref = useRef(); 
@@ -83,67 +84,8 @@ const Main2 = () => {
                 {
                     a_ref.current
                 }
-                {/* <button className="plus_queze">
-                    <img src={img}></img>
-                    <div>
-                        <p >asd</p>
-                        <div>
-                            <button className="all_btn">결과 보기</button>
-                            <button className="all_btn">시작 하기</button>
-                        </div>
-                    </div>
-                </button>
-                <button className="plus_queze">
-                    <img src={img}></img>
-                    <div>
-                        <p >asd</p>
-                        <div>
-                            <button className="all_btn">결과 보기</button>
-                            <button className="all_btn">시작 하기</button>
-                        </div>
-                    </div>
-                </button>
-                <button className="plus_queze">
-                    <img src={img}></img>
-                    <div>
-                        <p >asd</p>
-                        <div>
-                            <button className="all_btn">결과 보기</button>
-                            <button className="all_btn">시작 하기</button>
-                        </div>
-                    </div>
-                </button>
-                <button className="plus_queze">
-                    <img src={img}></img>
-                    <div>
-                        <p >asd</p>
-                        <div>
-                            <button className="all_btn">결과 보기</button>
-                            <button className="all_btn">시작 하기</button>
-                        </div>
-                    </div>
-                </button>
-                <button className="plus_queze">
-                    <img src={img}></img>
-                    <div>
-                        <p >asd</p>
-                        <div>
-                            <button className="all_btn">결과 보기</button>
-                            <button className="all_btn">시작 하기</button>
-                        </div>
-                    </div>
-                </button>
-                <button className="plus_queze">
-                    <img src={img}></img>
-                    <div>
-                        <p >asd</p>
-                        <div>
-                            <button className="all_btn">결과 보기</button>
-                            <button className="all_btn">시작 하기</button>
-                        </div>
-                    </div>
-                </button> */}
             </div>
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
         </div>
     )
 }
