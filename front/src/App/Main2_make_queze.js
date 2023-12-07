@@ -208,7 +208,7 @@ const Main2_make_queze = () => {
 
             <Header></Header>
             {/* <button onClick={img_rerender}>버튼</button> */}
-            <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={server_url+'/upload_img'}> {/* action="http://localhost:45509/upload_img" method="POST" action={server_url+'/upload_img'} */}
+            <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={server_url+'/upload_img'} onSubmit={e => { e.preventDefault(); }}> {/* action="http://localhost:45509/upload_img" method="POST" action={server_url+'/upload_img'} */}
                 <div className="main_title">
                     {/* <p>제목 : </p> */}
                     <input type="text" placeholder="제목" name="title"></input>
