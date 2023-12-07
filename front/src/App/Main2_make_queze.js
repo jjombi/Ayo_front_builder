@@ -246,12 +246,11 @@ const Main2_make_queze = () => {
                 </div> */}
                 {/* <iframe name='submitAction' ></iframe> */}
 
-                <div className="Main2_sumit_btn">
-                    <button value="완료" onClick={(e)=>{e.preventDefault();console.log('img upload 버튼 클릭');img_upload(e)}} disabled={false}></button>
-                </div>
-
 
             </form>
+            <div className="Main2_sumit_btn">
+                <button value="완료" onClick={(e)=>{e.preventDefault();console.log('img upload 버튼 클릭');img_upload(e)}} disabled={false}></button>
+            </div>
         </div>
     )
 }
