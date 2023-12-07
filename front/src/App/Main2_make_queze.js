@@ -210,46 +210,23 @@ const Main2_make_queze = () => {
             {/* <button onClick={img_rerender}>버튼</button> */}
             <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" > {/* action="http://localhost:45509/upload_img" method="POST" action={server_url+'/upload_img'} */}
                 <div className="main_title">
-                    {/* <p>제목 : </p> */}
                     <input type="text" placeholder="제목" name="title"></input>
                 </div>
 
                 <div className="drop_img_area">
-                    {/* <input type="fils"  name="img"></input> */}
                     <input type="file" accept="image/*" ref={file_ref} multiple placeholder="이미지 선택" id={0} onChange={e=>{change_img(e)}} onDrop={change_img_drop} onDragEnter ={dragenter} onDragLeave={dragover} name="img"></input>
                     <p>이미지를 드레그 하세요</p>
                 </div>
 
                 <div className="queze_area">
-                    {/* <div className="a_queze_img" >
-                        <img src={img}></img>     
-                        <button onClick={delete_img}>X</button>                                 
-                        <input type="text" placeholder="설명" name="text"></input>
-                        <input type="hidden" name="img_name"></input>
-                    </div>
-                    <div className="a_queze_img" >
-                        <img src={img}></img>     
-                        <button>X</button>                                 
-                        <input type="text" placeholder="설명" name="text"></input>
-                        <input type="hidden" name="img_name"></input>
-                    </div> */}
                     {   
                     img_arr
                     }
                 </div>
-                {/* <div className="plus_queze" >
-                    <img ></img>                    
-                    <input type="text" placeholder="제목" ></input>
-                </div><div className="plus_queze" >
-                    <img  ></img>                    
-                    <input type="text" placeholder="제목"></input>
-                </div> */}
-                {/* <iframe name='submitAction' ></iframe> */}
-
 
             </form>
             <div className="Main2_sumit_btn">
-                <button type="button" value="완료"  onClick={img_upload}></button>
+                <input type="button" value="완료"  onClick={img_upload}></input>
             </div>
         </div>
     )
