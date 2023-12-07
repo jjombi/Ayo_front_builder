@@ -249,7 +249,7 @@ const Main2_make_queze = () => {
 
             </form>
             <div className="Main2_sumit_btn">
-                <button type="button" value="완료" onClick={img_upload} disabled={false}></button>
+                <button type="button" value="완료" onClick={img_upload}></button>
             </div>
         </div>
     )
