@@ -108,7 +108,7 @@ const Result = () => {
             }
         }).then(res=>{
             console.log(res);
-            if(res.data === 'success') setRender({...render, render : render +1});
+            if(res.data == 'success') setRender({...render, render : render +1});
         })
     }
     return(
