@@ -110,7 +110,8 @@ const Result = () => {
             console.log(res);
             if(res.data == 'success') {
                 console.log('페이지 리로딩');
-                setRender({...render, render : render +1});
+                location.reload();
+                // setRender({...render, render : render +1});
             }
         })
     }
