@@ -8,6 +8,7 @@ import Header from "./ayo_world_rank_header";
 import { server_url, dragenter, dragover, processChange } from "./public/WorldRank";
 import AWS from "aws-sdk";
 import Adfit from "./Adfit";
+import Footer from "./Footer";
 
 const Main2_make_queze = () => {
     const navigate = useNavigate();
@@ -204,6 +205,43 @@ const Main2_make_queze = () => {
         }
         
     }
+    const onpaste = (e) => {
+        // datatransfer.items.add(e.clipboardData.files[0]);
+        // file_ref.current.files = datatransfer.files;
+        console.log('onpaste');
+        if (e.clipboardData.files.length) {
+            const fileObject = e.clipboardData.files[0];
+            const datatransfer = new DataTransfer();
+
+            console.log('붙여 넣기 후 files',fileObject);
+            img_arr_ref.current = [...img_arr_ref.current,fileObject];
+            let i = 0;
+            let img_arr_ = [];
+            img_arr_ref.current.map((ev)=>{
+                const reader = new FileReader();
+                reader.readAsDataURL(ev);
+                reader.onload = () => {
+                    img_arr_ = [...img_arr_,
+                        <div className="a_queze_img" key={i}>
+                            <img src={reader.result} key={i+2}></img>  
+                            <button onClick={delete_img} id={i} key={i+5} title="이미지 삭제 버튼">X</button>                                 
+                            <textarea type="text" placeholder="설명" rows={1} name="text" key={i+3}  onKeyDown={preventDefault} ></textarea>
+                            <input type="hidden" name="img_name" value={ev.name} key={i+4}></input>
+                        </div>  
+                    ]
+                    datatransfer.items.add(ev);
+                    file_ref.current.files = datatransfer.files;
+                    console.log(i,img_arr_ref.current,'이미지 붙여 넣기 : ',img_arr_,'datatransfer.files.length',datatransfer.files.length,'e.target.files',file_ref.current.files);
+                    setImg_arr(img_arr_);
+                    i++;
+                }     
+            });
+        }
+    }
+    const focus_start = (e) => {
+        e.
+        console.log('focus_start');
+    }
     return(
         <div className="Main2_root">
 
@@ -215,10 +253,13 @@ const Main2_make_queze = () => {
                 </div>
 
                 <div className="drop_img_area">
-                    <input type="file" accept="image/*" ref={file_ref} multiple placeholder="이미지 선택" id={0} onChange={e=>{change_img(e)}} onDrop={change_img_drop} onDragEnter ={dragenter} onDragLeave={dragover} name="img"></input>
-                    <p>이미지를 드레그 하세요</p>
+                    <input className="all_btn" type="file" accept="image/*" ref={file_ref}  multiple placeholder="이미지 선택" id={0} onChange={e=>{change_img(e)}} onDrop={change_img_drop} onDragEnter ={dragenter} onDragLeave={dragover} name="img"></input>
+                    <p>이미지 드레그 or 클릭</p>
+                    <div onPaste={onpaste} onClick={focus_start} className="all_btn">
+                        <p>이미지 붙여넣기</p>
+                    </div>
                 </div>
-
+                {/* <input type="text" onPaste={onpaste}></input> */}
                 <div className="queze_area">
                     {   
                     img_arr
@@ -228,8 +269,8 @@ const Main2_make_queze = () => {
                 <div className="Main2_sumit_btn">
                     <input type="button" value="완료"  onClick={img_upload}></input>
                 </div>
+                <Footer></Footer>
             </form>
-            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
         </div>
     )
 }

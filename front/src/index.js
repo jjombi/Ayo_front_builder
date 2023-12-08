@@ -6,8 +6,8 @@ const Main2 = lazy(()=> import('./App/Main2'));
 const Main2_a_queze = lazy(()=> import('./App/Main2_a_queze'));
 const Result = lazy(()=> import('./App/Result.js'));
 const Main2_make_queze = lazy(()=> import('./App/Main2_make_queze'));
-
-
+const Footer = lazy(()=> import('./App/Footer.js'));
+const Adfit = lazy(()=>import('./App/Adfit.js'));
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
 root.render(
@@ -24,6 +24,8 @@ root.render(
           <Route path='/ayoworldrankaqueze' element={<Main2_a_queze/>}></Route>
         </Routes>   
       </Suspense>
+      {/* <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
+      <Footer/> */}
     </BrowserRouter>
   </div>
 );

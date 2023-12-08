@@ -17,20 +17,45 @@ input:focus {
 }
 
 footer {
+    margin-top: 10%;
     width: 100%;
     text-align: center;
+    color: #000000;
 }
-
+.margin {
+    margin-bottom: 300px;
+}
+footer > div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+footer > div > p{
+    align-items: center;
+    color: #000000;
+}
+aside {
+    margin-bottom: 0%;  
+}
+article { // min2 소개 페이지
+    width: 100%;
+    height: 40%;
+    background-color: #2B2A2A;
+}
 /*********************************  Main2  ******************************************/
 //공통 요소
 .all_btn {
     cursor: pointer;
 }
+.all_btn_hover:hover {
+    background-color: rgb(107, 104, 255);
+}
 //asd
 .Main2_root{
     color: black;
     // width: 100vw;
-    // height: 100vh;
+    height: 100vh;
     align-items: center;
     // justify-content: center;
     display: flex;
@@ -57,6 +82,7 @@ header {
 } 
 .Main2_header > button {
     // margin-left: auto;
+    min-width: 110px;
     width: 10%;
     height: 90%;
     // border: 2px solid black;
@@ -225,7 +251,7 @@ header {
     flex-direction: row;
     margin-top: 5%;
     position:static;
-    margin-bottom: 350px;
+    margin-bottom: 50px;
     // overflow-y: scroll;
 }
 .main2_a_queze_btn_area > button {
@@ -349,13 +375,14 @@ header {
     color: black;
     align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     border-radius: 10px;
-
+    position: relative;
 }
 .drop_img_area > input {
     width: 100%;
-    height: 100%;
+    height: 50%;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -363,10 +390,25 @@ header {
 }
 .drop_img_area > p {
     position: absolute;
-    left: 50%;
+    left: 50%; 
+    top: 25%;
     transform: translate(-50%);
     // width: 100%;
     color: black;
+}
+.drop_img_area > div {
+    background-color: white;
+    width: 100%;
+    height: 50%;
+    border-top: 2px solid black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.drop_img_area > div > p {
+    color: #000000;
 }
 //     reslur page /////////////////////////////////////////////////////
 .result_area {
@@ -677,7 +719,7 @@ header {
         // background-color: rgb(179, 0, 255);
     }
     .queze_list {
-        grid-template-columns: repeat(2,minmax(100px,400px));
+        grid-template-columns: repeat(2,minmax(100px,380px));
     }
     .plus_queze {/*Main2 */
         // margin-left: 22.5%;
@@ -713,7 +755,7 @@ header {
         
     }
     .queze_list {
-        grid-template-columns: repeat(1,90%);
+        grid-template-columns: repeat(1,100%);
     }
     .plus_queze {/*Main2 */
         // margin-left: 7.5%;

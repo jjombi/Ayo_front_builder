@@ -6,6 +6,7 @@ import Header from "./ayo_world_rank_header";
 import { useNavigate } from "react-router-dom";
 import { server_url } from "./public/WorldRank";
 import Adfit from "./Adfit";
+import Footer from "./Footer";
 const Main2 = () => {
     const [img_base64_arr,setImg_base64_arr] = useState();
     const a_ref = useRef(); 
@@ -49,8 +50,8 @@ const Main2 = () => {
                             <div>
                                 <p key={i+2}>{title_arr[i]}</p>
                                 <div>
-                                    <input type="button" value="결과 보기" className="all_btn" onClick={(e)=>{e.preventDefault();e.stopPropagation();result_click(roomName_arr[i])}}></input>
-                                    <input type="button" value="시작 하기" className="all_btn" onClick={(e)=>{e.preventDefault();e.stopPropagation();A_queze_click(roomName_arr[i])}}></input>
+                                    <input type="button" value="결과 보기" className="all_btn all_btn_hover" onClick={(e)=>{e.preventDefault();e.stopPropagation();result_click(roomName_arr[i])}}></input>
+                                    <input type="button" value="시작 하기" className="all_btn all_btn_hover" onClick={(e)=>{e.preventDefault();e.stopPropagation();A_queze_click(roomName_arr[i])}}></input>
                                 </div>
                             </div>
                         </button>
@@ -78,14 +79,16 @@ const Main2 = () => {
     return(
         <div className="Main2_root">
             <Header></Header>
-            {/* <button onClick={render_fn}>asdasd</button> */}
+            {/* <article>
+                <p></p>
+            </article> */}
             <input type="toggle"></input>
             <div className="queze_list">
                 {
                     a_ref.current
                 }
             </div>
-            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
+            <Footer/> 
         </div>
     )
 }

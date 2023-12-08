@@ -5,6 +5,7 @@ import Header from "./ayo_world_rank_header";
 import { server_url } from "./public/WorldRank";
 import './css.css';
 import likes_img from '/src/App/Img_folder/thumb_up-1.svg'; //x
+import Footer from "./Footer";
 // import {great_icon} from './Img_folder/great_icon.svg';
 const Result = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -127,6 +128,7 @@ const Result = () => {
                 </div>
             </div>
             {comments_arr}
+            <Footer></Footer>
         </>
     )
 }

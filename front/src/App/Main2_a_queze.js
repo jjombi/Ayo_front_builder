@@ -6,6 +6,7 @@ import img from './Img_folder/zzal2.jpg';
 import img2 from './Img_folder/ayo_queze_1.png';
 import Header from "./ayo_world_rank_header";
 import Adfit from "./Adfit";
+import Footer from "./Footer";
 import { dragenter, dragover, server_url } from "./public/WorldRank";
 const Main2_a_queze = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -243,6 +244,8 @@ const Main2_a_queze = () => {
                 <button onClick={submit}>투표하기</button>
                 <button onClick={e=>{e.preventDefault();navigate(`/result?roomName=${roomName_ref.current}`)}}>결과 보기</button>
             </div>
+            {/* <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
+            <Footer/>  */}
             {/* <button onClick={setRender({...render, render : render +1})}>asdasd</button> */}
             <div className="drag_area">
                 {content_arr_ref.current}
@@ -275,7 +278,8 @@ const Main2_a_queze = () => {
                     <p >text</p>
                 </div> */}
             </div>
-            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
+            <Footer></Footer>
+            <div className="margin"></div>
         </div>
     )
 }
