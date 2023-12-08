@@ -18,6 +18,7 @@ const Main2_make_queze = () => {
     const form_dom_ref = useRef();
     const file_ref = useRef();
     const title_ref = useRef();
+    const lastest_i = useRef(0);
 
     const region = "ap-northeast-2";
     const bucket = "dlworjs";
@@ -98,82 +99,43 @@ const Main2_make_queze = () => {
     }
     const change_img_drop = (e) => {
         e.preventDefault();
+        basic_change_img(e.dataTransfer.files);
         img_arr_ref.current = [...img_arr_ref.current,...e.dataTransfer.files]
-        console.log('img_arr_ref.current in change img drop',img_arr_ref.current,e.dataTransfer.files.length);
+        e.target.style.backgroundColor = "white"
+        
 
-        let img_arr_ = [];
-        let i = 0;
+    }
+    const basic_change_img = (files) => {
+        console.log('basic change img 에서 files : ',files.length);
+        const files_to_arr = [...files]; // files 는 배열이 아님 배열로 바꿔서 map
+        let img_arr_ = [...img_arr];
         const datatransfer = new DataTransfer();
-        console.log('i 초기화 이후',i,img_arr_ref.current);
 
-        img_arr_ref.current.map(ev=>{
+        files_to_arr.map(ev=>{
+            datatransfer.items.add(ev);
+            file_ref.current.files = datatransfer.files;
+
             const reader = new FileReader();
             reader.readAsDataURL(ev);
-            console.log('ev',ev);
-            if(ev.size > 1000) console.log('이미지 파일 1MB 이상 !!');
-            if(ev.size > 1024 * 1024) alert('이미지 파일 1MB 이상 !!');
             reader.onload = () => {
                 img_arr_ = [...img_arr_,
-                    <div className="a_queze_img" key={i}>
-                        <img src={reader.result} key={i+2}></img>  
-                        <button onClick={delete_img} id={i} key={i+5} title="이미지 삭제 버튼">X</button>                                 
-                        <textarea type="text" placeholder="설명" rows={1} name="text" key={i+3}  onKeyDown={preventDefault}  ></textarea>
-                        <input type="hidden" name="img_name" value={ev.name} key={i+4}></input>
+                    <div className="a_queze_img" key={lastest_i.current}>
+                        <img src={reader.result} key={lastest_i.current+2}></img>  
+                        <button onClick={delete_img} id={lastest_i.current} key={lastest_i.current+5} title="이미지 삭제 버튼">X</button>                                 
+                        <textarea type="text" placeholder="설명" rows={1} name="text" key={lastest_i.current+3}  onKeyDown={preventDefault}  ></textarea>
+                        <input type="hidden" name="img_name" value={ev.name} key={lastest_i.current+4}></input>
                     </div> 
-                ]
-                datatransfer.items.add(ev);
-                e.target.files = datatransfer.files;
-                console.log(i,'이미지 드랍해서 바꿀때 img_arr_ref.map img_arr_ : ',img_arr_,'datatransfer.files.length',datatransfer.files.length,'e.target.files',e.target.files);
+                ];
                 setImg_arr(img_arr_);
-                i++;
-            }     
-
-            e.target.style.backgroundColor = "white"
+                lastest_i.current = lastest_i.current + 1;
+            }
         })
-
-        console.log('e.target.files in drop change img',e.target.files);
-
+        
     }
     const change_img = (e) => {
         e.preventDefault();
-        console.log('change img func',e);
-        console.log('change img func dataTransfer is undefind',e.target.files.length,'img_arr_ref.current : ',img_arr_ref.current);
-        img_arr_ref.current = [...img_arr_ref.current,...e.target.files];
-        let text_dom_let = [...text_dom_ref.current];
-        let img_arr_ = [];
-        let i = 0;
-        const datatransfer = new DataTransfer();
-
-        img_arr_ref.current.map(ev=>{
-            const result = file_size_checker(ev);
-            // if(result){ // 이미지 1mb 이하
-                const reader = new FileReader();
-                reader.readAsDataURL(ev);
-                reader.onload = () => {
-                    console.log(i,img_arr_);
-                    img_arr_ = [...img_arr_,
-                        <div className="a_queze_img" key={i}>
-                            <img src={reader.result} key={i+1}></img> 
-                            <button onClick={delete_img} id={i} key={i+5} title="이미지 삭제 버튼">X</button>                                 
-                            <textarea type="text" placeholder="설명" rows={1} name="text" key={i+4} onKeyDown={preventDefault} ></textarea>
-                            <input type="hidden" name="img_name" value={ev.name} key={i+3}></input>
-                        </div>
-                    ]
-                    datatransfer.items.add(ev);
-                    text_dom_ref.current = text_dom_let;
-                    e.target.files = datatransfer.files;
-                    console.log('arr[i]',text_dom_ref.current,i,ev);
-                    setImg_arr(img_arr_);
-                    i++;
-                }   
-            // }  
-            // else{ //이미지 1mb 이상
-                
-            //     img_arr_ref.current = img_arr_ref.current.filter((_,e)=>{return(e !== Number(arr_num))});
-            // }
-        })
-
-        console.log('datatransferdatatransferdatatransfer datatransfer : ',e.target.files.length,'img_arr_ref.current',img_arr_ref.current);
+        console.log('클릭 후 이미지 선택');
+        basic_change_img(e.target.files);
     }
     const file_size_checker = (ev) => {
         if(ev.size > 1024) { //1024 * 1024
@@ -222,33 +184,9 @@ const Main2_make_queze = () => {
         // datatransfer.items.add(e.clipboardData.files[0]);
         // file_ref.current.files = datatransfer.files;
         console.log('onpaste');
-        if (e.clipboardData.files.length) {
-            const fileObject = e.clipboardData.files[0];
-            const datatransfer = new DataTransfer();
 
-            console.log('붙여 넣기 후 files',fileObject);
-            img_arr_ref.current = [...img_arr_ref.current,fileObject];
-            let i = 0;
-            let img_arr_ = [];
-            img_arr_ref.current.map((ev)=>{
-                const reader = new FileReader();
-                reader.readAsDataURL(ev);
-                reader.onload = () => {
-                    img_arr_ = [...img_arr_,
-                        <div className="a_queze_img" key={i}>
-                            <img src={reader.result} key={i+2}></img>  
-                            <button onClick={delete_img} id={i} key={i+5} title="이미지 삭제 버튼">X</button>                                 
-                            <textarea type="text" placeholder="설명" rows={1} name="text" key={i+3}  onKeyDown={preventDefault} ></textarea>
-                            <input type="hidden" name="img_name" value={ev.name} key={i+4}></input>
-                        </div>  
-                    ]
-                    datatransfer.items.add(ev);
-                    file_ref.current.files = datatransfer.files;
-                    console.log(i,img_arr_ref.current,'이미지 붙여 넣기 : ',img_arr_,'datatransfer.files.length',datatransfer.files.length,'e.target.files',file_ref.current.files);
-                    setImg_arr(img_arr_);
-                    i++;
-                }     
-            });
+        if (e.clipboardData.files.length) {
+            basic_change_img(e.clipboardData.files);
         }
     }
     const focus_start = (e) => {
@@ -268,7 +206,7 @@ const Main2_make_queze = () => {
                 <div className="drop_img_area">
                     <input className="all_btn" type="file" accept="image/*" ref={file_ref}  multiple placeholder="이미지 선택" id={0} onChange={e=>{change_img(e)}} onDrop={change_img_drop} onDragEnter ={dragenter} onDragLeave={dragover} name="img"></input>
                     <p>이미지 드레그 or 클릭</p>
-                    <div onPaste={onpaste} onClick={focus_start} className="all_btn">
+                    <div onPaste={onpaste} className="all_btn">
                         <p>이미지 붙여넣기</p>
                     </div>
                 </div>

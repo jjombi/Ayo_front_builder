@@ -28,7 +28,7 @@ const Main2 = () => {
             let roomName_arr = [];
             let res_data_arr = [];
             let title_arr = [];
-            if(res.data !== null){
+            if(res.data){
                 res.data.result.map(e=>{
                     console.log(e);
                     roomName_arr.push(e.roomName);
