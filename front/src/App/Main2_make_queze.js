@@ -11,16 +11,14 @@ import Adfit from "./Adfit";
 import Footer from "./Footer";
 
 const Main2_make_queze = () => {
-    const navigate = useNavigate();
-    const [render, setRender] = useState(0);
     const [img_arr, setImg_arr] = useState([]); 
     const text_ref = useRef([]);
-    const img_name_ref = useRef([]);
     const img_arr_ref = useRef([]);
     const text_dom_ref = useRef([]);
-    const { handleSubmit } = useForm();
     const form_dom_ref = useRef();
     const file_ref = useRef();
+    const title_ref = useRef();
+
     const region = "ap-northeast-2";
     const bucket = "dlworjs";
     const accessKey = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
@@ -38,35 +36,48 @@ const Main2_make_queze = () => {
     useEffect(()=>{
         console.log('render');
     })
+    const upload_checker = () => {
+        let return_message = {
+            title    : '',
+            img_text : ''
+        };
+        title_ref.current.value === '' ? return_message.title = '제목을 입력해 주세요' : return_message.title = '';
+        return return_message;
+    }
     const img_upload = async (e) => {
+        const message = upload_checker()
+        if(message.title !== '') alert(message.title);
+        else {
+            console.log('이미지 업로드 시작',server_url+'/selectroomname');
+            axios({
+                method : "GET",
+                url : server_url+'/selectroomname',
+            }).then((res)=>{
+                console.log('select roomName res',res);
+                for(let i = 0;i < file_ref.current.files.length; i++){
+                
+                    console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',i,' and body :',file_ref.current.files[i]);
+                    const upload = new AWS.S3.ManagedUpload({
+                        params: {
+                            ACL: 'public-read',
+                            Bucket: bucket, // 버킷 이름
+                            Key: `${res.data}/img`+i + ".jpg", // 유저 아이디
+                            Body: file_ref.current.files[i], // 파일 객체
+                        },
+                    });
+                    console.log('upload',upload);
+                    const promise = upload.promise();
+                    promise.then(()=>{
+                        console.log('success upload',upload,i,file_ref.current.files.length-1);
+                        if(i === file_ref.current.files.length-1){
+                            form_dom_ref.current.submit();
+                        }
+                    });
+                }       
+            })
+        }
         
-        console.log('이미지 업로드 시작',server_url+'/selectroomname');
-        axios({
-            method : "GET",
-            url : server_url+'/selectroomname',
-        }).then((res)=>{
-            console.log('select roomName res',res);
-            for(let i = 0;i < file_ref.current.files.length; i++){
-            
-                console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',i,' and body :',file_ref.current.files[i]);
-                const upload = new AWS.S3.ManagedUpload({
-                    params: {
-                        ACL: 'public-read',
-                        Bucket: bucket, // 버킷 이름
-                        Key: `${res.data}/img`+i + ".jpg", // 유저 아이디
-                        Body: file_ref.current.files[i], // 파일 객체
-                    },
-                });
-                console.log('upload',upload);
-                const promise = upload.promise();
-                promise.then(()=>{
-                    console.log('success upload',upload,i,file_ref.current.files.length-1);
-                    if(i === file_ref.current.files.length-1){
-                        form_dom_ref.current.submit();
-                    }
-                });
-            }       
-        })
+    
     }
     const preventDefault = (e) => {
         console.log('preventDefault and clicked this input');
@@ -134,8 +145,8 @@ const Main2_make_queze = () => {
         const datatransfer = new DataTransfer();
 
         img_arr_ref.current.map(ev=>{
-            // const result = file_size_checker(ev);
-            // if(result){
+            const result = file_size_checker(ev);
+            // if(result){ // 이미지 1mb 이하
                 const reader = new FileReader();
                 reader.readAsDataURL(ev);
                 reader.onload = () => {
@@ -156,8 +167,9 @@ const Main2_make_queze = () => {
                     i++;
                 }   
             // }  
-            // else{
-            //     e.target.files[]
+            // else{ //이미지 1mb 이상
+                
+            //     img_arr_ref.current = img_arr_ref.current.filter((_,e)=>{return(e !== Number(arr_num))});
             // }
         })
 
@@ -167,7 +179,8 @@ const Main2_make_queze = () => {
         if(ev.size > 1024) { //1024 * 1024
         alert('이미지 파일 1MB 이상 !!');
         return false;
-    }
+        }
+        else return true;
     }
     const delete_img = (e) => {
         e.preventDefault();
@@ -249,7 +262,7 @@ const Main2_make_queze = () => {
             {/* <button onClick={img_rerender}>버튼</button> */}
             <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/upload_img'}> {/* action="http://localhost:45509/upload_img" method="POST" action={server_url+'/upload_img'} */}
                 <div className="main_title">
-                    <input type="text" placeholder="제목" name="title"></input>
+                    <input type="text" placeholder="제목" name="title" ref={title_ref}></input>
                 </div>
 
                 <div className="drop_img_area">
