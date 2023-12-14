@@ -13,7 +13,7 @@ const Main2 = () => {
     const [render, setRender] = useState(0);
     const navigate = useNavigate();
     useEffect(()=>{
-        console.log('render');
+        // console.log('render');
     })
     useEffect(()=>{
         axios({
@@ -23,14 +23,14 @@ const Main2 = () => {
                 'Content-Type' : 'application/json'
             } 
         }).then((res)=>{
-            console.log('메인 이미지 res : ',res.data);
+            // console.log('메인 이미지 res : ',res.data);
 
             let roomName_arr = [];
             let res_data_arr = [];
             let title_arr = [];
             if(res.data){
                 res.data.result.map(e=>{
-                    console.log(e);
+                    // console.log(e);
                     roomName_arr.push(e.roomName);
                     title_arr.push(e.title);
                 })
@@ -38,12 +38,12 @@ const Main2 = () => {
                 for(let e in res.data){
                     res_data_arr.push(res.data[e]); // res.data object -> array로 변환
                 }
-                console.log('res_data_arr',res_data_arr[1]); // base64 /wr2f234f/wrfw4f
+                // console.log('res_data_arr',res_data_arr[1]); // base64 /wr2f234f/wrfw4f
                 a_ref.current = [];
                 for(let i=0; i < res_data_arr[1].length;i++){
-                    console.log("i",i,'res_data_arr[i]',res_data_arr[1][i])
-                    const str = 'data:image/jpeg;charset=utf\-8;base64,'+res_data_arr[1][i];
-                    console.log('sds',str);
+                    // console.log("i",i,'res_data_arr[i]',res_data_arr[1][i])
+                    const str = 'data:image/jpeg;base64,'+res_data_arr[1][i]; //;charset=utf\-8
+                    // console.log('sds',str);
                     a_ref.current.push(
                         <button className="plus_queze" key={i} onClick={(e)=>{e.preventDefault(); A_queze_click(roomName_arr[i])}}>
                             <img src={str} key={i+1}></img>
@@ -58,7 +58,7 @@ const Main2 = () => {
                     )
                     
                 }
-                console.log(a_ref.current);
+                // console.log(a_ref.current);
                 setImg_base64_arr(a_ref.current);
             }
             // console.log('res',res.data);
@@ -66,11 +66,11 @@ const Main2 = () => {
         })
     },[])
     const A_queze_click = (roomName) => {
-        console.log('move to a queze page, roomName : ',roomName);
+        // console.log('move to a queze page, roomName : ',roomName);
         navigate(`/ayoworldrankaqueze?roomName=${roomName}`);
     }
     const result_click = (roomName) => {
-        console.log('move to result page, roomName : ',roomName);
+        // console.log('move to result page, roomName : ',roomName);
         navigate(`/result?roomName=${roomName}`)
     }
     const render_fn = () => {

@@ -31,7 +31,7 @@ const Result = () => {
 
         }).then(res=>{
             let spread_arr = [];
-            console.log(res);
+            // console.log(res);
             res.data.map(e=>{
         
                 spread_arr = [...spread_arr,
@@ -54,7 +54,7 @@ const Result = () => {
                 'Content-Type' : 'application/json'
             }
         }).then((res)=>{
-            console.log('main_a_queze_comments res : ',res);
+            // console.log('main_a_queze_comments res : ',res);
             let arr = [];
             let boolean_arr = [];
             res.data.map(e=>{
@@ -86,16 +86,16 @@ const Result = () => {
                     </div>
                 ];
                 // boolean_arr = [...boolean_arr,false];
-                // console.log('boolean_arr',boolean_arr);
+                console.log('boolean_arr',boolean_arr);
             })
             setComments_arr(arr);
             // setBoolean(boolean_arr);
-            console.log('완성된 부모 댓글',arr);
+            // console.log('완성된 부모 댓글',arr);
         })
     },[])
     const upload_comment = (e) => {
         e.preventDefault();
-        console.log('댓글 달기 함수 ',e);
+        // console.log('댓글 달기 함수 ',e);
         axios({
             url : server_url +'/main_a_queze_plus_comments',
             method : 'POST',
@@ -108,9 +108,9 @@ const Result = () => {
                 'Content-Type' : 'application/json'
             }
         }).then(res=>{
-            console.log(res);
+            // console.log(res);
             if(res.data == 'success') {
-                console.log('페이지 리로딩');
+                // console.log('페이지 리로딩');
                 location.reload();
                 // setRender({...render, render : render +1});
             }

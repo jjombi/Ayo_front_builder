@@ -7,6 +7,10 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+canvas {
+  display: none;
+}
+
 input {
   text-align: center;
   color: #2B2A2A;
@@ -315,6 +319,7 @@ header {
   align-items: center;
   background-color: rgba(0, 0, 0, 0);
   z-index: 1;
+  position: inherit;
 }
 
 .drop_rank {
@@ -330,6 +335,14 @@ header {
 .drop > p {
   color: #282828;
   margin-left: 5%;
+}
+
+.drop > button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  color: #000000;
+  left: 300px;
 }
 
 .queze_area {
