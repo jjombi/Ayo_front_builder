@@ -6,7 +6,7 @@ import img2 from './Img_folder/ayo_queze_1.png';
 import Header from "./ayo_world_rank_header";
 import Adfit from "./Adfit";
 import Footer from "./Footer";
-import { dragenter, dragover, server_url } from "./public/WorldRank";
+import { dragenter, dragover } from "./public/WorldRank";
 import img1 from "./Img_folder/zzal2.jpg";
 import img3 from "./Img_folder/ayo_schoolchoose_1.png";
 
@@ -31,7 +31,7 @@ const Main2_a_queze = () => {
         // /**/console.log(roomName_ref.current);
 
         axios({
-            url : server_url +'/main_a_queze',
+            url : process.env.REACR_APP_SERVER_URL +'/main_a_queze',
             method : 'POST',
             data : {
                 roomName : roomName_ref.current
@@ -142,7 +142,7 @@ const Main2_a_queze = () => {
         }
         axios({
             method : 'POST',
-            url : server_url +'/result_plus',
+            url : process.env.REACR_APP_SERVER_URL +'/result_plus',
             data : {
                 roomName : roomName_ref.current,
                 column : column_ref.current

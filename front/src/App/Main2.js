@@ -1,11 +1,8 @@
 import React, { useEffect, useState,useRef } from "react";
 import './css.css';
 import axios from "axios";
-import img from './Img_folder/zzal2.jpg';
 import Header from "./ayo_world_rank_header";
 import { useNavigate } from "react-router-dom";
-import { server_url } from "./public/WorldRank";
-import Adfit from "./Adfit";
 import Footer from "./Footer";
 const Main2 = () => {
     const [img_base64_arr,setImg_base64_arr] = useState();
@@ -17,7 +14,7 @@ const Main2 = () => {
     })
     useEffect(()=>{
         axios({
-            url          : server_url + '/main_select_queze',
+            url          : process.env.REACR_APP_SERVER_URL + '/main_select_queze',
             method       : 'GET',
             headers      : {
                 'Content-Type' : 'application/json'

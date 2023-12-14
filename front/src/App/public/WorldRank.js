@@ -22,6 +22,6 @@ const processChange = (func)=>{
   debounce(func);
 }
 
-const server_url = 'http://3.34.129.99:45509';   
+// const server_url = 'http://3.34.129.99:45509';   
 // const server_url = 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app';
-export {dragenter, dragover, server_url, processChange}
+export {dragenter, dragover, processChange}

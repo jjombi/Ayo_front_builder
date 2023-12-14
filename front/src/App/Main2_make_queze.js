@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import img from './Img_folder/zzal2.jpg';
 import Header from "./ayo_world_rank_header";
-import { server_url, dragenter, dragover, processChange } from "./public/WorldRank";
+import { dragenter, dragover, processChange } from "./public/WorldRank";
 import AWS from "aws-sdk";
 import Adfit from "./Adfit";
 import Footer from "./Footer";
@@ -51,11 +51,11 @@ const Main2_make_queze = () => {
         const message = upload_checker()
         if(message.title !== '') alert(message.title);
         else {
-            // console.log('이미지 업로드 시작',server_url+'/selectroomname');
+            // console.log('이미지 업로드 시작',process.env.REACR_APP_SERVER_URL+'/selectroomname');
             axios({
                 method : "GET",
-                url : server_url+'/selectroomname',
-            }).then((res)=>{
+                url : process.env.REACR_APP_SERVER_URL+'/selectroomname',
+            }).then((res)=>{    
                 Promise.all([...file_ref.current.files].map((e,i)=>{
                     // console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',i,' and body :',file_ref.current.files[i]);
                     const upload = new AWS.S3.ManagedUpload({
@@ -282,7 +282,7 @@ const Main2_make_queze = () => {
             <canvas ref={canvas_ref}></canvas>
             <Header></Header>
             {/* <button onClick={img_rerender}>버튼</button> */}
-            <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={server_url+'/upload_img'}> {/* action="http://localhost:45509/upload_img" method="POST" action={server_url+'/upload_img'} */}
+            <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={process.env.REACR_APP_SERVER_URL+'/upload_img'}> {/* action="http://localhost:45509/upload_img" method="POST" action={process.env.REACR_APP_SERVER_URL+'/upload_img'} */}
                 <div className="main_title">
                     <input type="text" placeholder="제목" name="title" ref={title_ref}></input>
                 </div>

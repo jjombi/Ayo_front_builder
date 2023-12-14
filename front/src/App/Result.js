@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Header from "./ayo_world_rank_header";
-import { server_url } from "./public/WorldRank";
 import './css.css';
 import likes_img from '/src/App/Img_folder/thumb_up-1.svg'; //x
 import Footer from "./Footer";
@@ -20,7 +19,7 @@ const Result = () => {
         roomName_ref.current = searchParams.get('roomName');
 
         axios({
-            url : server_url +'/main_result',
+            url : process.env.REACR_APP_SERVER_URL +'/main_result',
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json'
@@ -45,7 +44,7 @@ const Result = () => {
             setContent_arr(spread_arr);
         })
         axios({
-            url : server_url+'/main_a_queze_comments',
+            url : process.env.REACR_APP_SERVER_URL+'/main_a_queze_comments',
             method : 'POST',
             data : {
                 roomName : roomName_ref.current
@@ -66,7 +65,7 @@ const Result = () => {
                             <likes_img></likes_img>
                             <img ></img>
                         </div>
-                        <form action= {server_url + '/main_a_queze_plus_comments'} method="POST" encType="applcation/json">
+                        <form action= {process.env.REACR_APP_SERVER_URL + '/main_a_queze_plus_comments'} method="POST" encType="applcation/json">
                             <input type="hidden" value={roomName_ref.current} name="roomName"></input>
                             <input type="hidden" value={e.parent_room_num} name="type"></input>
                             {/* <input type="text" name="value" className="value" placeholder="답글"></input>
@@ -97,7 +96,7 @@ const Result = () => {
         e.preventDefault();
         // console.log('댓글 달기 함수 ',e);
         axios({
-            url : server_url +'/main_a_queze_plus_comments',
+            url : process.env.REACR_APP_SERVER_URL +'/main_a_queze_plus_comments',
             method : 'POST',
             data : {
                 roomName : roomName_ref.current,
