@@ -31,7 +31,7 @@ const Main2_a_queze = () => {
         // /**/console.log(roomName_ref.current);
 
         axios({
-            url : process.env.REACR_APP_SERVER_URL +'/main_a_queze',
+            url : process.env.REACT_APP_SERVER_URL +'/main_a_queze',
             method : 'POST',
             data : {
                 roomName : roomName_ref.current
@@ -142,7 +142,7 @@ const Main2_a_queze = () => {
         }
         axios({
             method : 'POST',
-            url : process.env.REACR_APP_SERVER_URL +'/result_plus',
+            url : process.env.REACT_APP_SERVER_URL +'/result_plus',
             data : {
                 roomName : roomName_ref.current,
                 column : column_ref.current

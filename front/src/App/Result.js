@@ -19,7 +19,7 @@ const Result = () => {
         roomName_ref.current = searchParams.get('roomName');
 
         axios({
-            url : process.env.REACR_APP_SERVER_URL +'/main_result',
+            url : process.env.REACT_APP_SERVER_URL +'/main_result',
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json'
@@ -44,7 +44,7 @@ const Result = () => {
             setContent_arr(spread_arr);
         })
         axios({
-            url : process.env.REACR_APP_SERVER_URL+'/main_a_queze_comments',
+            url : process.env.REACT_APP_SERVER_URL+'/main_a_queze_comments',
             method : 'POST',
             data : {
                 roomName : roomName_ref.current
@@ -65,7 +65,7 @@ const Result = () => {
                             <likes_img></likes_img>
                             <img ></img>
                         </div>
-                        <form action= {process.env.REACR_APP_SERVER_URL + '/main_a_queze_plus_comments'} method="POST" encType="applcation/json">
+                        <form action= {process.env.REACT_APP_SERVER_URL + '/main_a_queze_plus_comments'} method="POST" encType="applcation/json">
                             <input type="hidden" value={roomName_ref.current} name="roomName"></input>
                             <input type="hidden" value={e.parent_room_num} name="type"></input>
                             {/* <input type="text" name="value" className="value" placeholder="답글"></input>

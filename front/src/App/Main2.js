@@ -14,7 +14,7 @@ const Main2 = () => {
     })
     useEffect(()=>{
         axios({
-            url          : process.env.REACR_APP_SERVER_URL + '/main_select_queze',
+            url          : process.env.REACT_APP_SERVER_URL + '/main_select_queze',
             method       : 'GET',
             headers      : {
                 'Content-Type' : 'application/json'
