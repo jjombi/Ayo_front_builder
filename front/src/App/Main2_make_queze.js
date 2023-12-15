@@ -282,7 +282,7 @@ const Main2_make_queze = () => {
             <canvas ref={canvas_ref}></canvas>
             <Header></Header>
             {/* <button onClick={img_rerender}>버튼</button> */}
-            <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={process.env.REACR_APP_SERVER_URL+'/upload_img'}> {/* action="http://localhost:45509/upload_img" method="POST" action={process.env.REACR_APP_SERVER_URL+'/upload_img'} */}
+            <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'}> {/* action="http://localhost:45509/upload_img" method="POST" action={process.env.REACR_APP_SERVER_URL+'/upload_img'} */}
                 <div className="main_title">
                     <input type="text" placeholder="제목" name="title" ref={title_ref}></input>
                 </div>
