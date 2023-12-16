@@ -12,7 +12,7 @@ import img3 from "./Img_folder/ayo_schoolchoose_1.png";
 
 const Main2_a_queze = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const drop_ref = useRef();
+    // const drop_ref = useRef();
     const [render, setRender] = useState(0);
     const roomName_ref = useRef();
     const column_ref = useRef([]);
@@ -22,13 +22,13 @@ const Main2_a_queze = () => {
     const drag_element_dom = useRef();
     const navigate = useNavigate();
     useEffect(()=>{
-        // /**/console.log('rerender');
+        /**/console.log('rerender');
     })
 
     useEffect(()=>{
-        // /**/console.log('one first render')
+        /**/console.log('one first render')
         roomName_ref.current = searchParams.get('roomName');
-        // /**/console.log(roomName_ref.current);
+        /**/console.log(roomName_ref.current);
 
         axios({
             url : process.env.REACT_APP_SERVER_URL +'/main_a_queze',
@@ -42,7 +42,7 @@ const Main2_a_queze = () => {
         }).then((res)=>{
             const img_arr = res.data.img;
             const text_arr = res.data.text;
-            // console.log(res);
+            console.log(res);
             let drag_element_ = [];
             let drop_element_ = [];
             img_arr.map((e,i)=>{
@@ -70,7 +70,7 @@ const Main2_a_queze = () => {
         })
     },[])
     const drop = (e) => {
-        // console.log('drop element e : ',e,drag_element,'src : ',e.target.currentSrc.length,typeof(e.target.currentSrc)); //nextElementSibling
+        console.log('drop element e : ',e,drag_element,'src : ',e.target.currentSrc.length,typeof(e.target.currentSrc)); //nextElementSibling
         const drop_src = e.target.currentSrc;
         const drag_src = drag_element_dom.current.target.currentSrc;
         const drag_text = drag_element_dom.current.target.nextElementSibling.textContent;
@@ -80,18 +80,18 @@ const Main2_a_queze = () => {
             if(drop_src === ''){    // drop 당하는 element에 이미 이미지가 있으면
                 e.target.src = drag_src;
                 e.target.nextElementSibling.textContent = drag_text;
-                // console.log('삭제 전:',drag_element_ref.current);
+                console.log('삭제 전:',drag_element_ref.current);
                 let drag_element_ = [...drag_element_ref.current];
                 drag_element_ = drag_element_.filter((i,ev)=>{
-                    // console.log(drag_element_dom.current.target.currentSrc,i.props.children[0].props.src,drag_element_);
+                    console.log(drag_element_dom.current.target.currentSrc,i.props.children[0].props.src,drag_element_);
                     if(drag_element_dom.current.target.currentSrc === i.props.children[0].props.src){
-                        // console.log('조건 맞음');
+                        console.log('조건 맞음');
                         return false;
                     }
                     else return true;
                 });
 
-                // console.log('삭제 후:',drag_element_);
+                console.log('삭제 후:',drag_element_);
                 drag_element_ref.current = [...drag_element_];
                 setRender({...render, render : render +1});
             }else{
@@ -99,7 +99,7 @@ const Main2_a_queze = () => {
             }
         }
         else{
-            // console.log('drop to drop',drag_element_ref.current);
+            console.log('drop to drop',drag_element_ref.current);
             e.target.src = drag_src;
             e.target.nextElementSibling.textContent = drag_text;
             drag_element_dom.current.target.src = drop_src;
@@ -110,7 +110,7 @@ const Main2_a_queze = () => {
         e.target.style.backgroundColor = "white";
 }
     const delete_img  = (e) => {
-        // console.log('delete mothed start',e);
+        console.log('delete mothed start',e);
         const img = e.target.nextElementSibling.currentSrc;
         const text = e.target.nextElementSibling.nextElementSibling.textContent;
         e.target.nextElementSibling.src = '';
@@ -127,7 +127,7 @@ const Main2_a_queze = () => {
     }
     
     const drag = (e) => {
-        // /**/console.log('drag',e);
+        /**/console.log('drag',e);
         // e_ref.current = e;
         drag_element_dom.current = e;
     }
@@ -135,10 +135,10 @@ const Main2_a_queze = () => {
         e.preventDefault();
         let column_name = []
 
-        // console.log('column_ref.current',column_ref.current);
-        for(let i=0; i<drop_ref.current.length; i++){
-            // console.log('submit e2 : ',JSON.parse(drop_ref.current[i].props.children[0].props.id).text);
-            column_name.push([JSON.parse(drop_ref.current[i].props.children[0].props.id).text,drop_ref.current.length-i]);
+        console.log('column_ref.current',column_ref.current);
+        for(let i=0; i<drop_element_ref.current.length; i++){
+            console.log('submit e2 : ',JSON.parse(drop_element_ref.current[i].props.children[0].props.id).text);
+            column_name.push([JSON.parse(drop_element_ref.current[i].props.children[0].props.id).text,drop_element_ref.current.length-i]);
         }
         axios({
             method : 'POST',
@@ -152,7 +152,7 @@ const Main2_a_queze = () => {
             }
 
         }).then((res)=>{
-            // console.log(res);
+            console.log(res);
             navigate(`/result?roomName=${roomName_ref.current}`);
         })
     }
@@ -164,7 +164,7 @@ const Main2_a_queze = () => {
                 {drop_element_ref.current}
 
             </div>
-            {/* <button onClick={()=>console.log(drag_element)}>kjnskdj </button> */}
+            <button onClick={()=>console.log(drag_element)}>kjnskdj </button>
             <div className="main2_a_queze_btn_area">
                 <button onClick={submit}>투표하기</button>
                 <button onClick={e=>{e.preventDefault();navigate(`/result?roomName=${roomName_ref.current}`)}}>결과 보기</button>
