@@ -135,7 +135,7 @@ const Main2_a_queze = () => {
         e.preventDefault();
         let column_name = []
 
-        console.log('column_ref.current',column_ref.current);
+        console.log('column_ref.current',column_ref.current,drop_element_ref.current);
         for(let i=0; i<drop_element_ref.current.length; i++){
             console.log('submit e2 : ',JSON.parse(drop_element_ref.current[i].props.children[0].props.id).text);
             column_name.push([JSON.parse(drop_element_ref.current[i].props.children[0].props.id).text,drop_element_ref.current.length-i]);
