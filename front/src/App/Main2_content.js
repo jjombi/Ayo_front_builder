@@ -1,6 +1,6 @@
 import React from "react";
 import {useNavigate} from 'react-router-dom';
-import Comment_likes from "./comment_likes";
+import Comment_likes from "./Comment_likes";
 
 const Main2_content = ({roomName, src, title, existence, uuid}) => {
     const navigate = useNavigate();

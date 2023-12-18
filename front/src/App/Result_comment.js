@@ -3,7 +3,7 @@ import React from 'react';
 // import likes_img from './Img_folder/thumb_up-1.svg';
 // import {ReactComponent as src} from './Img_folder/thumb_up-1.svg';
 import svg from './Img_folder/likes.svg';
-import Comment_likes from './comment_likes';
+import Comment_likes from './Comment_likes';
 const Result_comment = ({text, likes, roomName, uuid}) => {
     console.log(uuid);
     return(
