@@ -5,6 +5,8 @@ import Header from "./ayo_world_rank_header";
 import './css.css';
 import likes_img from '/src/App/Img_folder/thumb_up-1.svg'; //x
 import Footer from "./Footer";
+import Result_content from "./Result_content";
+import Result_comment from "./Result_comment";
 // import {great_icon} from './Img_folder/great_icon.svg';
 const Result = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -12,6 +14,9 @@ const Result = () => {
     const [comments_arr, setComments_arr] = useState([]);
     const comment_input_ref = useRef();
     const roomName_ref = useRef();
+    const [result_content_state,setResult_content_state] = useState([]);
+    const [result_comment_state,setResult_comment_state] = useState([]);
+
     const [render, setRender] = useState(0);
 
     // const [boolean,setBoolean] = useState([]);
@@ -29,19 +34,13 @@ const Result = () => {
             }
 
         }).then(res=>{
-            let spread_arr = [];
-            // console.log(res);
-            res.data.map(e=>{
-        
-                spread_arr = [...spread_arr,
-                    <div className="result_area">
-                        <img src={'data:image/jpeg;base64,'+e.img}></img> {/* e.target.currentSrc  = data:image;jpeg;base64 */}
-                        <p>{e.text}</p>
-                        {/* <p>{e.value}</p> */}
-                    </div>
-                ]
+            let setResult_content_state_ = [];
+            console.log(res);
+            res.data.map((e,i)=>{
+                setResult_content_state_[i] = {img : 'data:image/jpeg;base64,'+e.img, text : e.text}
+                console.log('result content state 만드는 중');
             })
-            setContent_arr(spread_arr);
+            setResult_content_state([...setResult_content_state_]);
         })
         axios({
             url : process.env.REACT_APP_SERVER_URL+'/main_a_queze_comments',
@@ -53,50 +52,21 @@ const Result = () => {
                 'Content-Type' : 'application/json'
             }
         }).then((res)=>{
-            // console.log('main_a_queze_comments res : ',res);
-            let arr = [];
-            let boolean_arr = [];
-            res.data.map(e=>{
-                arr = [...arr,
-                    <div className="children_comment_area">
-                        <div id={e.parent_room_num} className="children_comment">
-                            <p className="value">{e.value}</p>
-                            <p className="likes">{e.likes}</p>
-                            <likes_img></likes_img>
-                            <img ></img>
-                        </div>
-                        <form action= {process.env.REACT_APP_SERVER_URL + '/main_a_queze_plus_comments'} method="POST" encType="applcation/json">
-                            <input type="hidden" value={roomName_ref.current} name="roomName"></input>
-                            <input type="hidden" value={e.parent_room_num} name="type"></input>
-                            {/* <input type="text" name="value" className="value" placeholder="답글"></input>
-                            <input type="submit" value="^" className="button all_btn" title="답글 달기"></input> */}
-                        </form>
-                        {/* {
-                            boolean[e.parent_room_num] === true ? 
-                            <div>
-                                <div id={e.parent_room_num} className="children_comment">
-                                    <p className="value">{e.value}</p>
-                                    <p className="likes">{e.likes}</p>
-                                    <img></img>
-                                </div>
-                            </div> 
-                            : null
-                        } */}
-                    </div>
-                ];
-                // boolean_arr = [...boolean_arr,false];
-                console.log('boolean_arr',boolean_arr);
+            console.log('main_a_queze_comments res : ',res);
+            let setResult_comment_state_ = [];
+            res.data.map((e,i)=>{
+                setResult_comment_state_[i] = {text : e.value, likes : e.likes, roomName : roomName_ref.current, uuid : e.parentsKey}
             })
-            setComments_arr(arr);
-            // setBoolean(boolean_arr);
-            // console.log('완성된 부모 댓글',arr);
+            setResult_comment_state([...setResult_comment_state_]);
         })
     },[])
+
+
     const upload_comment = (e) => {
         e.preventDefault();
-        // console.log('댓글 달기 함수 ',e);
+        console.log('댓글 달기 함수 ',e);
         axios({
-            url : process.env.REACR_APP_SERVER_URL +'/main_a_queze_plus_comments',
+            url : process.env.REACT_APP_SERVER_URL +'/main_a_queze_plus_comments',
             method : 'POST',
             data : {
                 roomName : roomName_ref.current,
@@ -107,18 +77,22 @@ const Result = () => {
                 'Content-Type' : 'application/json'
             }
         }).then(res=>{
-            // console.log(res);
+            console.log(res);
             if(res.data == 'success') {
-                // console.log('페이지 리로딩');
+                console.log('페이지 리로딩');
                 location.reload();
-                // setRender({...render, render : render +1});
             }
         })
     }
     return(
         <>
             <Header></Header>
-            {content_arr}
+            {
+                // console.log('result_content_state',result_content_state)
+                result_content_state.map((e,i)=>{
+                    return (<Result_content key={i} text={e.text} img={e.img}></Result_content>)
+                })
+            }
 
             <div className="comment_area">
                 <div>
@@ -126,7 +100,11 @@ const Result = () => {
                     <button onClick={upload_comment} className="all_btn" >^</button>
                 </div>
             </div>
-            {comments_arr}
+            {
+                result_comment_state.map((e,i)=>{
+                    return(<Result_comment key={i} text={e.text} likes={e.likes} roomName={e.roomName} uuid={e.uuid}></Result_comment>)
+                })
+            }
             <Footer></Footer>
         </>
     )

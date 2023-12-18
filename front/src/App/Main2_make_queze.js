@@ -11,6 +11,7 @@ import Adfit from "./Adfit";
 import Footer from "./Footer";
 import jimp from "jimp";
 const Main2_make_queze = () => {
+    const navigate = useNavigate();
     const [img_arr, setImg_arr] = useState([]); 
     const text_ref = useRef([]);
     const img_arr_ref = useRef([]);
@@ -72,7 +73,16 @@ const Main2_make_queze = () => {
                         // console.log('success upload',upload,i,img_src_arr.current.length-1);
                     });
                 })).then(()=>{
-                    form_dom_ref.current.submit();
+                    const submit = form_dom_ref.current.submit();
+                    // console.log(submit);
+                    alert('완료');
+                    // const promise = submit.promise();
+                    // promise.then(()=>{
+                    //     console.log('sbumit callback'); 
+                    // })
+                    // navigate('../ayoworldrank');
+                    // console.log(form_dom_ref.current,form_dom_ref.current.target);
+                    // parent.successCallback-
                 })    
             })
         }
@@ -282,7 +292,8 @@ const Main2_make_queze = () => {
             <canvas ref={canvas_ref}></canvas>
             <Header></Header>
             {/* <button onClick={img_rerender}>버튼</button> */}
-            <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'}> {/* action="http://localhost:45509/upload_img" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'} */}
+            <iframe id="iframe" name="iframe" style={{display:'none'}} ></iframe>
+            <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'} target="iframe"> {/* action="http://localhost:45509/upload_img" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'} */}
                 <div className="main_title">
                     <input type="text" placeholder="제목" name="title" ref={title_ref}></input>
                 </div>

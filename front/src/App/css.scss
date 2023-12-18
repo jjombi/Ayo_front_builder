@@ -190,7 +190,7 @@ header {
     // min-width: 300px;
     // min-height: 200px;
     border: 2px solid black;
-    background-color: #282828;
+    // background-color: #282828;
     margin-top: 2.5%;
     max-width: 400px;
 
@@ -217,6 +217,7 @@ header {
     align-items: center;
     justify-content: center;
     text-align: center;
+    display: flex;
 }
 .plus_queze > div > div > input, .plus_queze > div > div > button {
     width: 40%;
@@ -225,6 +226,10 @@ header {
     margin-left: 2%;
     margin-right: 2%;
     border-radius: 10px;
+}
+.plus_queze > div > div > svg {
+    width: 25px;
+    height: 25px;
 }
 .make_queze { //make queze 사진 부모
     
@@ -293,7 +298,7 @@ header {
     max-width: 300px;
     max-height: 300px;
     text-align: center;
-    background-color: white;
+    // background-color: white;
 }
 .drag > img {
     // width: 100px;
@@ -303,6 +308,7 @@ header {
     object-fit: scale-down;
     color: black;
     border-top: 2px solid black;
+    background-color: white;
 }
 .drag > p {
     color: #000000;
@@ -533,9 +539,15 @@ header {
     text-align: right;
 }
 .children_comment > img {
+    width: 40px;
+    height: 40px;
+    // background-color: #000000;
+    background-image: url('./Img_folder/likes.svg');
+    background-size: 100%;
+}
+.children_comment > svg {
     width: 25px;
     height: 25px;
-    background-color: #000000;
 }
 
 /*----------icon--logo------------------*/
