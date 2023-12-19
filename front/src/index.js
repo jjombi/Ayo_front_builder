@@ -20,7 +20,7 @@ root.render(
       <CookiesProvider>
           <Routes>
             {/* <Route path='/queze' element={<Queze />}></Route> */}
-              <Route path='/ayoworldrank' element={<Main2/>}></Route>
+              <Route path='/' element={<Main2/>}></Route>
               <Route path='/ayoworldrankmakequeze' element={<Main2_make_queze/>}></Route>
               <Route path='/result' element={<Result/>}></Route>
               <Route path='/ayoworldrankaqueze' element={<Main2_a_queze/>}></Route>

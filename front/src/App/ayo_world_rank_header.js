@@ -9,7 +9,7 @@ const ayo_world_rank_header = () => {
         navigate('/ayoworldrankmakequeze');
     }
     const navi_to_main = () => {
-        navigate('/ayoworldrank');
+        navigate('/');
     }
     return(
         <header className="Main2_header">
