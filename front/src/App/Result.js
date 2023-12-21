@@ -7,6 +7,8 @@ import likes_img from '/src/App/Img_folder/thumb_up-1.svg'; //x
 import Footer from "./Footer";
 import Result_content from "./Result_content";
 import Result_comment from "./Result_comment";
+import img from './Img_folder/zzal2.jpg';
+
 // import {great_icon} from './Img_folder/great_icon.svg';
 const Result = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -36,7 +38,7 @@ const Result = () => {
         }).then(res=>{
             let setResult_content_state_ = [];
             console.log(res);
-            res.data.map((e,i)=>{
+            res.data.map((e,i)=>{   
                 setResult_content_state_[i] = {img : 'data:image/jpeg;base64,'+e.img, text : e.text}
                 console.log('result content state 만드는 중');
             })
@@ -59,6 +61,7 @@ const Result = () => {
             })
             setResult_comment_state([...setResult_comment_state_]);
         })
+        // setResult_content_state([{img : img, text : 'asdasdas'}]);
     },[])
 
 
@@ -90,7 +93,7 @@ const Result = () => {
             {
                 // console.log('result_content_state',result_content_state)
                 result_content_state.map((e,i)=>{
-                    return (<Result_content key={i} text={e.text} img={e.img}></Result_content>)
+                    return (<Result_content key={i} text={e.text} img={e.img} rankNum={i}></Result_content>)
                 })
             }
 

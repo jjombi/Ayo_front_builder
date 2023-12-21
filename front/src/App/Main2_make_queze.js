@@ -149,13 +149,14 @@ const Main2_make_queze = () => {
             reader.readAsDataURL(ev);
             reader.onload = () => {
                 // console.log('index 값 들어 가기 전 lastest_i : ',lastest_i.current,'img arr : ',img_arr_);
-                img_arr_ = [...img_arr_,
+                img_arr_ = [
                     <div className="a_queze_img" key={lastest_i.current}>
                         <img src={reader.result} key={lastest_i.current+2}></img>  
                         <button onClick={delete_img} id={lastest_i.current} key={lastest_i.current+5} title="이미지 삭제 버튼">X</button>                                 
                         <textarea type="text" value={explain_text_ref.current[lastest_i.current]} placeholder="설명" rows={1} name="text" id={lastest_i.current} key={lastest_i.current+3} onKeyDown={preventDefault} onChange={(e)=>processChange(explain_text_change(e))}></textarea>
                         <input type="hidden" name="img_name" value={ev.name} key={lastest_i.current+4}></input>
-                    </div> 
+                    </div>,
+                    ...img_arr_ ,
                 ];
                 const image = new Image();
                 // console.log(reader.result);
@@ -259,7 +260,10 @@ const Main2_make_queze = () => {
         // console.log('delete img 삭제 후 img_arr_ref : ',img_arr_ref.current,'explain_text_ref : ',explain_text_ref.current);
         lastest_i.current = 0;
         const datatransfer = new DataTransfer();
-        if(img_arr_ref.current.length === 0) setImg_arr([]);
+        if(img_arr_ref.current.length === 0) {
+            setImg_arr([]);
+            file_ref.current.files = datatransfer.files;
+        }
         else {
             img_arr_ref.current.map(ev=>{
                 // console.log('delete img map 안에서 ev : ',ev);
@@ -268,13 +272,14 @@ const Main2_make_queze = () => {
                 const reader = new FileReader();
                 reader.readAsDataURL(ev);
                 reader.onload = () => {
-                    new_img_arr = [...new_img_arr,
+                    new_img_arr = [
                         <div className="a_queze_img" key={lastest_i.current}>
                             <img src={reader.result} key={lastest_i.current+2}></img>  
-                            <button onClick={delete_img} id={lastest_i.current} key={lastest_i.current+5} title="이미지 삭제 버튼">X</button>                                 
+                            <button className="all_btn" onClick={delete_img} id={lastest_i.current} key={lastest_i.current+5} title="이미지 삭제 버튼">X</button>                                 
                             <textarea type="text" value={explain_text_ref.current[lastest_i.current]} placeholder="설명" rows={1} name="text" id={lastest_i.current} key={lastest_i.current+3} onKeyDown={preventDefault} onChange={(e)=>processChange(explain_text_change(e))}></textarea>
                             <input type="hidden" name="img_name" value={ev.name} key={lastest_i.current+4}></input>
-                        </div>
+                        </div>,
+                        ...new_img_arr,
                     ]
                     // console.log('delete img map 안에서 img_arr에 ev element 추가 new_img_arr: ',new_img_arr);
                     lastest_i.current = lastest_i.current + 1;

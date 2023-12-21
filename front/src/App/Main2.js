@@ -5,6 +5,8 @@ import Header from "./ayo_world_rank_header";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import Main2_content from "./Main2_content";
+import img1 from "./Img_folder/zzal2.jpg";
+
 const Main2 = () => {
     const [img_base64_arr,setImg_base64_arr] = useState();
     const a_ref = useRef(); 
@@ -34,6 +36,7 @@ const Main2 = () => {
             console.log('res',res.data);
             setMain_content_state([...content_arr]);
         })
+        // setMain_content_state([{roomName : "A", existence : 1, title : '제목이요', src : img1, uuid : 'bhaglabiluaenfaen'}]);
     },[])
     return(
         <div className="Main2_root">
@@ -41,7 +44,12 @@ const Main2 = () => {
             {/* <article>
                 <p></p>
             </article> */}
-            <input type="toggle"></input>
+            {/* <input type="toggle"></input> */}
+            <header>
+                {/* <button className="Main2_toogle all_btn">좋아요순</button> */}
+                {/* <button className="Main2_toogle all_btn">최신순</button> */}
+
+            </header>
             <div className="queze_list">
                 {
                     main_content_state.map((e,i)=>{

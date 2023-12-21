@@ -53,7 +53,6 @@ const Main2_a_queze = () => {
             let dropState_ = [];
             console.log(res);
             img_arr.map((e,i)=>{
-                // dispatch({type : 'res', img : 'data:image/jpeg;base64,'+img_arr[i], text : text_arr[i], uuid : uuid_arr[i]});
                 // console.log('첫 element 생성 a queze img arr :',img_arr[i]);
                 dragState_ = [...dragState_,{  img : 'data:image/jpeg;base64,'+img_arr[i], text : text_arr[i], uuid : uuid_arr[i]}];
                 dropState_ = [...dropState_,{  img : ''                                  , text : ''         , uuid : ''}]
@@ -137,7 +136,6 @@ const Main2_a_queze = () => {
                 })
             }
             </div>
-            <button onClick={()=>console.log(drag_element)}>kjnskdj </button>
             <div className="main2_a_queze_btn_area">
                 <button onClick={submit}>투표하기</button>
                 <button onClick={e=>{e.preventDefault();navigate(`/result?roomName=${roomName_ref.current}`)}}>결과 보기</button>

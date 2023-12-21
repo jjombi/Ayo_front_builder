@@ -19,7 +19,7 @@ input:focus {
 }
 
 footer {
-    margin-top: 10%;
+    margin-top: 100%;
     width: 100%;
     text-align: center;
     color: #000000;
@@ -63,11 +63,19 @@ article { // min2 소개 페이지
     display: flex;
     flex-direction: column;
 }
+.Main2_toogle {
+    height: 30px;
+    width: 120px;
+    background-color: white;
+    color: #000000;
+    border-radius: 10px;
+    margin-left: 3%;
+}
 //header main2=-------
 header {
     width: 100%;
     height: 7%;
-    background-color: #2B2A2A;
+    // background-color: #2B2A2A;
 }
 .Main2_header {
     height: 6vh;
@@ -78,7 +86,7 @@ header {
     flex-direction: row;
     align-items: center;
     z-index: 2;
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid rgb(239, 239, 239);
     position: relative;
     
 } 
@@ -88,14 +96,16 @@ header {
     width: 10%;
     height: 90%;
     // border: 2px solid black;
-    color: white;
-    background-color:#282828;
+    // color: white;
+    color: #000000;
+    background-color: white;
+    // background-color:#282828;
 }
 .header_rogo {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: 1px solid white;
+    border: 1px solid black;
     margin-left: 3%;
     margin-right: 15%;
 }
@@ -105,6 +115,7 @@ header {
     margin-top: 45%;
     margin-left: 48%;
     transform: translate(-50%,-50%);
+    color: #000000;
 }
 //------------까지
 .margin_top {
@@ -120,7 +131,7 @@ header {
     width: 100%;
     height: 5%;
     // background-color: blue;
-    margin-top: 2%;
+    margin-top: 20%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -133,8 +144,9 @@ header {
     height:  100%;  
     min-width: 150px;
     max-width: 450px;
-    border: 2px solid black;
+    border: 1px solid rgb(239, 239, 239);
     border-radius: 10px;
+    color: #000000;
 }
 .main_title > p {
     color: black;
@@ -189,8 +201,8 @@ header {
     // height: 20%;
     // min-width: 300px;
     // min-height: 200px;
-    border: 2px solid black;
-    // background-color: #282828;
+    border: 1px solid rgb(239, 239, 239);
+    background-color: white;
     margin-top: 2.5%;
     max-width: 400px;
 
@@ -210,6 +222,7 @@ header {
 .plus_queze > div > p {
     width: 100%;
     height: 40%;
+    color: #000000;
 }
 .plus_queze > div > div {
     width: 100%;
@@ -222,7 +235,7 @@ header {
 .plus_queze > div > div > input, .plus_queze > div > div > button {
     width: 40%;
     height: 90%;
-    background-color:white;
+    background-color:rgb(239, 239, 239);
     margin-left: 2%;
     margin-right: 2%;
     border-radius: 10px;
@@ -281,6 +294,8 @@ header {
     bottom: 0;
     overflow-x: scroll;
     z-index: 1;
+    background-color: white;
+
     // box-shadow: 5px 5px 5px 5px #000000 inset;
 
 }
@@ -308,7 +323,7 @@ header {
     object-fit: scale-down;
     color: black;
     border-top: 2px solid black;
-    background-color: white;
+    // background-color: white;
 }
 .drag > p {
     color: #000000;
@@ -316,14 +331,6 @@ header {
     // height: 20%;
 }
 .drop{
-    // background-color: aqua;
-    // width: 40%;
-    // height: 40%;
-    // min-width: 80px;
-    // min-height: 80px;
-    // max-width: 300px;
-    // max-height: 300px;
-    border: 1px solid black;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -365,14 +372,20 @@ header {
     display: flex;
     flex-direction: column;
     margin-top: 2%;
-    border: 2px solid black;
+    position: relative;
+    // border: 1px solid rgb(239, 239, 239);
 
 } // 이미지 왼쪽 텍스트 오른쪽 으로 바꾸고 
 // 텍스트 줄 넘으면 height 간격늘리면서 쓰게하기
 // aqueze img 는 왼쪽 정렬
 .a_queze_img > button {
     position: absolute;
+    right: 0;
     color: #000000;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    display: flex;
     // right: 0;
 }
 .a_queze_img > img {
@@ -381,14 +394,18 @@ header {
     object-fit: scale-down;
 }
 .a_queze_img > textarea {
+    width: 400px;
+    height: 80px;
     color: #000000;
+    background-color: rgb(239, 239, 239);
+    margin-top: 30px;
 }
 .drop_img_area {
     width: 95%;
     height: 40%;
     margin-left: 2.5%;
     // margin-bottom: %;
-    border: 2px black solid;
+    border: 1px rgb(239, 239, 239) solid;
     color: black;
     align-items: center;
     display: flex;
@@ -417,7 +434,7 @@ header {
     background-color: white;
     width: 100%;
     height: 50%;
-    border-top: 2px solid black;
+    border-top: 1px solid rgb(239, 239, 239);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     align-items: center;
@@ -439,9 +456,12 @@ header {
     width: 300px;
     height: 250px;
     object-fit: scale-down;
-    border: #000000 solid 2px;
+    // border: #000000 solid 2px;
 }
-
+.result_area > h4 {
+    color: #000000;
+    margin-left: 3%;
+}
 .result_area > p {
     color: #000000;
     display: flex;
@@ -466,7 +486,7 @@ header {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 2px solid black;
+    border: 1px solid rgb(239, 239, 239);
     border-radius: 10px;
 }
 .comment_area > div > input {
@@ -484,7 +504,7 @@ header {
     // min-width: 95px;
     width: 30px;
     height: 30px;
-    background-color: black;
+    background-color: rgb(181, 181, 181);
     border-radius: 10px;
 }
 .children_comment_area {
