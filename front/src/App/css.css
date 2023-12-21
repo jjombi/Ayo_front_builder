@@ -269,6 +269,17 @@ header {
   max-width: 100%;
 }
 
+.Main2_a_queze_header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3%;
+}
+
+.Main2_a_queze_root > header > h3 {
+  color: #000000;
+}
+
 .main2_a_queze_btn_area {
   width: 100%;
   height: 40px;
@@ -335,11 +346,13 @@ header {
   align-items: center;
   background-color: rgba(0, 0, 0, 0);
   z-index: 1;
-  position: inherit;
+  position: relative;
+  margin-left: 3%;
 }
 
 .drop_rank {
   color: #000000;
+  margin-left: 3%;
 }
 
 .drop > img {

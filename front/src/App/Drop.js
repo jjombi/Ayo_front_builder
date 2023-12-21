@@ -21,7 +21,7 @@ const Drop = ({drop_element_index,text, img, uuid, dropFunc, dropDelete, isDragi
             <>
                 <p className = "drop_rank">{drop_element_index+1} 등</p>
                 <div className="drop">
-                    <button id={drop_element_index} onClick={dropDelete}>X</button>
+                    <button className='all_btn' id={drop_element_index} onClick={dropDelete}>X</button>
                     <img id={drop_element_index} onDragOver={(e)=>{e.preventDefault()}} onDrop={(dropFunc)} onDragEnter ={dragenter} onDragLeave={dragover} src={img}></img>
                     <p>{text}</p>   
                     <input type='hidden' value={uuid}></input>

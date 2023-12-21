@@ -17,6 +17,7 @@ const Main2_a_queze = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [render, setRender] = useState(0);
     const roomName_ref = useRef();
+    const title_ref = useRef();
     const column_ref = useRef([]);
     const [drag_element,setDrag_element] = useState([]);
     const drop_element_ref = useRef([]);
@@ -27,14 +28,15 @@ const Main2_a_queze = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        /**/console.log('rerender');
+        // /**/console.log('rerender');
         
     })
 
     useEffect(()=>{
-        /**/console.log('one first render')
+        // /**/console.log('one first render')
         roomName_ref.current = searchParams.get('roomName');
-        /**/console.log(roomName_ref.current);
+        title_ref.current = searchParams.get('title');
+        // /**/console.log(roomName_ref.current);
 
         axios({
             url : process.env.REACT_APP_SERVER_URL +'/main_a_queze',
@@ -51,7 +53,7 @@ const Main2_a_queze = () => {
             const uuid_arr = res.data.uuid;
             let dragState_ = [];
             let dropState_ = [];
-            console.log(res);
+            // console.log(res);
             img_arr.map((e,i)=>{
                 // console.log('첫 element 생성 a queze img arr :',img_arr[i]);
                 dragState_ = [...dragState_,{  img : 'data:image/jpeg;base64,'+img_arr[i], text : text_arr[i], uuid : uuid_arr[i]}];
@@ -67,11 +69,11 @@ const Main2_a_queze = () => {
 
     const submit =(e)=>{
         e.preventDefault();
-        console.log('투표 완료 버튼 누름, dropState',dropState);
+        // console.log('투표 완료 버튼 누름, dropState',dropState);
         const rank = dropState.map((e,i)=>{
             return e.uuid
         })
-        console.log('rank 값',rank);
+        // console.log('rank 값',rank);
         axios({
             method : 'POST',
             url : process.env.REACT_APP_SERVER_URL +'/result_plus',
@@ -84,23 +86,23 @@ const Main2_a_queze = () => {
             }
 
         }).then((res)=>{
-            console.log(res);
+            // console.log(res);
             navigate(`/result?roomName=${roomName_ref.current}`);
         })
     }
 
     const dropFunc = (e) => {
-        console.log('drop 함수 실행 됨',isDraging.current);
+        // console.log('drop 함수 실행 됨',isDraging.current);
         if(isDraging.current){
             const dropIndex = e.target.id;
             let dropstate = [...dropState];
             let dragstate = [...dragState];
             const dragstateValue = {...dragState[dragIndex.current]}
             const dropstateValue = {...dropState[dropIndex]}
-            console.log('drop 값',dropstateValue, dropIndex, 'drag 값', dragstateValue, dragIndex.current);
+            // console.log('drop 값',dropstateValue, dropIndex, 'drag 값', dragstateValue, dragIndex.current);
             dropstate[dropIndex] = dragstateValue;
             dragstate[dragIndex.current] = dropstateValue;
-            console.log('drop 배열 변경 후 ',dropstate, 'drag 배열 변경 후', dragstate);
+            // console.log('drop 배열 변경 후 ',dropstate, 'drag 배열 변경 후', dragstate);
             setDragState([...dragstate]);
             setDropState([...dropstate]);
             isDraging.current = false;
@@ -108,14 +110,14 @@ const Main2_a_queze = () => {
         e.target.style.backgroundColor = 'white';
     }
     const dragStartFunc = (e) => {
-        console.log('drag 함수 시작 됨');
+        // console.log('drag 함수 시작 됨');
         dragIndex.current = e.target.id;
         isDraging.current = true;
-        console.log('drag 함수 끝',isDraging.current);
+        // console.log('drag 함수 끝',isDraging.current);
 
     }
     const dropDelete = (e) => {
-        console.log('dropDelete 이미지 삭제 하는 함수 시작 됨');
+        // console.log('dropDelete 이미지 삭제 하는 함수 시작 됨');
         const dropIndex = e.target.id;
         const dragstate = [...dragState];
         let dropstate = [...dropState];
@@ -127,6 +129,9 @@ const Main2_a_queze = () => {
     return(
         <div className="Main2_a_queze_root">
             <Header></Header>
+            <header className="Main2_a_queze_header">
+                <h3>{title_ref.current}</h3>
+            </header>
             <div className="drop_area">
             {   
                 dropState.map((e,i)=>{
