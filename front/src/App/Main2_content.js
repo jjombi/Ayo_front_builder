@@ -2,11 +2,11 @@ import React from "react";
 import {useNavigate} from 'react-router-dom';
 import Comment_likes from "./Comment_likes";
 
-const Main2_content = ({roomName, src, title, existence, uuid}) => {
+const Main2_content = ({roomName, src, title, existence, uuid, publicAccess}) => {
     const navigate = useNavigate();
     const A_queze_click = (roomName) => {
         console.log('move to a queze page, roomName : ',roomName,'title : ',title);
-        navigate(`/ayoworldrankaqueze?roomName=${roomName}&title=${title}`);
+        navigate(`/ayoworldrankaqueze?roomName=${roomName}&title=${title}&publicAccess=${publicAccess}`);
     }
     const result_click = (roomName) => {
         // console.log('move to result page, roomName : ',roomName);

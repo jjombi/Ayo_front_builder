@@ -11,6 +11,7 @@ import img1 from "./Img_folder/zzal2.jpg";
 import img3 from "./Img_folder/ayo_schoolchoose_1.png";
 import Drag from "./Drag";
 import Drop from "./Drop";
+import Main2_make_queze_basic from "./Main2_make_queze_basic";
 
 
 const Main2_a_queze = () => {
@@ -18,13 +19,12 @@ const Main2_a_queze = () => {
     const [render, setRender] = useState(0);
     const roomName_ref = useRef();
     const title_ref = useRef();
-    const column_ref = useRef([]);
-    const [drag_element,setDrag_element] = useState([]);
-    const drop_element_ref = useRef([]);
     const [dragState,setDragState] = useState([]);
     const [dropState,setDropState] = useState([]);
     const dragIndex = useRef();
     const isDraging = useRef(false);
+    const [publicAccess,setPublicAccess] = useState(false);
+    const [modify,setModify] = useState(false);
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -33,10 +33,11 @@ const Main2_a_queze = () => {
     })
 
     useEffect(()=>{
-        // /**/console.log('one first render')
+        /**/console.log('one first render')
         roomName_ref.current = searchParams.get('roomName');
         title_ref.current = searchParams.get('title');
-        // /**/console.log(roomName_ref.current);
+        const publicAccess = searchParams.get('publicAccess')
+        /**/console.log(roomName_ref.current,publicAccess,typeof(publicAccess));
 
         axios({
             url : process.env.REACT_APP_SERVER_URL +'/main_a_queze',
@@ -62,7 +63,11 @@ const Main2_a_queze = () => {
             // console.log('완성된 첫 element dragstate',dragState_,'drop :',dropState_);
             setDragState([...dragState_]);
             setDropState([...dropState_]);
+            if(publicAccess==1) setPublicAccess(true);
         })
+        // setDragState([{  img : img1, text : 'test_text', uuid : 'test_uuid'}]);
+        // setDropState([{  img : ''                                  , text : ''         , uuid : ''}]);
+        // setPublicAccess(true)
     },[])
 
 
@@ -130,8 +135,16 @@ const Main2_a_queze = () => {
         <div className="Main2_a_queze_root">
             <Header></Header>
             <header className="Main2_a_queze_header">
-                <h3>{title_ref.current}</h3>
+                {
+                    publicAccess === true ? <button className="all_btn" onClick={()=>{setModify(true)}}>월드컵 수정 하기</button> : null
+                }
+                {/*<h3>{title_ref.current}</h3>*/}
+                {/* <h3>test title text</h3> */}
             </header>
+            <h3>test title text</h3>
+            {
+                modify ? <Main2_make_queze_basic type="modify" roomName={roomName_ref.current} setModify={setModify}></Main2_make_queze_basic> : null
+            }
             <div className="drop_area">
             {   
                 dropState.map((e,i)=>{
