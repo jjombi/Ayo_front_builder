@@ -70,7 +70,7 @@ const Main2_make_queze_basic = ({type, roomName, setModify, serverurl}) => {
         if(type === 'modify'){
             
             Promise.all([...file_ref.current.files].map((e,i)=>{
-                console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',res+i+1,' and body :',file_ref.current.files[i]);
+                console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',' and body :',file_ref.current.files[i]);
                 const upload = new AWS.S3.ManagedUpload({
                     params: {
                         ACL: 'public-read', 
