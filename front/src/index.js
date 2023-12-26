@@ -9,6 +9,7 @@ const Result = lazy(()=> import('./App/Result.js'));
 const Main2_make_queze = lazy(()=> import('./App/Main2_make_queze'));
 const Footer = lazy(()=> import('./App/Footer.js'));
 const Adfit = lazy(()=>import('./App/Adfit.js'));
+const Make_a_queze_modify = lazy(()=>import('./App/Make_a_queze_modify.js'));
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
 root.render(
@@ -24,6 +25,8 @@ root.render(
               <Route path='/ayoworldrankmakequeze' element={<Main2_make_queze/>}></Route>
               <Route path='/result' element={<Result/>}></Route>
               <Route path='/ayoworldrankaqueze' element={<Main2_a_queze/>}></Route>
+              <Route path='/makeaquezemodify' element={<Make_a_queze_modify/>}></Route>
+
           </Routes>  
         </CookiesProvider> 
       </Suspense>

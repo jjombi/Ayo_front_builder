@@ -10,7 +10,7 @@ import AWS from "aws-sdk";
 import Adfit from "./Adfit";
 import Footer from "./Footer";
 import jimp from "jimp";
-const Main2_make_queze_basic = ({type, roomName, setModify, serverurl}) => {
+const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const navigate = useNavigate();
     const [img_arr, setImg_arr] = useState([]); 
     const text_ref = useRef([]);
@@ -42,6 +42,7 @@ const Main2_make_queze_basic = ({type, roomName, setModify, serverurl}) => {
         console.log('render');
     })
     useEffect(()=>{
+        console.log(type,roomName,serverurl);
         if(type === 'modify'){
             axios({
                 method : "POST",

@@ -11,7 +11,6 @@ import img1 from "./Img_folder/zzal2.jpg";
 import img3 from "./Img_folder/ayo_schoolchoose_1.png";
 import Drag from "./Drag";
 import Drop from "./Drop";
-import Main2_make_queze_basic from "./Main2_make_queze_basic";
 
 
 const Main2_a_queze = () => {
@@ -136,15 +135,15 @@ const Main2_a_queze = () => {
             <Header></Header>
             <header className="Main2_a_queze_header">
                 {
-                    publicAccess === true ? <button className="all_btn" onClick={()=>{setModify(true)}}>월드컵 수정 하기</button> : null
+                    publicAccess === true ? <button className="all_btn a_queze_header_btn" onClick={()=>{ window.open(`https://ay0.netlify.app/makeaquezemodify?roomName=${roomName_ref.current}`, "_blank", "noopener, noreferrer");}}>월드컵 수정 하기</button> : null
                 }
                 {/*<h3>{title_ref.current}</h3>*/}
                 {/* <h3>test title text</h3> */}
             </header>
             <h3>test title text</h3>
-            {
+            {/* {
                 modify ? <Main2_make_queze_basic type="modify" roomName={roomName_ref.current} setModify={setModify} serverurl={"/upload_img_plus"}></Main2_make_queze_basic> : null
-            }
+            } */}
             <div className="drop_area">
             {   
                 dropState.map((e,i)=>{

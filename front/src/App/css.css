@@ -285,15 +285,31 @@ label {
 
 .Main2_a_queze_header {
   display: flex;
-  margin-top: 1%;
+  align-items: center;
+  height: 35px;
+  border-bottom: 1px solid rgb(239, 239, 239);
 }
 
-.Main2_a_queze_header > button {
+.Main2_header2 {
+  display: flex;
+  align-items: center;
+  margin-top: 7px;
+}
+
+.main2_header_btn {
   width: 30px;
   height: 21.5px;
 }
 
-.Main2_a_queze_header > input {
+.a_queze_header_btn {
+  width: 180px;
+  height: 21px;
+  background-color: white;
+  color: #000000;
+  margin-left: 3%;
+}
+
+.Main2_a_queze_header_input {
   width: 300px;
   height: 20px;
   border: rgb(239, 239, 239) solid 1px;

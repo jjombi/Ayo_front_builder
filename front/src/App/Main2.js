@@ -69,9 +69,9 @@ const Main2 = () => {
     return(
         <div className="Main2_root">
             <Header></Header>
-            <header className="Main2_a_queze_header">
-                <input type="text" placeholder="검색 창" ref={search_value_ref} onKeyUp={search_enter}></input>
-                <button className="all_btn"></button>
+            <header className="Main2_header2">
+                <input type="text" className="Main2_a_queze_header_input" placeholder="검색 창" ref={search_value_ref} onKeyUp={search_enter}></input>
+                <button className="all_btn main2_header_btn"></button>
             </header>
             {/* <article>
                 <p></p>
