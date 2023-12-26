@@ -41,6 +41,22 @@ const Main2_make_queze_basic = ({type, roomName, setModify, serverurl}) => {
     useEffect(()=>{
         console.log('render');
     })
+    useEffect(()=>{
+        if(type === 'modify'){
+            axios({
+                method : "POST",
+                url : process.env.REACT_APP_SERVER_URL+'/make_queze_modify',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                data : {
+                    roomName : roomName
+                }
+            }).then((res)=>{
+                last_num_ref.current = res.data[res.data.length-1].originalname[3];
+            })
+        }    
+    },[])
     const upload_checker = () => {
         let return_message = {
             title    : '',
@@ -52,40 +68,28 @@ const Main2_make_queze_basic = ({type, roomName, setModify, serverurl}) => {
     const img_upload = async (e) => {
         console.log('u이미지 업로드 함수 시작',type,typeof(type),roomName);
         if(type === 'modify'){
-            axios({
-                method : "POST",
-                url : process.env.REACT_APP_SERVER_URL+'/make_queze_modify',
-                headers : {
-                    'Content-Type' : 'application/json'
-                },
-                data : {
-                    roomName : roomName
-                }
-            }).then((res)=>{ 
-                console.log('modify query',res);
-                const last_num = res.data[res.data.length-1].originalname[3];
-                last_num_ref.current = res.data[res.data.length-1].originalname[3];
-                Promise.all([...file_ref.current.files].map((e,i)=>{
-                    console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',res+i+1,' and body :',file_ref.current.files[i]);
-                    const upload = new AWS.S3.ManagedUpload({
-                        params: {
-                            ACL: 'public-read',
-                            Bucket: bucket, // 버킷 이름
-                            Key: `${roomName}/img${last_num+i+1}.jpg`, // 유저 아이디
-                            Body: file_ref.current.files[file_ref.current.files.length-i-1], // 파일 객체
-                        },
-                    });
-                    console.log('upload',upload);
-                    const promise = upload.promise();
-                    promise.then(()=>{
-                        console.log('success upload',upload,i,img_src_arr.current.length-1);
-                    });
-                })).then(()=>{
-                    const submit = form_dom_ref.current.submit();
-                    console.log(submit);
-                    alert('완료');
-                }) 
-            })
+            
+            Promise.all([...file_ref.current.files].map((e,i)=>{
+                console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',res+i+1,' and body :',file_ref.current.files[i]);
+                const upload = new AWS.S3.ManagedUpload({
+                    params: {
+                        ACL: 'public-read', 
+                        Bucket: bucket, // 버킷 이름
+                        Key: `${roomName}/img${(Number(last_num_ref.current)+i+1)}.jpg`, // 유저 아이디
+                        Body: file_ref.current.files[file_ref.current.files.length-i-1], // 파일 객체
+                    },
+                });
+                console.log('upload',upload);
+                const promise = upload.promise();
+                promise.then(()=>{
+                    console.log('success upload',upload,i,img_src_arr.current.length-1);
+                });
+            })).then(()=>{
+                const submit = form_dom_ref.current.submit();
+                console.log(submit);
+                alert('완료');
+            }) 
+            
         }else{
             const message = upload_checker()
             if(message.title !== '') alert(message.title);
