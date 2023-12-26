@@ -10,7 +10,7 @@ import AWS from "aws-sdk";
 import Adfit from "./Adfit";
 import Footer from "./Footer";
 import jimp from "jimp";
-const Main2_make_queze_basic = ({type, roomName, setModify}) => {
+const Main2_make_queze_basic = ({type, roomName, setModify, serverurl}) => {
     const navigate = useNavigate();
     const [img_arr, setImg_arr] = useState([]); 
     const text_ref = useRef([]);
@@ -22,6 +22,7 @@ const Main2_make_queze_basic = ({type, roomName, setModify}) => {
     const explain_text_ref = useRef([]); // 이미지 업로드후 이미지에 대한 설명글 ['서명1','설명2',...]
     const canvas_ref = useRef();
     const img_src_arr = useRef([]);
+    const last_num_ref = useRef('');
 
     const region = "ap-northeast-2";
     const bucket = "dlworjs";
@@ -62,7 +63,8 @@ const Main2_make_queze_basic = ({type, roomName, setModify}) => {
                 }
             }).then((res)=>{ 
                 console.log('modify query',res);
-                const last_num = res.data
+                const last_num = res.data[res.data.length-1].originalname[3];
+                last_num_ref.current = res.data[res.data.length-1].originalname[3];
                 Promise.all([...file_ref.current.files].map((e,i)=>{
                     console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',res+i+1,' and body :',file_ref.current.files[i]);
                     const upload = new AWS.S3.ManagedUpload({
@@ -329,9 +331,9 @@ const Main2_make_queze_basic = ({type, roomName, setModify}) => {
         <>
             <canvas ref={canvas_ref}></canvas>
             <iframe id="iframe" name="iframe" style={{display:'none'}} ></iframe>
-            <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'} target="iframe"> {/* action="http://localhost:45509/upload_img" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'} */}
+            <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={process.env.REACT_APP_SERVER_URL+serverurl} target="iframe"> {/* action="http://localhost:45509/upload_img" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'} */}
                 {
-                    type === 'modify' ? <button onClick={(e)=>{e.preventDefault(); setModify(false)}}>X</button> : null
+                    type === 'modify' ? <><button onClick={(e)=>{e.preventDefault(); setModify(false)}}>X</button> <input type="hidden" value={roomName} name="roomName"></input><input type="hidden" name="last_num" value={last_num_ref.current}></input></>: null
                 }
                 {type === 'modify'?
                 null :

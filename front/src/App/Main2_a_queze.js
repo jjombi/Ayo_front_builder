@@ -143,7 +143,7 @@ const Main2_a_queze = () => {
             </header>
             <h3>test title text</h3>
             {
-                modify ? <Main2_make_queze_basic type="modify" roomName={roomName_ref.current} setModify={setModify}></Main2_make_queze_basic> : null
+                modify ? <Main2_make_queze_basic type="modify" roomName={roomName_ref.current} setModify={setModify} serverurl={"/upload_img_plus"}></Main2_make_queze_basic> : null
             }
             <div className="drop_area">
             {   
