@@ -135,12 +135,12 @@ const Main2_a_queze = () => {
             <Header></Header>
             <header className="Main2_a_queze_header">
                 {
-                    publicAccess === true ? <button className="all_btn a_queze_header_btn" onClick={()=>{ window.open(`https://ay0.netlify.app/makeaquezemodify?roomName=${roomName_ref.current}`, "_blank", "noopener, noreferrer");}}>월드컵 수정 하기</button> : null
+                    publicAccess === true ? <button className="all_btn a_queze_header_btn" onClick={()=>{ window.open(`https://ay0.netlify.app/makeaquezemodify?roomName=${roomName_ref.current}&title=${title_ref.current}`, "_blank", "noopener, noreferrer");}}>월드컵 수정 하기</button> : null
                 }
                 {/*<h3>{title_ref.current}</h3>*/}
                 {/* <h3>test title text</h3> */}
             </header>
-            <h3>test title text</h3>
+            <h3 className="a_queze_title">{title_ref.current}</h3>
             {/* {
                 modify ? <Main2_make_queze_basic type="modify" roomName={roomName_ref.current} setModify={setModify} serverurl={"/upload_img_plus"}></Main2_make_queze_basic> : null
             } */}

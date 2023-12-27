@@ -337,9 +337,9 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
             <canvas ref={canvas_ref}></canvas>
             <iframe id="iframe" name="iframe" style={{display:'none'}} ></iframe>
             <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={process.env.REACT_APP_SERVER_URL+serverurl} target="iframe"> {/* action="http://localhost:45509/upload_img" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'} */}
-                {
+                {/* {
                     type === 'modify' ? <><button onClick={(e)=>{e.preventDefault(); setModify(false)}}>X</button> <input type="hidden" value={roomName} name="roomName"></input><input type="hidden" name="last_num" value={last_num_ref.current}></input></>: null
-                }
+                } */}
                 {type === 'modify'?
                 null :
                 <>
