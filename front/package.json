@@ -45,5 +45,10 @@
     "style-loader": "^3.3.3",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
+  },
+  "peerDependencies": {
+    "react": "^18.3.0-canary-c5b937576-20231219",
+    "react-dom": "^18.3.0-canary-c5b937576-20231219"
+
   }
 }
