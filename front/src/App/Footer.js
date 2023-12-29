@@ -15,6 +15,11 @@ const Footer = () => {
                     <Svg_bug/>
                 </a>
             </div>
+            <div>
+                <li>
+                    <ul>이상형 월드컵 seasen2, 내 이상형 순위를 선택해 보세요!</ul>
+                </li>
+            </div>
             <Adfit unit={'DAN-87ortfszgGZjj16M'}></Adfit>
         </footer>
     )

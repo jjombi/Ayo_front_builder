@@ -12,10 +12,9 @@ import img from './Img_folder/zzal2.jpg';
 // import {great_icon} from './Img_folder/great_icon.svg';
 const Result = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const [content_arr,setContent_arr] = useState([]);
-    const [comments_arr, setComments_arr] = useState([]);
     const comment_input_ref = useRef();
     const roomName_ref = useRef();
+    const title_ref = useRef();
     const [result_content_state,setResult_content_state] = useState([]);
     const [result_comment_state,setResult_comment_state] = useState([]);
 
@@ -24,7 +23,7 @@ const Result = () => {
     // const [boolean,setBoolean] = useState([]);
     useEffect(()=>{
         roomName_ref.current = searchParams.get('roomName');
-
+        title_ref.current = searchParams.get('title');
         axios({
             url : process.env.REACT_APP_SERVER_URL +'/main_result',
             method : 'POST',
@@ -90,6 +89,9 @@ const Result = () => {
     return(
         <>
             <Header></Header>
+            <h3 className="result_title">
+                {title_ref.current}
+            </h3>
             {
                 // console.log('result_content_state',result_content_state)
                 result_content_state.map((e,i)=>{

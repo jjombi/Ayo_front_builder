@@ -31,14 +31,24 @@ footer {
   margin-bottom: 300px;
 }
 
-footer > div {
+footer > div:nth-child(1) {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
-footer > div > p {
+footer > div:nth-child(1) > p {
+  align-items: center;
+  color: #000000;
+}
+
+footer > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+}
+
+footer > div:nth-child(2) > li, footer > div:nth-child(2) > li > ul {
   align-items: center;
   color: #000000;
 }
@@ -146,7 +156,7 @@ header {
 .main_title {
   width: 100%;
   height: 5%;
-  margin-top: 20%;
+  margin-top: 3%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -171,6 +181,14 @@ header {
 
 label {
   color: #000000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+label > p {
+  color: #000000;
+  font-size: 14px;
 }
 
 .title_input, .img_select {
@@ -316,6 +334,13 @@ label {
   display: flex;
   align-items: center;
   margin-top: 7px;
+}
+
+.Main2_header2 > p {
+  color: #000000;
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
 }
 
 .main2_header_btn {
@@ -645,6 +670,36 @@ label {
   height: 25px;
 }
 
+.result_title {
+  color: #000000;
+  width: 40%;
+  text-align: center;
+  margin-left: 30%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+/*-----------------------loading popup-----------------------*/
+.loading_popup {
+  position: fixed;
+  z-index: 12;
+  width: 100vw;
+  height: 100vh;
+  max-width: 80%;
+  max-height: 80%;
+  background-color: white;
+  border: solid rgb(239, 239, 239) 1px;
+  top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading_popup > p {
+  color: #000000;
+}
+
 /*----------icon--logo------------------*/
 /*-----------------학교 찾는 창 3333333333333333333333333333-----*/
 /*----------------------------------------------*/
@@ -664,6 +719,23 @@ label {
     grid-template-columns: 100px 200px 300px;
     grid-template-rows: 300px;
     gap: 10px;
+  }
+  .main_title {
+    height: 6%;
+  }
+  .drop_img_area {
+    width: 40%;
+    margin-left: 30%;
+    height: 90%;
+  }
+  .Main2_sumit_btn {
+    width: 40%;
+    margin-left: 30%;
+    height: 6%;
+  }
+  label {
+    width: 40%;
+    margin-left: 30%;
   }
 }
 @media (min-width: 1400px) and (max-width: 1799px) {
@@ -689,6 +761,23 @@ label {
   .queze_list {
     grid-template-columns: repeat(5, minmax(100px, 400px));
   }
+  .main_title {
+    height: 7%;
+  }
+  .drop_img_area {
+    width: 40%;
+    margin-left: 30%;
+    height: 100%;
+  }
+  .Main2_sumit_btn {
+    width: 40%;
+    margin-left: 30%;
+    height: 7%;
+  }
+  label {
+    width: 40%;
+    margin-left: 30%;
+  }
 }
 @media (min-width: 1300px) and (max-width: 1399px) {
   .content_area {
@@ -712,6 +801,23 @@ label {
   }
   .queze_list {
     grid-template-columns: repeat(4, minmax(100px, 400px));
+  }
+  .main_title {
+    height: 7%;
+  }
+  .drop_img_area {
+    width: 40%;
+    margin-left: 30%;
+    height: 100%;
+  }
+  .Main2_sumit_btn {
+    width: 40%;
+    margin-left: 30%;
+    height: 7%;
+  }
+  label {
+    width: 40%;
+    margin-left: 30%;
   }
 }
 @media (min-width: 1024px) and (max-width: 1299px) {
@@ -737,6 +843,23 @@ label {
   .queze_list {
     grid-template-columns: repeat(3, minmax(100px, 500px));
   }
+  .main_title {
+    height: 8%;
+  }
+  .drop_img_area {
+    width: 50%;
+    margin-left: 25%;
+    height: 100%;
+  }
+  .Main2_sumit_btn {
+    width: 50%;
+    margin-left: 25%;
+    height: 8%;
+  }
+  label {
+    width: 50%;
+    margin-left: 25%;
+  }
 }
 @media (min-width: 960px) and (max-width: 1023px) {
   .content_area {
@@ -761,6 +884,23 @@ label {
     margin-left: 35%;
     margin-top: 25%;
   }
+  .main_title {
+    height: 10%;
+  }
+  .drop_img_area {
+    width: 50%;
+    margin-left: 25%;
+    height: 100%;
+  }
+  .Main2_sumit_btn {
+    width: 50%;
+    margin-left: 25%;
+    height: 10%;
+  }
+  label {
+    width: 50%;
+    margin-left: 25%;
+  }
 }
 @media (min-width: 720px) and (max-width: 959px) {
   .content_area {
@@ -784,6 +924,23 @@ label {
   }
   .queze_list {
     grid-template-columns: repeat(2, minmax(100px, 500px));
+  }
+  .main_title {
+    height: 10%;
+  }
+  .drop_img_area {
+    width: 70%;
+    margin-left: 15%;
+    height: 100%;
+  }
+  .Main2_sumit_btn {
+    width: 70%;
+    margin-left: 15%;
+    height: 10%;
+  }
+  label {
+    width: 70%;
+    margin-left: 15%;
   }
 }
 @media (min-width: 535px) and (max-width: 719px) {
@@ -810,6 +967,23 @@ label {
     margin-left: 27.5%;
     margin-top: 30%;
   }
+  .main_title {
+    height: 10%;
+  }
+  .drop_img_area {
+    width: 80%;
+    margin-left: 10%;
+    height: 100%;
+  }
+  .Main2_sumit_btn {
+    width: 80%;
+    margin-left: 10%;
+    height: 10%;
+  }
+  label {
+    width: 80%;
+    margin-left: 10%;
+  }
 }
 @media (min-width: 335px) and (max-width: 534px) {
   .content_area {
@@ -830,6 +1004,23 @@ label {
   }
   header > div {
     width: 60%;
+  }
+  .main_title {
+    height: 10%;
+  }
+  .drop_img_area {
+    width: 90%;
+    margin-left: 5%;
+    height: 100%;
+  }
+  .Main2_sumit_btn {
+    width: 90%;
+    margin-left: 5%;
+    height: 10%;
+  }
+  label {
+    width: 90%;
+    margin-left: 5%;
   }
 }
 

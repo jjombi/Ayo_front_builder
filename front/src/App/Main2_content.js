@@ -10,7 +10,7 @@ const Main2_content = ({roomName, src, title, existence, uuid, publicAccess}) =>
     }
     const result_click = (roomName) => {
         // console.log('move to result page, roomName : ',roomName);
-        navigate(`/result?roomName=${roomName}`)
+        navigate(`/result?roomName=${roomName}&title=${title}`);
     }
 
     return(

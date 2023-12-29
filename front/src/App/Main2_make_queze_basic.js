@@ -1,7 +1,8 @@
 import React,{useEffect, useRef,useState} from "react";
 import { useForm } from "react-hook-form"
 import './css.css';
-import { useNavigate } from "react-router-dom";
+import { useHref, useNavigate } from "react-router-dom";
+import { useFormStatus } from 'react-dom';
 import axios from "axios";
 import img from './Img_folder/zzal2.jpg';
 import Header from "./ayo_world_rank_header";
@@ -10,6 +11,7 @@ import AWS from "aws-sdk";
 import Adfit from "./Adfit";
 import Footer from "./Footer";
 import jimp from "jimp";
+import Loading_popup from "./Loading_popup";
 const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const navigate = useNavigate();
     const [img_arr, setImg_arr] = useState([]); 
@@ -23,6 +25,10 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const canvas_ref = useRef();
     const img_src_arr = useRef([]);
     const last_num_ref = useRef('');
+    const [loading_popup_state,setLoading_popup_state] = useState(false);
+    const {pending} = useFormStatus();
+    // const history = useHistory();
+
 
     const region = "ap-northeast-2";
     const bucket = "dlworjs";
@@ -40,6 +46,11 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
 
     useEffect(()=>{
         console.log('render');
+        if(loading_popup_state){
+            console.log('popup 창 보이는 중');
+        }else{
+            console.log('popup창 안 보이는 중');
+        }
     })
     useEffect(()=>{
         console.log(type,roomName,serverurl);
@@ -67,6 +78,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
         return return_message;
     }
     const img_upload = async (e) => {
+        e.preventDefault();
         console.log('u이미지 업로드 함수 시작',type,typeof(type),roomName);
         if(type === 'modify'){
             
@@ -93,7 +105,10 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
             
         }else{
             const message = upload_checker()
-            if(message.title !== '') alert(message.title);
+            if(message.title !== '') {alert(message.title);}
+            else if([...file_ref.current.files].length === 0){
+                alert('만들어진 문제가 없습니다. 이미지와 설명글을 작성해 주세요');
+            }
             else {
                 console.log('이미지 업로드 시작',process.env.REACT_APP_SERVER_URL+'/selectroomname');
                 axios({
@@ -116,9 +131,8 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                             console.log('success upload',upload,i,img_src_arr.current.length-1);
                         });
                     })).then(()=>{
-                        const submit = form_dom_ref.current.submit();
-                        console.log(submit);
-                        alert('완료');
+                        setLoading_popup_state(true);
+                        form_dom_ref.current.submit();
                     })    
                 })
                 // const submit = form_dom_ref.current.submit();
@@ -333,7 +347,8 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     }
     
     return(
-        <>
+        <>  
+            {loading_popup_state ? <Loading_popup setLoading_popup_state={setLoading_popup_state} pending={pending}/> : null}
             <canvas ref={canvas_ref}></canvas>
             <iframe id="iframe" name="iframe" style={{display:'none'}} ></iframe>
             <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={process.env.REACT_APP_SERVER_URL+serverurl} target="iframe"> {/* action="http://localhost:45509/upload_img" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'} */}
@@ -347,7 +362,10 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                         <input type="text" placeholder="제목" name="title" ref={title_ref}></input>
                     </div>
                     <label>
-                        수정 가능 : <input type="checkbox" value="수정가능" name="publicAccess"></input> <button title="월드컵을 누구나 수정 할 수 있도록 허용">!</button>
+                        <p>수정 가능 : </p>
+                        <input type="checkbox" value="수정가능" name="publicAccess"></input> 
+                        <button title="월드컵을 누구나 수정 할 수 있도록 허용">!</button> 
+                        <p>월드컵을 누구나 수정 할 수 있도록 허용</p>
                     </label>
                 </>
                 }
