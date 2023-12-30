@@ -723,19 +723,15 @@ label > p {
     }
     // make queze
     .main_title {
-        height: 6%;
+        height: 4%;
     }
     .drop_img_area{
-        width: 40%;
-        margin-left: 30%;
-        height: 90%;
+        height: 50%;
     }
     .Main2_sumit_btn{
-        width: 40%;
-        margin-left: 30%;
         height: 6%;
     }
-    label {
+    .drop_img_area, .Main2_sumit_btn, label {
         width: 40%;
         margin-left: 30%;
     }
@@ -774,19 +770,15 @@ label > p {
     }
     // make queze
     .main_title {
-        height: 7%;
+        height: 4%;
     }
     .drop_img_area{
-        width: 40%;
-        margin-left: 30%;
-        height: 100%;
+        height: 50%;
     }
     .Main2_sumit_btn{
-        width: 40%;
-        margin-left: 30%;
         height: 7%;
     }
-    label {
+    .drop_img_area, .Main2_sumit_btn, label {
         width: 40%;
         margin-left: 30%;
     }
@@ -822,23 +814,15 @@ label > p {
         grid-template-columns: repeat(4,minmax(100px,400px));
     }
     // make queze
-    .main_title {
-        height: 7%;
-    }
     .drop_img_area{
-        width: 40%;
-        margin-left: 30%;
-        height: 100%;
+        height: 50%;
     }
-    .Main2_sumit_btn{
-        width: 40%;
-        margin-left: 30%;
-        height: 7%;
-
+    .main_title, .Main2_sumit_btn {
+        height: 4%;
     }
-    label {
-        width: 40%;
-        margin-left: 30%;
+    .drop_img_area, .Main2_sumit_btn, label {
+        width: 50%;
+        margin-left: 25%;
     }
     // 여기 까지
     //---------------------------------------
@@ -872,21 +856,13 @@ label > p {
         grid-template-columns: repeat(3,minmax(100px,500px));
     }
     // make queze
-    .main_title {
-        height: 8%;
-    }
     .drop_img_area{
-        width: 50%;
-        margin-left: 25%;
-        height: 100%;
+        height: 50%;
     }
-    .Main2_sumit_btn{
-        width: 50%;
-        margin-left: 25%;
-        height: 8%;
-
+    .main_title, .Main2_sumit_btn {
+        height: 4%;
     }
-    label {
+    .drop_img_area, .Main2_sumit_btn, label {
         width: 50%;
         margin-left: 25%;
     }
@@ -922,21 +898,14 @@ label > p {
         margin-top: 25%;
     }   
     // make queze
-    .main_title {
-        height: 10%;
-    }
-    .drop_img_area{
-        width: 50%;
-        margin-left: 25%;
-        height: 100%;
-    }
-    .Main2_sumit_btn{
-        width: 50%;
-        margin-left: 25%;
-        height: 10%;
 
+    .drop_img_area{
+        height: 50%;
     }
-    label {
+    .main_title, .Main2_sumit_btn {
+        height: 4%;
+    }
+    .drop_img_area, .Main2_sumit_btn, label {
         width: 50%;
         margin-left: 25%;
     }
@@ -971,21 +940,13 @@ label > p {
         grid-template-columns: repeat(2,minmax(100px,500px));
     }
     // make queze
-    .main_title {
-        height: 10%;
-    }
     .drop_img_area{
-        width: 70%;
-        margin-left: 15%;
-        height: 100%;
+        height: 50%;
     }
-    .Main2_sumit_btn{
-        width: 70%;
-        margin-left: 15%;
-        height: 10%;
-
-    }   
-    label {
+    .main_title, .Main2_sumit_btn {
+        height: 4%;
+    }
+    .drop_img_area, .Main2_sumit_btn, label {
         width: 70%;
         margin-left: 15%;
     }
@@ -1023,23 +984,15 @@ label > p {
         margin-top: 30%;
     }
     // make queze
-    .main_title {
-        height: 10%;
-    }
     .drop_img_area{
-        width: 80%;
-        margin-left: 10%;
-        height: 100%;
+        height: 50%;
     }
-    .Main2_sumit_btn{
-        width: 80%;
-        margin-left: 10%;
-        height: 10%;
-
-    }   
-    label {
-        width: 80%;
-        margin-left: 10%;
+    .main_title, .Main2_sumit_btn {
+        height: 4%;
+    }
+    .drop_img_area, .Main2_sumit_btn, label {
+        width: 70%;
+        margin-left: 15%;
     }
     // 여기 까지
     //main---------------------------------
@@ -1075,23 +1028,15 @@ label > p {
         width: 60%;
     }
     // make queze
-    .main_title {
-        height: 10%;
-    }
     .drop_img_area{
-        width: 90%;
-        margin-left: 5%;
-        height: 100%;
+        height: 40%;
     }
-    .Main2_sumit_btn{
-        width: 90%;
-        margin-left: 5%;
-        height: 10%;
-
-    }   
-    label {
-        width: 90%;
-        margin-left: 5%;
+    .main_title, .Main2_sumit_btn {
+        height: 4%;
+    }
+    .drop_img_area, .Main2_sumit_btn, label {
+        width: 70%;
+        margin-left: 15%;
     }
     // 여기 까지
     //main---------------------------------
