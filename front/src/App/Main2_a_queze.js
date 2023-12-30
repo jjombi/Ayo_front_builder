@@ -20,6 +20,8 @@ const Main2_a_queze = () => {
     const title_ref = useRef();
     const [dragState,setDragState] = useState([]);
     const [dropState,setDropState] = useState([]);
+    const [initialization_drop, setInitialization_drop] = useState([]);
+    const [initialization_drag, setInitialization_drag] = useState([]);
     const dragIndex = useRef();
     const isDraging = useRef(false);
     const [publicAccess,setPublicAccess] = useState(false);
@@ -60,6 +62,8 @@ const Main2_a_queze = () => {
                 dropState_ = [...dropState_,{  img : ''                                  , text : ''         , uuid : ''}]
             })
             // console.log('완성된 첫 element dragstate',dragState_,'drop :',dropState_);
+            setInitialization_drop([...dropState_]);
+            setInitialization_drag([...dragState_]);
             setDragState([...dragState_]);
             setDropState([...dropState_]);
             if(publicAccess==1) setPublicAccess(true);
@@ -73,26 +77,39 @@ const Main2_a_queze = () => {
 
     const submit =(e)=>{
         e.preventDefault();
+        // console.log(dragState,dragState.length);
+        let boolean = true;
         // console.log('투표 완료 버튼 누름, dropState',dropState);
-        const rank = dropState.map((e,i)=>{
-            return e.uuid
-        })
-        // console.log('rank 값',rank);
-        axios({
-            method : 'POST',
-            url : process.env.REACT_APP_SERVER_URL +'/result_plus',
-            data : {
-                roomName : roomName_ref.current,
-                rank : rank
-            },
-            headers : {
-                'Content-Type' : 'application/json'
+        dragState.map((e,i)=>{
+            if(e.uuid !== ''){
+                boolean = false;
             }
-
-        }).then((res)=>{
-            // console.log(res);
-            navigate(`/result?roomName=${roomName_ref.current}`);
         })
+        // console.log(boolean);
+        if(!boolean){
+            alert('모두 선택 해줘');
+        }
+        else{
+            const rank = dropState.map((e,i)=>{
+                return e.uuid
+            })
+            console.log('rank 값',rank);
+            axios({
+                method : 'POST',
+                url : process.env.REACT_APP_SERVER_URL +'/result_plus',
+                data : {
+                    roomName : roomName_ref.current,
+                    rank : rank
+                },
+                headers : {
+                    'Content-Type' : 'application/json'
+                }
+
+            }).then((res)=>{
+                // console.log(res);
+                navigate(`/result?roomName=${roomName_ref.current}`);
+            })
+        }
     }
 
     const dropFunc = (e) => {
@@ -130,6 +147,10 @@ const Main2_a_queze = () => {
         setDragState([dropstateValue,...dragstate])
         setDropState([...dropstate]);
     }
+    const initialization = () => {
+        setDragState(...[initialization_drag]);
+        setDropState(...[initialization_drop]);
+    }
     return(
         <div className="Main2_a_queze_root">
             <Header></Header>
@@ -144,6 +165,9 @@ const Main2_a_queze = () => {
             {/* {
                 modify ? <Main2_make_queze_basic type="modify" roomName={roomName_ref.current} setModify={setModify} serverurl={"/upload_img_plus"}></Main2_make_queze_basic> : null
             } */}
+            <div>
+                <button className="initialization_btn all_btn" title="" onClick={initialization}>초기화</button>
+            </div>
             <div className="drop_area">
             {   
                 dropState.map((e,i)=>{

@@ -74,7 +74,12 @@ const Main2 = () => {
             </header>
             <header className="Main2_header2">
                 <input type="text" className="Main2_a_queze_header_input" placeholder="검색 창" ref={search_value_ref} onKeyUp={search_enter}></input>
-                <button className="all_btn main2_header_btn"></button>
+                <button className="all_btn main2_header_btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <circle cx="11" cy="11" r="6" stroke="#222222"/>
+                    <path d="M20 20L17 17" stroke="#222222" stroke-linecap="round"/>
+                    </svg>
+                </button>
             </header>
             {/* <article>
                 <p></p>
