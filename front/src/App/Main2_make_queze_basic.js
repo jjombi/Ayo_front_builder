@@ -88,65 +88,65 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
         })//5,4,3,2,1
         file_ref.current.files = datatransfer.files;
         // console.log(file_ref.current.files);
-        // if(type === 'modify'){ // public access O
+        if(type === 'modify'){ // public access O
             
-        //     Promise.all([...file_ref.current.files].map((e,i)=>{
-        //         // console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',' and body :',file_ref.current.files[i]);
-        //         const upload = new AWS.S3.ManagedUpload({
-        //             params: {
-        //                 ACL: 'public-read', 
-        //                 Bucket: bucket, // 버킷 이름
-        //                 Key: `${roomName}/img${(Number(last_num_ref.current)+i+1)}.jpg`, // 유저 아이디
-        //                 Body: file_ref.current.files[file_ref.current.files.length-i-1], // 파일 객체
-        //             },
-        //         });
-        //         // console.log('upload',upload);
-        //         const promise = upload.promise();
-        //         promise.then(()=>{
-        //             // console.log('success upload',upload,i,img_src_arr.current.length-1);
-        //         });
-        //     })).then(()=>{
-        //         const submit = form_dom_ref.current.submit();
-        //         // console.log(submit);
-        //         alert('완료');
-        //     }) 
+            Promise.all([...file_ref.current.files].map((e,i)=>{
+                // console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',' and body :',file_ref.current.files[i]);
+                const upload = new AWS.S3.ManagedUpload({
+                    params: {
+                        ACL: 'public-read', 
+                        Bucket: bucket, // 버킷 이름
+                        Key: `${roomName}/img${(Number(last_num_ref.current)+i+1)}.jpg`, // 유저 아이디
+                        Body: file_ref.current.files[file_ref.current.files.length-i-1], // 파일 객체
+                    },
+                });
+                // console.log('upload',upload);
+                const promise = upload.promise();
+                promise.then(()=>{
+                    // console.log('success upload',upload,i,img_src_arr.current.length-1);
+                });
+            })).then(()=>{
+                const submit = form_dom_ref.current.submit();
+                // console.log(submit);
+                alert('완료');
+            }) 
             
-        // }else{ // public access X
-        //     const message = upload_checker()
-        //     if(message.title !== '') {alert(message.title);}
-        //     else if([...file_ref.current.files].length === 0){
-        //         alert('만들어진 문제가 없습니다. 이미지와 설명글을 작성해 주세요');
-        //     }
-        //     else {
-        //         // console.log('이미지 업로드 시작',process.env.REACT_APP_SERVER_URL+'/selectroomname');
-        //         axios({
-        //             method : "GET",
-        //             url : process.env.REACT_APP_SERVER_URL+'/selectroomname',
-        //         }).then((res)=>{    
-        //             Promise.all([...file_ref.current.files].map((e,i)=>{
-        //                 // console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',i,' and body :',file_ref.current.files[i]);
-        //                 const upload = new AWS.S3.ManagedUpload({
-        //                     params: {
-        //                         ACL: 'public-read',
-        //                         Bucket: bucket, // 버킷 이름
-        //                         Key: `${res.data}/img`+i+".jpg", // 유저 아이디
-        //                         Body: file_ref.current.files[i], // 파일 객체
-        //                     },
-        //                 });
-        //                 // console.log('upload',upload);
-        //                 const promise = upload.promise();
-        //                 promise.then(()=>{
-        //                     // console.log('success upload',upload,i,img_src_arr.current.length-1);
-        //                 });
-        //             })).then(()=>{
-        //                 setLoading_popup_state(true);
-        //                 form_dom_ref.current.submit();
-        //             })    
-        //         })
-        //         // const submit = form_dom_ref.current.submit();
+        }else{ // public access X
+            const message = upload_checker()
+            if(message.title !== '') {alert(message.title);}
+            else if([...file_ref.current.files].length === 0){
+                alert('만들어진 문제가 없습니다. 이미지와 설명글을 작성해 주세요');
+            }
+            else {
+                // console.log('이미지 업로드 시작',process.env.REACT_APP_SERVER_URL+'/selectroomname');
+                axios({
+                    method : "GET",
+                    url : process.env.REACT_APP_SERVER_URL+'/selectroomname',
+                }).then((res)=>{    
+                    Promise.all([...file_ref.current.files].map((e,i)=>{
+                        // console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',i,' and body :',file_ref.current.files[i]);
+                        const upload = new AWS.S3.ManagedUpload({
+                            params: {
+                                ACL: 'public-read',
+                                Bucket: bucket, // 버킷 이름
+                                Key: `${res.data}/img`+i+".jpg", // 유저 아이디
+                                Body: file_ref.current.files[i], // 파일 객체
+                            },
+                        });
+                        // console.log('upload',upload);
+                        const promise = upload.promise();
+                        promise.then(()=>{
+                            // console.log('success upload',upload,i,img_src_arr.current.length-1);
+                        });
+                    })).then(()=>{
+                        setLoading_popup_state(true);
+                        form_dom_ref.current.submit();
+                    })    
+                })
+                // const submit = form_dom_ref.current.submit();
                 
-        //     }    
-        // }
+            }    
+        }
            
     
     }
