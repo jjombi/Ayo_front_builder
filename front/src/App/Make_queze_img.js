@@ -24,7 +24,6 @@ const Make_queze_img = ({img,i,explain_text_ref, delete_img, img_name}) => {
     }
 
 
-    console.log('text : ',text);
     return(
         <div className="a_queze_img" key={i}>
             <img src={img} key={i+2}></img>  
