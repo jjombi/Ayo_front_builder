@@ -6,13 +6,13 @@ const Make_queze_img = ({img,i,explain_text_ref, delete_img, img_name}) => {
         const index = e.target.id;
         const explain_text_ref_ = [...explain_text_ref.current];
         explain_text_ref_[index] = e.target.value;
-        console.log('explain_text_change 실향 됨, index : ',index,'설명 값 : ',e.target.value,explain_text_ref.current);
+        // console.log('explain_text_change 실향 됨, index : ',index,'설명 값 : ',e.target.value,explain_text_ref.current);
         explain_text_ref.current = [...explain_text_ref_];
     }
     const preventDefault = (e) => {
-        console.log('preventDefault and clicked this input');
+        // console.log('preventDefault and clicked this input');
         if(e.keyCode === 13){
-            console.log('preventDefault and clicked enter');
+            // console.log('preventDefault and clicked enter');
             e.preventDefault();
             e.target.value += '\n';
         }
@@ -24,7 +24,7 @@ const Make_queze_img = ({img,i,explain_text_ref, delete_img, img_name}) => {
     }
 
 
-    // console.log('text : ',text);
+    console.log('text : ',text);
     return(
         <div className="a_queze_img" key={i}>
             <img src={img} key={i+2}></img>  

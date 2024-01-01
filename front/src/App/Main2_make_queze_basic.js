@@ -43,18 +43,18 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
         secretAccessKey: secretAccessKey,
     });
 
-    console.log('assecc kry',AWS.config.credentials,accessKey,secretAccessKey);
+    // console.log('assecc kry',AWS.config.credentials,accessKey,secretAccessKey);
 
     useEffect(()=>{
-        console.log('render');
+        // console.log('render');
         if(loading_popup_state){
-            console.log('popup 창 보이는 중');
+            // console.log('popup 창 보이는 중');
         }else{
-            console.log('popup창 안 보이는 중');
+            // console.log('popup창 안 보이는 중');
         }
     })
     useEffect(()=>{
-        console.log(type,roomName,serverurl);
+        // console.log(type,roomName,serverurl);
         if(type === 'modify'){
             axios({
                 method : "POST",
@@ -80,11 +80,17 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     }
     const img_upload = async (e) => {
         e.preventDefault();
-        console.log('u이미지 업로드 함수 시작',type,typeof(type),roomName);
+        // console.log('u이미지 업로드 함수 시작',type,typeof(type),roomName);
+        const datatransfer = new DataTransfer();
+        img_arr_ref.current.map((ev,i)=>{
+            datatransfer.items.add(img_arr_ref.current[i]);
+        })//5,4,3,2,1
+        file_ref.current.files = datatransfer.files;
+        // console.log(file_ref.current.files);
         if(type === 'modify'){ // public access O
             
             Promise.all([...file_ref.current.files].map((e,i)=>{
-                console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',' and body :',file_ref.current.files[i]);
+                // console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',' and body :',file_ref.current.files[i]);
                 const upload = new AWS.S3.ManagedUpload({
                     params: {
                         ACL: 'public-read', 
@@ -93,14 +99,14 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                         Body: file_ref.current.files[file_ref.current.files.length-i-1], // 파일 객체
                     },
                 });
-                console.log('upload',upload);
+                // console.log('upload',upload);
                 const promise = upload.promise();
                 promise.then(()=>{
-                    console.log('success upload',upload,i,img_src_arr.current.length-1);
+                    // console.log('success upload',upload,i,img_src_arr.current.length-1);
                 });
             })).then(()=>{
                 const submit = form_dom_ref.current.submit();
-                console.log(submit);
+                // console.log(submit);
                 alert('완료');
             }) 
             
@@ -111,13 +117,13 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                 alert('만들어진 문제가 없습니다. 이미지와 설명글을 작성해 주세요');
             }
             else {
-                console.log('이미지 업로드 시작',process.env.REACT_APP_SERVER_URL+'/selectroomname');
+                // console.log('이미지 업로드 시작',process.env.REACT_APP_SERVER_URL+'/selectroomname');
                 axios({
                     method : "GET",
                     url : process.env.REACT_APP_SERVER_URL+'/selectroomname',
                 }).then((res)=>{    
                     Promise.all([...file_ref.current.files].map((e,i)=>{
-                        console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',i,' and body :',file_ref.current.files[i]);
+                        // console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',i,' and body :',file_ref.current.files[i]);
                         const upload = new AWS.S3.ManagedUpload({
                             params: {
                                 ACL: 'public-read',
@@ -126,10 +132,10 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                                 Body: file_ref.current.files[i], // 파일 객체
                             },
                         });
-                        console.log('upload',upload);
+                        // console.log('upload',upload);
                         const promise = upload.promise();
                         promise.then(()=>{
-                            console.log('success upload',upload,i,img_src_arr.current.length-1);
+                            // console.log('success upload',upload,i,img_src_arr.current.length-1);
                         });
                     })).then(()=>{
                         setLoading_popup_state(true);
@@ -144,9 +150,9 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     
     }
     const preventDefault = (e) => {
-        console.log('preventDefault and clicked this input');
+        // console.log('preventDefault and clicked this input');
         if(e.keyCode === 13){
-            console.log('preventDefault and clicked enter');
+            // console.log('preventDefault and clicked enter');
             e.preventDefault();
             e.target.value += '\n';
         }
@@ -168,74 +174,64 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     }
     const change_img = (e) => {
         e.preventDefault();
-        console.log('클릭 후 이미지 선택');
+        // console.log('클릭 후 이미지 선택');
         basic_change_img(e.target.files,true);
     }
     const onpaste = (e) => {
-        console.log('onpaste');
+        // console.log('onpaste');
         if (e.clipboardData.files.length) {
             basic_change_img(e.clipboardData.files,false);
         }
     }
     
     const basic_change_img = (files,type) => {
-        console.log('basic change img 에서 files : ',files.length);
+        // console.log('basic change img 에서 files : ',files.length);
         // files 는 배열이 아님 배열로 바꿔서 map
         let files_to_arr = [...files];
-
-        img_arr_ref.current = [...img_arr_ref.current,...files];
         let img_arr_ = [...img_arr]; //element 담고 있는 배열
-        console.log('basic change img 에서 files_to_arr : ',files_to_arr,);
-        // lastest_i.current = lastest_i.current +  1;
-        const datatransfer = new DataTransfer();
-        img_arr_ref.current.map((ev,i)=>{
-            datatransfer.items.add(img_arr_ref.current[i]);
-            file_ref.current.files = datatransfer.files;
-        })//5,4,3,2,1
+        // console.log('basic change img 에서 files_to_arr : ',files_to_arr,);
 
-        files_to_arr.map((ev,i)=>{ // 5,4,3,2,1
-            // const explain_text_ref_ = [,...explain_text_ref.current];
-            // explain_text_ref.current = [...explain_text_ref_];
-            console.log('file ev',ev,ev.name);
+        files_to_arr.map((ev,i)=>{ 
+            // console.log('file ev',ev,ev.name);
             const reader = new FileReader();
             reader.readAsDataURL(ev);
             reader.onload = () => {
-                console.log('img arr : ',img_arr_,'explain_text_ref.current',explain_text_ref.current   );
+                // console.log('img arr : ',img_arr_,'explain_text_ref.current',explain_text_ref.current   );
                 img_arr_ = [
                     ...img_arr_ ,
                     {
                         img : reader.result,
                         img_name : ev.name,
-                        // text : explain_text_ref.current[i]
                     },
                 ];
                 const image = new Image();
-                console.log(reader.result);
+                // console.log(reader.result);
                 image.src = reader.result;
                 image.name = ev.name;
-                console.log('image object',image);
+                // console.log('image object',image);
                 image.onload = function() {
                     imageSizeChange(image);
                 };
-                console.log('리사이징 함수 끝 난뒤 fileref.files',file_ref.current.files,img_arr_);
+                // console.log('리사이징 함수 끝 난뒤 img arr ref',img_arr_ref.current);
+                
                 setImg_arr([...img_arr_]);
                 lastest_i.current = lastest_i.current + 1;
-                console.log('index 값 들어 가기 전 lastest_i : ',lastest_i.current,'img arr : ',img_arr_);
-                console.log('img arr : ',img_arr,'file ref, files : ',file_ref.current.files,'datatransfer.files');
+                // console.log('index 값 들어 가기 전 lastest_i : ',lastest_i.current,'img arr : ',img_arr_);
+                // console.log('img arr : ',img_arr,'file ref, files : ',file_ref.current.files,'datatransfer.files');
             }
         })
         
     }
 
     const imageSizeChange = ( image ) => {
-        console.log('image',image.alt,image.name);
+        // console.log('image',image.alt,image.name);
         const canvas = canvas_ref.current
         let max_size = 1280; //1980 1080 -> 495 , 270
         let width = image.width;
         let height = image.height;
-        console.log(image.width,image.height);
+        // console.log(image.width,image.height);
         if(width > height){ // 가로가 더 길때
-            console.log(width / height);
+            // console.log(width / height);
             if(width / height <= 2){ // 비율이 2배 이하이면
                 if(width > 1600){
                     width = image.width / 4;
@@ -248,7 +244,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
 
             }
         }else{              // 세로가 더 길때
-            console.log(height / width);
+            // console.log(height / width);
             if(width / height <= 2){ // 비율이 2배 이하이면
                 if(height > 1600){
                     width = image.width / 4;
@@ -274,22 +270,12 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
         for(let i=0;i < binary.length; i++){
             bytes[i] = binary.charCodeAt(i);
         }
-        console.log('arrbuffer',bytes.buffer);
+        // console.log('arrbuffer',bytes.buffer);
         const file = new File([bytes.buffer],image.name+'.jpg',{
             type : 'image/jpeg'
         });
-        console.log('file : ',file);
-        const datatransfer = new DataTransfer();
-        // [...file_ref.current.files].map((e,i)=>{
-        //     datatransfer.items.add(e);
-        // })
-        for(let i=0;i < file_ref.current.files.length-1;i++){
-            datatransfer.items.add(file_ref.current.files[i]);
-        }
-        datatransfer.items.add(file);
-        file_ref.current.files = datatransfer.files;
-        console.log('이미지 리사이징 후 datatransfer.files',datatransfer.files);
-        // img_src_arr.current = [...img_src_arr.current,file];
+        // console.log('file : ',file);
+        img_arr_ref.current = [...img_arr_ref.current,file];
     }
 
     const file_size_checker = (ev) => {
@@ -301,9 +287,10 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     }
     
     const delete_img = (e) => {
-        console.log('delete img 함수 시작',e.target.id);
+        // console.log('delete img 함수 시작',e.target.id);
         const num = e.target.id;
         let img_arr_ = [...img_arr];
+        img_arr_ref.current = img_arr_ref.current.filter((e,i)=>{return(i !== Number(num))});
         img_arr_ = img_arr_.filter((e,i)=>{return(i !== Number(num))});
         explain_text_ref.current = explain_text_ref.current.filter((e,i)=>{return(i !== Number(num))});
         const file_filter = [...file_ref.current.files].filter((e,i)=>{return(i !== Number(num))});
@@ -312,7 +299,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
             datatransfer.items.add(e);
         })
         file_ref.current.files = datatransfer.files;
-        console.log('img arr 자른뒤',img_arr_,explain_text_ref.current);
+        // console.log('img arr 자른뒤',img_arr_,datatransfer.files,explain_text_ref.current);
         setImg_arr([...img_arr_]);
 
         

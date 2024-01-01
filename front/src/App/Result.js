@@ -36,10 +36,10 @@ const Result = () => {
 
         }).then(res=>{
             let setResult_content_state_ = [];
-            console.log(res);
+            // console.log(res);
             res.data.map((e,i)=>{   
                 setResult_content_state_[i] = {img : 'data:image/jpeg;base64,'+e.img, text : e.text}
-                console.log('result content state 만드는 중');
+                // console.log('result content state 만드는 중');
             })
             setResult_content_state([...setResult_content_state_]);
         })
@@ -53,7 +53,7 @@ const Result = () => {
                 'Content-Type' : 'application/json'
             }
         }).then((res)=>{
-            console.log('main_a_queze_comments res : ',res);
+            // console.log('main_a_queze_comments res : ',res);
             let setResult_comment_state_ = [];
             res.data.map((e,i)=>{
                 setResult_comment_state_[i] = {text : e.value, likes : e.likes, roomName : roomName_ref.current, uuid : e.parentsKey}
@@ -66,7 +66,7 @@ const Result = () => {
 
     const upload_comment = (e) => {
         e.preventDefault();
-        console.log('댓글 달기 함수 ',e);
+        // console.log('댓글 달기 함수 ',e);
         axios({
             url : process.env.REACT_APP_SERVER_URL +'/main_a_queze_plus_comments',
             method : 'POST',
@@ -79,9 +79,9 @@ const Result = () => {
                 'Content-Type' : 'application/json'
             }
         }).then(res=>{
-            console.log(res);
+            // console.log(res);
             if(res.data == 'success') {
-                console.log('페이지 리로딩');
+                // console.log('페이지 리로딩');
                 location.reload();
             }
         })
@@ -93,7 +93,7 @@ const Result = () => {
                 {title_ref.current}
             </h3>
             {
-                // console.log('result_content_state',result_content_state)
+                //console.log('result_content_state',result_content_state)
                 result_content_state.map((e,i)=>{
                     return (<Result_content key={i} text={e.text} img={e.img} rankNum={i}></Result_content>)
                 })
