@@ -12,6 +12,7 @@ import Adfit from "./Adfit";
 import Footer from "./Footer";
 import jimp from "jimp";
 import Loading_popup from "./Loading_popup";
+import Make_queze_img from "./Make_queze_img";
 const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const navigate = useNavigate();
     const [img_arr, setImg_arr] = useState([]); 
@@ -80,7 +81,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const img_upload = async (e) => {
         e.preventDefault();
         console.log('u이미지 업로드 함수 시작',type,typeof(type),roomName);
-        if(type === 'modify'){
+        if(type === 'modify'){ // public access O
             
             Promise.all([...file_ref.current.files].map((e,i)=>{
                 console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',' and body :',file_ref.current.files[i]);
@@ -103,7 +104,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                 alert('완료');
             }) 
             
-        }else{
+        }else{ // public access X
             const message = upload_checker()
             if(message.title !== '') {alert(message.title);}
             else if([...file_ref.current.files].length === 0){
@@ -122,7 +123,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                                 ACL: 'public-read',
                                 Bucket: bucket, // 버킷 이름
                                 Key: `${res.data}/img`+i+".jpg", // 유저 아이디
-                                Body: file_ref.current.files[file_ref.current.files.length-i-1], // 파일 객체
+                                Body: file_ref.current.files[i], // 파일 객체
                             },
                         });
                         console.log('upload',upload);
@@ -176,11 +177,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
             basic_change_img(e.clipboardData.files,false);
         }
     }
-    const explain_text_change = (e) => {
-        const index = e.target.id;
-        console.log('explain_text_change 실향 됨, index : ',index,'설명 값 : ',e.target.value);
-        explain_text_ref.current[index] = e.target.value;
-    }
+    
     const basic_change_img = (files,type) => {
         console.log('basic change img 에서 files : ',files.length);
         // files 는 배열이 아님 배열로 바꿔서 map
@@ -191,26 +188,26 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
         console.log('basic change img 에서 files_to_arr : ',files_to_arr,);
         // lastest_i.current = lastest_i.current +  1;
         const datatransfer = new DataTransfer();
-        img_arr_ref.current.map(ev=>{
-            datatransfer.items.add(ev);
+        img_arr_ref.current.map((ev,i)=>{
+            datatransfer.items.add(img_arr_ref.current[i]);
             file_ref.current.files = datatransfer.files;
-        })
+        })//5,4,3,2,1
 
-        files_to_arr.map(ev=>{
-            console.log('file ev',ev);
+        files_to_arr.map((ev,i)=>{ // 5,4,3,2,1
+            // const explain_text_ref_ = [,...explain_text_ref.current];
+            // explain_text_ref.current = [...explain_text_ref_];
+            console.log('file ev',ev,ev.name);
             const reader = new FileReader();
             reader.readAsDataURL(ev);
             reader.onload = () => {
-                console.log('index 값 들어 가기 전 lastest_i : ',lastest_i.current,'img arr : ',img_arr_);
+                console.log('img arr : ',img_arr_,'explain_text_ref.current',explain_text_ref.current   );
                 img_arr_ = [
-                    <div className="a_queze_img" key={lastest_i.current}>
-                        <img src={reader.result} key={lastest_i.current+2}></img>  
-                        <button onClick={delete_img} id={lastest_i.current} key={lastest_i.current+5} title="이미지 삭제 버튼">X</button>                                 
-                        <textarea type="text" value={explain_text_ref.current[lastest_i.current]} placeholder="설명" rows={1} name="text" id={lastest_i.current} key={lastest_i.current+3} onKeyDown={preventDefault} onChange={(e)=>processChange(explain_text_change(e))}></textarea>
-                        <input type="hidden" name="img_name" value={ev.name} key={lastest_i.current+4}></input>
-                    </div>,
                     ...img_arr_ ,
-                    
+                    {
+                        img : reader.result,
+                        img_name : ev.name,
+                        // text : explain_text_ref.current[i]
+                    },
                 ];
                 const image = new Image();
                 console.log(reader.result);
@@ -220,6 +217,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                 image.onload = function() {
                     imageSizeChange(image);
                 };
+                console.log('리사이징 함수 끝 난뒤 fileref.files',file_ref.current.files,img_arr_);
                 setImg_arr([...img_arr_]);
                 lastest_i.current = lastest_i.current + 1;
                 console.log('index 값 들어 가기 전 lastest_i : ',lastest_i.current,'img arr : ',img_arr_);
@@ -290,7 +288,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
         }
         datatransfer.items.add(file);
         file_ref.current.files = datatransfer.files;
-        console.log(datatransfer.files);
+        console.log('이미지 리사이징 후 datatransfer.files',datatransfer.files);
         // img_src_arr.current = [...img_src_arr.current,file];
     }
 
@@ -301,51 +299,24 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
         }
         else return true;
     }
+    
     const delete_img = (e) => {
-        e.preventDefault();
-        const arr_num = e.target.id;
-        console.log('delete img index : ',arr_num);
-        img_arr_ref.current = [...file_ref.current.files];
-        console.log('delete img img_arr_ref : ',img_arr_ref.current);
-        let new_img_arr = [];
-        img_arr_ref.current = img_arr_ref.current.filter((_,ev)=>{return(ev !== Number(arr_num))});
-        explain_text_ref.current = explain_text_ref.current.filter((_,ev)=>{return(ev !== Number(arr_num))});
-        img_src_arr.current = img_src_arr.current.filter((_,ev)=>{return(ev !== Number(arr_num))});
-        console.log('delete img 삭제 후 img_arr_ref : ',img_arr_ref.current,'explain_text_ref : ',explain_text_ref.current);
-        lastest_i.current = 0;
+        console.log('delete img 함수 시작',e.target.id);
+        const num = e.target.id;
+        let img_arr_ = [...img_arr];
+        img_arr_ = img_arr_.filter((e,i)=>{return(i !== Number(num))});
+        explain_text_ref.current = explain_text_ref.current.filter((e,i)=>{return(i !== Number(num))});
+        const file_filter = [...file_ref.current.files].filter((e,i)=>{return(i !== Number(num))});
         const datatransfer = new DataTransfer();
-        if(img_arr_ref.current.length === 0) {
-            setImg_arr([]);
-            file_ref.current.files = datatransfer.files;
-        }
-        else {
-            img_arr_ref.current.map(ev=>{
-                console.log('delete img map 안에서 ev : ',ev);
-                datatransfer.items.add(ev);
-                file_ref.current.files = datatransfer.files;
-                const reader = new FileReader();
-                reader.readAsDataURL(ev);
-                reader.onload = () => {
-                    new_img_arr = [
-                        <div className="a_queze_img" key={lastest_i.current}>
-                            <img src={reader.result} key={lastest_i.current+2}></img>  
-                            <button className="all_btn" onClick={delete_img} id={lastest_i.current} key={lastest_i.current+5} title="이미지 삭제 버튼">X</button>                                 
-                            <textarea type="text" value={explain_text_ref.current[lastest_i.current]} placeholder="설명" rows={1} name="text" id={lastest_i.current} key={lastest_i.current+3} onKeyDown={preventDefault} onChange={(e)=>processChange(explain_text_change(e))}></textarea>
-                            <input type="hidden" name="img_name" value={ev.name} key={lastest_i.current+4}></input>
-                        </div>,
-                        ...new_img_arr,
-                    ]
-                    console.log('delete img map 안에서 img_arr에 ev element 추가 new_img_arr: ',new_img_arr);
-                    lastest_i.current = lastest_i.current + 1;
-                    console.log('file 삭제 new img arr : ',new_img_arr);
-                    setImg_arr(new_img_arr);
+        file_filter.map((e,i)=>{
+            datatransfer.items.add(e);
+        })
+        file_ref.current.files = datatransfer.files;
+        console.log('img arr 자른뒤',img_arr_,explain_text_ref.current);
+        setImg_arr([...img_arr_]);
 
-                }
-            });
-        }
         
     }
-    
     return(
         <>  
             {loading_popup_state ? <Loading_popup setLoading_popup_state={setLoading_popup_state} pending={pending}/> : null}
@@ -380,7 +351,11 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                 {/* <input type="text" onPaste={onpaste}></input> */}
                 <div className="queze_area">
                     {   
-                    img_arr
+                    img_arr.map((e,i)=>{
+                        return(
+                            <Make_queze_img key={i} img={e.img} i={i} explain_text_ref={explain_text_ref} delete_img={delete_img} img_name={e.img_name} ></Make_queze_img>
+                        )
+                    })
                     }
                 </div>
                     

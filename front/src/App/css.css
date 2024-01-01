@@ -482,7 +482,7 @@ label > p {
   position: relative;
 }
 
-.a_queze_img > button {
+.a_queze_img > input {
   position: absolute;
   right: 0;
   color: #000000;
