@@ -12,7 +12,7 @@ const Loading_popup = ({setLoading_popup_state, pending}) => {
             {
                 pending ? <p>업로드 중</p> : <p>업로드 완료 됨</p>
             }
-            <button disabled={pending} onClick={setpopup}>닫기</button>
+            <button disabled={pending} className='all_btn' onClick={setpopup}>닫기</button>
             {
                 console.log(pending)
             }
