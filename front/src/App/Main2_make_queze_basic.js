@@ -69,7 +69,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                 last_num_ref.current = res.data[res.data.length-1].originalname[3];
             })
         }    
-        setLoading_popup_state(true);
+        // setLoading_popup_state(true);
     },[])
     const upload_checker = () => {
         let return_message = {
