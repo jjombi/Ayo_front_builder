@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import Main2_content from "./Main2_content";
 import img1 from "./Img_folder/zzal2.jpg";
+import Adfit from "./Adfit";
 
 const Main2 = () => {
     const [img_base64_arr,setImg_base64_arr] = useState();
@@ -90,6 +91,7 @@ const Main2 = () => {
                 <button className="Main2_toogle all_btn">최신순</button>
                 <input type="text"></input>
             </header> */}
+            <Adfit unit={'DAN-87ortfszgGZjj16M'}></Adfit>
             <div className="queze_list">
                 {
                     main_content_state.map((e,i)=>{
@@ -99,7 +101,7 @@ const Main2 = () => {
                     })
                 }
             </div>
-            <Footer/> 
+            <Footer tinyint={false}/> 
         </div>
     )
 }

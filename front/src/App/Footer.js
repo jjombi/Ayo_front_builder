@@ -2,7 +2,7 @@ import React from 'react';
 import Svg_bug from '/src/App/Img_folder/Bug_light.svg';
 import Adfit from './Adfit';
 
-const Footer = () => {
+const Footer = ({tinyint}) => {
 
 
     return(
@@ -20,7 +20,9 @@ const Footer = () => {
                     <ul>이상형 월드컵 seasen2, 내 이상형 순위를 선택해 보세요!</ul>
                 </li>
             </div>
-            <Adfit unit={'DAN-87ortfszgGZjj16M'}></Adfit>
+            {
+                tinyint ? <Adfit unit={'DAN-87ortfszgGZjj16M'}></Adfit> : null 
+            }
         </footer>
     )
 }

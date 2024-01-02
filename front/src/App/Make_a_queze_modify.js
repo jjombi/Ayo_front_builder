@@ -1,6 +1,7 @@
 import React,{useEffect, useRef, useState} from 'react';
 import Main2_make_queze_basic from "./Main2_make_queze_basic";
 import { useSearchParams } from "react-router-dom";
+import Footer from './Footer';
 
 const Make_a_queze_modify = () => {
     const roomName_ref = useRef();
@@ -27,6 +28,7 @@ const Make_a_queze_modify = () => {
             roomName !== '' ? <Main2_make_queze_basic type="modify" roomName={roomName} serverurl={"/upload_img_plus"}></Main2_make_queze_basic>
             : null
         }
+        <Footer tinyint={true}></Footer>
         </>
     )
     

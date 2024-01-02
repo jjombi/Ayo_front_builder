@@ -17,7 +17,7 @@ const Main2_make_queze = () => {
             <Header></Header>
             {/* <button onClick={img_rerender}>버튼</button> */}
             <Main2_make_queze_basic type="notmodify" roomName={null} serverurl={"/upload_img"}></Main2_make_queze_basic>
-            <Footer></Footer>
+            <Footer tinyint={true}></Footer>
         </>
     )
 }

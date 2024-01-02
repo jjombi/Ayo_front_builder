@@ -191,7 +191,7 @@ const Main2_a_queze = () => {
                     })
                 }
             </div>
-            <Footer></Footer>
+            <Footer tinyint={true}></Footer>
             <div className="margin"></div>
         </div>
     )
