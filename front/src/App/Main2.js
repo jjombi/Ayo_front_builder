@@ -71,7 +71,7 @@ const Main2 = () => {
         <div className="Main2_root">
             <Header></Header>
             <header className="Main2_header2">
-                <p>이상형 월드컵 seasen2, 내 이상형 순위를 선택해 보세요!</p>
+                <p>이상형 티어표, 내 이상형 순위를 선택해 보세요!</p>
             </header>
             <header className="Main2_header2">
                 <input type="text" className="Main2_a_queze_header_input" placeholder="검색 창" ref={search_value_ref} onKeyUp={search_enter}></input>
