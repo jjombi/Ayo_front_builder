@@ -161,6 +161,7 @@ const Main2_a_queze = () => {
                 {/*<h3>{title_ref.current}</h3>*/}
                 {/* <h3>test title text</h3> */}
             </header>
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
             <h3 className="a_queze_title">{title_ref.current}</h3>
             {/* {
                 modify ? <Main2_make_queze_basic type="modify" roomName={roomName_ref.current} setModify={setModify} serverurl={"/upload_img_plus"}></Main2_make_queze_basic> : null
@@ -191,7 +192,7 @@ const Main2_a_queze = () => {
                     })
                 }
             </div>
-            <Footer tinyint={true}></Footer>
+            <Footer tinyint={false}></Footer>
             <div className="margin"></div>
         </div>
     )

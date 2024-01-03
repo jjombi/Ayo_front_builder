@@ -16,8 +16,9 @@ const Main2_make_queze = () => {
         <>
             <Header></Header>
             {/* <button onClick={img_rerender}>버튼</button> */}
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
             <Main2_make_queze_basic type="notmodify" roomName={null} serverurl={"/upload_img"}></Main2_make_queze_basic>
-            <Footer tinyint={true}></Footer>
+            <Footer tinyint={false}></Footer>
         </>
     )
 }
