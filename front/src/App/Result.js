@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import Result_content from "./Result_content";
 import Result_comment from "./Result_comment";
 import img from './Img_folder/zzal2.jpg';
+import Adfit from "./Adfit";
 
 // import {great_icon} from './Img_folder/great_icon.svg';
 const Result = () => {
@@ -89,6 +90,7 @@ const Result = () => {
     return(
         <>
             <Header></Header>
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
             <h3 className="result_title">
                 {title_ref.current}
             </h3>
@@ -110,7 +112,7 @@ const Result = () => {
                     return(<Result_comment key={i} text={e.text} likes={e.likes} roomName={e.roomName} uuid={e.uuid}></Result_comment>)
                 })
             }
-            <Footer></Footer>
+            <Footer tinyint={false}></Footer>
         </>
     )
 }
