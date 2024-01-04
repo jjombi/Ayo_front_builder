@@ -1,16 +1,10 @@
 import React,{useEffect, useRef,useState} from "react";
-import { useForm } from "react-hook-form"
 import './css.css';
-import { useHref, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useFormStatus } from 'react-dom';
 import axios from "axios";
-import img from './Img_folder/zzal2.jpg';
-import Header from "./ayo_world_rank_header";
 import { dragenter, dragover, processChange } from "./public/WorldRank";
 import AWS from "aws-sdk";
-import Adfit from "./Adfit";
-import Footer from "./Footer";
-import jimp from "jimp";
 import Loading_popup from "./Loading_popup";
 import Make_queze_img from "./Make_queze_img";
 const Main2_make_queze_basic = ({type, roomName, serverurl}) => {

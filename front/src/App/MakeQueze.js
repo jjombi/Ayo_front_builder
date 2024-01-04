@@ -1,12 +1,10 @@
-import React,{useState, useRef,useEffect} from "react";
+import React,{useRef,useEffect} from "react";
 import axios from 'axios'
 import { useNavigate,useParams,useSearchParams } from "react-router-dom";
 import Adfit from "./Adfit";
-import Svg_bug from '/src/App/Img_folder/Bug_light.svg';
 
 
 const MakeQueze = () => {
-    const url_ = 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app';
     const input_value = useRef();
     const input_maker_ref = useRef();
     const navigate = useNavigate();

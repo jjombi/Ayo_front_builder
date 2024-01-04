@@ -2,16 +2,11 @@ import React, { useEffect, useState,useRef } from "react";
 import './css.css';
 import axios from "axios";
 import Header from "./ayo_world_rank_header";
-import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import Main2_content from "./Main2_content";
-import img1 from "./Img_folder/zzal2.jpg";
 import Adfit from "./Adfit";
 
 const Main2 = () => {
-    const [img_base64_arr,setImg_base64_arr] = useState();
-    const a_ref = useRef(); 
-    const [render, setRender] = useState(0);
     const search_value_ref = useRef();
     const [main_content_state,setMain_content_state] = useState([]);
     useEffect(()=>{

@@ -1,21 +1,16 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState, useReducer } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSearchParams,useNavigate } from "react-router-dom";
 import './css.css';
-import img2 from './Img_folder/ayo_queze_1.png';
 import Header from "./ayo_world_rank_header";
 import Adfit from "./Adfit";
 import Footer from "./Footer";
-import { dragenter, dragover } from "./public/WorldRank";
-import img1 from "./Img_folder/zzal2.jpg";
-import img3 from "./Img_folder/ayo_schoolchoose_1.png";
 import Drag from "./Drag";
 import Drop from "./Drop";
 
 
 const Main2_a_queze = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const [render, setRender] = useState(0);
     const roomName_ref = useRef();
     const title_ref = useRef();
     const [dragState,setDragState] = useState([]);
@@ -25,7 +20,6 @@ const Main2_a_queze = () => {
     const dragIndex = useRef();
     const isDraging = useRef(false);
     const [publicAccess,setPublicAccess] = useState(false);
-    const [modify,setModify] = useState(false);
     const navigate = useNavigate();
 
     useEffect(()=>{

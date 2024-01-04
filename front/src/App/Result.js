@@ -3,11 +3,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Header from "./ayo_world_rank_header";
 import './css.css';
-import likes_img from '/src/App/Img_folder/thumb_up-1.svg'; //x
 import Footer from "./Footer";
 import Result_content from "./Result_content";
 import Result_comment from "./Result_comment";
-import img from './Img_folder/zzal2.jpg';
 import Adfit from "./Adfit";
 
 // import {great_icon} from './Img_folder/great_icon.svg';
@@ -18,8 +16,6 @@ const Result = () => {
     const title_ref = useRef();
     const [result_content_state,setResult_content_state] = useState([]);
     const [result_comment_state,setResult_comment_state] = useState([]);
-
-    const [render, setRender] = useState(0);
 
     // const [boolean,setBoolean] = useState([]);
     useEffect(()=>{

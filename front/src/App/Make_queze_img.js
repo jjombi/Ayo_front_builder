@@ -1,5 +1,5 @@
 import React,{useRef} from 'react';
-import { dragenter, dragover, processChange } from "./public/WorldRank";
+import { processChange } from "./public/WorldRank";
 
 const Make_queze_img = ({img,i,explain_text_ref, delete_img, img_name}) => {
     const explain_text_change = (e) => {
