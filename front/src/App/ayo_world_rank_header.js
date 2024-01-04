@@ -14,8 +14,8 @@ const ayo_world_rank_header = () => {
     return(
         <header className="Main2_header">
             <div className='header_rogo'><p>Ayo</p></div>
-            <button className="all_btn" onClick={navi_to_main}>이상형 티어</button>
-            <button className="all_btn" onClick={navi_to_make_queze}>이상형 티어 만들기</button>
+            <button className="all_btn" onClick={navi_to_main}>최애 티어</button>
+            <button className="all_btn" onClick={navi_to_make_queze}>최애 티어 만들기</button>
         </header>
     )
 }

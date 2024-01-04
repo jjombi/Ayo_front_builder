@@ -71,10 +71,10 @@ const Main2 = () => {
         <div className="Main2_root">
             <Header></Header>
             <header className="Main2_header2">
-                <p>이상형 티어표, 내 이상형 순위를 선택해 보세요!</p>
+                <p>최애 티어표, 내 최애 순위를 선택해 보세요!</p>
             </header>
             <header className="Main2_header2">
-                <input type="text" className="Main2_a_queze_header_input" placeholder="검색 창" ref={search_value_ref} onKeyUp={search_enter}></input>
+                <input type="text" className="Main2_a_queze_header_input" placeholder="검색 창(입력 후 엔터)" ref={search_value_ref} onKeyUp={search_enter}></input>
                 <button className="all_btn main2_header_btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <circle cx="11" cy="11" r="6" stroke="#222222"/>

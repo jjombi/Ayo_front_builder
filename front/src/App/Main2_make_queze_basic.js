@@ -323,8 +323,8 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                     <label>
                         <p>수정 가능 : </p>
                         <input type="checkbox" value="수정가능" name="publicAccess"></input> 
-                        <button title="월드컵을 누구나 수정 할 수 있도록 허용">!</button> 
-                        <p>월드컵을 누구나 수정 할 수 있도록 허용</p>
+                        <button title="최애 티어을 누구나 수정 할 수 있도록 허용">!</button> 
+                        <p>최애 티어을 누구나 수정 할 수 있도록 허용</p>
                     </label>
                 </>
                 }
