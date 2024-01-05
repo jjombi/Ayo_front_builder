@@ -7,6 +7,10 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.root_h1 {
+  display: hidden;
+}
+
 canvas {
   display: none;
 }
@@ -315,6 +319,16 @@ label > p {
   margin-bottom: 3%;
 }
 
+.tier_line {
+  width: 30px;
+  height: 285px;
+}
+
+.Main2_a_queze_section {
+  display: flex;
+  flex-direction: row;
+}
+
 .initialization_btn {
   margin-left: 3%;
   width: 80px;
@@ -346,7 +360,7 @@ label > p {
   margin-top: 7px;
 }
 
-.Main2_header2 > p {
+.Main2_header2 > h1 {
   color: #000000;
   font-size: 14px;
   width: 100%;
@@ -448,6 +462,10 @@ label > p {
 .drop_rank {
   color: #000000;
   margin-left: 3%;
+  height: 35px;
+  align-items: center;
+  display: flex;
+  font-size: 16px;
 }
 
 .drop > img {
@@ -557,6 +575,14 @@ label > p {
 .result_area {
   display: flex;
   flex-direction: row;
+}
+
+.result_area > h3 {
+  width: 30px;
+}
+
+.result_area > h3 > p {
+  color: white;
   margin-top: 2%;
 }
 
@@ -564,18 +590,20 @@ label > p {
   width: 300px;
   height: 250px;
   object-fit: scale-down;
+  margin-top: 2%;
 }
 
 .result_area > h4 {
   color: #000000;
   margin-left: 3%;
+  margin-top: 2%;
 }
 
 .result_area > p {
   color: #000000;
   display: flex;
   margin-left: 1%;
-  margin-top: 0.1%;
+  margin-top: 2.1%;
 }
 
 .comment_area {

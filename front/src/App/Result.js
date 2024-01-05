@@ -35,7 +35,7 @@ const Result = () => {
             let setResult_content_state_ = [];
             // console.log(res);
             res.data.map((e,i)=>{   
-                setResult_content_state_[i] = {img : 'data:image/jpeg;base64,'+e.img, text : e.text}
+                setResult_content_state_[i] = {img : 'data:image/jpeg;base64,'+e.img, text : e.text, length : res.data.length}
                 // console.log('result content state 만드는 중');
             })
             setResult_content_state([...setResult_content_state_]);
@@ -93,7 +93,7 @@ const Result = () => {
             {
                 //console.log('result_content_state',result_content_state)
                 result_content_state.map((e,i)=>{
-                    return (<Result_content key={i} text={e.text} img={e.img} rankNum={i}></Result_content>)
+                    return (<Result_content key={i} text={e.text} img={e.img} rankNum={i} length={e.length}></Result_content>)
                 })
             }
 
@@ -105,7 +105,7 @@ const Result = () => {
             </div>
             {
                 result_comment_state.map((e,i)=>{
-                    return(<Result_comment key={i} text={e.text} likes={e.likes} roomName={e.roomName} uuid={e.uuid}></Result_comment>)
+                    return(<Result_comment key={i} text={e.text} likes={e.likes} roomName={e.roomName} uuid={e.uuid} ></Result_comment>)
                 })
             }
             <Footer tinyint={false}></Footer>

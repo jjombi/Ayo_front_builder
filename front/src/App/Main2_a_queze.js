@@ -7,7 +7,7 @@ import Adfit from "./Adfit";
 import Footer from "./Footer";
 import Drag from "./Drag";
 import Drop from "./Drop";
-
+import img from './Img_folder/zzal2.jpg';
 
 const Main2_a_queze = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -55,14 +55,14 @@ const Main2_a_queze = () => {
                 dragState_ = [...dragState_,{  img : 'data:image/jpeg;base64,'+img_arr[i], text : text_arr[i], uuid : uuid_arr[i]}];
                 dropState_ = [...dropState_,{  img : ''                                  , text : ''         , uuid : ''}]
             })
-            // console.log('완성된 첫 element dragstate',dragState_,'drop :',dropState_);
+            console.log('완성된 첫 element dragstate',dragState_,'drop :',dropState_);
             setInitialization_drop([...dropState_]);
             setInitialization_drag([...dragState_]);
             setDragState([...dragState_]);
             setDropState([...dropState_]);
             if(publicAccess==1) setPublicAccess(true);
         })
-        // setDragState([{  img : img1, text : 'test_text', uuid : 'test_uuid'}]);
+        // setDragState([{  img : img, text : 'test_text', uuid : 'test_uuid'}]);
         // setDropState([{  img : ''                                  , text : ''         , uuid : ''}]);
         // setPublicAccess(true)
     },[])
@@ -156,7 +156,7 @@ const Main2_a_queze = () => {
                         <path d="M4 15V15C4 16.8692 4 17.8038 4.40192 18.5C4.66523 18.9561 5.04394 19.3348 5.5 19.5981C6.19615 20 7.13077 20 9 20H14C16.8284 20 18.2426 20 19.1213 19.1213C20 18.2426 20 16.8284 20 14V9C20 7.13077 20 6.19615 19.5981 5.5C19.3348 5.04394 18.9561 4.66523 18.5 4.40192C17.8038 4 16.8692 4 15 4V4" stroke="#222222" stroke-linecap="round"/>
                         </svg>
                         최애 티어 수정 하기
-                  </button> : <button title="최애티어를 만든 제작자께서 수정을 허용하지 않았습니다">수정 불가</button>
+                  </button> : <button className="all_btn a_queze_header_btn" title="최애티어를 만든 제작자께서 수정을 허용하지 않았습니다">수정 불가</button>
                 }
                 {/*<h3>{title_ref.current}</h3>*/}
                 {/* <h3>test title text</h3> */}
@@ -169,15 +169,18 @@ const Main2_a_queze = () => {
             <div>
                 <button className="initialization_btn all_btn" title="" onClick={initialization}>초기화</button>
             </div>
-            <div className="drop_area">
-            {   
-                dropState.map((e,i)=>{
-                    return(
-                        <Drop key={i} drop_element_index={i} text={e.text} img={e.img} uuid={e.uuid} dropFunc={dropFunc} dropDelete={dropDelete} isDraging={isDraging}></Drop>
-                    )
-                })
-            }
-            </div>
+            {/* <section className="Main2_a_queze_section">
+                <div className="tier_line"></div> */}
+                <div className="drop_area">
+                {   
+                    dropState.map((e,i)=>{
+                        return(
+                            <Drop key={i} drop_element_index={i} text={e.text} img={e.img} uuid={e.uuid} dropFunc={dropFunc} dropDelete={dropDelete} isDraging={isDraging}></Drop>
+                        )
+                    })
+                }
+                </div>
+            {/* </section>  */}
             <div className="main2_a_queze_btn_area">
                 <button onClick={submit}>투표하기</button>
                 <button onClick={e=>{e.preventDefault();navigate(`/result?roomName=${roomName_ref.current}`)}}>결과 보기</button>

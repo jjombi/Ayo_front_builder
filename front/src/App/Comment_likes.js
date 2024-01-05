@@ -4,7 +4,7 @@ import React from 'react';
 import {useCookies} from 'react-cookie';
 const Comment_likes = ({uuid, type}) => {
     const [cookies, setCookie, removeCookie] = useCookies();
-    console.log('cookie',Object.values(cookies));
+    // console.log('cookie',Object.values(cookies));
     const cookies_arr = Object.values(cookies);
     //  {
     //      id : 'uuid값',  
