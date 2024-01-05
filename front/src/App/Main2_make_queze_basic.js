@@ -91,7 +91,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                         ACL: 'public-read', 
                         Bucket: bucket, // 버킷 이름
                         Key: `${roomName}/img${(Number(last_num_ref.current)+i+1)}.jpg`, // 유저 아이디
-                        Body: file_ref.current.files[file_ref.current.files.length-i-1], // 파일 객체
+                        Body: file_ref.current.files[i], // 파일 객체
                     },
                 });
                 // console.log('upload',upload);
@@ -100,9 +100,11 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                     // console.log('success upload',upload,i,img_src_arr.current.length-1);
                 });
             })).then(()=>{
-                const submit = form_dom_ref.current.submit();
+                form_dom_ref.current.submit();
                 // console.log(submit);
-                alert('완료');
+                // alert('완료');
+                setLoading_popup_state(true);
+
             }) 
             
         }else{ // public access X
