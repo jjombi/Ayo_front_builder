@@ -311,7 +311,10 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                     type === 'modify' ? <><button onClick={(e)=>{e.preventDefault(); setModify(false)}}>X</button> <input type="hidden" value={roomName} name="roomName"></input><input type="hidden" name="last_num" value={last_num_ref.current}></input></>: null
                 } */}
                 {type === 'modify'?
-                null :
+                <>
+                <input type="hidden" value={roomName} name="roomName"></input>
+                <input type="hidden" name="last_num" value={last_num_ref.current}></input> 
+                </> :
                 <>
                     <div className="main_title">
                         <input type="text" placeholder="제목" name="title" ref={title_ref}></input>
