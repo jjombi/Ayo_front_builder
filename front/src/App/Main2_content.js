@@ -1,30 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import {useNavigate} from 'react-router-dom';
 import Comment_likes from "./Comment_likes";
-
-const Main2_content = ({roomName, src, title, existence, uuid, publicAccess}) => {
+import Password_popup from "./Password_popup";
+const Main2_content = ({roomName, src, title, existence, uuid, publicAccess, password}) => {
     const navigate = useNavigate();
+    const [popup_state,setPopup_state] = useState(false);
+    const [type,setType] = useState();
     const A_queze_click = (roomName) => {
-        console.log('move to a queze page, roomName : ',roomName,'title : ',title);
-        navigate(`/ayoworldrankaqueze?roomName=${roomName}&title=${title}&publicAccess=${publicAccess}`);
+        // console.log('move to a queze page, roomName : ',roomName,'title : ',title);
+        if(password === ''){
+            navigate(`/ayoworldrankaqueze?roomName=${roomName}&title=${title}&publicAccess=${publicAccess}`);
+        }
+        else{
+            setPopup_state(true);
+            setType('queze');
+        }
     }
     const result_click = (roomName) => {
         // console.log('move to result page, roomName : ',roomName);
-        navigate(`/result?roomName=${roomName}&title=${title}`);
+        if(password === ''){
+            navigate(`/result?roomName=${roomName}&title=${title}`);
+        }
+        else{
+            setPopup_state(true);
+            setType('result');
+        }
     }
 
     return(
-        <button className="plus_queze">
-            <img src={src}></img>
-            <div>
-                <p>{title}</p>
+        <>
+            {
+                popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={uuid} roomName={roomName} title={title} publicAccess={publicAccess} type={type}></Password_popup> : null
+            }
+            <button className="plus_queze">
+                <img src={src}></img>
                 <div>
-                    <input type="button" value="결과 보기" className="all_btn all_btn_hover" onClick={(e)=>{e.preventDefault();e.stopPropagation();result_click(roomName)}}></input>
-                    <input type="button" value="시작 하기" className="all_btn all_btn_hover" onClick={(e)=>{e.preventDefault();e.stopPropagation();A_queze_click(roomName)}}></input>
-                    <Comment_likes uuid={uuid} type={'Main_queze'}></Comment_likes>
+                    <p>{title}</p>
+                    <div>
+                        <input type="button" value="결과 보기" className="all_btn all_btn_hover" onClick={(e)=>{e.preventDefault();e.stopPropagation();result_click(roomName)}}></input>
+                        <input type="button" value="시작 하기" className="all_btn all_btn_hover" onClick={(e)=>{e.preventDefault();e.stopPropagation();A_queze_click(roomName)}}></input>
+                        <Comment_likes uuid={uuid} type={'Main_queze'}></Comment_likes>
+                    </div>
                 </div>
-            </div>
-        </button>
+            </button>
+        </>
     )
 }
 export default Main2_content;

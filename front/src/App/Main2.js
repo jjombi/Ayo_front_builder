@@ -26,7 +26,7 @@ const Main2 = () => {
             if(res.data){
                 res.data.result.map((e,i)=>{
                     // console.log(e);
-                    content_arr[i] = {roomName : e.roomName, existence : e.existence, title : e.title, src : 'data:image/jpeg;base64,'+res.data.base64_img_arr[i], uuid : e.uuid, publicAccess : e.publicAccess}
+                    content_arr[i] = {roomName : e.roomName, existence : e.existence, title : e.title, src : 'data:image/jpeg;base64,'+res.data.base64_img_arr[i], uuid : e.uuid, publicAccess : e.publicAccess, password : e.password}
                 })
     
             }
@@ -54,7 +54,7 @@ const Main2 = () => {
                 if(res.data){
                     res.data.result.map((e,i)=>{
                         // console.log(e);
-                        content_arr[i] = {roomName : e.roomName, existence : e.existence, title : e.title, src : 'data:image/jpeg;base64,'+res.data.base64_img_arr[i], uuid : e.uuid, publicAccess : e.publicAccess}
+                        content_arr[i] = {roomName : e.roomName, existence : e.existence, title : e.title, src : 'data:image/jpeg;base64,'+res.data.base64_img_arr[i], uuid : e.uuid, publicAccess : e.publicAccess, password : e.password}
                     })
                 }
                 setMain_content_state([...content_arr]);
@@ -91,7 +91,7 @@ const Main2 = () => {
                 {
                     main_content_state.map((e,i)=>{
                         return(
-                            <Main2_content key={i} title={e.title} roomName={e.roomName} existence={e.existence} src={e.src} uuid={e.uuid} publicAccess={e.publicAccess}></Main2_content>
+                            <Main2_content key={i} title={e.title} roomName={e.roomName} existence={e.existence} src={e.src} uuid={e.uuid} publicAccess={e.publicAccess} password={e.password}></Main2_content>
                         )
                     })
                 }
