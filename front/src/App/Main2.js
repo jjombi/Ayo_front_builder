@@ -73,7 +73,7 @@ const Main2 = () => {
                 <button className="all_btn main2_header_btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <circle cx="11" cy="11" r="6" stroke="#222222"/>
-                    <path d="M20 20L17 17" stroke="#222222" stroke-linecap="round"/>
+                    <path d="M20 20L17 17" stroke="#222222" strokeLinecap="round"/>
                     </svg>
                 </button>
             </header>
