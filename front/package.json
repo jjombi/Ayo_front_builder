@@ -22,9 +22,11 @@
     "babel-preset-react-hmre": "^1.1.1",
     "gh-pages": "^6.0.0",
     "jimp": "^0.22.10",
-    "react": "^18.3.0-canary-c5b937576-20231219",
+    "react": "18.2.0",
     "react-cookie": "^6.1.1",
-    "react-dom": "^18.3.0-canary-c5b937576-20231219",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dom": "18.2.0",
     "react-hook-form": "^7.48.2",
     "react-router-dom": "^6.16.0",
     "webpack-dev-server": "^4.15.1"
@@ -49,6 +51,5 @@
   "peerDependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0"
-
   }
 }
