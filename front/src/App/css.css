@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -494,7 +495,7 @@ label > input:nth-child(3), .label > input:nth-child(3) {
 
 .drop_area {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background-color: rgba(0, 0, 0, 0);
   width: 100%;
 }
@@ -519,15 +520,12 @@ label > input:nth-child(3), .label > input:nth-child(3) {
 
 .drop {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   background-color: rgba(0, 0, 0, 0);
   z-index: 1;
   position: relative;
-}
-
-.drop_img_img {
-  height: 250px;
+  margin-left: 3%;
 }
 
 .drop_rank {
@@ -556,27 +554,6 @@ label > input:nth-child(3), .label > input:nth-child(3) {
   height: 30px;
   color: #000000;
   left: 300px;
-  transform: translate(-100%);
-}
-
-.a_queze_tier_1 {
-  background-color: rgb(99, 130, 255);
-}
-
-.a_queze_tier_2 {
-  background-color: rgb(102, 255, 99);
-}
-
-.a_queze_tier_3 {
-  background-color: rgb(255, 229, 97);
-}
-
-.a_queze_tier_4 {
-  background-color: rgb(75, 75, 75);
-}
-
-.a_queze_tier_5 {
-  background-color: rgb(0, 0, 0);
 }
 
 .queze_area {
@@ -841,108 +818,8 @@ label > input:nth-child(3), .label > input:nth-child(3) {
   color: #000000;
 }
 
-.recommendation_main_root {
-  background-color: white;
-  width: 100vw;
-  height: 100vh;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.Make_content_popup_bac {
-  display: flex;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  max-width: 100%;
-  max-height: 100%;
-  background-color: rgba(68, 68, 68, 0.67);
-  align-items: center;
-  justify-content: center;
-}
-
-.Make_content_popup_section {
-  width: 346px;
-  height: 652px;
-  background-color: white;
-  position: relative;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-}
-
-.Make_content_popup_close_btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: #000000;
-  width: 30px;
-  height: 30px;
-  font-size: 18px;
-  border-radius: 10px;
-  background-color: white;
-}
-
-.Make_content_popup_submit_btn {
-  width: 30%;
-  height: 5%;
-  position: absolute;
-  bottom: 3%;
-  border-radius: 10px;
-  color: #000000;
-}
-
-.Make_content_popup_section > input, .input_password_area {
-  width: 80%;
-  height: 40px;
-  margin-top: 35px;
-  border-radius: 10px;
-  position: relative;
-  border: 1px solid rgb(239, 239, 239);
-}
-
-.input_password_area {
-  margin-top: 0;
-}
-
-.input_password_area > input {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-}
-
-.input_password_area > button {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  right: 2px;
-  transform: translate(0, -50%);
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.input_checkbox_area {
-  width: 80%;
-  height: 40px;
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-}
-
-.input_checkbox_area > p:nth-child(1) {
-  color: #000000;
-  font-size: 14px;
-}
-
-.explain_about_password {
-  color: rgba(0, 0, 0, 0.4235294118);
-  font-size: 12px;
-}
-
+/*----------icon--logo------------------*/
+/*-----------------학교 찾는 창 3333333333333333333333333333-----*/
 /*----------------------------------------------*/
 @media (min-width: 1800px) {
   .submit_btn {
