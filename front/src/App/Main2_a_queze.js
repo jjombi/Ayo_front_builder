@@ -13,8 +13,12 @@ const Main2_a_queze = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const roomName_ref = useRef();
     const title_ref = useRef();
-    const [dragState,setDragState] = useState([]);
-    const [dropState,setDropState] = useState([]);
+    const [dragState, setDragState] = useState([]);
+    const [dropState1,setDropState1] = useState([]);
+    const [dropState2,setDropState2] = useState([]);
+    const [dropState3,setDropState3] = useState([]);
+    const [dropState4,setDropState4] = useState([]);
+    const [dropState5,setDropState5] = useState([]);
     const [initialization_drop, setInitialization_drop] = useState([]);
     const [initialization_drag, setInitialization_drag] = useState([]);
     const dragIndex = useRef();
@@ -48,18 +52,19 @@ const Main2_a_queze = () => {
             const text_arr = res.data.text;
             const uuid_arr = res.data.uuid;
             let dragState_ = [];
-            let dropState_ = [];
             // console.log(res);
             img_arr.map((e,i)=>{
                 // console.log('첫 element 생성 a queze img arr :',img_arr[i]);
                 dragState_ = [...dragState_,{  img : 'data:image/jpeg;base64,'+img_arr[i], text : text_arr[i], uuid : uuid_arr[i]}];
-                dropState_ = [...dropState_,{  img : ''                                  , text : ''         , uuid : ''}]
             })
-            console.log('완성된 첫 element dragstate',dragState_,'drop :',dropState_);
-            setInitialization_drop([...dropState_]);
+            console.log('완성된 첫 element dragstate',dragState_);
             setInitialization_drag([...dragState_]);
             setDragState([...dragState_]);
-            setDropState([...dropState_]);
+            setDropState1(()=>[{  img : '', text : '', uuid : ''}]);
+            setDropState2(()=>[{  img : '', text : '', uuid : ''}]);
+            setDropState3(()=>[{  img : '', text : '', uuid : ''}]);
+            setDropState4(()=>[{  img : '', text : '', uuid : ''}]);
+            setDropState5(()=>[{  img : '', text : '', uuid : ''}]);
             if(publicAccess==1) setPublicAccess(true);
         })
         // setDragState([{  img : img, text : 'test_text', uuid : 'test_uuid'}]);
@@ -84,16 +89,52 @@ const Main2_a_queze = () => {
             alert('모두 선택 해줘');
         }
         else{
-            const rank = dropState.map((e,i)=>{
-                return e.uuid
+            const dropState1_ = dropState1.filter((e,i)=>{
+                if(e.uuid !== ''){
+                    return true;
+                }
+                else return false;
+            }).map((e,i)=>{
+                return e.uuid;
             })
-            console.log('rank 값',rank);
+            const dropState2_ = dropState2.filter((e,i)=>{
+                if(e.uuid !== ''){
+                    return true;
+                }
+                else return false;
+            }).map((e,i)=>{
+                return e.uuid;
+            })
+            const dropState3_ = dropState3.filter((e,i)=>{
+                if(e.uuid !== ''){
+                    return true;
+                }
+                else return false;
+            }).map((e,i)=>{
+                return e.uuid;
+            })
+            const dropState4_ = dropState4.filter((e,i)=>{
+                if(e.uuid !== ''){
+                    return true;
+                }
+                else return false;
+            }).map((e,i)=>{
+                return e.uuid;
+            })
+            const dropState5_ = dropState5.filter((e,i)=>{
+                if(e.uuid !== ''){
+                    return true;
+                }
+                else return false;
+            }).map((e,i)=>{
+                return e.uuid;
+            })
             axios({
                 method : 'POST',
                 url : process.env.REACT_APP_SERVER_URL +'/result_plus',
                 data : {
                     roomName : roomName_ref.current,
-                    rank : rank
+                    rank : [...dropState1_,...dropState2_,...dropState3_,...dropState4_,...dropState5_]
                 },
                 headers : {
                     'Content-Type' : 'application/json'
@@ -108,18 +149,65 @@ const Main2_a_queze = () => {
 
     const dropFunc = (e) => {
         // console.log('drop 함수 실행 됨',isDraging.current);
+        const id = JSON.parse(e.target.id); 
+        const index = id.index;
+        const tier = id.tier;
+        // console.log( id,'index', index, 'tier', tier);
+        const dragstateValue = {...dragState[dragIndex.current]};
+        let dropstate;
+        let dragstate = [...dragState];
         if(isDraging.current){
-            const dropIndex = e.target.id;
-            let dropstate = [...dropState];
-            let dragstate = [...dragState];
-            const dragstateValue = {...dragState[dragIndex.current]}
-            const dropstateValue = {...dropState[dropIndex]}
-            // console.log('drop 값',dropstateValue, dropIndex, 'drag 값', dragstateValue, dragIndex.current);
-            dropstate[dropIndex] = dragstateValue;
-            dragstate[dragIndex.current] = dropstateValue;
-            // console.log('drop 배열 변경 후 ',dropstate, 'drag 배열 변경 후', dragstate);
-            setDragState([...dragstate]);
-            setDropState([...dropstate]);
+            if(tier === 1){
+                dropstate = [...dropState1];
+            }
+            else if(tier === 2){
+                dropstate = [...dropState2];
+            }
+            else if(tier === 3){
+                dropstate = [...dropState3];
+            }
+            else if(tier === 4){
+                dropstate = [...dropState4];
+            }
+            else if(tier === 5){
+                dropstate = [...dropState5];
+            }
+            // console.log('dropstate',dropstate);
+            if(index === 0 && dropstate.length === 1){
+                console.log('처음');
+                dropstate = [{  img : '', text : '', uuid : ''} , dragstateValue, {  img : '', text : '', uuid : ''}];
+            }
+            else {
+                console.log('else');
+                dropstate[index] = dragstateValue;
+                dropstate.splice(index,0,{  img : '', text : '', uuid : ''});
+                dropstate.splice(index+2,0,{  img : '', text : '', uuid : ''});
+            }
+            const newDrageState = dragstate.filter((e,i)=>{
+                if(i === Number(dragIndex.current)){
+                    console.log('return false');
+                    return false;
+                }
+                else return true;
+            })
+            console.log('newDrageState',newDrageState);
+            if(tier === 1){
+                setDropState1(()=>dropstate);
+            }
+            else if(tier === 2){
+                setDropState2(()=>dropstate);            
+            }
+            else if(tier === 3){
+                setDropState3(()=>dropstate);            
+            }
+            else if(tier === 4){
+                setDropState4(()=>dropstate);            
+            }
+            else if(tier === 5){
+                setDropState5(()=>dropstate);            
+            }
+            setDragState(()=>newDrageState);
+
             isDraging.current = false;
         }
         e.target.style.backgroundColor = 'white';
@@ -133,17 +221,61 @@ const Main2_a_queze = () => {
     }
     const dropDelete = (e) => {
         // console.log('dropDelete 이미지 삭제 하는 함수 시작 됨');
-        const dropIndex = e.target.id;
-        const dragstate = [...dragState];
-        let dropstate = [...dropState];
-        dropstate[dropIndex] = {img : '', text : '', uuid : ''};
-        const dropstateValue = {...dropState[dropIndex]};
-        setDragState([dropstateValue,...dragstate])
-        setDropState([...dropstate]);
+        const id = JSON.parse(e.target.id);
+        const index = id.index;
+        const tier = id.tier;
+        let dropstate;
+        if(tier === 1){
+            dropstate = [...dropState1];
+        }
+        else if(tier === 2){
+            dropstate = [...dropState2];
+        }
+        else if(tier === 3){
+            dropstate = [...dropState3];
+        }
+        else if(tier === 4){
+            dropstate = [...dropState4];
+        }
+        else if(tier === 5){
+            dropstate = [...dropState5];
+        }
+        const dragstate = [dropstate[index],...dragState];
+        const new_dropstate = dropstate.filter((e,i)=>{
+            if(i === index){
+                return false;
+            }
+            else if(i === index-1){
+                return false;
+            }
+            else{
+                return true;
+            }
+        })
+        if(tier === 1){
+            setDropState1(()=>new_dropstate);
+        }
+        else if(tier === 2){
+            setDropState2(()=>new_dropstate);            
+        }
+        else if(tier === 3){
+            setDropState3(()=>new_dropstate);            
+        }
+        else if(tier === 4){
+            setDropState4(()=>new_dropstate);            
+        }
+        else if(tier === 5){
+            setDropState5(()=>new_dropstate);            
+        }
+        setDragState(()=>[...dragstate])
     }
     const initialization = () => {
         setDragState(...[initialization_drag]);
-        setDropState(...[initialization_drop]);
+        setDropState1(()=>[{  img : '', text : '', uuid : ''}]);
+        setDropState2(()=>[{  img : '', text : '', uuid : ''}]);
+        setDropState3(()=>[{  img : '', text : '', uuid : ''}]);
+        setDropState4(()=>[{  img : '', text : '', uuid : ''}]);
+        setDropState5(()=>[{  img : '', text : '', uuid : ''}]);
     }
     return(
         <div className="Main2_a_queze_root">
@@ -172,12 +304,58 @@ const Main2_a_queze = () => {
             {/* <section className="Main2_a_queze_section">
                 <div className="tier_line"></div> */}
                 <div className="drop_area">
+                    <p className="tier1">1티어</p>
                 {   
-                    dropState.map((e,i)=>{
+                    dropState1.map((e,i)=>{
                         return(
-                            <Drop key={i} drop_element_index={i} text={e.text} img={e.img} uuid={e.uuid} dropFunc={dropFunc} dropDelete={dropDelete} isDraging={isDraging}></Drop>
+                            <Drop key={i} index={i} tier={1} text={e.text} img={e.img} uuid={e.uuid} dropFunc={dropFunc} dropDelete={dropDelete} isDraging={isDraging} length={dropState1.length}  ></Drop>
                         )
                     })
+                    
+                }
+                </div>
+                <div className="drop_area">
+                    <p className="tier2">2티어</p>
+                {   
+                    dropState2.map((e,i)=>{
+                        return(
+                            <Drop key={i} index={i} tier={2} text={e.text} img={e.img} uuid={e.uuid} dropFunc={dropFunc} dropDelete={dropDelete} isDraging={isDraging} length={dropState2.length} ></Drop>
+                        )
+                    })
+                    
+                }
+                </div>
+                <div className="drop_area">
+                    <p className="tier3">3티어</p>
+                {   
+                    dropState3.map((e,i)=>{
+                        return(
+                            <Drop key={i} index={i} tier={3} text={e.text} img={e.img} uuid={e.uuid} dropFunc={dropFunc} dropDelete={dropDelete} isDraging={isDraging} length={dropState3.length} ></Drop>
+                        )
+                    })
+                    
+                }
+                </div>
+                <div className="drop_area">
+                    <p className="tier4">4티어</p>
+                {   
+                    dropState4.map((e,i)=>{
+                        return(
+                            <Drop key={i} index={i} tier={4} text={e.text} img={e.img} uuid={e.uuid} dropFunc={dropFunc} dropDelete={dropDelete} isDraging={isDraging} length={dropState4.length} ></Drop>
+                        )
+                    })
+                    
+                }
+                </div>
+                <div className="drop_area">
+                    <p className="tier5">5티어</p>
+                {   
+                    dropState5.map((e,i)=>{
+                        return(
+                            <Drop key={i} index={i} tier={5} text={e.text} img={e.img} uuid={e.uuid} dropFunc={dropFunc} dropDelete={dropDelete} isDraging={isDraging} length={dropState5.length} ></Drop>
+                        )
+                    })
+                    
                 }
                 </div>
             {/* </section>  */}

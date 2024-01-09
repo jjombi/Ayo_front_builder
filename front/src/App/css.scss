@@ -477,12 +477,25 @@ label> input:nth-child(3), .label > input:nth-child(3) {
 }
 .drop_area{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background-color: rgba($color: #000000, $alpha: 0);
     width: 100%;
-    // overflow-y: scroll;
+    overflow: hidden;
+    overflow-x: scroll;
+    scrollbar-color: black;
 
 } // drag 이미지가 vw를 넘으면 x scroll 가능 하게 구현 하기
+.drop_area::-webkit-scrollbar-thumb{
+    background: black;
+    border-radius: 10px;
+
+}
+.drop_area::-webkit-scrollbar-track{
+    background: white;
+}
+.drop_area > p {
+    color: #000000;
+}
 .drag{
     // width: 300px;
     // height: 250px;
@@ -508,12 +521,12 @@ label> input:nth-child(3), .label > input:nth-child(3) {
 }
 .drop{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     background-color: rgba($color: #000000, $alpha: 0);
     z-index: 1;
     position: relative;
-    margin-left: 3%;
+    // margin-left: 3%;
 }
 .drop_rank {
     color: #000000;
@@ -539,7 +552,7 @@ label> input:nth-child(3), .label > input:nth-child(3) {
     height: 30px;
     color: #000000;
     left: 300px;
-    
+    transform: translate(-100%);
 }
 //------------------------make a queze
 .queze_area {
@@ -625,6 +638,21 @@ label> input:nth-child(3), .label > input:nth-child(3) {
 }
 .drop_img_area > div > p {
     color: #000000;
+}
+.tier1{
+    background-color: rgb(99, 130, 255);
+}
+.tier2{
+    background-color: rgb(102, 255, 99);
+}
+.tier3{
+    background-color: rgb(255, 229, 97);
+}
+.tier4{
+    background-color: rgb(75, 75, 75);
+}
+.tier5{
+    background-color: rgb(0, 0, 0);
 }
 //     reslur page /////////////////////////////////////////////////////
 .result_area {
