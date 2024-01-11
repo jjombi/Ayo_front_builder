@@ -23,7 +23,7 @@ const Drop = ({index, tier, text, img, uuid, dropFunc, dropDelete, length}) => {
             
             <div className="drop">
                 <button className='all_btn' id={`{"index" : ${index}, "tier" : ${tier}}`} onClick={dropDelete}>X</button>
-                <img src={img}></img>
+                <img loading='lazy' src={'data:image/jpeg;base64,'+img}></img>
                 <p>{text}</p>   
                 <input type='hidden' value={uuid}></input>
             </div>  

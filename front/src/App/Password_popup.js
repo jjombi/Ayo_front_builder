@@ -20,7 +20,7 @@ const Password_popup = ({ uuid, roomName, title, publicAccess, type }) => {
         }).then((res)=>{
             if(res.data){
                 alert('성공');
-                if(type === 'queze') navigate(`/ayoworldrankaqueze?roomName=${roomName}&title=${title}&publicAccess=${publicAccess}`);
+                if(type === 'queze') navigate(`/choosequezetype?roomName=${roomName}&title=${title}&publicAccess=${publicAccess}`);
                 else if(type === 'result') navigate(`/result?roomName=${roomName}&title=${title}`);
             }
             else{

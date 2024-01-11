@@ -19,7 +19,6 @@ const Main2_a_queze = () => {
     const [dropState3,setDropState3] = useState([]);
     const [dropState4,setDropState4] = useState([]);
     const [dropState5,setDropState5] = useState([]);
-    const [initialization_drop, setInitialization_drop] = useState([]);
     const [initialization_drag, setInitialization_drag] = useState([]);
     const dragIndex = useRef();
     const isDraging = useRef(false);
@@ -55,7 +54,7 @@ const Main2_a_queze = () => {
             // console.log(res);
             img_arr.map((e,i)=>{
                 // console.log('첫 element 생성 a queze img arr :',img_arr[i]);
-                dragState_ = [...dragState_,{  img : 'data:image/jpeg;base64,'+img_arr[i], text : text_arr[i], uuid : uuid_arr[i]}];
+                dragState_ = [...dragState_,{  img : img_arr[i], text : text_arr[i], uuid : uuid_arr[i]}];
             })
             console.log('완성된 첫 element dragstate',dragState_);
             setInitialization_drag([...dragState_]);
@@ -253,29 +252,29 @@ const Main2_a_queze = () => {
             }
         })
         if(tier === 1){
-            setDropState1(()=>new_dropstate);
+            setDropState1(dropstate1=>new_dropstate);
         }
         else if(tier === 2){
-            setDropState2(()=>new_dropstate);            
+            setDropState2(dropstate2=>new_dropstate);            
         }
         else if(tier === 3){
-            setDropState3(()=>new_dropstate);            
+            setDropState3(dropstate3=>new_dropstate);            
         }
         else if(tier === 4){
-            setDropState4(()=>new_dropstate);            
+            setDropState4(dropstate4=>new_dropstate);            
         }
         else if(tier === 5){
-            setDropState5(()=>new_dropstate);            
+            setDropState5(dropstate5=>new_dropstate);            
         }
         setDragState(()=>[...dragstate])
     }
     const initialization = () => {
         setDragState(...[initialization_drag]);
-        setDropState1(()=>[{  img : '', text : '', uuid : ''}]);
-        setDropState2(()=>[{  img : '', text : '', uuid : ''}]);
-        setDropState3(()=>[{  img : '', text : '', uuid : ''}]);
-        setDropState4(()=>[{  img : '', text : '', uuid : ''}]);
-        setDropState5(()=>[{  img : '', text : '', uuid : ''}]);
+        setDropState1( dropstate1=>[{  img : '', text : '', uuid : ''}]);
+        setDropState2( dropstate2=>[{  img : '', text : '', uuid : ''}]);
+        setDropState3( dropstate3=>[{  img : '', text : '', uuid : ''}]);
+        setDropState4( dropstate4=>[{  img : '', text : '', uuid : ''}]);
+        setDropState5( dropstate5=>[{  img : '', text : '', uuid : ''}]);
     }
     return(
         <div className="Main2_a_queze_root">
@@ -304,7 +303,7 @@ const Main2_a_queze = () => {
             {/* <section className="Main2_a_queze_section">
                 <div className="tier_line"></div> */}
                 <div className="drop_area">
-                    <p className="tier1">1티어</p>
+                    <p className="tier1">1</p>
                 {   
                     dropState1.map((e,i)=>{
                         return(
@@ -315,7 +314,7 @@ const Main2_a_queze = () => {
                 }
                 </div>
                 <div className="drop_area">
-                    <p className="tier2">2티어</p>
+                    <p className="tier2">2</p>
                 {   
                     dropState2.map((e,i)=>{
                         return(
@@ -326,7 +325,7 @@ const Main2_a_queze = () => {
                 }
                 </div>
                 <div className="drop_area">
-                    <p className="tier3">3티어</p>
+                    <p className="tier3">3</p>
                 {   
                     dropState3.map((e,i)=>{
                         return(
@@ -337,7 +336,7 @@ const Main2_a_queze = () => {
                 }
                 </div>
                 <div className="drop_area">
-                    <p className="tier4">4티어</p>
+                    <p className="tier4">4</p>
                 {   
                     dropState4.map((e,i)=>{
                         return(
@@ -348,7 +347,7 @@ const Main2_a_queze = () => {
                 }
                 </div>
                 <div className="drop_area">
-                    <p className="tier5">5티어</p>
+                    <p className="tier5">5</p>
                 {   
                     dropState5.map((e,i)=>{
                         return(

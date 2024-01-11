@@ -9,7 +9,7 @@ const Main2_content = ({roomName, src, title, existence, uuid, publicAccess, pas
     const A_queze_click = (roomName) => {
         // console.log('move to a queze page, roomName : ',roomName,'title : ',title);
         if(password === ''){
-            navigate(`/ayoworldrankaqueze?roomName=${roomName}&title=${title}&publicAccess=${publicAccess}`);
+            navigate(`/choosequezetype?roomName=${roomName}&title=${title}&publicAccess=${publicAccess}`);
         }
         else{
             setPopup_state(true);

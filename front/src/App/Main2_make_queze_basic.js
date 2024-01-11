@@ -7,6 +7,7 @@ import { dragenter, dragover, processChange } from "./public/WorldRank";
 import AWS from "aws-sdk";
 import Loading_popup from "./Loading_popup";
 import Make_queze_img from "./Make_queze_img";
+import Explain_popup from "./Explain_popup";
 const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const navigate = useNavigate();
     const [img_arr, setImg_arr] = useState([]); 
@@ -18,8 +19,9 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const lastest_i = useRef(0);
     const explain_text_ref = useRef([]); // 이미지 업로드후 이미지에 대한 설명글 ['서명1','설명2',...]
     const canvas_ref = useRef();
-    const img_src_arr = useRef([]);
     const last_num_ref = useRef('');
+    const [explain_popup_state, setExplain_popup_state] = useState(false);
+    const [explain_popup_state2, setExplain_popup_state2] = useState(false);
     const [loading_popup_state,setLoading_popup_state] = useState(false);
     const {pending} = useFormStatus();
     const [passtinyint, setPasstinyint] = useState(false);
@@ -63,7 +65,8 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                     roomName : roomName
                 }
             }).then((res)=>{
-                last_num_ref.current = res.data[res.data.length-1].originalname[3];
+                last_num_ref.current = res.data[res.data.length-1].originalname.replace(/img|.jpg/g, '');
+                console.log(last_num_ref);
             })
         }    
         // setLoading_popup_state(true);
@@ -226,34 +229,28 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const imageSizeChange = ( image ) => {
         // console.log('image',image.alt,image.name);
         const canvas = canvas_ref.current
-        let max_size = 1280; //1980 1080 -> 495 , 270
+
         let width = image.width;
         let height = image.height;
         // console.log(image.width,image.height);
         if(width > height){ // 가로가 더 길때
             // console.log(width / height);
             if(width / height <= 2){ // 비율이 2배 이하이면
-                if(width > 1600){
-                    width = image.width / 4;
-                    height = image.height / 4;
+                if(width > 4000){
+                    width = image.width / 2;
+                    height = image.height / 2;
                 }
-                else if(width > 800){
-                    width = image.width / 3;
-                    height = image.height / 3;
-                }
+
 
             }
         }else{              // 세로가 더 길때
             // console.log(height / width);
             if(width / height <= 2){ // 비율이 2배 이하이면
-                if(height > 1600){
-                    width = image.width / 4;
-                    height = image.height / 4;
+                if(height > 4000){
+                    width = image.width / 2;
+                    height = image.height / 2;
                 }
-                else if(height > 800){
-                    width = image.width / 3;
-                    height = image.height / 3;
-                }
+
 
             }
 
@@ -316,28 +313,52 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
         password_preview_state === 'text' ? setPassword_preview_state('password')
         : setPassword_preview_state('text')
     }
+    const change_explain_popup_state = (e,type) => {
+        e.preventDefault();
+        console.log('explain popup state change');
+        if(type === 1){
+            setExplain_popup_state(explain_popup_state => !explain_popup_state);
+        }
+        else if(type === 2){
+            setExplain_popup_state2(explain_popup_state2 => !explain_popup_state2);
+        }
+    }
     return(
         <>  
             {loading_popup_state ? <Loading_popup setLoading_popup_state={setLoading_popup_state} pending={pending}/> : null}
             <canvas ref={canvas_ref}></canvas>
             <iframe id="iframe" name="iframe" style={{display:'none'}} ></iframe>
+            
             <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={process.env.REACT_APP_SERVER_URL+serverurl} target="iframe"> {/* action="http://localhost:45509/upload_img" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'} */}
                 {type === 'modify'?
                 <>
                 <input type="hidden" value={roomName} name="roomName"></input>
-                <input type="hidden" name="last_num" value={last_num_ref.current}></input> 
+                <input type="hidden" name="last_num" value={Number(last_num_ref.current)}></input> 
                 </> :
                 <>
                     <div className="main_title">
                         <input type="text" placeholder="제목" name="title" ref={title_ref}></input>
                     </div>
-                    <label>
-                        <p title="모든 사용자가 티어표를 수정할 수 있습니다">공개 수정 허용</p>
+                    <div className="label">
+                        <p title="모든 사용자가 티어표를 수정할 수 있습니다">
+                            공개 수정 허용
+                            <svg className="all_btn" onClick={(e)=>{change_explain_popup_state(e,1)}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9.14939 7.8313C8.57654 5.92179 10.0064 4 12 4V4C13.9936 4 15.4235 5.92179 14.8506 7.8313L13.2873 13.0422C13.2171 13.2762 13.182 13.3932 13.128 13.4895C12.989 13.7371 12.7513 13.9139 12.4743 13.9759C12.3664 14 12.2443 14 12 14V14C11.7557 14 11.6336 14 11.5257 13.9759C11.2487 13.9139 11.011 13.7371 10.872 13.4895C10.818 13.3932 10.7829 13.2762 10.7127 13.0422L9.14939 7.8313Z" stroke="#222222"/>
+                            <circle cx="12" cy="19" r="2" stroke="#222222"/>
+                            </svg>
+                        </p>
+                        {explain_popup_state ? <Explain_popup text={"이 티어표를 참여한 모든 사람이 새로운 선택지를 추가하는 등 현재 티어표를 수정할 수 있습니다."} top={"-7%"} left={"20%"}></Explain_popup> : null}
                         <input type="checkbox" value="수정가능" name="publicAccess"></input> 
 
-                    </label>
+                    </div>
                     <div className="label">
-                        <p title="비밀번호를 설정하여 일부만 참여할 수 있게합니다.">일부 공개</p>
+                        <p title="비밀번호를 설정하여 일부만 참여할 수 있게합니다.">일부 공개
+                            <svg className="all_btn" onClick={(e)=>{change_explain_popup_state(e,2)}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9.14939 7.8313C8.57654 5.92179 10.0064 4 12 4V4C13.9936 4 15.4235 5.92179 14.8506 7.8313L13.2873 13.0422C13.2171 13.2762 13.182 13.3932 13.128 13.4895C12.989 13.7371 12.7513 13.9139 12.4743 13.9759C12.3664 14 12.2443 14 12 14V14C11.7557 14 11.6336 14 11.5257 13.9759C11.2487 13.9139 11.011 13.7371 10.872 13.4895C10.818 13.3932 10.7829 13.2762 10.7127 13.0422L9.14939 7.8313Z" stroke="#222222"/>
+                            <circle cx="12" cy="19" r="2" stroke="#222222"/>
+                            </svg>
+                        </p>
+                        {explain_popup_state2 ? <Explain_popup text={"비밀번호를 아는 사람들만 참여할 수 있습니다, 검색창에서 검색하거나 공유 링크를 통해 접속후 비밀번호를 입력해야 참여할 수 있습니다."} top={"-7%"} left={"20%"}></Explain_popup> : null}
                         <input type="checkbox" onChange={change_pass_tinyint}></input>
                         {
                             passtinyint ? 
