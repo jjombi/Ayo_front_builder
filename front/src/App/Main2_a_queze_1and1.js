@@ -30,9 +30,32 @@ const Main2_a_queze_1and1 = () => {
             }
         }).then((res)=>{ // res ex : [{text, img ,uuid},{}]
             console.log(res.data);
-            const data1 = res.data.text.map((e,i)=>{
-                return ({img : 'data:image/jpeg;base64,'+res.data.img[i], text : res.data.text[i], uuid : res.data.uuid[i]})
-            })
+            const num = [2,4,8,16,32,64,128,256];
+            let comparisontype = 512;
+            let type;
+            console.log('res.data.text.length',res.data.text.length);
+            if(res.data.text.length === 2 || res.data.text.length === 4 || res.data.text.length === 8 || res.data.text.length === 16 || res.data.text.length === 32 || res.data.text.length === 64 || res.data.text.length === 128 || res.data.text.length === 2256){
+                type = res.data.text.length;
+            }
+            else{
+                num.map((e,i)=>{
+                if(Math.abs(res.data.text.length - e) < comparisontype && Math.sign(e - res.data.text.length) === -1){//1,1,5,13,60,125,153 ,,, 298,296,
+                    comparisontype = Math.abs(res.data.text.length - e);// com 5 3 
+                    type = e;
+                }
+                })
+            }
+            let data1 = []  ;
+            for(let i=0;i < type; i++){
+                data1[i] = {img : 'data:image/jpeg;base64,'+res.data.img[i], text : res.data.text[i], uuid : res.data.uuid[i]};
+            }
+            console.log('data1',data1);
+            // data1 = res.data.text.filter((e,i)=>{
+            //     return ({img : 'data:image/jpeg;base64,'+res.data.img[i], text : res.data.text[i], uuid : res.data.uuid[i]})
+            // })
+            // const data1 = res.data.text.map((e,i)=>{
+            //     return ({img : 'data:image/jpeg;base64,'+res.data.img[i], text : res.data.text[i], uuid : res.data.uuid[i]})
+            // })
 
             const random_content = data1.sort(()=> Math.random() - 0.5);
             console.log('random content',random_content);
