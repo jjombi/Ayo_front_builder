@@ -16,11 +16,14 @@ const Result = () => {
     const title_ref = useRef();
     const [result_content_state,setResult_content_state] = useState([]);
     const [result_comment_state,setResult_comment_state] = useState([]);
+    const [publicAccess,setPublicAccess] = useState(false);
 
     // const [boolean,setBoolean] = useState([]);
     useEffect(()=>{
         roomName_ref.current = searchParams.get('roomName');
         title_ref.current = searchParams.get('title');
+        const publicAccess_ = searchParams.get('publicAccess');
+
         axios({
             url : process.env.REACT_APP_SERVER_URL +'/main_result',
             method : 'POST',
@@ -58,6 +61,9 @@ const Result = () => {
             setResult_comment_state([...setResult_comment_state_]);
         })
         // setResult_content_state([{img : img, text : 'asdasdas'}]);
+        if(publicAccess_ === 1 || publicAccess_){
+            setPublicAccess(true);
+        }
     },[])
 
 
@@ -86,6 +92,19 @@ const Result = () => {
     return(
         <>
             <Header></Header>
+            <header className="Main2_a_queze_header">
+                {
+                    publicAccess === true ? <button title="최애티어에 세로운 선택요소를 만들 수 있습니다." className="all_btn a_queze_header_btn" onClick={()=>{ window.open(`https://ay0.site/makeaquezemodify?roomName=${roomName_ref.current}&title=${title_ref.current}`, "_blank", "noopener, noreferrer");}}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                        <path d="M3 3V2.5H2.5V3H3ZM12.6464 13.3536C12.8417 13.5488 13.1583 13.5488 13.3536 13.3536C13.5488 13.1583 13.5488 12.8417 13.3536 12.6464L12.6464 13.3536ZM3.5 11V3H2.5V11H3.5ZM3 3.5H11V2.5H3V3.5ZM2.64645 3.35355L12.6464 13.3536L13.3536 12.6464L3.35355 2.64645L2.64645 3.35355Z" fill="#222222"/>
+                        <path d="M4 15V15C4 16.8692 4 17.8038 4.40192 18.5C4.66523 18.9561 5.04394 19.3348 5.5 19.5981C6.19615 20 7.13077 20 9 20H14C16.8284 20 18.2426 20 19.1213 19.1213C20 18.2426 20 16.8284 20 14V9C20 7.13077 20 6.19615 19.5981 5.5C19.3348 5.04394 18.9561 4.66523 18.5 4.40192C17.8038 4 16.8692 4 15 4V4" stroke="#222222" strokeLinecap="round"/>
+                        </svg>
+                        최애 티어 수정 하기
+                  </button> : <button className="all_btn a_queze_header_btn" title="최애티어를 만든 제작자께서 수정을 허용하지 않았습니다">수정 불가</button>
+                }
+                {/*<h3>{title_ref.current}</h3>*/}
+                {/* <h3>test title text</h3> */}
+            </header>
             <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
             <h3 className="result_title">
                 {title_ref.current}

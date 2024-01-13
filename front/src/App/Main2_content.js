@@ -19,7 +19,7 @@ const Main2_content = ({roomName, src, title, existence, uuid, publicAccess, pas
     const result_click = (roomName) => {
         // console.log('move to result page, roomName : ',roomName);
         if(password === ''){
-            navigate(`/result?roomName=${roomName}&title=${title}`);
+            navigate(`/result?roomName=${roomName}&title=${title}&publicAccess=${publicAccess}`);
         }
         else{
             setPopup_state(true);

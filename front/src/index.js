@@ -10,6 +10,7 @@ const Main2_make_queze = lazy(()=> import('./App/Main2_make_queze'));
 const Make_a_queze_modify = lazy(()=>import('./App/Make_a_queze_modify.js'));
 const Choose_queze_type = lazy(()=>import('./App/Choose_queze_type.js'));
 const Main2_a_queze_1and1 = lazy(()=>import('./App/Main2_a_queze_1and1.js'));
+const Community = lazy(()=>import('./App/Community/Community.js'));
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
 root.render(
@@ -28,6 +29,7 @@ root.render(
               <Route path='/makeaquezemodify' element={<Make_a_queze_modify/>}></Route>
               <Route path='/choosequezetype' element={<Choose_queze_type/>}></Route>
               <Route path='/oneandeone' element={<Main2_a_queze_1and1/>}></Route>
+              <Route path='/community' element={<Community/>}></Route>
 
           </Routes>  
         </CookiesProvider> 

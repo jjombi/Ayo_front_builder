@@ -42,7 +42,7 @@ const Result_content = ({img,text,rankNum, length}) => {
             {
                 <h3 style={{backgroundColor: bac}}><p>{type}</p></h3>
             }
-            <h4>{rankNum+1}</h4>
+            {/* <h4>{rankNum+1}</h4> */}
             <img src={img}></img>
             <p>{text}</p>
         </div>    

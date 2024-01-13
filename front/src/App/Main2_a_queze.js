@@ -360,7 +360,7 @@ const Main2_a_queze = () => {
             {/* </section>  */}
             <div className="main2_a_queze_btn_area">
                 <button onClick={submit}>투표하기</button>
-                <button onClick={e=>{e.preventDefault();navigate(`/result?roomName=${roomName_ref.current}`)}}>결과 보기</button>
+                <button onClick={e=>{e.preventDefault();navigate(`/result?roomName=${roomName_ref.current}&roomName=${roomName_ref.current}&publicAccess=${publicAccess}`)}}>결과 보기</button>
             </div>
 
             <div className="drag_area">

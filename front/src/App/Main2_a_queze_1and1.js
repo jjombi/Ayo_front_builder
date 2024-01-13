@@ -45,17 +45,12 @@ const Main2_a_queze_1and1 = () => {
                 }
                 })
             }
+            
             let data1 = []  ;
             for(let i=0;i < type; i++){
                 data1[i] = {img : 'data:image/jpeg;base64,'+res.data.img[i], text : res.data.text[i], uuid : res.data.uuid[i]};
             }
             console.log('data1',data1);
-            // data1 = res.data.text.filter((e,i)=>{
-            //     return ({img : 'data:image/jpeg;base64,'+res.data.img[i], text : res.data.text[i], uuid : res.data.uuid[i]})
-            // })
-            // const data1 = res.data.text.map((e,i)=>{
-            //     return ({img : 'data:image/jpeg;base64,'+res.data.img[i], text : res.data.text[i], uuid : res.data.uuid[i]})
-            // })
 
             const random_content = data1.sort(()=> Math.random() - 0.5);
             console.log('random content',random_content);
@@ -95,7 +90,7 @@ const Main2_a_queze_1and1 = () => {
                     }
                 }).then((res)=>{
                     //result로 페이지 이동
-                    navigate(`/result?roomName=${roomName}`);
+                    navigate(`/result?roomName=${roomName}&roomName${roomName}&publicAccess=${publicAccess}`);
                 })
             }
             else{
