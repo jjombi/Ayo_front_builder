@@ -65,7 +65,7 @@ const Main2_a_queze_1and1 = () => {
     const contentClick = (e) => {
         const newContentState = [...change_content.current,earlyContentState[e.target.id]];
         console.log('ID',e.target.id,showIndex, 'newContentState', newContentState, 'earlyContentState', earlyContentState, 'showIndex',showIndex,'earlyContentState.length/2',Math.floor(earlyContentState.length/2));
-
+        // e.target.style.backgroundColor = 'white';
 
         if(showIndex+2 >= earlyContentState.length && newContentState.length === Math.floor(earlyContentState.length/2)){
             if(newContentState.length === 1 && earlyContentState.length >= 2 && earlyContentState.length <= 3){

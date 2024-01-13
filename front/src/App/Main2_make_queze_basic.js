@@ -8,6 +8,7 @@ import AWS from "aws-sdk";
 import Loading_popup from "./Loading_popup";
 import Make_queze_img from "./Make_queze_img";
 import Explain_popup from "./Explain_popup";
+import Guide_popup from "./Guide_popup";
 const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const navigate = useNavigate();
     const [img_arr, setImg_arr] = useState([]); 
@@ -27,6 +28,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const [passtinyint, setPasstinyint] = useState(false);
     const password_ref = useRef();
     const [password_preview_state,setPassword_preview_state] = useState('password');
+    const [guide_state, setGuide_state] = useState(false);
     // const history = useHistory();
 
 
@@ -323,10 +325,15 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
             setExplain_popup_state2(explain_popup_state2 => !explain_popup_state2);
         }
     }
+    const change_guide_state = () => {
+        setGuide_state(guide_state => !guide_state);
+    }
     return(
         <>  
             {loading_popup_state ? <Loading_popup setLoading_popup_state={setLoading_popup_state} pending={pending}/> : null}
+            {guide_state ? <Guide_popup setGuide_state={setGuide_state}/> : null}
             <canvas ref={canvas_ref}></canvas>
+            <input type="button" className="make_queze_guide_input all_btn" value="설명서" onClick={change_guide_state}></input>
             <iframe id="iframe" name="iframe" style={{display:'none'}} ></iframe>
             
             <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={process.env.REACT_APP_SERVER_URL+serverurl} target="iframe"> {/* action="http://localhost:45509/upload_img" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'} */}

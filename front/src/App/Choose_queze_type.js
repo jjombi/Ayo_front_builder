@@ -42,7 +42,7 @@ const Choose_queze_type = () => {
             : 
             <section className="Choose_queze_type_section">
                 <button className="all_btn" onClick={change_oneandoneState}>1 대 1 토너먼트</button>
-                <button className="all_btn" onClick={navi_to_tier}>티어표 만들기</button>
+                <button className="all_btn" onClick={navi_to_tier}>티어표 만들기 pc만 가능</button>
                 <img src={oneandone}></img>
                 <img src={dragdrop}></img>
                 

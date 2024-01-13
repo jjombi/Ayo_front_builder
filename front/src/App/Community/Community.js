@@ -4,7 +4,7 @@ import '../css.css';
 import axios from "axios";
 const Community = () => {
     const comment_input_ref = useRef();
-    const [comment_state, setComment_state] = useState([1,2]);
+    const [comment_state, setComment_state] = useState([]);
 
     useEffect(()=>{
         axios({
@@ -31,9 +31,9 @@ const Community = () => {
             </div>
 
             {
-            comment_state.map((e,i)=>{
-                console.log('a');
-            })
+                comment_state.map((e,i)=>{
+
+                })
             }
 
         </div>

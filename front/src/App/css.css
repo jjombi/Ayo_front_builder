@@ -568,6 +568,18 @@ header {
   align-items: center;
 }
 
+.make_queze_guide_input {
+  position: fixed;
+  bottom: 3%;
+  right: 3%;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  color: #000000;
+  font-size: 12px;
+  z-index: 11;
+}
+
 .a_queze_img {
   display: flex;
   flex-direction: column;
@@ -986,6 +998,73 @@ header {
 .explain_popup_root > p {
   color: white;
   font-size: 12px;
+}
+
+.guide_popup_root {
+  width: 100vw;
+  height: 100vh;
+  max-height: 100%;
+  max-width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 12;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.guide_popup_root > button {
+  position: absolute;
+}
+
+.guide_popup_root > section {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.guide_popup_root > section > button {
+  position: fixed;
+  top: 10%;
+  right: 10%;
+  color: white;
+  border: 1px solid rgb(239, 239, 239);
+  width: 30px;
+  height: 30px;
+  color: #000000;
+  transform: translate(-50%, 50%);
+}
+
+.guide_popup_root > section > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+.guide_popup_root > section > div > p {
+  color: #000000;
+}
+
+.guide_popup_root > section > div > img {
+  object-fit: scale-down;
+}
+
+.guide_popup_root > section > div > h1 {
+  margin-top: 3%;
+  color: #000000;
+}
+
+.bord {
+  font-size: 14px;
 }
 
 /*----------------------------------------------*/
