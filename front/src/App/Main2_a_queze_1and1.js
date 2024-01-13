@@ -90,7 +90,7 @@ const Main2_a_queze_1and1 = () => {
                     }
                 }).then((res)=>{
                     //result로 페이지 이동
-                    navigate(`/result?roomName=${roomName}&roomName${roomName}&publicAccess=${publicAccess}`);
+                    navigate(`/result?roomName=${roomName}&title=${title}&publicAccess=${publicAccess}`);
                 })
             }
             else{
