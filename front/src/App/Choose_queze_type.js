@@ -3,7 +3,7 @@ import './css.css';
 import dragdrop from './Gif/dragdrop.gif';
 import oneandone from './Gif/oneandone.gif';
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { FSx } from "aws-sdk";
+import Adfit from "./Adfit";
 const Choose_queze_type = () => {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
@@ -24,6 +24,12 @@ const Choose_queze_type = () => {
     }
     return(
         <div className="Choose_queze_type_root">
+            <div className="choose_queze_type_adfit_area">
+            <Adfit unit={'DAN-1fMtPVRr84eFK7G1'}></Adfit>
+            </div>
+            {/* <div className="choose_queze_type_adfit_area2">
+            <Adfit unit={'DAN-1fMtPVRr84eFK7G1'}></Adfit>
+            </div> */}
             <h1>{title}</h1>
         {
             oneandoneState 
