@@ -266,20 +266,20 @@ header {
 
 .plus_queze > div {
   width: 300px;
-  height: 50px;
+  height: 70px;
   display: flex;
   flex-direction: column;
 }
 
 .plus_queze > div > p {
   width: 100%;
-  height: 40%;
+  height: 60%;
   color: #000000;
 }
 
 .plus_queze > div > div {
   width: 100%;
-  height: 60%;
+  height: 40%;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -320,6 +320,18 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+
+.password_popup_root > section > button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+  background-color: white;
+  color: #000000;
 }
 
 .password_popup_root > section > p {
@@ -336,12 +348,12 @@ header {
   border-radius: 10px;
 }
 
-.password_popup_root > section > input:nth-child(2) {
+.password_popup_root > section > input:nth-child(3) {
   width: 240px;
   height: 40px;
 }
 
-.password_popup_root > section > input:nth-child(3) {
+.password_popup_root > section > input:nth-child(4) {
   width: 120px;
   height: 30px;
   margin-top: 10%;
