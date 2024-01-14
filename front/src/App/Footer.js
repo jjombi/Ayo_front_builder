@@ -17,7 +17,8 @@ const Footer = ({tinyint}) => {
             </div>
             <div>
                 <li>
-                    <ul>이상형 월드컵 seasen2, 내 이상형 순위를 선택해 보세요!</ul>
+                    {/* <ul>이상형 월드컵 seasen2, 내 이상형 순위를 선택해 보세요!</ul> */}
+                    <ul>나락퀴즈쇼, 일반인도 나락에 갈수 있다!!</ul>
                 </li>
             </div>
             {
