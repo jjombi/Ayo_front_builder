@@ -261,9 +261,9 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
         canvas.height = height;
         canvas.getContext("2d").drawImage(image, 0, 0, width, height);
         const imgUrl = canvas.toDataURL("image/jpeg", 0.5);
-        console.log('결과물 imgUrl : ',imgUrl);
+        // console.log('결과물 imgUrl : ',imgUrl);
         const binary = window.atob(imgUrl.split(',')[1]);
-        console.log('binary',binary);
+        // console.log('binary',binary);
         const arraybuffer = new ArrayBuffer(binary.length);
         let bytes = new Uint8Array(arraybuffer);
         for(let i=0;i < binary.length; i++){
@@ -275,6 +275,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
         });
         // console.log('file : ',file);
         img_arr_ref.current = [...img_arr_ref.current,file];
+        console.log(img_arr_ref);
     }
 
     const file_size_checker = (ev) => {
@@ -307,7 +308,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
         setPasstinyint(!passtinyint);
 
         if(passtinyint){
-            console.log(password_ref);
+            // console.log(password_ref);
             password_ref.current.value = '';
         }
     }
@@ -317,7 +318,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     }
     const change_explain_popup_state = (e,type) => {
         e.preventDefault();
-        console.log('explain popup state change');
+        // console.log('explain popup state change');
         if(type === 1){
             setExplain_popup_state(explain_popup_state => !explain_popup_state);
         }
