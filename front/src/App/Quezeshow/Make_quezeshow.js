@@ -16,7 +16,7 @@ const Make_quezeshow = () => {
     const form_dom_ref = useRef();
     const [loading_popup_state,setLoading_popup_state] = useState(false);
     const [uuid,setUuid] = useState('');
-    const [representative_img_state, setRepresentative_img_state] = useState(0);
+    const [representative_img_state, setRepresentative_img_state] = useState(null);
     const {pending} = useFormStatus();
     const [content_object, setContent_object] = useState([]);
 
