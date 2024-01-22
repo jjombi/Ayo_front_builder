@@ -37,7 +37,7 @@ const Main2 = () => {
     },[])
 
     const search_enter = (e) => {
-        console.log('seach 중',search_value_ref.current.value);
+        // console.log('seach 중',search_value_ref.current.value);
         if(e.key === 'Enter'){
             axios({
                 url : process.env.REACT_APP_SERVER_URL + '/search_queze',
@@ -49,7 +49,7 @@ const Main2 = () => {
                     value : search_value_ref.current.value
                 }
             }).then((res)=>{
-                console.log(res);
+                // console.log(res);
                 let content_arr = [];
                 if(res.data){
                     res.data.result.map((e,i)=>{

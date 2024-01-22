@@ -7,7 +7,7 @@ import AWS from "aws-sdk";
 import Loading_popup from "../Loading_popup";
 import { useFormStatus } from 'react-dom';
 import Header from "../ayo_world_rank_header";
-
+import Adfit from "../Adfit";
 const Make_quezeshow = () => {
     const [content_state,setContent_state] = useState([]);
     const file_ref = useRef([]);
@@ -33,7 +33,7 @@ const Make_quezeshow = () => {
 
     useEffect(()=>{
         const uuid_ = uuidv4();
-        console.log('uuid',uuid_);
+        // console.log('uuid',uuid_);
         setUuid(uuid=> uuid_);
     },[])
 
@@ -49,15 +49,15 @@ const Make_quezeshow = () => {
         }   
         else{
             for(let i = 0;i < file_ref.current.length;i++){
-                console.log('for 문');
+                // console.log('for 문');
                 if(file_ref.current[i] !== ''){
-                    console.log('i',i);
+                    // console.log('i',i);
                     setRepresentative_img_state(i);
                     i = file_ref.current.length+1;
                 }
             }
             Promise.all([...file_ref.current].map((e,i)=>{
-                console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',i,'e',e,' and body :',file_ref.current[i]);
+                // console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',i,'e',e,' and body :',file_ref.current[i]);
                 // if(e !== ''){
                     const upload = new AWS.S3.ManagedUpload({
                         params: {
@@ -67,15 +67,15 @@ const Make_quezeshow = () => {
                             Body: file_ref.current[i], // 파일 객체
                         },
                     });
-                    console.log('upload',upload);
+                    // console.log('upload',upload);
                     const promise = upload.promise();
-                    promise.then(()=>{
-                        console.log('success upload',upload,i);
-                    });
+                    // promise.then(()=>{
+                        // console.log('success upload',upload,i);
+                    // });
                 // }
             })).then(()=>{
                 setLoading_popup_state(true);
-                console.log('submint 회수','representative_img_state',representative_img_state);
+                // console.log('submint 회수','representative_img_state',representative_img_state);
                 form_dom_ref.current.submit();
             })  
         }
@@ -83,6 +83,7 @@ const Make_quezeshow = () => {
     return (
         <form className="make_quezeshow_root" ref={form_dom_ref} action={process.env.REACT_APP_SERVER_URL+"/make_quezeshow"} method="POST" target="iframe">
             <Header></Header>
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
             <iframe id="iframe" name="iframe" style={{display:'none'}} ></iframe>
             {loading_popup_state ? <Loading_popup setLoading_popup_state={setLoading_popup_state} pending={pending}/> : null}
             <canvas ref={canvas_ref}></canvas>
@@ -96,7 +97,7 @@ const Make_quezeshow = () => {
             }
             <input type="number" hidden name="representativeimg" value={Number(representative_img_state)} readOnly></input>
             {
-                console.log('representative_img_state',representative_img_state)
+                // console.log('representative_img_state',representative_img_state)
             }
             <input type="text" hidden name="uuid" value={uuid} readOnly></input>
             <input type="text" value={Date.now()} name="date" readOnly hidden></input>

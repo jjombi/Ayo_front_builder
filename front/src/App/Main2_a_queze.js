@@ -56,7 +56,7 @@ const Main2_a_queze = () => {
                 // console.log('첫 element 생성 a queze img arr :',img_arr[i]);
                 dragState_ = [...dragState_,{  img : img_arr[i], text : text_arr[i], uuid : uuid_arr[i]}];
             })
-            console.log('완성된 첫 element dragstate',dragState_);
+            // console.log('완성된 첫 element dragstate',dragState_);
             setInitialization_drag([...dragState_]);
             setDragState([...dragState_]);
             setDropState1(()=>[{  img : '', text : '', uuid : ''}]);
@@ -173,23 +173,23 @@ const Main2_a_queze = () => {
             }
             // console.log('dropstate',dropstate);
             if(index === 0 && dropstate.length === 1){
-                console.log('처음');
+                // console.log('처음');
                 dropstate = [{  img : '', text : '', uuid : ''} , dragstateValue, {  img : '', text : '', uuid : ''}];
             }
             else {
-                console.log('else');
+                // console.log('else');
                 dropstate[index] = dragstateValue;
                 dropstate.splice(index,0,{  img : '', text : '', uuid : ''});
                 dropstate.splice(index+2,0,{  img : '', text : '', uuid : ''});
             }
             const newDrageState = dragstate.filter((e,i)=>{
                 if(i === Number(dragIndex.current)){
-                    console.log('return false');
+                    // console.log('return false');
                     return false;
                 }
                 else return true;
             })
-            console.log('newDrageState',newDrageState);
+            // console.log('newDrageState',newDrageState);
             if(tier === 1){
                 setDropState1(()=>dropstate);
             }

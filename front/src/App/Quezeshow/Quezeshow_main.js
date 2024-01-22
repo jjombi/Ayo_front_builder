@@ -3,6 +3,7 @@ import '../css.css';
 import Header from "../ayo_world_rank_header";
 import Quezeshow_main_content from "./Quezeshow_main_content";
 import axios from "axios";
+import Adfit from "../Adfit";
 const Quezeshow_main= () => {
     const [content_state,setContent_state] = useState([]);
     useEffect(()=>{
@@ -32,6 +33,7 @@ const Quezeshow_main= () => {
     return(
         <div className="quezeshow_main_root">
             <Header></Header>
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
             <div className="queze_list">
                 {
                     content_state.map((e,i)=>{

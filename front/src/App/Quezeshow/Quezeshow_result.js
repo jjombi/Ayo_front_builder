@@ -5,7 +5,7 @@ import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import Quezeshow_queze_content from "./Quezeshow_queze_content";
 import Quezeshow_comment from "./Quezeshow_comment";
 import Header from "../ayo_world_rank_header";
-
+import Adfit from "../Adfit";   
 const Quezeshow_result = () => {
     const [seachParams, setSearchParams] = useSearchParams();
     const roomnum = seachParams.get('roomnum');
@@ -82,12 +82,13 @@ const Quezeshow_result = () => {
     return(
         <>
         <Header/>
+        <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
         <div className="quezeshow_result_root">
             <section className="content">
             {
                 content_state.map((e,i)=>{
                     return(
-                        <Quezeshow_queze_content key={i} index={i} img={'data:image/jpeg;base64,'+e.img} text={e.text} title={e.title} uuid={e.uuid} clicked={''} setClicked={''} uuid2={e.uuid2} value={Math.floor(e.value / allvalue.current * 100)}/>
+                        <Quezeshow_queze_content key={i} index={i} img={'data:image/jpeg;base64,'+e.img} text={e.text} title={e.title} uuid={e.uuid} clicked={''} setClicked={''} uuid2={e.uuid2} value={isNaN(Math.floor(e.value / allvalue.current * 100)) ? 0 : Math.floor(e.value / allvalue.current * 100)}/>
                     )
                 })
             }

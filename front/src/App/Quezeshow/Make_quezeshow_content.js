@@ -93,11 +93,11 @@ const Make_quezeshow_content = ({index,content_state,setContent_state,canvas_ref
 
     }
     const delete_ = () => {
-        console.log('index',index,'file_ref.current',file_ref.current,'content_state',content_state);
+        // console.log('index',index,'file_ref.current',file_ref.current,'content_state',content_state);
         file_ref.current = file_ref.current.filter((e,i)=>{return(i !== Number(index))});
         const content_state_ = content_state.filter((e,i)=>{return(i !== Number(index))});
         const content_object_ = content_object.filter((e,i)=>{return(i !== Number(index))});
-        console.log(file_ref.current,content_state_,content_object_);
+        // console.log(file_ref.current,content_state_,content_object_);
         setContent_state(content_state => [...content_state_]);
         setContent_object(content_object => [...content_object_]);
     }
@@ -130,7 +130,7 @@ const Make_quezeshow_content = ({index,content_state,setContent_state,canvas_ref
             <input type="text" name="content_title" className="Make_quezeshow_content_title" placeholder="제목" value={content_object[index].title} onChange={change_title}></input>
             <input type="text" name="explain_text" className="Make_quezeshow_content_text" placeholder="설명" value={content_object[index].text} onChange={change_text}></input>
             {
-                console.log(content_object[index],index)
+                // console.log(content_object[index],index)
             }
         </section>
     )

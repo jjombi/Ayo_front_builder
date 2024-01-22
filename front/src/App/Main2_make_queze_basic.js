@@ -68,7 +68,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                 }
             }).then((res)=>{
                 last_num_ref.current = res.data[res.data.length-1].originalname.replace(/img|.jpg/g, '');
-                console.log(last_num_ref);
+                // console.log(last_num_ref);
             })
         }    
         // setLoading_popup_state(true);

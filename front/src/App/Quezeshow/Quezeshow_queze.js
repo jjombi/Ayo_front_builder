@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Quezeshow_queze_content from "./Quezeshow_queze_content";
 import Quezeshow_comment from "./Quezeshow_comment";
+import Adfit from "../Adfit";
 const Quezeshow_queze= () => {
     const navigate = useNavigate();
     const [seachParams, setSearchParams] = useSearchParams();
@@ -123,6 +124,7 @@ const Quezeshow_queze= () => {
     return(
         <div className="quezeshow_queze_root">
             <Header></Header>
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
             <h1 style={{color : 'black'}}>{quezeshow_title.current}</h1>
             {
                 submit_state
