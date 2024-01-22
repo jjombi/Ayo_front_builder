@@ -1,7 +1,7 @@
 import React from "react";
 import '../css.css';
 import { useNavigate } from "react-router-dom";
-
+import img from '../Img_folder/no_image.jpg';
 const Quezeshow_main_content= ({index,src,uuid,title,roomnum}) => {
     const navigate = useNavigate();
     const result_click = () => {
@@ -12,7 +12,9 @@ const Quezeshow_main_content= ({index,src,uuid,title,roomnum}) => {
     }
     return(
         <button className="plus_queze">
-            <img src={src}></img>
+            {
+                src === 'data:image/jpeg;base64,' ? <img src={img}></img> : <img src={src}></img>
+            }
             <div>
                 <p>{title}</p>
                 <div>

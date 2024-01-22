@@ -1,17 +1,24 @@
 import React, {useEffect, useRef, useState} from "react";
 import '../css.css';
 import { dragenter, dragover, processChange } from "../public/WorldRank";
-import img from '../Img_folder/zzal2.jpg';
+import img from '../Img_folder/no_image.jpg';
+
 const Make_quezeshow_content = ({index,content_state,setContent_state,canvas_ref,file_ref,content_object,setContent_object}) => {
     const [src, setSrc] = useState(img);
     const [img_tinyint, setImg_tinyint] = useState(false);
     // console.log('index',index);
     useEffect(()=>{
         file_ref.current[index] = '';
+        setSrc(src => img);
     },[])
-    useEffect(()=>{
-        setSrc(content_object[index].src,index);
-    },[content_object[index].src])
+    // useEffect(()=>{
+    //     if(src === '' || src === 'data:image/jpeg;base64,'){
+    //         setSrc(src =>img);
+    //     }
+    //     else{
+    //         setSrc(src => content_object[index].src);
+    //     }
+    // },[content_object[index].src])
 
     const change_img = (e) => {
         e.preventDefault();
@@ -124,7 +131,13 @@ const Make_quezeshow_content = ({index,content_state,setContent_state,canvas_ref
     return(
         <section className="make_quezeshow_content_root">
             <input className="make_quezeshow_content_deletebtn" type="button" onClick={delete_} value={"X"}></input>
-            <img src={src} className="make_quezeshow_content_img"></img>
+            {
+                src === '' || src === 'data:image/jpeg;base64,' 
+                ?
+                <img src={img} className="make_quezeshow_content_img"></img>
+                :
+                <img src={src} className="make_quezeshow_content_img"></img>
+            }
             <input type="text" hidden value={img_tinyint} name="img_tinyint" readOnly></input>
             <input type="file" className="Make_quezeshow_content_file allbtn" onChange={e=>{change_img(e)}} onDragEnter ={dragenter} onDragLeave={dragover}></input>
             <input type="text" name="content_title" className="Make_quezeshow_content_title" placeholder="제목" value={content_object[index].title} onChange={change_title}></input>
