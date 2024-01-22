@@ -11,15 +11,23 @@ const ayo_world_rank_header = () => {
     const navi_to_main = () => {
         navigate('/');
     }
+    const navi_to_quezeshow = () => {
+        navigate('/quezeshow_main');
+    }
+    const navi_to_make_quezeshow = () => {
+        navigate('/make_quezeshow');
+    }
     const navi_to_community = () => {
         navigate('/community');
     }
     return(
         <header className="Main2_header">
             <div className='header_rogo'><p>Ayo</p></div>
-            <button className="all_btn" onClick={navi_to_main}>최애 티어</button>
-            <button className="all_btn" onClick={navi_to_make_queze}>최애 티어 만들기</button>
-            {/* <button className="all_btn" onClick={navi_to_community}>커뮤니티</button> */}
+            <button className="all_btn" type="button" onClick={navi_to_main}>최애 티어</button>
+            <button className="all_btn" type="button" onClick={navi_to_make_queze}>최애 티어 만들기</button>
+            <button className="all_btn" type="button" onClick={navi_to_quezeshow}>나락퀴즈쇼</button>
+            <button className="all_btn" type="button" onClick={navi_to_make_quezeshow}>나락퀴즈쇼 만들기</button>
+            {/* <button className="all_btn" type="button" onClick={navi_to_community}>커뮤니티</button> */}
 
         </header>
     )

@@ -31,11 +31,11 @@ const Main2_a_queze = () => {
     })
 
     useEffect(()=>{
-        /**/console.log('one first render')
+        // /**/console.log('one first render')
         roomName_ref.current = searchParams.get('roomName');
         title_ref.current = searchParams.get('title');
         const publicAccess = searchParams.get('publicAccess')
-        /**/console.log(roomName_ref.current,publicAccess,typeof(publicAccess));
+        // /**/console.log(roomName_ref.current,publicAccess,typeof(publicAccess));
 
         axios({
             url : process.env.REACT_APP_SERVER_URL +'/main_a_queze',

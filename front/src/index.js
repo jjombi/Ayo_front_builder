@@ -14,6 +14,7 @@ const Community = lazy(()=>import('./App/Community/Community.js'));
 const Quezeshow_result = lazy(()=>import('./App/Quezeshow/Quezeshow_result.js'));
 const Make_quezeshow = lazy(()=>import('./App/Quezeshow/Make_quezeshow.js'));
 const Quezeshow_main = lazy(()=>import('./App/Quezeshow/Quezeshow_main'));
+const Quezeshow_queze = lazy(()=>import('./App/Quezeshow/Quezeshow_queze'));
 
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
@@ -37,6 +38,7 @@ root.render(
               <Route path='/quezeshow_result' element={<Quezeshow_result/>}></Route>
               <Route path='/make_quezeshow' element={<Make_quezeshow/>}></Route>
               <Route path='/quezeshow_main' element={<Quezeshow_main/>}></Route>
+              <Route path='/quezeshow_queze' element={<Quezeshow_queze/>}></Route>
 
           </Routes>  
         </CookiesProvider> 
