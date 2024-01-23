@@ -111,9 +111,8 @@ header {
 }
 
 .Main2_header > button {
-  min-width: 110px;
-  width: 10%;
   height: 90%;
+  margin-right: 3%;
   color: #000000;
   background-color: white;
 }
@@ -1180,6 +1179,11 @@ header {
   align-items: center;
 }
 
+.quezeshow_queze_root > h1 {
+  font-size: 18px;
+  color: #000000;
+}
+
 .quezeshow_queze_leftbtn, .quezeshow_queze_rightbtn {
   position: fixed;
   width: 35px;
@@ -1232,6 +1236,7 @@ header {
   flex-direction: column;
   align-items: center;
   margin-left: 3%;
+  margin-top: 5%;
 }
 
 .quezeshow_after_submit_submited_object > img {
@@ -1604,6 +1609,10 @@ header {
     width: 70%;
     margin-left: 15%;
   }
+  /*-----------------header------------------*/
+  .header_rogo {
+    margin-right: 3%;
+  }
 }
 @media (min-width: 335px) and (max-width: 534px) {
   .content_area {
@@ -1634,6 +1643,13 @@ header {
   .drop_img_area, .Main2_sumit_btn, label, .label {
     width: 70%;
     margin-left: 15%;
+  }
+  /*-----------------header------------------*/
+  .header_rogo {
+    margin-right: 3%;
+  }
+  .Main2_header > button {
+    font-size: 12px;
   }
 }
 

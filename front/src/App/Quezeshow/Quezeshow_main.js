@@ -17,9 +17,7 @@ const Quezeshow_main= () => {
             }
         }).then(res=>{ //res = [{src, uuid, title}]
             // console.log(res);
-            let uuidarr_ = [];
             const content_state_ = res.data.map((e,i)=>{
-                uuidarr_[i] = e.uuid;
                 return({
                     src : 'data:image/jpeg;base64,'+e.img,
                     uuid : e.uuid,

@@ -36,7 +36,7 @@ const Quezeshow_queze= () => {
             params : {roomnum : roomnum}
             
         }).then(res=>{
-            // console.log('content',res);
+            console.log('content',res);
             if(res.data.length === 0){
                 // alert('마지막 입니다');
                 navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}`);
@@ -56,7 +56,7 @@ const Quezeshow_queze= () => {
         })
     },[roomnum])
     const l_btn_click = () => {
-        if(Number(roomnum) !== 0){
+        if(Number(roomnum) > 1){
             navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}`);
         }
         else{
@@ -125,7 +125,7 @@ const Quezeshow_queze= () => {
         <div className="quezeshow_queze_root">
             <Header></Header>
             <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
-            <h1 style={{color : 'black'}}>{quezeshow_title.current}</h1>
+            <h1>{quezeshow_title.current}</h1>
             {
                 submit_state
                 ?   

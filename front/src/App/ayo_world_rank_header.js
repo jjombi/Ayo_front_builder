@@ -23,10 +23,10 @@ const ayo_world_rank_header = () => {
     return(
         <header className="Main2_header">
             <div className='header_rogo'><p>Ayo</p></div>
-            <button className="all_btn" type="button" onClick={navi_to_main}>최애 티어</button>
-            <button className="all_btn" type="button" onClick={navi_to_make_queze}>최애 티어 만들기</button>
+            <button className="all_btn" type="button" onClick={navi_to_main}>최애티어</button>
+            <button className="all_btn" type="button" onClick={navi_to_make_queze}>티어표 제작</button>
             <button className="all_btn" type="button" onClick={navi_to_quezeshow}>나락퀴즈쇼</button>
-            <button className="all_btn" type="button" onClick={navi_to_make_quezeshow}>나락퀴즈쇼 만들기</button>
+            <button className="all_btn" type="button" onClick={navi_to_make_quezeshow}>나락퀴즈쇼 제작</button>
             {/* <button className="all_btn" type="button" onClick={navi_to_community}>커뮤니티</button> */}
 
         </header>

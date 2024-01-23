@@ -41,7 +41,7 @@ const Quezeshow_queze_content = ({index,img,text,title,uuid, clicked, setClicked
                 </p>
             </button>
             :
-            <div className="quezeshow_queze_content_root" style={{border : style_}}>
+            <div className="quezeshow_queze_content_root">
                 {/* <h1>{index+1}</h1> */}
                 <p className="quezeshow_queze_content_value_p">
                     <p>{value}%</p>

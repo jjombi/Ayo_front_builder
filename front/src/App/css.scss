@@ -104,9 +104,10 @@ header {
 } 
 .Main2_header > button {
     // margin-left: auto;
-    min-width: 110px;
-    width: 10%;
+    // min-width: 110px;
+    // width: 10%;
     height: 90%;
+    margin-right: 3%;
     // border: 2px solid black;
     // color: white;
     color: #000000;
@@ -1142,6 +1143,10 @@ header {
     flex-direction: column;
     align-items: center;
 }
+.quezeshow_queze_root > h1 {
+    font-size: 18px;
+    color: #000000;
+}
 .quezeshow_queze_leftbtn, .quezeshow_queze_rightbtn {
     position: fixed;
     width: 35px;
@@ -1187,6 +1192,8 @@ header {
     flex-direction: column;
     align-items: center;
     margin-left: 3%;
+    margin-top: 5%;
+
 }
 .quezeshow_after_submit_submited_object > img {
     width: 300px;
@@ -1617,6 +1624,10 @@ header {
         margin-left: 15%;
     }
     // 여기 까지
+    /*-----------------header------------------*/
+    .header_rogo {
+        margin-right: 3%;
+    }
     //main---------------------------------
 
     //---------------------------------------
@@ -1661,6 +1672,13 @@ header {
         margin-left: 15%;
     }
     // 여기 까지
+    /*-----------------header------------------*/
+    .header_rogo {
+        margin-right: 3%;
+    }
+    .Main2_header > button {
+        font-size: 12px;
+    }
     //main---------------------------------
 //style={{transform : `translateX(${trans_state}%)`}}
     //---------------------------------------
