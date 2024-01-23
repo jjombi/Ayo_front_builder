@@ -1150,7 +1150,7 @@ header {
 .make_quezeshow_content_file {
   width: 100%;
   height: 30px;
-  display: none;
+  margin-top: 10px;
 }
 
 .make_quezeshow_content_label {
@@ -1180,10 +1180,6 @@ header {
   align-items: center;
   justify-content: center;
   margin-left: 0px !important;
-}
-
-.make_quezeshow_content_file_onpaste {
-  margin-top: 10px;
 }
 
 .make_quezeshow_content_file_onpaste > p, .make_quezeshow_content_label > div {
