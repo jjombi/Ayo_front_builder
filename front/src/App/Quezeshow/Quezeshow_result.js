@@ -104,7 +104,7 @@ const Quezeshow_result = () => {
                     comment_state.map((e,i)=>{
                         // console.log('comment',e);
                         return(
-                        <Quezeshow_comment title={e.title} text={e.text} likes={e.likes} uuid={e.uuid} uuid2={e.uuid2}/>
+                        <Quezeshow_comment key={i} title={e.title} text={e.text} likes={e.likes} uuid={e.uuid} uuid2={e.uuid2}/>
                         )
                     })
                 }

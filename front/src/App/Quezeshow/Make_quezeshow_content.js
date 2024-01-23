@@ -25,11 +25,17 @@ const Make_quezeshow_content = ({index,content_state,setContent_state,canvas_ref
         // console.log('클릭 후 이미지 선택');
         basic_change_img(e.target.files,true);
     }
-    
+    const onpaste = (e) => {
+        // console.log('onpaste');
+        if (e.clipboardData.files.length) {
+            basic_change_img(e.clipboardData.files,false);
+        }
+    }
     const basic_change_img = (files,type) => {
         // console.log(files);
         const file = [...files];
-        // console.log(file);
+        console.log(file);
+        if(file.length === 0) return null;
         const reader = new FileReader();
         reader.readAsDataURL(file[0]);
         reader.onload = (ev) => {
@@ -139,7 +145,13 @@ const Make_quezeshow_content = ({index,content_state,setContent_state,canvas_ref
                 <img src={src} className="make_quezeshow_content_img"></img>
             }
             <input type="text" hidden value={img_tinyint} name="img_tinyint" readOnly></input>
-            <input type="file" className="Make_quezeshow_content_file allbtn" onChange={e=>{change_img(e)}} onDragEnter ={dragenter} onDragLeave={dragover}></input>
+            <label className="make_quezeshow_content_label allbtn" htmlFor="file">
+                <div className="allbtn">파일 업로드하기</div>
+            </label>
+            <input id="file" type="file" className="make_quezeshow_content_file allbtn" onChange={e=>{change_img(e)}} onDragEnter ={dragenter} onDragLeave={dragover}></input>
+            <div className="make_quezeshow_content_file_onpaste allbtn" onPaste={onpaste}>
+                <p className="allbtn">이미지 붙여 넣기</p>
+            </div>
             <input type="text" name="content_title" className="Make_quezeshow_content_title" placeholder="제목" value={content_object[index].title} onChange={change_title}></input>
             <input type="text" name="explain_text" className="Make_quezeshow_content_text" placeholder="설명" value={content_object[index].text} onChange={change_text}></input>
             {

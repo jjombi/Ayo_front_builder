@@ -34,19 +34,19 @@ const Quezeshow_queze_content = ({index,img,text,title,uuid, clicked, setClicked
                         <div></div>
                     </div>
                 }
-                <p className="quezeshow_queze_content_title_text_area">
+                <div className="quezeshow_queze_content_title_text_area">
                     <p className="quezeshow_queze_content_title">{title}</p>
                     <p className="quezeshow_queze_content_text">{text}</p>
                     <div style={{backgroundColor : style_, width : '100%'}}></div>
-                </p>
+                </div>
             </button>
             :
             <div className="quezeshow_queze_content_root">
                 {/* <h1>{index+1}</h1> */}
-                <p className="quezeshow_queze_content_value_p">
+                <div className="quezeshow_queze_content_value_p">
                     <p>{value}%</p>
                     <div></div>
-                </p>
+                </div>
                 {
                     img === 'data:image/jpeg;base64,' ? null : 
                     <div className="img_area">
@@ -54,11 +54,11 @@ const Quezeshow_queze_content = ({index,img,text,title,uuid, clicked, setClicked
                         <div></div>
                     </div>
                 }
-                <p className="quezeshow_queze_content_title_text_area">
+                <div className="quezeshow_queze_content_title_text_area">
                     <p className="quezeshow_queze_content_title">{title}</p>
                     <p className="quezeshow_queze_content_text">{text}</p>
                     <div style={{width : `${value}%`}}></div>
-                </p>
+                </div>
             </div>
         }
         </>
