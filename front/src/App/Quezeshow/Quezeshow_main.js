@@ -7,6 +7,8 @@ import Adfit from "../Adfit";
 const Quezeshow_main= () => {
     const [content_state,setContent_state] = useState([]);
     useEffect(()=>{
+        const htmlTitle = document.querySelector("title");
+        htmlTitle.innerHTML = '나락퀴즈쇼 당신도 나락에 갈수 있다';
         axios({// parma으로 최신순, 좋아요순 변경
             url : process.env.REACT_APP_SERVER_URL + '/quezeshow_main',
             method : 'GET',
