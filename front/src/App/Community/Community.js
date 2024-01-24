@@ -2,21 +2,38 @@ import React, { useEffect, useRef, useState } from "react";
 import Headers from "../ayo_world_rank_header";
 import '../css.css';
 import axios from "axios";
+import Community_content from "./Community_content";
 const Community = () => {
     const comment_input_ref = useRef();
-    const [comment_state, setComment_state] = useState([]);
+    const [community_content_state, setCommunity_content_state] = useState([]);
 
     useEffect(()=>{
         axios({
-            url : process.env.REACT_APP_SERVER_URL + '/',
+            url : process.env.REACT_APP_SERVER_URL + '/community',
             method : "GET",
-        }).then((res)=>{ // 10개씩 끊어서 줌
-            setComment_state(...res.data);
+            params : {
+                type : 'likes'
+            }
+        }).then((res)=>{ // 20개씩 끊어서 줌
+            console.log(res);
+            setCommunity_content_state(community_content_state => res.data);
         })
     },[])
 
     const upload_comment = () => {
-
+        axios({
+            url : process.env.REACT_APP_SERVER_URL + '/community_plus',
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            data : {
+                text : comment_input_ref.current.value,
+                date : Date.now()
+            }
+        }).then(res=>{
+            console.log(res);
+        })
     }
     return(
         <div className="community_root">
@@ -30,10 +47,14 @@ const Community = () => {
                 </div>
             </div>
 
-            {
-                comment_state.map((e,i)=>{
-
-                })
+            {   
+                community_content_state !== undefined ?
+                community_content_state.map((e,i)=>{
+                    return(
+                        <Community_content uuid={e.uuid} text={e.text} date={e.uuid} likes={e.likes}></Community_content>
+                    )
+                }) :
+                null
             }
 
         </div>

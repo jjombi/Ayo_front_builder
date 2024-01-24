@@ -27,7 +27,7 @@ const ayo_world_rank_header = () => {
             <button className="all_btn" type="button" onClick={navi_to_make_queze}>티어표 제작</button>
             <button className="all_btn" type="button" onClick={navi_to_quezeshow}>나락퀴즈쇼</button>
             <button className="all_btn" type="button" onClick={navi_to_make_quezeshow}>나락퀴즈쇼 제작</button>
-            {/* <button className="all_btn" type="button" onClick={navi_to_community}>커뮤니티</button> */}
+            <button className="all_btn" type="button" onClick={navi_to_community}>커뮤니티</button>
 
         </header>
     )
