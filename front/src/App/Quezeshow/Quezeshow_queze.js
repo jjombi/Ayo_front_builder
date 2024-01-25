@@ -140,7 +140,7 @@ const Quezeshow_queze= () => {
                         </div>
                         <div className="comment_area quezeshow_after_submi_comment_area">
                             <div>
-                                <input type="text" ref={comment_input_ref} id={1} placeholder="댓글 입력"></input>
+                                <input type="text" ref={comment_input_ref} id={1} placeholder={`${submit_object_state.title}을/를 선택한 이유`}></input>
                                 <button onClick={upload_comment} className="all_btn" >^</button>
                             </div>
                         </div>
