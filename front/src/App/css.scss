@@ -367,7 +367,8 @@ header {
     // justify-content: center;
     // margin-top: 1%;
     height: 35px;
-    border-bottom: 1px solid rgb(239, 239, 239);    
+    border-bottom: 1px solid rgb(239, 239, 239); 
+    position: relative;   
 }
 .make_modify_header {
     display: flex;
@@ -426,7 +427,7 @@ header {
     // border-radius: 10px;
 }
 .a_queze_header_btn {
-    width: 180px;
+    // width: 180px;
     height: 21px;
     background-color: white;
     color: #000000;
@@ -1179,6 +1180,19 @@ header {
 .quezeshow_main_root {
     
 }
+.quezeshow_main_space_title{
+    font-size: 25px;
+    width: 100%;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 1%;
+}
+.quezeshow_main_space_intro_text {
+    width: 100%;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 3%;
+}
 //------------------------Quezeshow_queze------------------------
 .quezeshow_queze_root {
     width: 100vw;
@@ -1186,6 +1200,25 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+}
+.shar_popup_section {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0;
+    background-color: #00000041;
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.shar_popup_section > section {
+    width: 60%;
+    height: 70%;
+    background-color: #282828;
+
 }
 .quezeshow_queze_root > h1 {
     font-size: 18px;
@@ -1368,6 +1401,87 @@ header {
     width: 100%;
     text-align: center;
     margin-top: 1%;
+}
+/*------------------------------------Make_space---------------------------------*/
+.make_space_section {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.make_space_section > img {
+    width: 300px;
+    height: 300px;
+    object-fit: scale-down;
+    margin-bottom: 50px;
+}
+.make_space_section > div {
+    height: 30px;
+    display: flex;
+    align-items: end;
+    margin-top: 40px;
+}
+.make_space_section > div > p{
+    color: #00000086;
+    font-size: 12px;
+}
+.make_space_section > .img {
+    width: 300px;
+}
+.make_space_section > .pass {
+    width: 350px;
+    position: relative;
+}
+.make_space_section > .pass > section {
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    top: -50px;
+    left: 90px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 8px;
+    padding: 8px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+}
+.make_space_section > .pass > section > p{
+    color: #00000086;
+    font-size: 12px;
+}
+.make_space_section > .file {
+    width: 300px;
+}
+.make_space_section > .file:nth-child(3) {
+    width: 300px;
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(239, 239, 239);
+}
+.make_space_section > .text {
+    width: 350px;
+    height: 30px;
+    border: 1px solid rgb(239, 239, 239);
+    // margin-top: 20px;
+}
+.make_space_section > .introduce_text {
+    width: 350px;
+    height: 80px;
+    border: 1px solid rgb(239, 239, 239);
+    color: #000000;
+    resize: none;
+}
+/*-----------------space---------------*/
+.space_explain_text {
+    font-size: 18px;
+    color: #000000;
+    width: 100%;
+    text-align: center;
 }
 // 데스크탑
 @include desktop {

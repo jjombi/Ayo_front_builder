@@ -15,6 +15,10 @@ const Quezeshow_result = lazy(()=>import('./App/Quezeshow/Quezeshow_result.js'))
 const Make_quezeshow = lazy(()=>import('./App/Quezeshow/Make_quezeshow.js'));
 const Quezeshow_main = lazy(()=>import('./App/Quezeshow/Quezeshow_main'));
 const Quezeshow_queze = lazy(()=>import('./App/Quezeshow/Quezeshow_queze'));
+const Space = lazy(()=>import('./App/Space/Space.js'));
+const Make_space = lazy(()=>import('./App/Space/Make_space.js'));
+const In_space = lazy(()=>import('./App/Space/In_space.js'));
+const Make_space_quezeshow = lazy(()=>import('./App/Space/Make_space_quezeshow.js'));
 
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
@@ -39,6 +43,10 @@ root.render(
               <Route path='/make_quezeshow' element={<Make_quezeshow/>}></Route>
               <Route path='/quezeshow_main' element={<Quezeshow_main/>}></Route>
               <Route path='/quezeshow_queze' element={<Quezeshow_queze/>}></Route>
+              <Route path='/space' element={<Space/>}></Route>
+              <Route path='/make_space' element={<Make_space/>}></Route>
+              <Route path='/in_space' element={<In_space/>}></Route>
+              <Route path='/make_space_quezeshow' element={<Make_space_quezeshow/>}></Route>
 
           </Routes>  
         </CookiesProvider> 

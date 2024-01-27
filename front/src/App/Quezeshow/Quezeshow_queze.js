@@ -6,10 +6,13 @@ import axios from "axios";
 import Quezeshow_queze_content from "./Quezeshow_queze_content";
 import Quezeshow_comment from "./Quezeshow_comment";
 import Adfit from "../Adfit";
+import Shar_content from "./Shar_content";
 const Quezeshow_queze= () => {
     const navigate = useNavigate();
     const [seachParams, setSearchParams] = useSearchParams();
     const roomnum = seachParams.get('roomnum');
+    const space_uuid = seachParams.get('uuid');
+    const uuid2 = seachParams.get('uuid2');
     // const type = seachParams.get('type');
     const quezeshow_title = useRef('');
     const [content_state, setContent_state] = useState([]);
@@ -18,95 +21,86 @@ const Quezeshow_queze= () => {
     const [submit_object_state, setSubmit_object_state] = useState({img : 'data:image/jpeg;base64,', title : '', text : ''})
     const [clicked, setClicked] = useState(null);
     const uuid = useRef('');
+    const [shar_state, setShar_state] = useState(false);
     const comment_input_ref = useRef();
+    const search_value_ref = useRef();
+    const [shar_content_state, setShar_content_state] = useState([]);
     useEffect(()=>{ // 오른쪽이동 무한, 투표후 결과창에서 새로고침시 투표화면으로 되돌아감.
         // console.log('utl : ',window.location.href);
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/quezeshowtitle',
-            method : 'GET',
-            params : {roomnum : roomnum}
-        }).then(res=>{
-            if(res.data.length !== 0){
-                quezeshow_title.current = res.data[0].title;
-            }
-        })
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze',
-            method : 'GET',
-            params : {roomnum : roomnum}
-            
-        }).then(res=>{
-            console.log('content',res);
-            if(res.data.length === 0){
-                // alert('마지막 입니다');
-                navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}`);
-            }else{
-                setContent_state( content_state => [...res.data]);
-                uuid.current = res.data[0].uuid;
-            }
-        })
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
-            method : 'GET',
-            params : {roomnum : roomnum}
-            
-        }).then(res=>{
-            // console.log('comment',res);
-            setComment_state( content_state => [...res.data]);
-        })
-    },[roomnum])
-    const l_btn_click = () => {
-        if(Number(roomnum) > 1){
-            navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}`);
-        }
-        else{
-            // alert('처음입니다');
-        }
-    }
-    const r_btn_click = () => {
-        if(Number(roomnum) !== 100){ // 마지막에 오른쪽으로 못 가게 수정 필요 1 20 12 40
-            navigate(`/quezeshow_queze?roomnum=${Number(roomnum)+1}`);
-        }
-        else{
-            //맨 오른쪽 까지 옴
-        }
-    }
-    const submit_click = () => {
-        // console.log('submit clicked');
-        if(clicked !== null){
-            // console.log('content_state[clicked].uuid2',content_state[clicked].uuid2, content_state, clicked);
+        console.log(roomnum,space_uuid,uuid2);
+        if(uuid2 != 'undefined'){
+            console.log('uuid2 !== null');
             axios({
-                url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze_plus_value',
-                method : 'POST',
-                data : {
-                    uuid2 : content_state[clicked].uuid2,
+                url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowtitle',
+                method : 'GET',
+                params : {
+                    roomnum : roomnum,
+                    uuid : space_uuid,
+                }
+            }).then(res=>{
+                if(res.data.length !== 0){
+                    quezeshow_title.current = res.data[0].title;
+                }
+            })
+            axios({
+                url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowqueze',
+                method : 'GET',
+                params : {
+                    roomnum : roomnum,
+                    uuid : space_uuid,
+
                 }
                 
             }).then(res=>{
-                // console.log(res);
-                
+                console.log('content',res);
+                if(res.data.length === 0){
+                    alert('마지막 입니다');
+                    navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}&uuid=${space_uuid}&uuid2=${uuid2}`);
+                }else{
+                    setContent_state( content_state => [...res.data]);
+                    uuid.current = res.data[0].uuid;
+                }
             })
-            setSubmit_state(submit_state => !submit_state);
-            const obj = {img : 'data:image/jpeg;base64,'+content_state[clicked].img , title : content_state[clicked].title, text : content_state[clicked].text};
-            setSubmit_object_state(submit_object_state => obj);
+            axios({
+                url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowcomment',
+                method : 'GET',
+                params : {
+                    roomnum : roomnum,
+                    uuid : space_uuid,
+                    uuid2 : uuid2
+                }
+                
+            }).then(res=>{
+                console.log('comment',res);
+                setComment_state( content_state => [...res.data]);
+            })
         }
-    }
-    const upload_comment = () => {
-        // console.log(content_state[clicked].title,comment_input_ref.current.value,content_state);
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment_upload',
-            method : 'POST',
-            data : {
-                roomnum : roomnum,
-                uuid : uuid.current,
-                title : content_state[clicked].title,
-                text : comment_input_ref.current.value
-            },
-            headers : {
-                'Content-Type' : 'application/json'
-            }
-        }).then(res=>{
-            // console.log('comment upload rres',res);
+        else{
+            console.log('uuid2 === null');
+            axios({
+                url : process.env.REACT_APP_SERVER_URL + '/quezeshowtitle',
+                method : 'GET',
+                params : {roomnum : roomnum}
+            }).then(res=>{
+                if(res.data.length !== 0){
+                    quezeshow_title.current = res.data[0].title;
+                }
+            })
+            axios({
+                url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze',
+                method : 'GET',
+                params : {roomnum : roomnum}
+                
+            }).then(res=>{
+                console.log('content',res);
+                if(res.data.length === 0){
+                    // alert('마지막 입니다');
+                    // navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}`);
+                }else{
+                    setContent_state( content_state => [...res.data]);
+                    uuid.current = res.data[0].uuid;
+                }
+            })
             axios({
                 url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
                 method : 'GET',
@@ -116,14 +110,222 @@ const Quezeshow_queze= () => {
                 // console.log('comment',res);
                 setComment_state( content_state => [...res.data]);
             })
-        })
+        }
+    },[roomnum])
+    const l_btn_click = () => {
+        if(uuid2 != 'undefined'){
+            if(Number(roomnum) > 1){
+                navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}&uuid=${space_uuid}&uuid2=${uuid2}`);
+            }
+            else{
+                // alert('처음입니다');
+            }
+        }
+        else{
+            if(Number(roomnum) > 1){
+                navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}`);
+            }
+            else{
+                // alert('처음입니다');
+            }
+        }
     }
+    const r_btn_click = () => {
+        if(uuid2 != 'undefined'){
+            if(Number(roomnum) !== 100){ // 마지막에 오른쪽으로 못 가게 수정 필요 1 20 12 40
+                navigate(`/quezeshow_queze?roomnum=${Number(roomnum)+1}&uuid=${space_uuid}&uuid2=${uuid2}`);
+            }
+            else{
+                //맨 오른쪽 까지 옴
+            }
+        }
+        else{
+            if(Number(roomnum) !== 100){ // 마지막에 오른쪽으로 못 가게 수정 필요 1 20 12 40
+                navigate(`/quezeshow_queze?roomnum=${Number(roomnum)+1}`);
+            }
+            else{
+                //맨 오른쪽 까지 옴
+            }
+        }
+    }
+    const submit_click = () => {
+        // console.log('submit clicked');
+        if(clicked !== null){
+            console.log(content_state[clicked].uuid3);
+            if(uuid2 != 'undefined'){ // space
+                axios({
+                    url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowqueze_plus_value',
+                    method : 'POST',
+                    data : {
+                        uuid : content_state[clicked].uuid3
+                    }
+                    
+                }).then(res=>{
+                    // console.log(res);
+                    
+                })
+                setSubmit_state(submit_state => !submit_state);
+                const obj = {img : 'data:image/jpeg;base64,'+content_state[clicked].img , title : content_state[clicked].title, text : content_state[clicked].text};
+                setSubmit_object_state(submit_object_state => obj);
+            }
+            else{
+                axios({
+                    url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze_plus_value',
+                    method : 'POST',
+                    data : {
+                        uuid2 : content_state[clicked].uuid2,
+                    }
+                    
+                }).then(res=>{
+                    // console.log(res);
+                    
+                })
+                setSubmit_state(submit_state => !submit_state);
+                const obj = {img : 'data:image/jpeg;base64,'+content_state[clicked].img , title : content_state[clicked].title, text : content_state[clicked].text};
+                setSubmit_object_state(submit_object_state => obj);
+            }
+        }
+    }
+    
     const navi_to_quezeshowresult = () => {
-        navigate(`/quezeshow_result?roomnum=${roomnum}&uuid=${uuid.current}`);
+        if(uuid2 != 'undefined'){
+            navigate(`/quezeshow_result?roomnum=${roomnum}&uuid=${space_uuid}&uuid2=${uuid2}`);
+        }
+        else{
+            navigate(`/quezeshow_result?roomnum=${roomnum}&uuid=${uuid.current}`);
+        }
+    }
+    const upload_comment = () => {
+        // console.log(content_state[clicked].title,comment_input_ref.current.value,content_state);
+        console.log(uuid2);
+        if(uuid2 != 'undefined'){
+            console.log(uuid,uuid2,roomnum,content_state[clicked].title,comment_input_ref.current);
+            axios({
+                url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowcomment_upload',
+                method : 'POST',
+                data : {
+                    roomnum : roomnum,
+                    uuid : uuid.current,
+                    uuid2 : uuid2,
+                    title : content_state[clicked].title,
+                    text : comment_input_ref.current.value
+                },
+                headers : {
+                    'Content-Type' : 'application/json'
+                }
+            }).then(res=>{
+                console.log('comment upload rres',res);
+                axios({
+                    url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowcomment',
+                    method : 'GET',
+                    params : {
+                        roomnum : roomnum,
+                        uuid : space_uuid,
+                        uuid2 : uuid2,
+                    }
+                    
+                }).then(res=>{
+                    console.log('comment',res);
+                    setComment_state( content_state => [...res.data]);
+                    // return(
+                    //   res.data
+                    // )
+                })
+            })
+        }
+        else{
+            axios({
+                url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment_upload',
+                method : 'POST',
+                data : {
+                    roomnum : roomnum,
+                    uuid : uuid.current,
+                    title : content_state[clicked].title,
+                    text : comment_input_ref.current.value
+                },
+                headers : {
+                    'Content-Type' : 'application/json'
+                }
+            }).then(res=>{
+                // console.log('comment upload rres',res);
+                axios({
+                    url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
+                    method : 'GET',
+                    params : {roomnum : roomnum}
+                    
+                }).then(res=>{
+                    // console.log('comment',res);
+                    setComment_state( content_state => [...res.data]);
+                })
+            })
+        }
+      }
+    const shar = () => {
+        setShar_state(shar_state => !shar_state);
+    }
+    const search_enter = (e) => {
+        console.log('seach 중',search_value_ref.current.value,e.target.id);
+        if(e.key === 'Enter'){
+            axios({
+                url : process.env.REACT_APP_SERVER_URL + '/shar_quezeshow',
+                method : 'GET',
+                params : {
+                    value : search_value_ref.current.value
+                }
+            }).then((res)=>{
+                console.log(res);
+                if(res.data !== false){
+                    setShar_content_state(shar_content_state => [...res.data]);
+                }
+            })
+        }
+    }
+    const search_btn_enter = () => {
+        axios({
+            url : process.env.REACT_APP_SERVER_URL + '/shar_quezeshow',
+            method : 'GET',
+            params : {
+                value : search_value_ref.current.value
+            }
+        }).then((res)=>{
+            console.log(res);
+            if(res.data !== false){
+                setShar_content_state(shar_content_state => [...res.data]);
+            }        
+        })
     }
     return(
         <div className="quezeshow_queze_root">
             <Header></Header>
+            {/* {
+                shar_state ? 
+                <section className="shar_popup_section">
+                    <section>
+                        <input type="text" className="Main2_a_queze_header_input" placeholder="검색 창(입력 후 엔터)" ref={search_value_ref} onKeyUp={search_enter}></input>
+                        <button className="all_btn main2_header_btn" onClick={search_btn_enter}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <circle cx="11" cy="11" r="6" stroke="#222222"/>
+                            <path d="M20 20L17 17" stroke="#222222" strokeLinecap="round"/>
+                            </svg>
+                        </button>
+                        {
+                            shar_content_state.map((e,i)=>{
+                                console.log('shar content' ,e);
+                                return(
+                                    <Shar_content uuid={e.uuid} title={e.title}></Shar_content>
+                                )
+                            })
+                        }
+                    </section>
+                </section> : null
+            } */}
+            {/* {
+                uuid2 === 'undefined'?
+                <header className="Main2_a_queze_header">
+                    <button className="all_btn a_queze_header_btn" title="" onClick={shar}>스페이스에 현재 나락퀴즈 공유하기</button>
+                </header>
+                : null
+            } */}
             <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
             <h1>{quezeshow_title.current}</h1>
             {
@@ -151,7 +353,7 @@ const Quezeshow_queze= () => {
                         comment_state.map((e,i)=>{
                             // console.log('comment',e);
                             return(
-                            <Quezeshow_comment title={e.title} text={e.text} likes={e.likes} uuid={e.uuid} uuid2={e.uuid2}/>
+                            <Quezeshow_comment key={i} title={e.title} text={e.text} likes={e.likes} uuid={e.uuid} uuid2={e.uuid2} uuid3={e.uuid3}/>
                             )
                         })
                     }

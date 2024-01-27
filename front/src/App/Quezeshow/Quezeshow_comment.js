@@ -1,25 +1,44 @@
 import React, { useEffect, useState } from "react";
-import '../css.css';
-import axios from "axios";
-const Quezeshow_comment = ({title,text,likes,uuid, uuid2}) => {
+import '../css.css';//                      queze,comment, null
+import axios from "axios";//                space, queze, comment 
+const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3}) => {
     const [likes_state, setLikes_state] = useState(false);
 
     const change_comment = (e,type) => {
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/quezeshowcommentchange',
-            method : 'POST',
-            headers : {
-                'Content-Type' : 'application/json'
-            },
-            data : {
-                uuid2 : uuid2,
-                type  : type
-            }
-        }).then((res)=>{
-            // console.log(res);
-            setLikes_state(likes_state => !likes_state);
-            likes = likes+  1;
-        })
+        if(uuid3 !== null){
+            axios({
+                url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowcommentchange',
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                data : {
+                    uuid3 : uuid3,
+                    type  : type
+                }
+            }).then((res)=>{
+                // console.log(res);
+                setLikes_state(likes_state => !likes_state);
+                likes = likes+  1;
+            })
+        }
+        else{
+            axios({
+                url : process.env.REACT_APP_SERVER_URL + '/quezeshowcommentchange',
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                data : {
+                    uuid2 : uuid2,
+                    type  : type
+                }
+            }).then((res)=>{
+                // console.log(res);
+                setLikes_state(likes_state => !likes_state);
+                likes = likes+  1;
+            })
+        }
     }
 
     return(
