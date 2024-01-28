@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import AWS from "aws-sdk";
 import axios from "axios";
 import Loading_popup from "../Loading_popup";
-
+import Adfit from "../Adfit";
 const Make_space= () => {
     const navigate = useNavigate();
     const [help_message_state, setHelp_message_state] = useState(false);
@@ -177,6 +177,7 @@ const Make_space= () => {
             <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/make_space')}}>스페이스 만들기</button>
             
         </header>
+        <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
         <section className="make_space_section">
             <div className="img">
                 <p>프로필 이미지</p>

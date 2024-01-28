@@ -4,6 +4,7 @@ import '../css.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Space_content from "./Space_content";
+import Adfit from "../Adfit";
 const Space = () => {
     const search_value_ref = useRef();
     const navigate = useNavigate();
@@ -66,6 +67,7 @@ const Space = () => {
                 </svg>
             </button>
         </header>
+        <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
         {/* <h1 className="space_explain_text">스페이스는 특정 주제로 모인 사람들의 모임 입니다</h1> */}
         <section className="queze_list">
         {
