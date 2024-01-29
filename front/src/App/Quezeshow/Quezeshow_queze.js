@@ -28,7 +28,43 @@ const Quezeshow_queze= () => {
     useEffect(()=>{ // 오른쪽이동 무한, 투표후 결과창에서 새로고침시 투표화면으로 되돌아감.
         // console.log('utl : ',window.location.href);
         console.log(roomnum,space_uuid,uuid2);
-        if(uuid2 != 'undefined'){
+        if(uuid2 == 'undefined' || uuid2 == null || uuid2 == 'null'){
+            console.log('uuid2 === null');
+            axios({
+                url : process.env.REACT_APP_SERVER_URL + '/quezeshowtitle',
+                method : 'GET',
+                params : {roomnum : roomnum}
+            }).then(res=>{
+                if(res.data.length !== 0){
+                    quezeshow_title.current = res.data[0].title;
+                }
+            })
+            axios({
+                url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze',
+                method : 'GET',
+                params : {roomnum : roomnum}
+                
+            }).then(res=>{
+                console.log('content',res);
+                if(res.data.length === 0){
+                    alert('마지막 입니다');
+                    navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}`);
+                }else{
+                    setContent_state( content_state => [...res.data]);
+                    uuid.current = res.data[0].uuid;
+                }
+            })
+            axios({
+                url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
+                method : 'GET',
+                params : {roomnum : roomnum}
+                
+            }).then(res=>{
+                // console.log('comment',res);
+                setComment_state( content_state => [...res.data]);
+            })
+        }
+        else{
             console.log('uuid2 !== null');
             axios({
                 url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowtitle',
@@ -72,42 +108,6 @@ const Quezeshow_queze= () => {
                 
             }).then(res=>{
                 console.log('comment',res);
-                setComment_state( content_state => [...res.data]);
-            })
-        }
-        else{
-            console.log('uuid2 === null');
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/quezeshowtitle',
-                method : 'GET',
-                params : {roomnum : roomnum}
-            }).then(res=>{
-                if(res.data.length !== 0){
-                    quezeshow_title.current = res.data[0].title;
-                }
-            })
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze',
-                method : 'GET',
-                params : {roomnum : roomnum}
-                
-            }).then(res=>{
-                console.log('content',res);
-                if(res.data.length === 0){
-                    // alert('마지막 입니다');
-                    // navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}`);
-                }else{
-                    setContent_state( content_state => [...res.data]);
-                    uuid.current = res.data[0].uuid;
-                }
-            })
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
-                method : 'GET',
-                params : {roomnum : roomnum}
-                
-            }).then(res=>{
-                // console.log('comment',res);
                 setComment_state( content_state => [...res.data]);
             })
         }
