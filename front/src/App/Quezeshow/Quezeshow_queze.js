@@ -370,6 +370,7 @@ const Quezeshow_queze= () => {
                     
                 : 
                 <>
+                    <div className="queze_list">
                     {
                         content_state.map((e,i)=>{
                             return(
@@ -377,6 +378,7 @@ const Quezeshow_queze= () => {
                             )
                         })
                     }
+                    </div>
                     {/* <button className="quezeshow_queze_submitbtn" onClick={submit_click}>완료</button>
                     <button className="quezeshow_queze_submitbtn" onClick={navi_to_quezeshowresult}>결과 보기</button> */}
                     <div className="main2_a_queze_btn_area">
