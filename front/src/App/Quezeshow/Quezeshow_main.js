@@ -46,9 +46,8 @@ const Quezeshow_main= () => {
                 space_uuid !== null
                 ?
                 <header className="Main2_a_queze_header">
-                    <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/space')}}>스페이스</button>
-                    <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/make_space')}}>스페이스 만들기</button>
-                    <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate(`/make_space_quezeshow?space_uuid=${space_uuid}&space_title=${space_title}`)}}>{space_title} 나락퀴즈 만들기</button>
+                    {/* <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/space')}}>스페이스</button> */}
+                    <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate(`/make_space_quezeshow?space_uuid=${space_uuid}&space_title=${space_title}`)}}>{space_title} 퀴즈 만들기</button>
                     {/* <input type="text" className="Main2_a_queze_header_input" placeholder="검색 창(입력 후 엔터)" ref={search_value_ref} onKeyUp={search_enter}></input>
                     <button className="all_btn main2_header_btn" onClick={search_btn_enter}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -59,8 +58,9 @@ const Quezeshow_main= () => {
                 </header>
                 :
                 <header className="Main2_a_queze_header">
-                    <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/space')}}>스페이스</button>
-                    <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/make_space')}}>스페이스 만들기</button>
+                    {/* <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/space')}}>스페이스</button>
+                    <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/make_space')}}>스페이스 만들기</button> */}
+                    <button className="all_btn a_queze_header_btn" type="button" onClick={()=>navigate('/make_quezeshow')}>나락퀴즈쇼 제작</button>
                 </header>
             }
             <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>

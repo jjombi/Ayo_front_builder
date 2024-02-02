@@ -57,7 +57,6 @@ const Space = () => {
     <>
         <Header></Header>
         <header className="Main2_a_queze_header">
-            <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/space')}}>스페이스</button>
             <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/make_space')}}>스페이스 만들기</button>
             <input type="text" className="Main2_a_queze_header_input" placeholder="검색 창(입력 후 엔터)" ref={search_value_ref} onKeyUp={search_enter}></input>
             <button className="all_btn main2_header_btn" onClick={search_btn_enter}>

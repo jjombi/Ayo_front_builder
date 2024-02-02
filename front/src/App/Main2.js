@@ -88,6 +88,9 @@ const Main2 = () => {
     return(
         <div className="Main2_root">
             <Header></Header>
+            <header className="Main2_a_queze_header">
+                <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/make_space')}}>티어표 제작</button>
+            </header>
             <header className="Main2_header2">
                 <h1>최애 티어표, 내 최애 순위를 선택해 보세요!</h1>
             </header>
