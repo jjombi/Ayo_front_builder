@@ -5,7 +5,7 @@ import img from '../Img_folder/no_image.jpg';
 const Quezeshow_main_content= ({index,src,uuid,title,roomnum,uuid2}) => {
     const navigate = useNavigate();
     const result_click = () => {
-        navigate(`/quezeshow_result?roomnum=${roomnum}&uuid=${uuid}&uuid2=${uuid2}`);
+        navigate(`/quezeshow_result?roomnum=${roomnum}&uuid=${uuid}`);
     }
     const A_queze_click = () => {
         navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&uuid2=${uuid2}`);

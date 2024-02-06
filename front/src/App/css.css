@@ -1824,6 +1824,15 @@ header {
   .Main2_header > button {
     font-size: 12px;
   }
+  .quezeshow_result_root {
+    flex-direction: column;
+  }
+  .quezeshow_result_root > .comment {
+    width: 100%;
+  }
+  .quezeshow_result_root > .content {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=css.css.map */
