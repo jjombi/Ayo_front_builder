@@ -3,42 +3,66 @@ import '../css.css';//                      queze,comment, null
 import axios from "axios";//                space, queze, comment 
 const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3}) => {
     const [likes_state, setLikes_state] = useState(false);
+    const [likes_value_state, setLikes_value_state] = useState(likes);
+    // const debounce = (func, timeout = 5000) => {
+    //     setLikes_state(likes_state => !likes_state);
+    //     let timer;
+    //     return (...args) => {
+    //       clearTimeout(timer);
+    //       timer = setTimeout(() => {
+    //         func.apply(this, args);
+    //       }, timeout);
+    //     };
+    // }
+
+    // const processChange = (func)=>{
+    //   debounce(func);
+    // }
 
     const change_comment = (e,type) => {
-        if(uuid3 !== null){
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowcommentchange',
-                method : 'POST',
-                headers : {
-                    'Content-Type' : 'application/json'
-                },
-                data : {
-                    uuid3 : uuid3,
-                    type  : type
+        // console.log('result comment change function uuid3 :',uuid3,typeof(uuid3),likes_state);
+        // setTimeout(()=>{
+            // if(likes_state === false){
+                if(uuid3 !== undefined){
+                    axios({
+                        url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowcommentchange',
+                        method : 'POST',
+                        headers : {
+                            'Content-Type' : 'application/json'
+                        },
+                        data : {
+                            uuid3 : uuid3,
+                            type  : type
+                        }
+                    }).then((res)=>{
+                        // console.log(res);
+                        setLikes_state(likes_state => !likes_state);
+                        type === 'minus' ? 
+                        setLikes_value_state(likes_value_state => likes_value_state - 1):
+                        setLikes_value_state(likes_value_state => likes_value_state + 1)
+                    })
                 }
-            }).then((res)=>{
-                // console.log(res);
-                setLikes_state(likes_state => !likes_state);
-                likes = likes+  1;
-            })
-        }
-        else{
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/quezeshowcommentchange',
-                method : 'POST',
-                headers : {
-                    'Content-Type' : 'application/json'
-                },
-                data : {
-                    uuid2 : uuid2,
-                    type  : type
+                else{
+                    axios({
+                        url : process.env.REACT_APP_SERVER_URL + '/quezeshowcommentchange',
+                        method : 'POST',
+                        headers : {
+                            'Content-Type' : 'application/json'
+                        },
+                        data : {
+                            uuid2 : uuid2,
+                            type  : type
+                        }
+                    }).then((res)=>{
+                        // console.log(res, type);
+                        setLikes_state(likes_state => !likes_state);
+                        type === 'minus' ? 
+                        setLikes_value_state(likes_value_state => likes_value_state - 1):
+                        setLikes_value_state(likes_value_state => likes_value_state + 1)
+                    })
                 }
-            }).then((res)=>{
-                // console.log(res);
-                setLikes_state(likes_state => !likes_state);
-                likes = likes+  1;
-            })
-        }
+            // }
+        // },10000)
     }
 
     return(
@@ -47,7 +71,7 @@ const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3}) => {
                 <p className="title">{title}</p>
                 {/* <p className="title">asdsad</p> */}
                 <p className="value">{text}</p>
-                <p className="likes">{likes}</p>
+                <p className="likes">{likes_value_state}</p>
                 {
                     likes_state 
                     ?

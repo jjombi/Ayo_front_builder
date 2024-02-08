@@ -115,7 +115,7 @@ const Quezeshow_result = () => {
                     roomnum : roomnum,
                     uuid : uuid.current,
                     uuid2 : uuid2,
-                    title : content_state[clicked].title,
+                    title : '없음',
                     text : comment_input_ref.current.value
                 },
                 headers : {
@@ -128,8 +128,9 @@ const Quezeshow_result = () => {
                     method : 'GET',
                     params : {
                         roomnum : roomnum,
-                        uuid : uuid,
+                        uuid : uuid.current,
                         uuid2 : uuid2,
+                        text : comment_input_ref.current.value
                     }
                     
                 }).then(res=>{
@@ -148,7 +149,7 @@ const Quezeshow_result = () => {
                 data : {
                     roomnum : roomnum,
                     uuid : uuid.current,
-                    title : content_state[clicked].title,
+                    title : '없음',
                     text : comment_input_ref.current.value
                 },
                 headers : {
