@@ -54,11 +54,13 @@ const Make_space= () => {
                     data : {
                         uuid : uuid,
                         title : title_ref.current.value,
+                        intro_text : intriduce_text_ref.current.value,
                         img : ''
                         // password : password_ref.current.value
                     }
                 }).then(res=>{
                     console.log(res);
+                    alert('완료');
                 })
             }
             else{
