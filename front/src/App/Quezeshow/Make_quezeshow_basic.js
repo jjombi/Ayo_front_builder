@@ -18,7 +18,7 @@ const Make_quezeshow_basic = ({make_quezeshow_type, space_uuid, space_title, ser
     const [representative_img_state, setRepresentative_img_state] = useState(null);
     const {pending} = useFormStatus();
     const [content_object, setContent_object] = useState([]);
-
+    const pass_ref = useRef();
     const region = "ap-northeast-2";
     const bucket = "dlworjs";
     const accessKey = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
@@ -99,7 +99,7 @@ const Make_quezeshow_basic = ({make_quezeshow_type, space_uuid, space_title, ser
             {
                 space_uuid !== null
                 ?
-                <h1>{space_title}</h1>
+                <h1 className="make_quezeshow_space_title">{space_title}</h1>
                 :
                 null
             }
@@ -107,7 +107,13 @@ const Make_quezeshow_basic = ({make_quezeshow_type, space_uuid, space_title, ser
             <iframe id="iframe" name="iframe" style={{display:'none'}} ></iframe>
             {loading_popup_state ? <Loading_popup setLoading_popup_state={setLoading_popup_state} pending={pending}/> : null}
             <canvas ref={canvas_ref}></canvas>
+            <p className="make_quezeshow_space_warrning">
+                주의, 성적인 콘텐츠, 타인에 대한 욕설등 부적절한 콘텐츠는 게시할 수 없습니다.
+            </p>
             <input type="text" ref={queze_title_ref} name="queze_title" className="make_quezeshow_queze_title" placeholder="제목"></input>
+            {/* {
+                space_uuid !== null ? <input type="text" ref={pass_ref} name="space_pass" className="make_quezeshow_queze_title" placeholder="수정시 사용할 비밀번호"></input> : null
+            } */}
             {
                 content_state.map((e,i)=>{
                     return(

@@ -1075,7 +1075,7 @@ header {
     border: 1px solid rgb(239, 239, 239);
     border-radius: 10px;
     color: #000000;
-    margin-top: 3%;
+    // margin-top: 3%;
 
 }
 .make_quezeshow_addbtn{
@@ -1097,6 +1097,15 @@ header {
     border-radius: 10px;
     margin-top: 40px;
     margin-bottom: 90px;
+}
+.make_quezeshow_space_warrning {
+    color: #000000c7;
+    font-size: 14px;
+    margin-top: 3%;
+    margin-bottom: 5px;
+}
+.make_quezeshow_space_title {
+    color: #000000;
 }
 //---------------------------------Make_quezeshow_content_root------------------------
 .make_quezeshow_content_root {

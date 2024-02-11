@@ -36,32 +36,39 @@ const Quezeshow_queze= () => {
                 params : {roomnum : roomnum}
             }).then(res=>{
                 if(res.data.length !== 0){
-                    quezeshow_title.current = res.data[0].title;
+                    if(res.data[0].existence === 0){// 삭제된 콘텐츠 이면
+                        const direction = seachParams.get('direction');
+                        direction === 'r' ? navigate(`/quezeshow_queze?roomnum=${Number(roomnum)+1}&direction=r`) :
+                        navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}&direction=l`);
+                        submit_state ? setSubmit_state(submit_state => false) : null
+                    }else{
+                        quezeshow_title.current = res.data[0].title;
+                        axios({
+                            url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze',
+                            method : 'GET',
+                            params : {roomnum : roomnum}
+                            
+                        }).then(res=>{
+                            console.log('content',res);
+                            setContent_state( content_state => [...res.data]);
+                            uuid.current = res.data[0].uuid;
+                            
+                        })
+                        axios({
+                            url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
+                            method : 'GET',
+                            params : {roomnum : roomnum}
+                            
+                        }).then(res=>{
+                            // console.log('comment',res);
+                            setComment_state( content_state => [...res.data]);
+                        })
+                    }
                 }
-            })
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze',
-                method : 'GET',
-                params : {roomnum : roomnum}
-                
-            }).then(res=>{
-                console.log('content',res);
-                if(res.data.length === 0){
+                else {
                     alert('마지막 입니다');
-                    navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}`);
-                }else{
-                    setContent_state( content_state => [...res.data]);
-                    uuid.current = res.data[0].uuid;
+                    navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}&direction=l`);
                 }
-            })
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
-                method : 'GET',
-                params : {roomnum : roomnum}
-                
-            }).then(res=>{
-                // console.log('comment',res);
-                setComment_state( content_state => [...res.data]);
             })
         }
         else{
@@ -74,48 +81,57 @@ const Quezeshow_queze= () => {
                     uuid : space_uuid,
                 }
             }).then(res=>{
-                if(res.data.length !== 0){
-                    quezeshow_title.current = res.data[0].title;
+                // console.log('quezeshow title res',res,res.data[0].existence);
+                if(res.data.length !== 0){ // 마지막이 아니면
+                    if(res.data[0].existence == 0){// 삭제된 콘텐츠 이면
+                        const direction = seachParams.get('direction');
+                        direction === 'r' ? navigate(`/quezeshow_queze?roomnum=${Number(roomnum)+1}&uuid=${space_uuid}&uuid2=${uuid2}&direction=r`) :
+                        navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}&uuid=${space_uuid}&uuid2=${uuid2}&direction=l`);
+                        submit_state ? setSubmit_state(submit_state => false) : null
+                    }else{
+                        quezeshow_title.current = res.data[0].title;
+                        axios({
+                            url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowqueze',
+                            method : 'GET',
+                            params : {
+                                roomnum : roomnum,
+                                uuid : space_uuid,
+            
+                            }
+                            
+                        }).then(res=>{
+                            console.log('content',res);    
+                            setContent_state( content_state => [...res.data]);
+                            uuid.current = res.data[0].uuid;
+                            
+                        })
+                        axios({
+                            url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowcomment',
+                            method : 'GET',
+                            params : {
+                                roomnum : roomnum,
+                                uuid : space_uuid,
+                                uuid2 : uuid2
+                            }
+                            
+                        }).then(res=>{
+                            console.log('comment',res);
+                            setComment_state( content_state => [...res.data]);
+                        })
+                    }
                 }
-            })
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowqueze',
-                method : 'GET',
-                params : {
-                    roomnum : roomnum,
-                    uuid : space_uuid,
-
-                }
-                
-            }).then(res=>{
-                console.log('content',res);
-                if(res.data.length === 0){
+                else {
                     alert('마지막 입니다');
-                    navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}&uuid=${space_uuid}&uuid2=${uuid2}`);
-                }else{
-                    setContent_state( content_state => [...res.data]);
-                    uuid.current = res.data[0].uuid;
+                    navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}&uuid=${space_uuid}&uuid2=${uuid2}&direction=l`);
                 }
-            })
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowcomment',
-                method : 'GET',
-                params : {
-                    roomnum : roomnum,
-                    uuid : space_uuid,
-                    uuid2 : uuid2
-                }
-                
-            }).then(res=>{
-                console.log('comment',res);
-                setComment_state( content_state => [...res.data]);
             })
         }
     },[roomnum])
     const l_btn_click = () => {
         if(uuid2 != 'undefined'){
             if(Number(roomnum) > 1){
-                navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}&uuid=${space_uuid}&uuid2=${uuid2}`);
+                navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}&uuid=${space_uuid}&uuid2=${uuid2}&direction=l`);
+                submit_state ? setSubmit_state(submit_state => false) : null
             }
             else{
                 // alert('처음입니다');
@@ -123,7 +139,8 @@ const Quezeshow_queze= () => {
         }
         else{
             if(Number(roomnum) > 1){
-                navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}`);
+                navigate(`/quezeshow_queze?roomnum=${Number(roomnum)-1}&direction=l`);
+                submit_state ? setSubmit_state(submit_state => false) : null
             }
             else{
                 // alert('처음입니다');
@@ -132,8 +149,9 @@ const Quezeshow_queze= () => {
     }
     const r_btn_click = () => {
         if(uuid2 != 'undefined'){
-            if(Number(roomnum) !== 100){ // 마지막에 오른쪽으로 못 가게 수정 필요 1 20 12 40
-                navigate(`/quezeshow_queze?roomnum=${Number(roomnum)+1}&uuid=${space_uuid}&uuid2=${uuid2}`);
+            if(Number(roomnum) !== 100){
+                navigate(`/quezeshow_queze?roomnum=${Number(roomnum)+1}&uuid=${space_uuid}&uuid2=${uuid2}&direction=r`);
+                submit_state ? setSubmit_state(submit_state => false) : null
             }
             else{
                 //맨 오른쪽 까지 옴
@@ -141,7 +159,8 @@ const Quezeshow_queze= () => {
         }
         else{
             if(Number(roomnum) !== 100){ // 마지막에 오른쪽으로 못 가게 수정 필요 1 20 12 40
-                navigate(`/quezeshow_queze?roomnum=${Number(roomnum)+1}`);
+                navigate(`/quezeshow_queze?roomnum=${Number(roomnum)+1}&direction=r`);
+                submit_state ? setSubmit_state(submit_state => false) : null
             }
             else{
                 //맨 오른쪽 까지 옴

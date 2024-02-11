@@ -99,8 +99,10 @@ const Make_space= () => {
     }
     const change_img = (e) => {
         e.preventDefault();
-        // console.log('클릭 후 이미지 선택');
-        basic_change_img(e.target.files);
+        // console.log('클릭 후 이미지 선택',e.target.files.length);
+        if(e.target.files.length === 1){
+            basic_change_img(e.target.files);
+        }
     }
     const onpaste = (e) => {
         // console.log('onpaste');
