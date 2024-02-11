@@ -89,10 +89,10 @@ const Main2 = () => {
         <div className="Main2_root">
             <Header></Header>
             <header className="Main2_a_queze_header">
-                <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/ayoworldrankmakequeze')}}>티어표 제작</button>
+                <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/ayoworldrankmakequeze')}}>이상형 월드컵 만들기</button>
             </header>
             <header className="Main2_header2">
-                <h1>최애 티어표, 내 최애 순위를 선택해 보세요!</h1>
+                <h1>이상형 월드컵, 내 최애 순위를 선택해 보세요!</h1>
             </header>
             <header className="Main2_header2">
                 <input type="text" className="Main2_a_queze_header_input" placeholder="검색 창(입력 후 엔터)" ref={search_value_ref} onKeyUp={search_enter}></input>
