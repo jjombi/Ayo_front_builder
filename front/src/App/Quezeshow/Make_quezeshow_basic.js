@@ -34,8 +34,8 @@ const Make_quezeshow_basic = ({make_quezeshow_type, space_uuid, space_title, ser
         const uuid_ = uuidv4();
         console.log('uuid',uuid_);
         setUuid(uuid=> uuid_);
-        const htmlTitle = document.querySelector("title");
-        htmlTitle.innerHTML = '나락퀴즈쇼 당신도 나락에 갈수 있다';
+        // const htmlTitle = document.querySelector("title");
+        // htmlTitle.innerHTML = '나락퀴즈쇼 당신도 나락에 갈수 있다';
     },[])
 
     const add_content = () => {

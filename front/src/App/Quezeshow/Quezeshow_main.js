@@ -13,8 +13,8 @@ const Quezeshow_main= () => {
     const space_title = seachParams.get('space_title');
     const intro_text = seachParams.get('intro_text');
     useEffect(()=>{
-        const htmlTitle = document.querySelector("title");
-        htmlTitle.innerHTML = '나락퀴즈쇼 당신도 나락에 갈수 있다';
+        // const htmlTitle = document.querySelector("title");
+        // htmlTitle.innerHTML = '나락퀴즈쇼 당신도 나락에 갈수 있다';
         console.log('useeffect',space_uuid);
         axios({// parma으로 최신순, 좋아요순 변경
             url : process.env.REACT_APP_SERVER_URL + '/quezeshow_main',

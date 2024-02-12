@@ -6,8 +6,8 @@ import Footer from "./Footer";
 import Main2_make_queze_basic from "./Main2_make_queze_basic";
 const Main2_make_queze = () => {
     useEffect(()=>{
-        const htmlTitle = document.querySelector("title");
-        htmlTitle.innerHTML = 'ayo, 최애 티어표 나의 최애 티어를 만들어보세요';
+        // const htmlTitle = document.querySelector("title");
+        // htmlTitle.innerHTML = 'ayo, 최애 티어표 나의 최애 티어를 만들어보세요';
     },[])
     return(
         <>

@@ -13,8 +13,8 @@ const Main2 = () => {
         // console.log('render');
     })
     useEffect(()=>{
-        const htmlTitle = document.querySelector("title");
-        htmlTitle.innerHTML = 'ayo, 최애 티어표 나의 최애 티어를 만들어보세요';
+        // const htmlTitle = document.querySelector("title");
+        // htmlTitle.innerHTML = 'ayo, 최애 티어표 나의 최애 티어를 만들어보세요';
         axios({
             url          : process.env.REACT_APP_SERVER_URL + '/main_select_queze',
             method       : 'GET',
