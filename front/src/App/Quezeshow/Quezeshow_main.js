@@ -64,6 +64,9 @@ const Quezeshow_main= () => {
                     <button className="all_btn a_queze_header_btn" type="button" onClick={()=>navigate('/make_quezeshow')}>나락퀴즈쇼 제작</button>
                 </header>
             }
+            <header className="Main2_header2">
+                <h1>나락퀴즈쇼  </h1>
+            </header>
             <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
             {
                 space_uuid !== null ?
