@@ -3,14 +3,17 @@ import './css.css';
 import { useNavigate } from "react-router-dom";
 import { useFormStatus } from 'react-dom';
 import axios from "axios";
+import { useSearchParams,useLocation } from "react-router-dom";
 import { dragenter, dragover, processChange } from "./public/WorldRank";
 import AWS from "aws-sdk";
 import Loading_popup from "./Loading_popup";
 import Make_queze_img from "./Make_queze_img";
 import Explain_popup from "./Explain_popup";
 import Guide_popup from "./Guide_popup";
+import Make_a_queze_modify from "./Make_a_queze_modify";
 const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
     const [img_arr, setImg_arr] = useState([]); 
     const text_ref = useRef([]);
     const img_arr_ref = useRef([]);
@@ -27,8 +30,12 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const {pending} = useFormStatus();
     const [passtinyint, setPasstinyint] = useState(false);
     const password_ref = useRef();
+    const modify_password = useRef();
     const [password_preview_state,setPassword_preview_state] = useState('password');
     const [guide_state, setGuide_state] = useState(false);
+
+    const [early_data,setEarly_data] = useState();
+
     // const history = useHistory();
 
 
@@ -57,6 +64,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     useEffect(()=>{
         // console.log(type,roomName,serverurl);
         if(type === 'modify'){
+            console.log('type is modify');
             axios({
                 method : "POST",
                 url : process.env.REACT_APP_SERVER_URL+'/make_queze_modify',
@@ -70,7 +78,26 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                 last_num_ref.current = res.data[res.data.length-1].originalname.replace(/img|.jpg/g, '');
                 // console.log(last_num_ref);
             })
-        }    
+            axios({
+                url : process.env.REACT_APP_SERVER_URL + '/modify_queze',
+                method : 'POST',
+                data : {
+                    roomName : searchParams.get('roomName'),
+                },
+                headers : {
+                    'Content-Type' : 'application/json'
+                }
+            }).then(res=>{
+                console.log(res);
+                setEarly_data(early_data => [...res.data]);
+            })
+        }
+        else{
+            console.log('type isnt modify');
+            const random_modify_password = Math.random().toString(36).substr(2,10);
+            console.log('random_modify_password',random_modify_password);
+            modify_password.current = random_modify_password; 
+        }   
         // setLoading_popup_state(true);
     },[])
     const upload_checker = () => {
@@ -336,18 +363,30 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
             <canvas ref={canvas_ref}></canvas>
             <input type="button" className="make_queze_guide_input all_btn" value="설명서" onClick={change_guide_state}></input>
             <iframe id="iframe" name="iframe" style={{display:'none'}} ></iframe>
-            
+            {
+                type === 'modify' & early_data !== undefined ? 
+                <div className="queze_area">
+                {   
+                early_data.map((e,i)=>{
+                    console.log(e);
+                        // return(
+                        //     <Make_a_queze_modify key={i} img={e.img} early_text={e.text}/>
+                        // )
+                })
+                }
+                </div> : null
+            }
             <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={process.env.REACT_APP_SERVER_URL+serverurl} target="iframe"> {/* action="http://localhost:45509/upload_img" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'} */}
                 {type === 'modify'?
                 <>
                 <input type="hidden" value={roomName} name="roomName"></input>
-                <input type="hidden" name="last_num" value={Number(last_num_ref.current)}></input> 
+                <input type="hidden" name="last_num" value={Number(last_num_ref.current)}></input>
                 </> :
                 <>
                     <div className="main_title">
                         <input type="text" placeholder="제목" name="title" ref={title_ref}></input>
                     </div>
-                    <div className="label">
+                    {/* <div className="label">
                         <p title="모든 사용자가 티어표를 수정할 수 있습니다">
                             공개 수정 허용
                             <svg className="all_btn" onClick={(e)=>{change_explain_popup_state(e,1)}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -358,7 +397,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                         {explain_popup_state ? <Explain_popup text={"이 티어표를 참여한 모든 사람이 새로운 선택지를 추가하는 등 현재 티어표를 수정할 수 있습니다."} top={"-7%"} left={"20%"}></Explain_popup> : null}
                         <input type="checkbox" value="수정가능" name="publicAccess"></input> 
 
-                    </div>
+                    </div> */}
                     <div className="label">
                         <p title="비밀번호를 설정하여 일부만 참여할 수 있게합니다.">일부 공개
                             <svg className="all_btn" onClick={(e)=>{change_explain_popup_state(e,2)}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -368,6 +407,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                         </p>
                         {explain_popup_state2 ? <Explain_popup text={"비밀번호를 아는 사람들만 참여할 수 있습니다, 검색창에서 검색하거나 공유 링크를 통해 접속후 비밀번호를 입력해야 참여할 수 있습니다."} top={"-7%"} left={"20%"}></Explain_popup> : null}
                         <input type="checkbox" onChange={change_pass_tinyint}></input>
+                        <input type="hidden" name="modify_password" value={modify_password.current}></input> 
                         {
                             passtinyint ? 
                             <>
@@ -403,6 +443,10 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                     </div>
                 </div>
                 {/* <input type="text" onPaste={onpaste}></input> */}
+                {
+                    console.log('early_data',early_data)
+                }
+                
                 <div className="queze_area">
                     {   
                     img_arr.map((e,i)=>{

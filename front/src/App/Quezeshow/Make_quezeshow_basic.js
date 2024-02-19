@@ -18,7 +18,7 @@ const Make_quezeshow_basic = ({make_quezeshow_type, space_uuid, space_title, ser
     const [representative_img_state, setRepresentative_img_state] = useState(null);
     const {pending} = useFormStatus();
     const [content_object, setContent_object] = useState([]);
-    const pass_ref = useRef();
+    const [password, setPassword] = useState('');
     const region = "ap-northeast-2";
     const bucket = "dlworjs";
     const accessKey = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
@@ -34,6 +34,8 @@ const Make_quezeshow_basic = ({make_quezeshow_type, space_uuid, space_title, ser
         const uuid_ = uuidv4();
         console.log('uuid',uuid_);
         setUuid(uuid=> uuid_);
+        console.log('to str',toString(60));
+        setPassword(password => '');
         // const htmlTitle = document.querySelector("title");
         // htmlTitle.innerHTML = '나락퀴즈쇼 당신도 나락에 갈수 있다';
     },[])
@@ -111,9 +113,9 @@ const Make_quezeshow_basic = ({make_quezeshow_type, space_uuid, space_title, ser
                 주의, 성적인 콘텐츠, 타인에 대한 욕설등 부적절한 콘텐츠는 게시할 수 없습니다.
             </p>
             <input type="text" ref={queze_title_ref} name="queze_title" className="make_quezeshow_queze_title" placeholder="제목"></input>
-            {/* {
-                space_uuid !== null ? <input type="text" ref={pass_ref} name="space_pass" className="make_quezeshow_queze_title" placeholder="수정시 사용할 비밀번호"></input> : null
-            } */}
+            
+            <input type="text" value={password} name="password" hidden readOnly></input>
+            
             {
                 content_state.map((e,i)=>{
                     return(

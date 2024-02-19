@@ -12,7 +12,7 @@ const Main2_a_queze_1and1 = () => {
     const earltlength = useRef(0);
     const [searchParams, setSearchParams] = useSearchParams();
     const title = searchParams.get('title');
-    const publicAccess = searchParams.get('publicAccess');
+    // const publicAccess = searchParams.get('publicAccess');
     const type = searchParams.get('type');
     const roomName = searchParams.get('roomName');
 
@@ -90,7 +90,8 @@ const Main2_a_queze_1and1 = () => {
                     }
                 }).then((res)=>{
                     //result로 페이지 이동
-                    navigate(`/result?roomName=${roomName}&title=${title}&publicAccess=${publicAccess}`);
+                    // navigate(`/result?roomName=${roomName}&title=${title}&publicAccess=${publicAccess}`);
+                    navigate(`/result?roomName=${roomName}&title=${title}`);
                 })
             }
             else{

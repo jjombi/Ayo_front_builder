@@ -5,10 +5,12 @@ import Header from "./ayo_world_rank_header";
 import Footer from "./Footer";
 import Main2_content from "./Main2_content";
 import Adfit from "./Adfit";
+import { useNavigate } from "react-router-dom";
 
 const Main2 = () => {
     const search_value_ref = useRef();
     const [main_content_state,setMain_content_state] = useState([]);
+    const navigate = useNavigate();
     useEffect(()=>{
         // console.log('render');
     })
@@ -28,7 +30,7 @@ const Main2 = () => {
             if(res.data){
                 res.data.result.map((e,i)=>{
                     // console.log(e);
-                    content_arr[i] = {roomName : e.roomName, existence : e.existence, title : e.title, src : 'data:image/jpeg;base64,'+res.data.base64_img_arr[i], uuid : e.uuid, publicAccess : e.publicAccess, password : e.password}
+                    content_arr[i] = {roomName : e.roomName, existence : e.existence, title : e.title, src : 'data:image/jpeg;base64,'+res.data.base64_img_arr[i], uuid : e.uuid, password : e.password}
                 })
     
             }
@@ -56,7 +58,7 @@ const Main2 = () => {
                 if(res.data){
                     res.data.result.map((e,i)=>{
                         // console.log(e);
-                        content_arr[i] = {roomName : e.roomName, existence : e.existence, title : e.title, src : 'data:image/jpeg;base64,'+res.data.base64_img_arr[i], uuid : e.uuid, publicAccess : e.publicAccess, password : e.password}
+                        content_arr[i] = {roomName : e.roomName, existence : e.existence, title : e.title, src : 'data:image/jpeg;base64,'+res.data.base64_img_arr[i], uuid : e.uuid, password : e.password}
                     })
                 }
                 setMain_content_state([...content_arr]);
@@ -79,7 +81,7 @@ const Main2 = () => {
             if(res.data){
                 res.data.result.map((e,i)=>{
                     // console.log(e);
-                    content_arr[i] = {roomName : e.roomName, existence : e.existence, title : e.title, src : 'data:image/jpeg;base64,'+res.data.base64_img_arr[i], uuid : e.uuid, publicAccess : e.publicAccess, password : e.password}
+                    content_arr[i] = {roomName : e.roomName, existence : e.existence, title : e.title, src : 'data:image/jpeg;base64,'+res.data.base64_img_arr[i], uuid : e.uuid, password : e.password}
                 })
             }
             setMain_content_state([...content_arr]);
@@ -117,7 +119,7 @@ const Main2 = () => {
                 {
                     main_content_state.map((e,i)=>{
                         return(
-                            <Main2_content key={i} title={e.title} roomName={e.roomName} existence={e.existence} src={e.src} uuid={e.uuid} publicAccess={e.publicAccess} password={e.password}></Main2_content>
+                            <Main2_content key={i} title={e.title} roomName={e.roomName} existence={e.existence} src={e.src} uuid={e.uuid} password={e.password}></Main2_content>
                         )
                     })
                 }
