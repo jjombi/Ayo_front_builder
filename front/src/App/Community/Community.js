@@ -35,14 +35,25 @@ const Community = () => {
             console.log(res);
         })
     }
+    const chenge_comment_area_height = (e) => {
+        // console.log('key is : ',e.key);
+        // if(e.key === 'Enter'){
+        //     setComment_area_height(comment_area_height => comment_area_height+20);
+        // }
+        comment_input_ref.current.style.height = 'auto'; //height 초기화
+        comment_input_ref.current.style.height = comment_input_ref.current.scrollHeight + 'px';
+    }
     return(
         <div className="community_root">
             <Headers></Headers>
-            <h1>개발자 또는 사용자에게 전할 말을 작성해 주세요</h1>
+            <h1>
+                개발자에게 전할 말을 작성해 주세요,<br/>
+                빠른 시일 내에 공지사항을 통해 답변해 드립니다
+            </h1>
 
             <div className="comment_area">
                 <div>
-                    <input type="text" ref={comment_input_ref} id={1} placeholder="의견"></input>
+                    <textarea type="text" ref={comment_input_ref} id={1} placeholder="의견" onChange={chenge_comment_area_height}></textarea>
                     <button onClick={upload_comment} className="all_btn" >^</button>
                 </div>
             </div>

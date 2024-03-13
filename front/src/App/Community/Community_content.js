@@ -24,7 +24,7 @@ const Community_content = ({text,uuid,date,likes}) => {
     return(
         <div className="children_comment_area">
             <div className="children_comment">
-                <p className="value">{text}</p>
+                <pre className="value">{text}</pre>
                 <p className="likes">{likes}</p>
                 {
                     likes_state 

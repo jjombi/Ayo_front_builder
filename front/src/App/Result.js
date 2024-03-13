@@ -15,6 +15,7 @@ const Result = () => {
     const comment_input_ref = useRef();
     const roomName_ref = useRef();
     const title_ref = useRef();
+    const explain_text_ref = useRef();
     const [result_content_state,setResult_content_state] = useState([]);
     const [result_comment_state,setResult_comment_state] = useState([]);
     const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Result = () => {
     useEffect(()=>{
         roomName_ref.current = searchParams.get('roomName');
         title_ref.current = searchParams.get('title');
+        explain_text_ref.current = searchParams.get('explain_text');
         // const publicAccess_ = searchParams.get('publicAccess');
 
         axios({
@@ -89,6 +91,7 @@ const Result = () => {
             if(res.data == 'success') {
                 // console.log('페이지 리로딩');
                 location.reload();
+                
             }
         })
     }
@@ -98,7 +101,7 @@ const Result = () => {
     return(
         <>  
             {
-                popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={null} roomName={roomName_ref.current} title={title_ref.current} publicAccess={null} type={null} typeWhere={'modify_password'}/> : null
+                popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={null} roomName={roomName_ref.current} title={title_ref.current} publicAccess={null} type={null} typeWhere={'modify_password'} explain_text={explain_text_ref.current}/> : null
             }
             <Header></Header>
             <header className="Main2_a_queze_header">

@@ -1,4 +1,12 @@
 import axios from "axios";
+const handleCopyClipBoard = async (text) => {
+	try {
+		await navigator.clipboard.writeText(text);
+		alert("클립보드에 비밀번호가 복사되었어요.");
+	} catch (err) {
+		console.log(err);
+	}
+}
 const dragenter = (e) => {
     e.preventDefault();
     e.target.style.backgroundColor = "rgb(107, 104, 255)";
@@ -86,6 +94,7 @@ const upload_comment = (uuid,uuid2,roomnum,content_state,clicked,comment_input_r
       })
   }
 }
+
 // const server_url = 'http://3.34.129.99:45509';   
 // const server_url = 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app';
-export {dragenter, dragover, processChange, upload_comment}
+export {dragenter, dragover, processChange, upload_comment,handleCopyClipBoard}

@@ -10,12 +10,13 @@ import Loading_popup from "./Loading_popup";
 import Make_queze_img from "./Make_queze_img";
 import Explain_popup from "./Explain_popup";
 import Guide_popup from "./Guide_popup";
-import Make_a_queze_modify from "./Make_a_queze_modify";
+import Make_queze_modify from "./Make_queze_modify";
+// import Modify_password_popup from "./public/modify_password_popup";
 const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const [img_arr, setImg_arr] = useState([]); 
-    const text_ref = useRef([]);
+    // const text_ref = useRef([]);
     const img_arr_ref = useRef([]);
     const form_dom_ref = useRef();
     const file_ref = useRef(); // input type file dom
@@ -24,18 +25,21 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
     const explain_text_ref = useRef([]); // 이미지 업로드후 이미지에 대한 설명글 ['서명1','설명2',...]
     const canvas_ref = useRef();
     const last_num_ref = useRef('');
-    const [explain_popup_state, setExplain_popup_state] = useState(false);
-    const [explain_popup_state2, setExplain_popup_state2] = useState(false);
+    // const [explain_popup_state, setExplain_popup_state] = useState(false);
+    // const [explain_popup_state2, setExplain_popup_state2] = useState(false);
     const [loading_popup_state,setLoading_popup_state] = useState(false);
     const {pending} = useFormStatus();
-    const [passtinyint, setPasstinyint] = useState(false);
-    const password_ref = useRef();
+    // const [passtinyint, setPasstinyint] = useState(false);
+    // const password_ref = useRef();
     const modify_password = useRef();
-    const [password_preview_state,setPassword_preview_state] = useState('password');
+    // const [password_preview_state,setPassword_preview_state] = useState('password');
     const [guide_state, setGuide_state] = useState(false);
+    const changed_data_ref = useRef([{type : false, data : ''},{type : false, data : ''}]);
+    const early_title = searchParams.get('title');
+    const early_explain_text = searchParams.get('explain_text');
 
     const [early_data,setEarly_data] = useState();
-
+    const modify_text_ref = useRef([]);
     // const history = useHistory();
 
 
@@ -53,14 +57,14 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
 
     // console.log('assecc kry',AWS.config.credentials,accessKey,secretAccessKey);
 
-    useEffect(()=>{
+    // useEffect(()=>{
         // console.log('render');
-        if(loading_popup_state){
+        // if(loading_popup_state){
             // console.log('popup 창 보이는 중');
-        }else{
+        // }else{
             // console.log('popup창 안 보이는 중');
-        }
-    })
+        // }
+    // })
     useEffect(()=>{
         // console.log(type,roomName,serverurl);
         if(type === 'modify'){
@@ -91,6 +95,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                 console.log(res);
                 setEarly_data(early_data => [...res.data]);
             })
+            
         }
         else{
             console.log('type isnt modify');
@@ -107,6 +112,25 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
         };
         title_ref.current.value === '' ? return_message.title = '제목을 입력해 주세요' : return_message.title = '';
         return return_message;
+    }
+    const modify_upload = () => {
+        const changeed_text = modify_text_ref.current.filter((e,i)=>e != undefined);
+        console.log('changeed_text',changeed_text)
+        axios({
+            url : process.env.REACT_APP_SERVER_URL+'/modify_change_text',
+            method : 'POST',
+            data : { 
+                roomName             : roomName,
+                changed_text         : changeed_text,
+                changed_title        : changed_data_ref.current[0],
+                changed_explain_text : changed_data_ref.current[1]
+            },
+            headers : {
+                'Content-Type' : 'application/json'
+            }
+        }).then(res=>{
+            console.log(res);
+        })
     }
     const img_upload = async (e) => {
         e.preventDefault();
@@ -181,23 +205,23 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
            
     
     }
-    const preventDefault = (e) => {
-        // console.log('preventDefault and clicked this input');
-        if(e.keyCode === 13){
-            // console.log('preventDefault and clicked enter');
-            e.preventDefault();
-            e.target.value += '\n';
-        }
-        if(e.target.value.length > 40) {
-            alert('40자 이하로 작성 하세요');
-            e.target.value = e.target.value.slice(0,40);
-        }
+    // const preventDefault = (e) => {
+    //     // console.log('preventDefault and clicked this input');
+    //     if(e.keyCode === 13){
+    //         // console.log('preventDefault and clicked enter');
+    //         e.preventDefault();
+    //         e.target.value += '\n';
+    //     }
+    //     if(e.target.value.length > 40) {
+    //         alert('40자 이하로 작성 하세요');
+    //         e.target.value = e.target.value.slice(0,40);
+    //     }
         
-    }
-    const change_text = (e) => {
-        const index = e.target.id;
-        text_ref.current[index] = e.target.value;
-    }
+    // }
+    // const change_text = (e) => {
+    //     const index = e.target.id;
+    //     text_ref.current[index] = e.target.value;
+    // }
     const change_img_drop = (e) => {
         e.preventDefault();
         basic_change_img(e.dataTransfer.files,false );
@@ -305,13 +329,13 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
         console.log(img_arr_ref);
     }
 
-    const file_size_checker = (ev) => {
-        if(ev.size > 1024) { //1024 * 1024
-        alert('이미지 파일 1MB 이상 !!');
-        return false;
-        }
-        else return true;
-    }
+    // const file_size_checker = (ev) => {
+    //     if(ev.size > 1024) { //1024 * 1024
+    //     alert('이미지 파일 1MB 이상 !!');
+    //     return false;
+    //     }
+    //     else return true;
+    // }
     
     const delete_img = (e) => {
         // console.log('delete img 함수 시작',e.target.id);
@@ -331,30 +355,52 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
 
         
     }
-    const change_pass_tinyint = (e) => {
-        setPasstinyint(!passtinyint);
+    // const change_pass_tinyint = (e) => {
+    //     setPasstinyint(!passtinyint);
 
-        if(passtinyint){
-            // console.log(password_ref);
-            password_ref.current.value = '';
-        }
-    }
-    const change_password_preview_state = () => {
-        password_preview_state === 'text' ? setPassword_preview_state('password')
-        : setPassword_preview_state('text')
-    }
-    const change_explain_popup_state = (e,type) => {
-        e.preventDefault();
-        // console.log('explain popup state change');
-        if(type === 1){
-            setExplain_popup_state(explain_popup_state => !explain_popup_state);
-        }
-        else if(type === 2){
-            setExplain_popup_state2(explain_popup_state2 => !explain_popup_state2);
-        }
-    }
+    //     if(passtinyint){
+    //         // console.log(password_ref);
+    //         password_ref.current.value = '';
+    //     }
+    // }
+    // const change_password_preview_state = () => {
+    //     password_preview_state === 'text' ? setPassword_preview_state('password')
+    //     : setPassword_preview_state('text')
+    // }
+    // const change_explain_popup_state = (e,type) => {
+    //     e.preventDefault();
+    //     // console.log('explain popup state change');
+    //     if(type === 1){
+    //         setExplain_popup_state(explain_popup_state => !explain_popup_state);
+    //     }
+    //     else if(type === 2){
+    //         setExplain_popup_state2(explain_popup_state2 => !explain_popup_state2);
+    //     }
+    // }
     const change_guide_state = () => {
         setGuide_state(guide_state => !guide_state);
+    }
+    const explain_text_change = (e) => {
+        console.log(e.target.value);
+        const changed_data = [...changed_data_ref.current];
+        if(e.target.data !== early_explain_text){
+            changed_data[1] = {type : true, data : e.target.value}
+        }
+        else if(e.target.value === early_explain_text){
+            changed_data[1] = {type : false, data : e.target.value}
+        }
+        changed_data_ref.current = [...changed_data];
+    }
+    const title_change = (e) => {
+        console.log(e.target.value);
+        const changed_data = [...changed_data_ref.current];
+        if(e.target.data !== early_title){
+            changed_data[0] = {type : true, data : e.target.value}
+        }
+        else if(e.target.value === early_title){
+            changed_data[0] = {type : false, data : e.target.value}
+        }
+        changed_data_ref.current = [...changed_data];
     }
     return(
         <>  
@@ -363,29 +409,26 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
             <canvas ref={canvas_ref}></canvas>
             <input type="button" className="make_queze_guide_input all_btn" value="설명서" onClick={change_guide_state}></input>
             <iframe id="iframe" name="iframe" style={{display:'none'}} ></iframe>
-            {
-                type === 'modify' & early_data !== undefined ? 
-                <div className="queze_area">
-                {   
-                early_data.map((e,i)=>{
-                    console.log(e);
-                        // return(
-                        //     <Make_a_queze_modify key={i} img={e.img} early_text={e.text}/>
-                        // )
-                })
-                }
-                </div> : null
-            }
             <form encType="multipart/form-data" ref={form_dom_ref} className="form_main2" method="POST" action={process.env.REACT_APP_SERVER_URL+serverurl} target="iframe"> {/* action="http://localhost:45509/upload_img" method="POST" action={process.env.REACT_APP_SERVER_URL+'/upload_img'} */}
                 {type === 'modify'?
-                <>
-                <input type="hidden" value={roomName} name="roomName"></input>
-                <input type="hidden" name="last_num" value={Number(last_num_ref.current)}></input>
+                <>  
+                    <div className="main_title">
+                        <input type="text" name="queze_title" className="main_title" placeholder="제목" defaultValue={early_title} onChange={(e)=>{processChange(title_change(e))}}></input>
+                    </div>
+                    <div className="explain_text">
+                        <textarea placeholder="설명글" maxLength={200} name="quezeshowqueze_explain_text" defaultValue={early_explain_text} className="queze_explain_text" onChange={(e)=>{processChange(explain_text_change(e))}}></textarea>
+                    </div>
+                    <input type="hidden" value={roomName} name="roomName"></input>  
+                    <input type="hidden" name="last_num" value={Number(last_num_ref.current)}></input>
                 </> :
                 <>
                     <div className="main_title">
-                        <input type="text" placeholder="제목" name="title" ref={title_ref}></input>
+                        <input type="text" placeholder="제목" name="title" ref={title_ref} maxLength={40}></input>
                     </div>
+                    <div className="explain_text">
+                        <textarea placeholder="설명글" maxLength={200} name="queze_explain_text"></textarea>
+                    </div>
+                    <input type="hidden" name="modify_password" value={modify_password.current}></input> 
                     {/* <div className="label">
                         <p title="모든 사용자가 티어표를 수정할 수 있습니다">
                             공개 수정 허용
@@ -397,7 +440,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                         {explain_popup_state ? <Explain_popup text={"이 티어표를 참여한 모든 사람이 새로운 선택지를 추가하는 등 현재 티어표를 수정할 수 있습니다."} top={"-7%"} left={"20%"}></Explain_popup> : null}
                         <input type="checkbox" value="수정가능" name="publicAccess"></input> 
 
-                    </div> */}
+                    </div> 
                     <div className="label">
                         <p title="비밀번호를 설정하여 일부만 참여할 수 있게합니다.">일부 공개
                             <svg className="all_btn" onClick={(e)=>{change_explain_popup_state(e,2)}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -407,7 +450,6 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                         </p>
                         {explain_popup_state2 ? <Explain_popup text={"비밀번호를 아는 사람들만 참여할 수 있습니다, 검색창에서 검색하거나 공유 링크를 통해 접속후 비밀번호를 입력해야 참여할 수 있습니다."} top={"-7%"} left={"20%"}></Explain_popup> : null}
                         <input type="checkbox" onChange={change_pass_tinyint}></input>
-                        <input type="hidden" name="modify_password" value={modify_password.current}></input> 
                         {
                             passtinyint ? 
                             <>
@@ -431,7 +473,7 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                             :
                             <input type="password" disabled></input>
                         }
-                    </div>    
+                    </div>     */}
                 </>
                 }
 
@@ -443,9 +485,9 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                     </div>
                 </div>
                 {/* <input type="text" onPaste={onpaste}></input> */}
-                {
+                {/* {
                     console.log('early_data',early_data)
-                }
+                } */}
                 
                 <div className="queze_area">
                     {   
@@ -456,11 +498,27 @@ const Main2_make_queze_basic = ({type, roomName, serverurl}) => {
                     })
                     }
                 </div>
-                    
+                {
+                type === 'modify' & early_data !== undefined ? 
+                <>
+
+                    <div className="queze_area">
+                    {   
+                    early_data.map((e,i)=>{
+                        console.log(e);
+                        return(
+                            <Make_queze_modify key={i} img={'data:image/jpeg;base64,'+e.img} early_text={e.text} uuid={e.uuid} modify_text_ref={modify_text_ref} index={i}/>
+                        )
+                    })
+                    }
+                    </div> 
+                </> : null
+            }
                 <div className="Main2_sumit_btn">
-                    <input type="button" value="완료"  onClick={img_upload}></input>
+                    <input type="button" value="완료"  onClick={(e)=>{if(changed_data_ref[0].type !== false || changed_data_ref[1].type !== false || modify_text_ref.current.length !== 0){modify_upload(e);}if(img_arr_ref.current.length !== 0){img_upload}(e)}}></input>
                 </div>
             </form>
+            
         </>
     )
 }

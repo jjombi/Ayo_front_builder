@@ -24,13 +24,13 @@ const Main2 = () => {
                 'Content-Type' : 'application/json'
             } 
         }).then((res)=>{
-            // console.log('메인 이미지 res : ',res.data);
-
+            console.log('메인 이미지 res : ',res.data);
+            
             let content_arr = [];
             if(res.data){
                 res.data.result.map((e,i)=>{
                     // console.log(e);
-                    content_arr[i] = {roomName : e.roomName, existence : e.existence, title : e.title, src : 'data:image/jpeg;base64,'+res.data.base64_img_arr[i], uuid : e.uuid, password : e.password}
+                    content_arr[i] = {roomName : e.roomName, existence : e.existence, title : e.title, src : 'data:image/jpeg;base64,'+res.data.base64_img_arr[i], uuid : e.uuid, password : e.password, explain_text : e.explainText}
                 })
     
             }
@@ -119,7 +119,7 @@ const Main2 = () => {
                 {
                     main_content_state.map((e,i)=>{
                         return(
-                            <Main2_content key={i} title={e.title} roomName={e.roomName} existence={e.existence} src={e.src} uuid={e.uuid} password={e.password}></Main2_content>
+                            <Main2_content key={i} title={e.title} roomName={e.roomName} existence={e.existence} src={e.src} uuid={e.uuid} password={e.password} explain_text={e.explain_text}></Main2_content>
                         )
                     })
                 }

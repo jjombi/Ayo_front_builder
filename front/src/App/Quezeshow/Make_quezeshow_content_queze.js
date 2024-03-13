@@ -3,7 +3,7 @@ import '../css.css';
 import { dragenter, dragover, processChange } from "../public/WorldRank";
 import img from '../Img_folder/no_image.jpg';
 
-const Make_quezeshow_content = ({index,content_state,setContent_state,canvas_ref,file_ref,content_object,setContent_object}) => {
+const Make_quezeshow_content_queze = ({index,content_state,setContent_state,canvas_ref,file_ref,content_object,setContent_object, queze_type}) => {
     const [src, setSrc] = useState(img);
     const [img_tinyint, setImg_tinyint] = useState(false);
     // console.log('index',index);
@@ -159,12 +159,37 @@ const Make_quezeshow_content = ({index,content_state,setContent_state,canvas_ref
             <div className="make_quezeshow_content_file_onpaste allbtn" onPaste={onpaste}>
                 <p className="allbtn">이미지 붙여 넣기</p>
             </div>
-            <input type="text" maxLength={80} name="content_title" className="Make_quezeshow_content_title" placeholder="제목" value={content_object[index].title} onChange={change_title}></input>
+            <input type="text" maxLength={80} name="content_title" className="Make_quezeshow_content_title" placeholder={`${index+1}번째 문제 제목을 입력해 주세요`} value={content_object[index].title} onChange={change_title}></input>
             <input type="text" maxLength={3000} name="explain_text" className="Make_quezeshow_content_text" placeholder="설명" value={content_object[index].text} onChange={change_text}></input>
+            {
+                queze_type === 'multiple_choice' 
+                ?
+                <>
+                <section className="value_input">
+                    <input type="text" maxLength={80} placeholder="답1" name="value1"></input>
+                    <input type="text" maxLength={80} placeholder="답2" name="value2"></input>
+                    <input type="text" maxLength={80} placeholder="답3" name="value3"></input>
+                    <input type="text" maxLength={80} placeholder="답4" name="value4"></input>
+                </section>
+                <input className="anwer_input" type="text" maxLength={80} placeholder="정답" name="answer"></input>
+                </>
+                
+                :
+                <>
+                <section className="value_input">
+                    <input type="text" maxLength={80} placeholder="정답 인정 범위" name="value1"></input>
+                    <input type="text" maxLength={80} placeholder="정답 인정 범위" name="value2"></input>
+                    <input type="text" maxLength={80} placeholder="정답 인정 범위" name="value3"></input>
+                    <input type="text" maxLength={80} placeholder="정답 인정 범위" name="value4"></input>
+                </section>
+                <input className="anwer_input" type="text" maxLength={80} placeholder="정답 인정 범위" name="answer"></input>
+                </>
+            }
+            
             {
                 // console.log(content_object[index],index)
             }
         </section>
     )
 }
-export default Make_quezeshow_content;
+export default Make_quezeshow_content_queze;
