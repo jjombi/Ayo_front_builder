@@ -10,7 +10,7 @@ import Header from "../ayo_world_rank_header";
 import Adfit from "../Adfit";
 import Make_quezeshow_modify_content from './Make_quezeshow_modify_content';
 import axios from "axios";
-import Modify_password_popup from "../public/modify_password_popup";
+// import Modify_password_popup from "../public/modify_password_popup";
 import Make_quezeshow_content_text from './Make_quezeshow_content_text';
 const Make_quezeshow_basic = ({type, server_url, uuid_props, quezeshow_type_props, queze_type}) => {
     const [content_state,setContent_state] = useState([]);
