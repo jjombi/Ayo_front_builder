@@ -21,6 +21,7 @@ const Quezeshow_main= () => {
             method : 'GET',
             params : { 
                 type : 'likes',
+                quezeshow_type : "&& quezeshow_type = 'vote'"
                 // space_uuid : space_uuid,
             }
         }).then(res=>{ //res = [{src, uuid, title}]
@@ -63,7 +64,7 @@ const Quezeshow_main= () => {
                 <header className="Main2_a_queze_header">
                     {/* <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/space')}}>스페이스</button>
                     <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/make_space')}}>스페이스 만들기</button> */}
-                    <button className="all_btn a_queze_header_btn" type="button" onClick={()=>navigate('/make_quezeshow')}>퀴즈쇼 제작</button>
+                    <button className="all_btn a_queze_header_btn" type="button" onClick={()=>navigate('/make_quezeshow?ty=vote')}>퀴즈쇼 제작</button>
                 </header>
             {/* } */}
             {/* <header className="Main2_header2"> */}

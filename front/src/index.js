@@ -16,6 +16,7 @@ const Make_quezeshow = lazy(()=>import('./App/Quezeshow/Make_quezeshow.js'));
 const Quezeshow_main = lazy(()=>import('./App/Quezeshow/Quezeshow_main'));
 const Guide_main = lazy(()=>import('./App/guide/Guide_main'));
 const Quezeshow_queze = lazy(()=>import('./App/Quezeshow/Quezeshow_queze'));
+const Machugi = lazy(()=>import('./App/machugi/Machugi.js'));
 const Space = lazy(()=>import('./App/Space/Space.js'));
 const Make_space = lazy(()=>import('./App/Space/Make_space.js'));
 const In_space = lazy(()=>import('./App/Space/In_space.js'));
@@ -46,6 +47,7 @@ root.render(
               <Route path='/quezeshow_result' element={<Quezeshow_result/>}></Route>
               <Route path='/make_quezeshow' element={<Make_quezeshow/>}></Route>
               <Route path='/quezeshow_main' element={<Quezeshow_main/>}></Route>
+              <Route path='/machugi' element={<Machugi/>}></Route>
               <Route path='/quezeshow_queze' element={<Quezeshow_queze/>}></Route>
               <Route path='/guide' element={<Guide_basic/>}></Route>
               {/* <Route path='/space' element={<Space/>}></Route> */}

@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef, forwardRef } from "react";
 import no_img from "../Img_folder/no_image.jpg";
 
-const Quezeshow_queze_content_type_queze = ({img,v1,v2,v3,v4,answer,title,text, clicked, setClicked,queze_type,descriptive_input_ref, correct, correct_checker}) => {
-
+const Quezeshow_queze_content_type_queze = ({img,v1,v2,v3,v4,answer,title,text, clicked, setClicked,queze_type, correct,descriptive_input_ref}) => {
+    // const [is_correct, setIs_correct] = useState(false);
     const btn_click = (e) => {
         console.log('clicked',e.target.id,'--',clicked);
-        setClicked(clicked => e.target.id);
+        // setClicked(clicked => e.target.id);
     }
+    useEffect(()=>{
+        console.log('correct',correct);
+    })
+    
+    // useEffect(()=>{
+    //     if(!correct){
+    //         // console.log(correct_checker());
+    //         console.log('2');
+    //         if(correct_checker()){
+    //             setIs_correct(is_correct => true);
+    //         }else{
+    //             setIs_correct(is_correct => false);
+    //         }
+    //     }
+    // },[correct])
     return(
         <section className="Quezeshow_queze_content_type_queze_root" style={{color : 'black'}}>
             <h1>
@@ -24,10 +39,10 @@ const Quezeshow_queze_content_type_queze = ({img,v1,v2,v3,v4,answer,title,text, 
             {
                 Number(queze_type) === 1 
                 ?
-                    correct === true
+                    correct.is === true
                     ?
                     <>
-                    <h1> {correct_checker() ? '정답' : '오답' }</h1>
+                    <h1> {correct.answer ? '정답' : '오답'}</h1>
                     <p>{answer}</p>
                     </>
                     :
@@ -38,18 +53,18 @@ const Quezeshow_queze_content_type_queze = ({img,v1,v2,v3,v4,answer,title,text, 
                     <button type="button" id={v4} style={clicked === v4 ? {backgroundColor : '#828282'} : null} onClick={btn_click}>{v4}</button>
                     </section>
                 :
-                    correct === true
+                    correct.is === true
                     ?
                     <>
-                    <h1> {correct_checker() ? '정답' : '오답' }</h1>
+                    <h1> {correct.answer ? '정답' : '오답'}</h1>
                     <p>{answer}</p>
                     </>
                     :
-                    <input ref={descriptive_input_ref}></input>
+                    <input type="text" ref={descriptive_input_ref}></input>
                 
             }
         </section> 
     )
 }
 
-export default Quezeshow_queze_content_type_queze;
+export default forwardRef(Quezeshow_queze_content_type_queze);

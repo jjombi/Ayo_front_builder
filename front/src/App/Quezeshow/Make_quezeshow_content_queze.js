@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import '../css.css';
 import { dragenter, dragover, processChange } from "../public/WorldRank";
 import img from '../Img_folder/no_image.jpg';
-
+import {chenge_textarea_height} from '../public/WorldRank';
 const Make_quezeshow_content_queze = ({index,content_state,setContent_state,canvas_ref,file_ref,content_object,setContent_object, queze_type}) => {
     const [src, setSrc] = useState(img);
     const [img_tinyint, setImg_tinyint] = useState(false);
@@ -159,30 +159,30 @@ const Make_quezeshow_content_queze = ({index,content_state,setContent_state,canv
             <div className="make_quezeshow_content_file_onpaste allbtn" onPaste={onpaste}>
                 <p className="allbtn">이미지 붙여 넣기</p>
             </div>
-            <input type="text" maxLength={80} name="content_title" className="Make_quezeshow_content_title" placeholder={`${index+1}번째 문제 제목을 입력해 주세요`} value={content_object[index].title} onChange={change_title}></input>
-            <input type="text" maxLength={3000} name="explain_text" className="Make_quezeshow_content_text" placeholder="설명" value={content_object[index].text} onChange={change_text}></input>
+            <textarea rows={1} type="text" maxLength={80} name="content_title" className="Make_quezeshow_content_title" placeholder={`${index+1}번째 문제 제목을 입력해 주세요`} value={content_object[index].title} onChange={(e)=>{change_title(e);chenge_textarea_height(e)}}></textarea>
+            <textarea rows={1} type="text" maxLength={3000} name="explain_text" className="Make_quezeshow_content_text" placeholder="설명" value={content_object[index].text} onChange={(e)=>{change_text(e);chenge_textarea_height(e)}}></textarea>
             {
                 queze_type === 'multiple_choice' 
                 ?
                 <>
                 <section className="value_input">
-                    <input type="text" maxLength={80} placeholder="답1" name="value1"></input>
-                    <input type="text" maxLength={80} placeholder="답2" name="value2"></input>
-                    <input type="text" maxLength={80} placeholder="답3" name="value3"></input>
-                    <input type="text" maxLength={80} placeholder="답4" name="value4"></input>
+                    <input type="text" rows={1} onChange={chenge_textarea_height} maxLength={80} placeholder="답1" name="value1"></input>
+                    <input type="text" rows={1} onChange={chenge_textarea_height} maxLength={80} placeholder="답2" name="value2"></input>
+                    <input type="text" rows={1} onChange={chenge_textarea_height} maxLength={80} placeholder="답3" name="value3"></input>
+                    <input type="text" rows={1} onChange={chenge_textarea_height} maxLength={80} placeholder="답4" name="value4"></input>
                 </section>
-                <input className="anwer_input" type="text" maxLength={80} placeholder="정답" name="answer"></input>
+                <input className="anwer_input" type="text" rows={1} onChange={chenge_textarea_height} maxLength={80} placeholder="정답" name="answer"></input>
                 </>
                 
                 :
                 <>
                 <section className="value_input">
-                    <input type="text" maxLength={80} placeholder="정답 인정 범위" name="value1"></input>
-                    <input type="text" maxLength={80} placeholder="정답 인정 범위" name="value2"></input>
-                    <input type="text" maxLength={80} placeholder="정답 인정 범위" name="value3"></input>
-                    <input type="text" maxLength={80} placeholder="정답 인정 범위" name="value4"></input>
+                    <input type="text" rows={1} onChange={chenge_textarea_height} maxLength={80} placeholder="정답 인정 범위" name="value1"></input>
+                    <input type="text" rows={1} onChange={chenge_textarea_height} maxLength={80} placeholder="정답 인정 범위" name="value2"></input>
+                    <input type="text" rows={1} onChange={chenge_textarea_height} maxLength={80} placeholder="정답 인정 범위" name="value3"></input>
+                    <input type="text" rows={1} onChange={chenge_textarea_height} maxLength={80} placeholder="정답 인정 범위" name="value4"></input>
                 </section>
-                <input className="anwer_input" type="text" maxLength={80} placeholder="정답 인정 범위" name="answer"></input>
+                <input className="anwer_input" type="text" rows={1} onChange={chenge_textarea_height} maxLength={80} placeholder="정답 인정 범위" name="answer"></input>
                 </>
             }
             

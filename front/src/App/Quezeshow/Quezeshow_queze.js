@@ -34,7 +34,7 @@ const Quezeshow_queze= () => {
     const [popup_state, setPopup_state] = useState(false);
     // const [shar_content_state, setShar_content_state] = useState([]);
     const[show_index,setShow_index] = useState(0);
-    const[correct, setCorrect] = useState(false);
+    const[correct, setCorrect] = useState({is : false, answer : null});
     const[correct_queze_checker,setCorrect_queze_checker] = useState([]);
     const[queze_is_done_state,setQueze_is_done_state] = useState({tinyint : false, count : null});
     useEffect(()=>{
@@ -327,50 +327,63 @@ const Quezeshow_queze= () => {
     }
     const correct_checker = () => {
         let result;
-        if(quezeshow_type === 'queze'){
-            if(Number(queze_type) === 1){
-                if(clicked === content_state[show_index].answer){
-                    result = true
-                }else{
-                    result = false
+        console.log(content_state[show_index],descriptive_input_ref.current);
+        // if(descriptive_input_ref !== null){
+            if(quezeshow_type === 'queze'){
+                if(Number(queze_type) === 1){
+                    if(clicked === ''){
+                        result = false;
+                    }
+                    else if(clicked === content_state[show_index].answer){
+                        result = true
+                    }else{
+                        result = false
+                    }
+                }
+                else{
+                    if(descriptive_input_ref.current.value === ''){
+                        result = false;
+                    }
+                    else if(content_state[show_index].value1.trim() === descriptive_input_ref.current.value.trim()){
+                        result = true
+                    }else if(content_state[show_index].value2.trim() === descriptive_input_ref.current.value.trim()){
+                        result = true
+                    }else if(content_state[show_index].value3.trim() === descriptive_input_ref.current.value.trim()){
+                        result = true
+                    }else if(content_state[show_index].value4.trim() === descriptive_input_ref.current.value.trim()){
+                        result = true
+                    }else if(content_state[show_index].answer.trim() === descriptive_input_ref.current.value.trim()){
+                        result = true
+                    }else{
+                        result = false
+                    }
                 }
             }
-            else{
-                if(content_state[show_index].v1 === descriptive_input_ref.current.value){
-                    result = true
-                }else if(content_state[show_index].v2 === descriptive_input_ref.current.value){
-                    result = true
-                }else if(content_state[show_index].v3 === descriptive_input_ref.current.value){
-                    result = true
-                }else if(content_state[show_index].v4 === descriptive_input_ref.current.value){
-                    result = true
-                }else if(content_state[show_index].answer === descriptive_input_ref.current.value){
-                    result = true
+            else if(quezeshow_type === 'text'){
+                // console.log(descriptive_input_ref.current.value.trim(), content_state[show_index].answer.trim());
+                if(descriptive_input_ref.current.value.trim() === content_state[show_index].answer.trim()){
+                    result = true;
                 }else{
-                    result = false
+                    result = false;
                 }
             }
-        }
-        else if(quezeshow_type === 'text'){
-            // console.log(descriptive_input_ref.current.value.trim(), content_state[show_index].answer.trim());
-            if(descriptive_input_ref.current.value.trim() === content_state[show_index].answer.trim()){
-                result = true;
-            }else{
-                result = false;
-            }
-        }
+        // }
         console.log('correct result',result);
         return result;
     }
     const next_queze = () => {
-        if(!correct){
-            setCorrect(correct => true);
+        if(!correct.is){
+            console.log('1');
             if(correct_checker()){
                 const correct_queze_checker_ = [...correct_queze_checker,true];
                 setCorrect_queze_checker(correct_queze_checker => correct_queze_checker_); 
+                const correct_ = {is : true, answer : true}
+                setCorrect(correct => correct_);
             }else{
                 const correct_queze_checker_ = [...correct_queze_checker,false];
-                setCorrect_queze_checker(correct_queze_checker => correct_queze_checker_);            
+                setCorrect_queze_checker(correct_queze_checker => correct_queze_checker_);
+                const correct_ = {is : true, answer : false}
+                setCorrect(correct => correct_);           
             }
             // setShow_index(show_index => show_index+1);
         }else{
@@ -390,7 +403,9 @@ const Quezeshow_queze= () => {
             }else{
                 setShow_index(show_index => show_index+1);
                 setClicked(clicked => '');
-                setCorrect(correct => false);
+                // setCorrect(correct => false);
+                const correct_ = {is : false, answer : correct.answer}
+                setCorrect(correct => correct_);
                 // if(quezeshow_type === 'text'){
                 //     descriptive_input_ref.current.value = '';
                 // } 
@@ -415,7 +430,7 @@ const Quezeshow_queze= () => {
             }
             <Header></Header>
             <header className="Main2_a_queze_header">
-                <button title="퀴즈쇼 수정하기." className="all_btn a_queze_header_btn" onClick={password_checker}>
+                <button type="button" title="퀴즈쇼 수정하기." className="all_btn a_queze_header_btn" onClick={password_checker}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                     <path d="M3 3V2.5H2.5V3H3ZM12.6464 13.3536C12.8417 13.5488 13.1583 13.5488 13.3536 13.3536C13.5488 13.1583 13.5488 12.8417 13.3536 12.6464L12.6464 13.3536ZM3.5 11V3H2.5V11H3.5ZM3 3.5H11V2.5H3V3.5ZM2.64645 3.35355L12.6464 13.3536L13.3536 12.6464L3.35355 2.64645L2.64645 3.35355Z" fill="#222222"/>
                     <path d="M4 15V15C4 16.8692 4 17.8038 4.40192 18.5C4.66523 18.9561 5.04394 19.3348 5.5 19.5981C6.19615 20 7.13077 20 9 20H14C16.8284 20 18.2426 20 19.1213 19.1213C20 18.2426 20 16.8284 20 14V9C20 7.13077 20 6.19615 19.5981 5.5C19.3348 5.04394 18.9561 4.66523 18.5 4.40192C17.8038 4 16.8692 4 15 4V4" stroke="#222222" strokeLinecap="round"/>
@@ -459,7 +474,7 @@ const Quezeshow_queze= () => {
                                 <div className="comment_area quezeshow_after_submi_comment_area">
                                     <div>
                                         <input type="text" ref={comment_input_ref} id={1} placeholder={`${submit_object_state.title}을/를 선택한 이유`}></input>
-                                        <button onClick={upload_comment} className="all_btn" >^</button>
+                                        <button type="button" onClick={upload_comment} className="all_btn" >^</button>
                                     </div>
                                 </div>
                                 :
@@ -477,8 +492,8 @@ const Quezeshow_queze= () => {
                             })
                         }
                             <div className="main2_a_queze_btn_area">
-                                <button onClick={()=>{setSubmit_state(submit_state => !submit_state);}}>다시하기</button>
-                                <button onClick={navi_to_quezeshowresult}>결과 보기</button>
+                                <button type="button" onClick={()=>{setSubmit_state(submit_state => !submit_state);}}>다시하기</button>
+                                <button type="button" onClick={navi_to_quezeshowresult}>결과 보기</button>
                             </div>
                         </section>
                         
@@ -524,12 +539,12 @@ const Quezeshow_queze= () => {
                         <div className="main2_a_queze_btn_area">
                             {
                                 quezeshow_type === 'vote' ? <>
-                                    <button onClick={submit_click}>완료</button>
-                                    <button onClick={navi_to_quezeshowresult}>결과 보기</button>
+                                    <button type="button" onClick={submit_click}>완료</button>
+                                    <button type="button" onClick={navi_to_quezeshowresult}>결과 보기</button>
                                 </>
                                 :
                                 <>
-                                    <button onClick={next_queze}>{'>'}</button>
+                                    <button type="button" onClick={next_queze}>{'>'}</button>
                                 </>
                             }
                             

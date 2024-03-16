@@ -1254,6 +1254,7 @@ header {
   color: #000000;
   resize: none;
   margin-top: 3%;
+  text-align: center;
 }
 
 .make_quezeshow_queze_explain_text:focus {
@@ -1361,6 +1362,7 @@ header {
   margin-top: 10px;
   height: 20px;
   border: 1px solid rgb(239, 239, 239);
+  text-align: center;
 }
 
 .Make_quezeshow_content_text {
@@ -1370,22 +1372,21 @@ header {
   height: 20px;
   border: 1px solid rgb(239, 239, 239);
   color: #000000;
+  text-align: center;
 }
 
 .value_input {
   margin-top: 10px;
   width: 100%;
-  height: 50px;
   display: grid;
   grid-template-columns: 145px 145px;
-  grid-template-rows: 20px 20px;
   gap: 10px;
   justify-items: center;
 }
 
 .value_input > input {
+  height: 20px;
   max-width: 145px;
-  max-height: 45px;
   border: 1px solid rgb(239, 239, 239);
   resize: none;
 }

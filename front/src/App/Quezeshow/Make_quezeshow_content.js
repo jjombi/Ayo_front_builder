@@ -141,6 +141,7 @@ const Make_quezeshow_content = ({index,content_state,setContent_state,canvas_ref
         content_object_[index] = content_object__;
         setContent_object(content_object => [...content_object_]);
     }
+    
     return(
         <section className="make_quezeshow_content_root">
             <input className="make_quezeshow_content_deletebtn" type="button" onClick={delete_} value={"X"}></input>
@@ -159,8 +160,8 @@ const Make_quezeshow_content = ({index,content_state,setContent_state,canvas_ref
             <div className="make_quezeshow_content_file_onpaste allbtn" onPaste={onpaste}>
                 <p className="allbtn">이미지 붙여 넣기</p>
             </div>
-            <input type="text" maxLength={80} name="content_title" className="Make_quezeshow_content_title" placeholder="제목" value={content_object[index].title} onChange={change_title}></input>
-            <input type="text" maxLength={3000} name="explain_text" className="Make_quezeshow_content_text" placeholder="설명" value={content_object[index].text} onChange={change_text}></input>
+            <textarea type="text" rows={1} maxLength={80} name="content_title" className="Make_quezeshow_content_title" placeholder="제목" value={content_object[index].title} onChange={(e)=>{change_title(e);chenge_textarea_height(e)}}></textarea>
+            <textarea type="text" rows={1} maxLength={3000} name="explain_text" className="Make_quezeshow_content_text" placeholder="설명" value={content_object[index].text} onChange={(e)=>{change_text(e);chenge_textarea_height(e)}}></textarea>
             {
                 // console.log(content_object[index],index)
             }

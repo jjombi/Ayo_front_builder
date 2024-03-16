@@ -36,10 +36,6 @@ const Community = () => {
         })
     }
     const chenge_comment_area_height = (e) => {
-        // console.log('key is : ',e.key);
-        // if(e.key === 'Enter'){
-        //     setComment_area_height(comment_area_height => comment_area_height+20);
-        // }
         comment_input_ref.current.style.height = 'auto'; //height 초기화
         comment_input_ref.current.style.height = comment_input_ref.current.scrollHeight + 'px';
     }

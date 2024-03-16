@@ -10,10 +10,13 @@ import Header from "../ayo_world_rank_header";
 import Adfit from "../Adfit";
 import Make_quezeshow_modify_content from './Make_quezeshow_modify_content';
 import axios from "axios";
+import {chenge_textarea_height} from '../public/WorldRank';
 // import Modify_password_popup from "../public/modify_password_popup";
 import Make_quezeshow_content_text from './Make_quezeshow_content_text';
+import { useSearchParams } from "react-router-dom";
 const Make_quezeshow_basic = ({type, server_url, uuid_props, quezeshow_type_props, queze_type}) => {
     const [content_state,setContent_state] = useState([]);
+    const [searchParams,setSearchParams] = useSearchParams();
     const file_ref = useRef([]);
     const canvas_ref = useRef();
     const queze_title_ref = useRef();
@@ -29,8 +32,8 @@ const Make_quezeshow_basic = ({type, server_url, uuid_props, quezeshow_type_prop
     const last_num_ref = useRef(0);
     const [room_num,setRoom_num] = useState(null);
     const [clicked_btn, setClicked_btn] = useState('multiple_choice');
-    const [quezeshow_type_clicked_btn, setQuezeshow_type_clicked_btn] = useState('vote');
-
+    const [quezeshow_type_clicked_btn, setQuezeshow_type_clicked_btn] = useState('queze');
+    const content_type = searchParams.get('ty');
     const region = "ap-northeast-2";
     const bucket = "dlworjs";
     const accessKey = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
@@ -272,28 +275,41 @@ const Make_quezeshow_basic = ({type, server_url, uuid_props, quezeshow_type_prop
                 <>  
                     <input type="text" name="quezeshow_type" hidden value={quezeshow_type_clicked_btn}></input>
                     <input type="text" name="queze_type" hidden value={clicked_btn}></input>
-                    <input type="text" ref={queze_title_ref} maxLength={80} name="queze_title" className="make_quezeshow_queze_title" placeholder="제목"></input>
-                    <textarea placeholder="문제 설명글" maxLength={200} name="quezeshowqueze_explain_text" className="make_quezeshow_queze_explain_text"></textarea>  
+                    <input rows={1} type="text" ref={queze_title_ref} maxLength={80} name="queze_title" className="make_quezeshow_queze_title" placeholder="제목"></input>
+                    <textarea onChange={chenge_textarea_height} rows={1} placeholder="문제 설명글" maxLength={200} name="quezeshowqueze_explain_text" className="make_quezeshow_queze_explain_text"></textarea>  
                     <div className="queze_type_btn">
-                        <button type="button" id="vote" style={quezeshow_type_clicked_btn === 'vote' ? {backgroundColor : 'red'} : null} onClick={quezeshow_type_btn_onclick}>투표 형식</button>
-                        <button type="button" id="queze" style={quezeshow_type_clicked_btn === 'queze' ? {backgroundColor : 'red'} : null} onClick={quezeshow_type_btn_onclick}>퀴즈 형식</button>
-                        <button type="button" id="text" style={quezeshow_type_clicked_btn === 'text' ? {backgroundColor : 'red'} : null} onClick={quezeshow_type_btn_onclick}>문장 형식</button>
-                        {/* <button></button> */}
+                        {/* <button type="button" id="vote" style={quezeshow_type_clicked_btn === 'vote' ? {backgroundColor : 'rgb(126, 126, 126)'} : null} onClick={quezeshow_type_btn_onclick}>투표 형식</button> */}
+                        {
+                            content_type === 'quezeshow'
+                            ?
+                            <>
+                            <button type="button" id="queze" style={quezeshow_type_clicked_btn === 'queze' ? {backgroundColor : 'rgb(126, 126, 126)'} : null} onClick={quezeshow_type_btn_onclick}>퀴즈 형식</button>
+                            <button type="button" id="text" style={quezeshow_type_clicked_btn === 'text' ? {backgroundColor : 'rgb(126, 126, 126)'} : null} onClick={quezeshow_type_btn_onclick}>문장 형식</button>
+                            </>
+                            :
+                            null
+                        }
+                        
                     </div>
                     {
                         quezeshow_type_clicked_btn === 'text' 
                         ?
                         null
                         :
+                        quezeshow_type_clicked_btn === 'vote'
+                        ?
                         <div className="queze_type_btn">
-                            <button type="button" id="multiple_choice" style={clicked_btn === 'multiple_choice' ? {backgroundColor : 'red'} : null} onClick={queze_type_btn_onclick}>객관식</button>
-                            <button type="button" id="descriptive" style={clicked_btn === 'descriptive' ? {backgroundColor : 'red'} : null} onClick={queze_type_btn_onclick}>서술형</button>
-                            {/* <button></button> */}
+                            <button type="button" id="multiple_choice" style={clicked_btn === 'multiple_choice' ? {backgroundColor : 'rgb(126, 126, 126)'} : null} onClick={queze_type_btn_onclick}>객관식</button>
+                        </div>
+                        :
+                        <div className="queze_type_btn">
+                            <button type="button" id="multiple_choice" style={clicked_btn === 'multiple_choice' ? {backgroundColor : 'rgb(126, 126, 126)'} : null} onClick={queze_type_btn_onclick}>객관식</button>
+                            <button type="button" id="descriptive" style={clicked_btn === 'descriptive' ? {backgroundColor : 'rgb(126, 126, 126)'} : null} onClick={queze_type_btn_onclick}>서술형</button>
                         </div>
                     }
                     {/* <div className="queze_type_btn">
-                        <button type="button" id="multiple_choice" style={clicked_btn === 'multiple_choice' ? {backgroundColor : 'red'} : null} onClick={queze_type_btn_onclick}>객관식</button>
-                        <button type="button" id="descriptive" style={clicked_btn === 'descriptive' ? {backgroundColor : 'red'} : null} onClick={queze_type_btn_onclick}>서술형</button>
+                        <button type="button" id="multiple_choice" style={clicked_btn === 'multiple_choice' ? {backgroundColor : 'rgb(126, 126, 126)'} : null} onClick={queze_type_btn_onclick}>객관식</button>
+                        <button type="button" id="descriptive" style={clicked_btn === 'descriptive' ? {backgroundColor : 'rgb(126, 126, 126)'} : null} onClick={queze_type_btn_onclick}>서술형</button>
                     </div> */}
                     <input type="text" value={password} name="modify_password" hidden readOnly></input>   
                     <input type="number" hidden name="representativeimg" value={Number(representative_img_state)} readOnly></input>

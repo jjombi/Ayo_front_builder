@@ -94,7 +94,11 @@ const upload_comment = (uuid,uuid2,roomnum,content_state,clicked,comment_input_r
       })
   }
 }
-
+const chenge_textarea_height = (e) => {
+    console.log('e.ttrarf',e.target.style.height,e.target.scrollHeight);
+    e.target.style.height = 'auto'; //height 초기화
+    e.target.style.height = e.target.scrollHeight + 'px';
+}
 // const server_url = 'http://3.34.129.99:45509';   
 // const server_url = 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app';
-export {dragenter, dragover, processChange, upload_comment,handleCopyClipBoard}
+export {dragenter, dragover, processChange, upload_comment,handleCopyClipBoard,chenge_textarea_height}
