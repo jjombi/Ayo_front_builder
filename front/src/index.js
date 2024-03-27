@@ -23,7 +23,9 @@ const In_space = lazy(()=>import('./App/Space/In_space.js'));
 const Make_space_quezeshow = lazy(()=>import('./App/Space/Make_space_quezeshow.js'));
 const Make_quezeshow_modify = lazy(()=>import('./App/Quezeshow/Make_quezeshow_modify.js'));
 const Guide_basic = lazy(()=>import('./App/guide/Guide_basic.js'));
-
+const Continue_speaking = lazy(()=>import('./App/Continue_speaking/Continue_speaking.js'));
+const New_word_queze = lazy(()=>import('./App/new_word_queze/New_word_queze.js'));
+const Quezeshow_before = lazy(()=>import('./App/Quezeshow/Quezeshow_before.js'));
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
 root.render(
@@ -41,6 +43,7 @@ root.render(
               <Route path='/ayoworldrankaqueze' element={<Main2_a_queze/>}></Route>
               <Route path='/makeaquezemodify' element={<Make_a_queze_modify/>}></Route>
               <Route path='/makequezeshowmodify' element={<Make_quezeshow_modify/>}></Route>
+              <Route path='/quezeshow_before' element={<Quezeshow_before/>}></Route>
               <Route path='/choosequezetype' element={<Choose_queze_type/>}></Route>
               <Route path='/oneandeone' element={<Main2_a_queze_1and1/>}></Route>
               <Route path='/community' element={<Community/>}></Route>
@@ -50,6 +53,8 @@ root.render(
               <Route path='/machugi' element={<Machugi/>}></Route>
               <Route path='/quezeshow_queze' element={<Quezeshow_queze/>}></Route>
               <Route path='/guide' element={<Guide_basic/>}></Route>
+              <Route path='/continue_speaking' element={<Continue_speaking/>}></Route>
+              <Route path='/new_word_queze' element={<New_word_queze/>}></Route>
               {/* <Route path='/space' element={<Space/>}></Route> */}
               <Route path='/guide_main' element={<Guide_main/>}></Route>
               {/* <Route path='/make_space' element={<Make_space/>}></Route> */}

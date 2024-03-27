@@ -2,6 +2,9 @@
 textarea {
     resize: none;
     color: #000000;
+    // align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 textarea:focus {
     outline: none;
@@ -12,6 +15,11 @@ textarea:focus {
     border: 0;
     color: white;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#root {
+    min-height: 100vh;
+    // background-color: #2a2a2a;
+    background: linear-gradient(10deg,#000000,40%, #282828);
 }
 .root_h1 {
     display: hidden;
@@ -118,9 +126,9 @@ header {
     // color: white;
     padding-left: 7px;
     padding-right: 7px;
-    color: #000000;
-    background-color: white;
-    background-color:rgb(239, 239, 239);
+    color: #ffffff;
+    // background-color: white;
+    background-color:rgb(51, 51, 51);
     border-radius: 10px;
     max-width: 100px;
 }
@@ -128,9 +136,10 @@ header {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
     margin-left: 3%;
     margin-right: 15%;
+    // color: #ffffff;
 }
 .header_rogo > p {
     font-size: 13px;
@@ -138,7 +147,7 @@ header {
     margin-top: 45%;
     margin-left: 43%;
     transform: translate(-50%,-50%);
-    color: #000000;
+    color: #ffffff;
 }
 //------------까지
 .margin_top {
@@ -147,7 +156,7 @@ header {
 .form_main2 {
     z-index: 10;
     width: 100vw;
-    height: 100vh;
+    // height: 100vh;
     max-width: 100%;
     position: relative;
     // background-color: #5c6aff;
@@ -276,17 +285,17 @@ header {
     // height: 20%;
     // min-width: 300px;
     // min-height: 200px;
-    border: 2px solid rgb(239, 239, 239);
+    // border: 2px solid rgb(239, 239, 239);
     border-radius: 10px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     margin-top: 2.5%;
     max-width: 400px;
 
 }
 .plus_queze > img {
-    width: 300px;
-    height: 180px;
-    object-fit: scale-down;
+    width: 270px;
+    // height: 180px;
+    // object-fit: scale-down;
 
 }
 .plus_queze > div {
@@ -322,10 +331,11 @@ header {
 .plus_queze > div > div > input, .plus_queze > div > div > button {
     width: 40%;
     height: 90%;
-    background-color:rgb(239, 239, 239);
+    background-color:rgb(59, 59, 59);
     margin-left: 2%;
     margin-right: 2%;
     border-radius: 10px;
+    color: #ffffff;
 }
 .plus_queze > div > div > svg {
     width: 25px;
@@ -409,6 +419,7 @@ header {
 .Main_root_ {
     width: 100%;
     height: 100%;
+    // background-color: #575757;
 }
 .Main2_a_queze_root {
     display: flex;
@@ -464,7 +475,7 @@ header {
     margin-bottom: 3%;
 }
 .make_modify_header > h3 {
-    color: #000000;
+    color: #ffffff;
 }
 .Main2_header2 {
     display: flex;
@@ -473,7 +484,7 @@ header {
 
 }
 .Main2_header2 > h1 {
-    color: #000000;
+    color: #ffffff;
     font-size: 14px;
     width: 100%;
     text-align: center
@@ -491,8 +502,8 @@ header {
     padding-left: 7px;
     text-align: center;
     height: 25px;
-    background-color: rgb(239, 239, 239);
-    color: #000000;
+    background-color: rgb(51, 51, 51);
+    color: #ffffff;
     margin-left: 3%;
     display: flex;
     align-items: center;
@@ -520,7 +531,7 @@ header {
     justify-content: center;
     display: flex;
     flex-direction: row;
-    margin-top: 5%;
+    margin-top: 3%;
     position:static;
     margin-bottom: 50px;
     // overflow-y: scroll;
@@ -530,11 +541,12 @@ header {
     height: 100%;
     min-width: 100px;
     max-width: 150px;
-    background-color: rgb(159, 159, 159);
+    background-color: rgb(59, 59, 59);
     cursor: pointer;
     border-radius: 10px;
     margin-right: 1%;
     margin-left: 1%;
+    color: #ffffff;
 }
 .drag_area {
     display: flex;
@@ -687,11 +699,13 @@ header {
 
 }
 .drop_img_area {
-    width: 95%;
-    height: 40%;
+    // width: 70vw;
+    // max-width: 500px;
+    // min-width: 200px;
+    height: 300px;
     margin-left: 2.5%;
     // margin-bottom: %;
-    border: 1px rgb(239, 239, 239) solid;
+    // border: 1px rgb(239, 239, 239) solid;
     color: black;
     align-items: center;
     display: flex;
@@ -706,7 +720,9 @@ header {
     text-align: center;
     align-items: center;
     justify-content: center;
-    
+    background-color: #ffffff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .drop_img_area > p {
     position: absolute;
@@ -778,7 +794,7 @@ header {
     margin-top: 2%;
 }
 .result_area > p {
-    color: #000000;
+    color: #ffffff;
     display: flex;
     margin-left: 1%;
     margin-top: 2.1%;
@@ -790,22 +806,37 @@ header {
     width: 100%;
     // height: 40px;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     // justify-items: center;    
 }
+
 .comment_area > div {
-    width: 80%;
-    max-width: 670px;
+    max-width: 600px;
     // height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgb(239, 239, 239);
-    border-radius: 10px;
+    // border: 1px solid rgb(239, 239, 239);
+    // border-radius: 10px;
+    background-color: #ffffff;
 }
-.comment_area > div > textarea {
-    border-radius: 10px;
+.comment_area > div:nth-child(1) {
+    width: 15%;
+    min-width: 150px;
+    margin-right: 2px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.comment_area > div:nth-child(2) {
+    margin-left: 2px;
+    width: 60%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.comment_area > div > textarea, .comment_area > div > input{
+    // border-radius: 10px;
     height: 40px;
     width: 90%;
     color: black;
@@ -822,7 +853,7 @@ header {
     // min-width: 95px;
     width: 30px;
     height: 30px;
-    background-color: rgb(181, 181, 181);
+    background-color: rgb(59, 59, 59);
     border-radius: 10px;
 }
 .children_comment_area {
@@ -856,12 +887,19 @@ header {
 .children_comment {
     margin-top: 2%;
     width: 80%;
+    height: 100%;
     max-width: 670px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     position: relative;
+    background-color: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 10px;
     // border: 2px solid black;
 
 }
@@ -886,9 +924,9 @@ header {
 }
 .children_comment > .title {
     position: absolute;
-    left: 0;
-    top: -15px;
-    font-size: 14px;
+    left: 5px;
+    top: 0px;
+    font-size: 13px;
     color: #000000b8;
 }
 .children_comment > img {
@@ -903,7 +941,7 @@ header {
     height: 25px;
 }
 .result_title {
-    color: #000000;
+    color: #ffffff;
     width: 40%;
     text-align: center;
     margin-left: 30%;
@@ -1230,6 +1268,20 @@ header {
 .make_quezeshow_queze_explain_text:focus{
     outline: none;
 }
+.make_quezeshow_queze_example_text {
+    width: 80%;
+    min-width: 150px;
+    max-width: 700px;
+    color: #c4c4c4;
+    font-size: 12px;
+}
+.make_quezeshow_queze_example_title {
+    width: 80%;
+    min-width: 150px;
+    max-width: 450px;
+    color: #c4c4c4;
+    font-size: 12px;
+}
 .make_quezeshow_addbtn{
     width: 40px;
     height: 40px;
@@ -1251,7 +1303,7 @@ header {
     margin-bottom: 90px;
 }
 .make_quezeshow_space_warrning {
-    color: #000000c7;
+    color: #ffffffc7;
     font-size: 14px;
     margin-top: 3%;
     margin-bottom: 5px;
@@ -1263,6 +1315,21 @@ header {
 .make_quezeshow_content_root {
     width: 300px;
     // height: 400px;
+    min-height: 300px;
+    //border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 3%;
+    background-color: rgb(59,59,59);
+}
+.make_quezeshow_content_root > p {
+    color: #ffffff9c;
+    font-size: 12px;
+}
+.make_quezeshow_content_root2 {
+    width: 80%;
+    height: 400px;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -1273,6 +1340,7 @@ header {
     // height: 5%;
     height: 30px;
     margin-top: 10px;
+    color: white; 
     // display: none;
 }
 .make_quezeshow_content_label {
@@ -1295,17 +1363,18 @@ header {
 .make_quezeshow_content_file_onpaste {
     width: 100%;
     height: 20px;
-    border: 1px solid rgb(239, 239, 239);
+    // border: 1px solid rgb(239, 239, 239);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: 0px !important;
+    background-color: #ffffff;
 }
 .make_quezeshow_content_file_onpaste {
     // margin-top: 10px;
 }
 .make_quezeshow_content_file_onpaste > p, .make_quezeshow_content_label > div{
-    color: #000000a5;
+    color: rgb(59,59,59);
     font-size: 13px;
 }
 .make_quezeshow_content_img {
@@ -1327,18 +1396,27 @@ header {
     width: 100%;
     // height: 5%;
     margin-top: 10px;
-    height: 20px;
-    border: 1px solid rgb(239, 239, 239);
+    height: 30px;
+    // border: 1px solid rgb(239, 239, 239);
     text-align: center;
 }
 .Make_quezeshow_content_text {
     margin-top: 10px;
     width: 100%;
-    height: 5%;
-    height: 20px;
-    border: 1px solid rgb(239, 239, 239);
+    // height: 5%;
+    height: 30px;
+    // border: 1px solid rgb(239, 239, 239); 
     color: #000000;
     text-align: center;
+}
+.make_queze_content_queze_value_area {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    // justify-content: center;
+    margin-top: 10px;
+    // align-items: center
 }
 .value_input {
     margin-top: 10px;
@@ -1350,21 +1428,39 @@ header {
     gap: 10px;
     justify-items: center;
 }
+
+.make_queze_content_queze_value_area > p {
+    height: 30px;
+    width: 20%;
+    text-align: center;
+    // margin-right: 3px;
+    // margin-top: 10px;
+}
+.make_queze_content_queze_value_area > input {
+    height: 30px;
+    width: 70%; 
+}
 .value_input > input {
     // width: 100%%;
     // height: 45%;
-    height: 20px;
+    height: 30px;
     max-width: 145px;
     // max-height: 45px;
     border: 1px solid rgb(239, 239, 239);
     resize: none;
 }
+.value_input > p {
+
+}
 .anwer_input {
     width: 145px;
-    height: 20px;
+    height: 30px;
     border: 1px solid rgb(239, 239, 239);
     margin-left: 72.5px;
     margin-top: 10px;
+    // -moz-appearance: textfield;
+    text-align: center;
+    appearance:inherit;
 }
 //----------------------------quezeshow_main---------------------
 .quezeshow_main_root {
@@ -1412,7 +1508,7 @@ header {
 }
 .quezeshow_queze_root > h1 {
     font-size: 20px;
-    color: #000000;
+    color: #ffffff;
     margin-top: 10%;
 }
 .quezeshow_queze_leftbtn, .quezeshow_queze_rightbtn {
@@ -1505,14 +1601,14 @@ header {
     align-items: center;
     color: #000000;
     // border: 1px solid rgb(239, 239, 239);
-    background-color: white;
+    background-color: rgb(59,59,59);
     position: relative;
     margin-top: 30px;
-    border: 1px solid rgb(239, 239, 239);
+    // border: 1px solid rgb(239, 239, 239);
 }
 .quezeshow_queze_content_root > h1 {
     font-size: 16px;
-    color: #000000;
+    color: #ffffff;
     position: absolute;
     left: -30px;
     width: 30px;
@@ -1678,7 +1774,7 @@ header {
 }
 
 .community_root > h1 {
-    color: #000000;
+    color: #ffffff;
     font-size: 18px;
     width: 100%;
     text-align: center;
@@ -1764,7 +1860,7 @@ header {
     height: 60vh;
     max-width: 80%;
     max-height: 80%;
-    margin-top: 10%;
+    margin-top: 4%;
     // position: relative;
     // background-color: #2B2A2A;
 }
@@ -1774,12 +1870,12 @@ header {
     object-fit: scale-down;
 }
 .Quezeshow_queze_content_type_queze_root > h1 {
-    color: #000000;
+    color: #ffffff;
     width: 100%;
     text-align: center;
 }
 .Quezeshow_queze_content_type_queze_root > h4 {
-    color: #000000;
+    color: #ffffff;
     width: 100%;
     text-align: center;
 }
@@ -1808,16 +1904,24 @@ header {
     border: 1px solid rgb(239, 239, 239);
     border-radius: 10px;
 }
+.Quezeshow_queze_content_type_queze_root > h6 {
+    width: 20%;
+    min-width: 300px;
+    margin-left: 50%;
+    transform: translate(-50%);
+    color: #b4b4b4;
+    font-size: 10px;
+}
 .Quezeshow_queze_content_type_queze_root > p {
     width: 100%;
-    color: #000000;
+    color: #ffffff;
     text-align: center;
     height: 5%;
     margin-top: 3%;
 }
 .Quezeshow_queze_content_type_queze_root > h1, .Quezeshow_queze_content_type_queze_root > .type_text_h1{
     width: 100%;
-    color: #000000;
+    color: #ffffff;
     text-align: center;
     font-size: 20px;
     height: 5%;
@@ -1826,6 +1930,33 @@ header {
     // margin-top: 50%;
     // transform: translate(0,-100%);
     // position: absolute;
+}
+.Quezeshow_queze_content_type_queze_root > .timer_ani1 {
+    text-align: center;
+    color: #ff0000;
+}
+.Quezeshow_queze_content_type_queze_root > .timer_ani2 {
+    text-align: center;
+}
+@keyframes timer {
+    from {
+      transform: scale(120%);
+    }
+    to {
+      transform: scale(200%);
+    }
+  }
+.Quezeshow_queze_content_type_queze_root > .timer_ani1 {
+    animation-name: timer;
+    animation: 0.5s linear 1s infinite alternate timer;
+}
+.Quezeshow_queze_content_type_queze_root > .guide_text {
+    width: 20%;
+    min-width: 300px;
+    color: #cacaca;
+    // text-align: center;
+    margin-left: 50%;
+    transform: translate(-50%);
 }
 /*------------------Quezeshow_result_correct---------------------*/
 .Quezeshow_result_correct_root {
@@ -1839,12 +1970,54 @@ header {
     justify-content: center;
     align-items: center;
 }
+.Quezeshow_result_correct_root > h1 {
+    margin-top: 5%;
+}
+.Quezeshow_result_correct_root > button {
+    width: 140px;
+    height: 30px;
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(59,59,59);
+    margin-top: 10%;
+}
 /*-----------------space---------------*/
 .space_explain_text {
     font-size: 18px;
     color: #000000;
     width: 100%;
     text-align: center;
+}
+/*--------------------Quezeshow_before-----------------*/
+.Quezeshow_before_root {
+
+}
+.Quezeshow_before_main {
+    width: 100vw;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Quezeshow_before_main > img {
+    width: 60%;
+    min-width: 350px;
+    max-width: 400px;
+}
+.Quezeshow_before_main > h1 {
+    color: white;
+    margin-top: 10px;
+}
+.Quezeshow_before_main > p {
+    color: white;
+    margin-top: 10px;
+}
+.Quezeshow_before_start_btn {
+    width: 140px;
+    height: 30px;
+    background-color: rgb(59,59,59);
+    border-radius: 10px;
+    margin-top: 40px;
 }
 // 데스크탑
 @include desktop {
@@ -1875,9 +2048,9 @@ header {
     .main_title {
         height: 4%;
     }
-    .drop_img_area{
-        height: 50%;
-    }
+    // .drop_img_area{
+    //     height: 50%;
+    // }
     .Main2_sumit_btn{
         height: 6%;
     }
@@ -1922,9 +2095,9 @@ header {
     .main_title {
         height: 4%;
     }
-    .drop_img_area{
-        height: 50%;
-    }
+    // .drop_img_area{
+    //     height: 50%;
+    // }
     .Main2_sumit_btn{
         height: 7%;
     }
@@ -1964,9 +2137,9 @@ header {
         grid-template-columns: repeat(4,minmax(100px,400px));
     }
     // make queze
-    .drop_img_area{
-        height: 50%;
-    }
+    // .drop_img_area{
+    //     height: 50%;
+    // }
     .main_title, .Main2_sumit_btn {
         height: 4%;
     }
@@ -2006,9 +2179,9 @@ header {
         grid-template-columns: repeat(3,minmax(100px,500px));
     }
     // make queze
-    .drop_img_area{
-        height: 50%;
-    }
+    // .drop_img_area{
+    //     height: 50%;
+    // }
     .main_title, .Main2_sumit_btn {
         height: 4%;
     }
@@ -2049,9 +2222,9 @@ header {
     }   
     // make queze
 
-    .drop_img_area{
-        height: 50%;
-    }
+    // .drop_img_area{
+    //     height: 50%;
+    // }
     .main_title, .Main2_sumit_btn {
         height: 4%;
     }
@@ -2090,9 +2263,9 @@ header {
         grid-template-columns: repeat(2,minmax(100px,500px));
     }
     // make queze
-    .drop_img_area{
-        height: 50%;
-    }
+    // .drop_img_area{
+    //     height: 50%;
+    // }
     .main_title, .Main2_sumit_btn {
         height: 4%;
     }
@@ -2134,9 +2307,9 @@ header {
         margin-top: 30%;
     }
     // make queze
-    .drop_img_area{
-        height: 50%;
-    }
+    // .drop_img_area{
+    //     height: 50%;
+    // }
     .main_title, .Main2_sumit_btn {
         height: 4%;
     }
@@ -2182,9 +2355,9 @@ header {
         width: 60%;
     }
     // make queze
-    .drop_img_area{
-        height: 40%;
-    }
+    // .drop_img_area{
+    //     height: 40%;
+    // }
     .main_title, .Main2_sumit_btn {
         height: 4%;
     }

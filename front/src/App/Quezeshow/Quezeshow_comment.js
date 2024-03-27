@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../css.css';//                      queze,comment, null
 import axios from "axios";//                space, queze, comment 
-const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3}) => {
+const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3, date}) => {
     const [likes_state, setLikes_state] = useState(false);
     const [likes_value_state, setLikes_value_state] = useState(likes);
     // const debounce = (func, timeout = 5000) => {
@@ -68,7 +68,7 @@ const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3}) => {
     return(
         <div className="children_comment_area">
             <div className="children_comment">
-                <p className="title">{title}</p>
+                <p className="title">{title}   {date}</p>
                 {/* <p className="title">asdsad</p> */}
                 <p className="value">{text}</p>
                 <p className="likes">{likes_value_state}</p>

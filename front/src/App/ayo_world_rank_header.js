@@ -29,6 +29,12 @@ const ayo_world_rank_header = () => {
     }
     const navi_to_machugi = () => {
         navigate('/machugi');
+    } 
+    const navi_to_Continue_speaking = () => {
+        navigate('/continue_speaking');
+    }
+    const navi_to_New_word_queze = () => {
+        navigate('/New_word_queze');
     }
     return(
         <header className="Main2_header">
@@ -37,6 +43,8 @@ const ayo_world_rank_header = () => {
             {/* <button className="all_btn" type="button" onClick={navi_to_make_queze}>티어표 제작</button> */}
             <button className="all_btn" type="button" onClick={navi_to_quezeshow}>퀴즈쇼</button>
             <button className="all_btn " type="button" onClick={navi_to_machugi}>문제 맞추기</button>
+            <button className="all_btn " type="button" onClick={navi_to_Continue_speaking}>이어말하기</button>
+            <button className="all_btn " type="button" onClick={navi_to_New_word_queze}>신조어 맞추기</button>
             {/* <button className="all_btn" type="button" onClick={navi_to_make_quezeshow}>퀴즈쇼 제작</button> */}
             <button className="all_btn " type="button" onClick={navi_to_community}>제안하기</button>
             <button className="all_btn " type="button" onClick={navi_to_guide}>공지사항</button>

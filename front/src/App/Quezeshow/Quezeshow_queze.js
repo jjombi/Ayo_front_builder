@@ -20,7 +20,7 @@ const Quezeshow_queze= () => {
     // const type = seachParams.get('type');
     const quezeshow_type = seachParams.get('quezeshow_type');
     const quezeshow_title = seachParams.get('title');
-    const explain_text = useState(seachParams.get('explain_text'));
+    const explain_text = seachParams.get('explain_text');
     const [content_state, setContent_state] = useState([]);
     const [comment_state, setComment_state] = useState([]);
     const [submit_state, setSubmit_state] = useState(false);
@@ -111,7 +111,7 @@ const Quezeshow_queze= () => {
                             //         img : ''
                             //     }
                             // ]);
-                        }else if(quezeshow_type === 'text'){
+                        }else if(quezeshow_type === 'Continue_speak'){
                             axios({
                                 url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze_type_text',
                                 method : 'GET',
@@ -131,7 +131,18 @@ const Quezeshow_queze= () => {
                             // }]
                             // setContent_state(content_state => [...asdadada])
                         }
-                        else{
+                        else if(quezeshow_type === 'New_word_queze'){
+                            axios({
+                                url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze_type_text',
+                                method : 'GET',
+                                params : {roomnum : roomnum,uuid : uuid}
+                                
+                            }).then(res=>{
+                                console.log('content',res.data[0].answer.split(','));
+                                setContent_state( content_state => [...res.data]);
+                                
+                            })
+                        }else{
                             alert('quezeshow type err')
                         }
                         
@@ -262,14 +273,25 @@ const Quezeshow_queze= () => {
         //     })
         // }
         // else{
+            const today = new Date();
+
+            const year = today.getFullYear();
+            const month = ('0' + (today.getMonth() + 1)).slice(-2);
+            const day = ('0' + today.getDate()).slice(-2);
+            const hours = ('0' + today.getHours()).slice(-2); 
+            const minutes = ('0' + today.getMinutes()).slice(-2);
+            const seconds = ('0' + today.getSeconds()).slice(-2); 
+
+            const timeString = year + '-' + month  + '-' + day + ' ' + hours + ':' + minutes  + ':' + seconds;
             axios({
                 url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment_upload',
-                method : 'POST',
+                method : 'POST', 
                 data : {
                     roomnum : roomnum,
                     uuid : uuid,
                     title : content_state[clicked].title,
-                    text : comment_input_ref.current.value
+                    text : comment_input_ref.current.value,
+                    date : timeString
                 },
                 headers : {
                     'Content-Type' : 'application/json'
@@ -327,7 +349,7 @@ const Quezeshow_queze= () => {
     }
     const correct_checker = () => {
         let result;
-        console.log(content_state[show_index],descriptive_input_ref.current);
+        console.log(content_state[show_index],descriptive_input_ref.current,'clicked',clicked);
         // if(descriptive_input_ref !== null){
             if(quezeshow_type === 'queze'){
                 if(Number(queze_type) === 1){
@@ -359,9 +381,16 @@ const Quezeshow_queze= () => {
                     }
                 }
             }
-            else if(quezeshow_type === 'text'){
+            else if(quezeshow_type === 'Continue_speak'){
                 // console.log(descriptive_input_ref.current.value.trim(), content_state[show_index].answer.trim());
                 if(descriptive_input_ref.current.value.trim() === content_state[show_index].answer.trim()){
+                    result = true;
+                }else{
+                    result = false;
+                }
+            }else if(quezeshow_type === 'New_word_queze'){
+                // console.log(descriptive_input_ref.current.value.split(' ').join(''),content_state[show_index].answer.split(',').join('').split(' ').join(''));
+                if(descriptive_input_ref.current.value.split(' ').join('') === content_state[show_index].answer.split(',').join('').split(' ').join('')){
                     result = true;
                 }else{
                     result = false;
@@ -372,6 +401,7 @@ const Quezeshow_queze= () => {
         return result;
     }
     const next_queze = () => {
+        console.log('next queze 실행됨');   
         if(!correct.is){
             console.log('1');
             if(correct_checker()){
@@ -453,14 +483,14 @@ const Quezeshow_queze= () => {
             {
                 queze_is_done_state.tinyint
                 ?
-                <Quezeshow_result_correct all_queze_num={content_state.length} correct_all_queze_num={queze_is_done_state.count}></Quezeshow_result_correct>
+                <Quezeshow_result_correct all_queze_num={content_state.length} correct_all_queze_num={queze_is_done_state.count} setCorrect_queze_checker={setCorrect_queze_checker} setShow_index={setShow_index} setClicked={setClicked} setCorrect={setCorrect} setQueze_is_done_state={setQueze_is_done_state}></Quezeshow_result_correct>
                 :
                 <>
-                <h1>{explain_text}</h1>
-                {
+                <h1>{explain_text === 'null' ? quezeshow_title : explain_text  }</h1>
+                { 
                     submit_state
                     ?   
-                    <>
+                    <>  
                         <section className="quezeshow_after_submit_root">
                             <div className="quezeshow_after_submit_submited_object">
                                 {
@@ -522,23 +552,28 @@ const Quezeshow_queze= () => {
                             <>
                             {
                                 content_state.length !== 0 ?
-                                <Quezeshow_queze_content_type_queze img={'data:image/jpeg;base64,'+content_state[show_index].img} v1={content_state[show_index].value1} v2={content_state[show_index].value2} v3={content_state[show_index].value3} v4={content_state[show_index].value4} answer={content_state[show_index].answer} title={content_state[show_index].title} text={content_state[show_index].text} clicked={clicked} setClicked={setClicked} queze_type={queze_type} descriptive_input_ref={descriptive_input_ref} correct={correct} correct_checker={correct_checker}></Quezeshow_queze_content_type_queze>
+                                <Quezeshow_queze_content_type_queze img={'data:image/jpeg;base64,'+content_state[show_index].img} v1={content_state[show_index].value1} v2={content_state[show_index].value2} v3={content_state[show_index].value3} v4={content_state[show_index].value4} answer={content_state[show_index].answer} title={content_state[show_index].title} text={content_state[show_index].text} clicked={clicked} setClicked={setClicked} queze_type={queze_type} descriptive_input_ref={descriptive_input_ref} correct={correct} correct_checker={correct_checker} next_queze={next_queze}></Quezeshow_queze_content_type_queze>
                                 : null
                             }
                             </>
                             :
+                            quezeshow_type === 'Continue_speak' || quezeshow_type === 'New_word_queze'
+                            ?
                             <>
                             {
                                 content_state.length !== 0 ?
-                                <Quezeshow_queze_content_type_text title={content_state[show_index].title} descriptive_input_ref={descriptive_input_ref} correct={correct} correct_checker={correct_checker} answer={content_state[show_index].answer}></Quezeshow_queze_content_type_text>
+                                <Quezeshow_queze_content_type_text title={content_state[show_index].title} descriptive_input_ref={descriptive_input_ref} correct={correct} correct_checker={correct_checker} answer={content_state[show_index].answer} quezeshow_type={quezeshow_type} next_queze={next_queze}></Quezeshow_queze_content_type_text>
                                 : null
                             }
                             </>
+                            :
+                            null
                         }
         
                         <div className="main2_a_queze_btn_area">
                             {
-                                quezeshow_type === 'vote' ? <>
+                                quezeshow_type === 'vote' ? 
+                                <>
                                     <button type="button" onClick={submit_click}>완료</button>
                                     <button type="button" onClick={navi_to_quezeshowresult}>결과 보기</button>
                                 </>

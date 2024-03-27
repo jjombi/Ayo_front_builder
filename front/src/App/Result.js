@@ -18,6 +18,7 @@ const Result = () => {
     const explain_text_ref = useRef();
     const [result_content_state,setResult_content_state] = useState([]);
     const [result_comment_state,setResult_comment_state] = useState([]);
+    const uuid_ref = useRef('');
     const navigate = useNavigate();
     const [popup_state,setPopup_state] = useState(false);
     // const [publicAccess,setPublicAccess] = useState(false);
@@ -27,6 +28,7 @@ const Result = () => {
         roomName_ref.current = searchParams.get('roomName');
         title_ref.current = searchParams.get('title');
         explain_text_ref.current = searchParams.get('explain_text');
+
         // const publicAccess_ = searchParams.get('publicAccess');
 
         axios({
@@ -60,6 +62,7 @@ const Result = () => {
         }).then((res)=>{
             // console.log('main_a_queze_comments res : ',res);
             let setResult_comment_state_ = [];
+            uuid_ref.current = res.data[0].parentsKey;
             res.data.map((e,i)=>{
                 setResult_comment_state_[i] = {text : e.value, likes : e.likes, roomName : roomName_ref.current, uuid : e.parentsKey}
             })
@@ -90,8 +93,14 @@ const Result = () => {
             // console.log(res);
             if(res.data == 'success') {
                 // console.log('페이지 리로딩');
-                location.reload();
-                
+                // location.reload();
+                const result_comment_state_ = {
+                    text     : comment_input_ref.current.value,
+                    likes    : 0,
+                    roomName : roomName_ref.current,
+                    uuid     : uuid_ref.current
+                }
+                setResult_comment_state(result_comment_state => [result_comment_state_,...result_comment_state])
             }
         })
     }
@@ -130,7 +139,7 @@ const Result = () => {
 
             <div className="comment_area">
                 <div>
-                    <input type="text" ref={comment_input_ref} id={1} placeholder="댓글 입력"></input>
+                    <textarea type="text" ref={comment_input_ref} id={1} placeholder="댓글 입력"></textarea>
                     <button onClick={upload_comment} className="all_btn" >^</button>
                 </div>
             </div>

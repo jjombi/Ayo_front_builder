@@ -1,8 +1,9 @@
 import React from 'react';
 import { processChange } from "../public/WorldRank";
 import no_img from '../Img_folder/no_image.jpg';
+import {chenge_textarea_height} from '../public/WorldRank';
 const Make_quezeshow_modify_content = ({img,early_text, early_title, uuid, changed_object_ref, index,answer,v1,v2,v3,v4,quezeshow_type, queze_type}) => {
-    console.log('make queze modify ',quezeshow_type,queze_type);
+    console.log('make queze modify ',quezeshow_type,queze_type,img);
     const explain_text_change_vote = (e) => {
         // console.log(e.target.value);
         const changed_object_ref_ = [...changed_object_ref.current];
@@ -23,6 +24,7 @@ const Make_quezeshow_modify_content = ({img,early_text, early_title, uuid, chang
         // console.log('changed_object_ref_',changed_object_ref_);
         changed_object_ref_[index] = {uuid : changed_object_ref_[index].uuid,answer : changed_object_ref_[index].answer, title : e.target.value};
         changed_object_ref.current = [...changed_object_ref_];
+        
     }
     const explain_text_change_text = (e) => {
         // console.log(e.target.value);
@@ -72,27 +74,7 @@ const Make_quezeshow_modify_content = ({img,early_text, early_title, uuid, chang
 
 
     return(
-        // <div style={{color : 'red'}}>aaasads</div>
-        // <div className="a_queze_img" >
-        //     {
-        //         img === 'data:image/jpeg;base64,' ? 
-        //         <img src={no_img}></img>:
-        //         <img src={img} ></img>  
-        //     }
-        //     {/* <input type='button' className='all_btn' onClick={delete_img} id={i} title="이미지 삭제 버튼" value={'X'}></input>                                  */}
-        //     <textarea type="text" id={index} defaultValue={early_title} placeholder="설명" rows={1} name="text"  onKeyDown={preventDefault} processChange()onChange={(e)=>{(}e)=>processChange(explain_text_change(e))}></textarea>
-        //     {/* <input type="hidden" name="img_name" value={img_name} ></input> */}
-        // </div>
-        // <section className="make_quezeshow_content_root" >
         <section className='quezeshow_queze_content_root'>
-        {/* <input className="make_quezeshow_content_deletebtn" type="button" onClick={delete_} value={"X"}></input> */}
-        {/* {
-            src === '' || src === 'data:image/jpeg;base64,' 
-            ?
-            <img src={img} className="make_quezeshow_content_img"></img>
-            :
-            <img src={src} className="make_quezeshow_content_img"></img>
-        } */}
         {
             quezeshow_type === 'vote' && quezeshow_type === 'queze'
             ?
@@ -106,60 +88,82 @@ const Make_quezeshow_modify_content = ({img,early_text, early_title, uuid, chang
             :
             null
         }
-        
-        {/* <input type="text" hidden value={img_tinyint} name="img_tinyint" readOnly></input> */}
-        {/* <label className="make_quezeshow_content_label allbtn" htmlFor="file">
-            <div className="allbtn">파일 업로드하기</div>
-        </label> */}
-        {/* <input id="file" type="file" className="make_quezeshow_content_file allbtn" onChange={(e)=>{processChange()e}=>{change_img(e)}} onDragEnter ={dragenter} onDragLeave={dragover}></input> */}
-        {/* <div className="make_quezeshow_content_file_onpaste allbtn" onPaste={onpaste}>
-            <p className="allbtn">이미지 붙여 넣기</p>
-        </div> */}
         {
             quezeshow_type === 'vote'
             ?
             <>
-                <input type="text" maxLength={80} className="Make_quezeshow_content_title" placeholder="제목" defaultValue={early_title} onChange={(e)=>{processChange(explain_title_change_vote(e))}}></input>
-                <textarea type="text" maxLength={3000}  className="Make_quezeshow_content_text" placeholder="설명" defaultValue={early_text} onChange={(e)=>{processChange(explain_text_change_vote(e))}}></textarea>
+                <input type="text" maxLength={80} className="Make_quezeshow_content_title" placeholder="제목" defaultValue={early_title} onChange={(e)=>{processChange(explain_title_change_vote(e));chenge_textarea_height(e)}}></input>
+                <textarea type="text" maxLength={3000}  className="Make_quezeshow_content_text" placeholder="설명" defaultValue={early_text} onChange={(e)=>{processChange(explain_text_change_vote(e));chenge_textarea_height(e);}}></textarea>
             </>
             :
-            quezeshow_type === 'text'
+            quezeshow_type === 'queze'
             ?
-            <>
-            <input type="text" maxLength={80} className="Make_quezeshow_content_title" placeholder="제목" defaultValue={early_title} onChange={(e)=>{processChange(explain_title_change_text(e))}}></input>
-            <textarea type="text" maxLength={120}  className="Make_quezeshow_content_text" placeholder="설명" defaultValue={answer} onChange={(e)=>{processChange(explain_text_change_text(e))}}></textarea>
-            </>
-            :
             <>
                 {
                 Number(queze_type) === 1
                 ?
                 <>
-                <input type="text" maxLength={80} className="Make_quezeshow_content_title" placeholder="제목" defaultValue={early_title} onChange={(e)=>{processChange(explain_title_change_queze(e))}}></input>
-                <textarea type="text" maxLength={1000}  className="Make_quezeshow_content_text" placeholder="설명" defaultValue={answer} onChange={(e)=>{processChange(explain_text_change_queze(e))}}></textarea>
+                {
+                img === 'data:image/jpeg;base64,' ? <img src={no_img}></img> : <img src={img}></img>
+                }
+                <input type="text" maxLength={80} className="Make_quezeshow_content_title" placeholder="제목" defaultValue={early_title} onChange={(e)=>{processChange(explain_title_change_queze(e));chenge_textarea_height(e)}}></input>
+                <textarea type="text" maxLength={1000}  className="Make_quezeshow_content_text" placeholder="설명" defaultValue={answer} onChange={(e)=>{processChange(explain_text_change_queze(e));chenge_textarea_height(e);}}></textarea>
                 <section className="value_input">
-                    <input type="text" maxLength={80} placeholder="답1" name="value1" id='v1' defaultValue={v1} onChange={(e)=>{processChange(explain_text_change_value(e))}}></input>
-                    <input type="text" maxLength={80} placeholder="답2" name="value2" id='v2' defaultValue={v2} onChange={(e)=>{processChange(explain_text_change_value(e))}}></input>
-                    <input type="text" maxLength={80} placeholder="답3" name="value3" id='v3' defaultValue={v3} onChange={(e)=>{processChange(explain_text_change_value(e))}}></input>
-                    <input type="text" maxLength={80} placeholder="답4" name="value4" id='v4' defaultValue={v4} onChange={(e)=>{processChange(explain_text_change_value(e))}}></input>
+                    <input type="text" maxLength={80} placeholder="답1" id='v1' defaultValue={v1} onChange={(e)=>{processChange(explain_text_change_value(e));chenge_textarea_height(e);}}></input>
+                    <input type="text" maxLength={80} placeholder="답2" id='v2' defaultValue={v2} onChange={(e)=>{processChange(explain_text_change_value(e));chenge_textarea_height(e);}}></input>
+                    <input type="text" maxLength={80} placeholder="답3" id='v3' defaultValue={v3} onChange={(e)=>{processChange(explain_text_change_value(e));chenge_textarea_height(e);}}></input>
+                    <input type="text" maxLength={80} placeholder="답4" id='v4' defaultValue={v4} onChange={(e)=>{processChange(explain_text_change_value(e));chenge_textarea_height(e);}}></input>
                 </section>
-                <input className="anwer_input" type="text" maxLength={80} placeholder="정답" name="answer" defaultValue={answer} onChange={(e)=>{processChange(explain_text_change_queze_answer(e))}}></input>
+                <input className="anwer_input" type="text" maxLength={80} placeholder="정답" defaultValue={answer} onChange={(e)=>{processChange(explain_text_change_queze_answer(e));chenge_textarea_height(e);}}></input>
                 </>
                 
                 :
                 <>
-                <input type="text" maxLength={80} className="Make_quezeshow_content_title" placeholder="제목" defaultValue={early_title} onChange={(e)=>{processChange(explain_title_change_queze(e))}}></input>
-                <textarea type="text" maxLength={1000}  className="Make_quezeshow_content_text" placeholder="설명" defaultValue={answer} onChange={(e)=>{processChange(explain_text_change_queze(e))}}></textarea>
+                {
+                img === 'data:image/jpeg;base64,' ? <img src={no_img}></img> : <img src={img}></img>
+                }
+                <input type="text" maxLength={80} className="Make_quezeshow_content_title" placeholder="제목" defaultValue={early_title} onChange={(e)=>{processChange(explain_title_change_queze(e));chenge_textarea_height(e)}}></input>
+                <textarea type="text" maxLength={1000}  className="Make_quezeshow_content_text" placeholder="설명" defaultValue={answer} onChange={(e)=>{processChange(explain_text_change_queze(e));chenge_textarea_height(e);}}></textarea>
                 <section className="value_input">
-                    <input type="text" maxLength={80} placeholder="정답 인정 범위" name="value1" id='v1' defaultValue={v1} onChange={(e)=>{processChange(explain_text_change_value(e))}}></input>
-                    <input type="text" maxLength={80} placeholder="정답 인정 범위" name="value2" id='v2' defaultValue={v2} onChange={(e)=>{processChange(explain_text_change_value(e))}}></input>
-                    <input type="text" maxLength={80} placeholder="정답 인정 범위" name="value3" id='v3' defaultValue={v3} onChange={(e)=>{processChange(explain_text_change_value(e))}}></input>
-                    <input type="text" maxLength={80} placeholder="정답 인정 범위" name="value4" id='v4' defaultValue={v4} onChange={(e)=>{processChange(explain_text_change_value(e))}}></input>
+                    <input type="text" maxLength={80} placeholder="정답 인정 범위" id='v1' defaultValue={v1} onChange={(e)=>{processChange(explain_text_change_value(e));chenge_textarea_height(e);}}></input>
+                    <input type="text" maxLength={80} placeholder="정답 인정 범위" id='v2' defaultValue={v2} onChange={(e)=>{processChange(explain_text_change_value(e));chenge_textarea_height(e);}}></input>
+                    <input type="text" maxLength={80} placeholder="정답 인정 범위" id='v3' defaultValue={v3} onChange={(e)=>{processChange(explain_text_change_value(e));chenge_textarea_height(e);}}></input>
+                    <input type="text" maxLength={80} placeholder="정답 인정 범위" id='v4' defaultValue={v4} onChange={(e)=>{processChange(explain_text_change_value(e));chenge_textarea_height(e);}}></input>
                 </section>
-                <input className="anwer_input" type="text" maxLength={80} placeholder="정답 인정 범위" name="answer" defaultValue={answer} onChange={(e)=>{processChange(explain_text_change_queze_answer(e))}}></input>
+                <input className="anwer_input" type="text" maxLength={80} placeholder="정답 인정 범위" defaultValue={answer} onChange={(e)=>{processChange(explain_text_change_queze_answer(e));chenge_textarea_height(e);}}></input>
                 </>
-            }
+                }
             </>
+            :
+            quezeshow_type === 'Continue_speak'
+            ?
+            <section className="make_quezeshow_content_root">
+                {
+                    img === '' || img === 'data:image/jpeg;base64,' 
+                    ?
+                    <img src={no_img} className="make_quezeshow_content_img"></img>
+                    :
+                    <img src={img} className="make_quezeshow_content_img"></img>
+                }
+                <textarea type="text" maxLength={40} rows={1} defaultValue={early_title} className="Make_quezeshow_content_title" placeholder={`문제 제목을 입력해 주세요`} onChange={(e)=>{processChange(explain_title_change_queze(e));chenge_textarea_height(e)}}></textarea>
+                <p>ex 홍</p>
+                <textarea type="text" maxLength={120} rows= {1} defaultValue={answer} className="Make_quezeshow_content_title" placeholder="답을 입력해 주세요" onChange={(e)=>{processChange(explain_text_change_queze_answer(e));chenge_textarea_height(e)}}></textarea>
+                <p>ex 길동</p>
+            </section>
+            : // quezeshow_type === 'New_word_queze'
+            <section className="make_quezeshow_content_root">
+                {
+                    img === '' || img === 'data:image/jpeg;base64,' 
+                    ?
+                    <img src={no_img} className="make_quezeshow_content_img"></img>
+                    :
+                    <img src={img} className="make_quezeshow_content_img"></img>
+                }
+                <textarea type="text" maxLength={40} value={early_title} rows={1} className="Make_quezeshow_content_title" placeholder={`문제 제목`} onChange={(e)=>{processChange(explain_title_change_queze(e));chenge_textarea_height(e)}}></textarea>
+                <p>ex 얼죽아</p>
+                <textarea type="text" maxLength={120} value={answer} rows={1} className="Make_quezeshow_content_title" placeholder={`정답`} onChange={(e)=>{processChange(explain_text_change_queze_answer(e));chenge_textarea_height(e)}}></textarea>
+                <p>","로 구분지어 주세요, ex 얼어, 죽어도, 아이스 아메리카노</p>
+            </section>
         }
         {
             // console.log(content_object[index],index)
