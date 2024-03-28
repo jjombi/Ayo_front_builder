@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Result_comment from "../Result_comment";
 import '../css.css'
 import { useNavigate } from "react-router-dom";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useParams } from "react-router-dom";
 import no_img from '../Img_folder/no_image.jpg';
 import axios from "axios";
 import Header from '../ayo_world_rank_header';
@@ -11,21 +11,24 @@ import Password_popup from "../Password_popup";
 import {chenge_textarea_height} from '../public/WorldRank';
 import Quezeshow_comment from "./Quezeshow_comment";
 import {Helmet} from "react-helmet";
-const Quezeshow_before = ({}) => {
+const Quezeshow_before = (props) => {
     const [result_comment_state, setResult_comment_state] = useState([]);
     const navigate = useNavigate();
     const [searchParams,setSearchParams] = useSearchParams();
-    const roomnum = searchParams.get('roomnum');
-    const uuid = searchParams.get('uuid');
-    const quezeshow_type = searchParams.get('quezeshow_type');
+    // const roomnum = searchParams.get('roomnum');
+    const [uuid,setUuid] = useState();
+    const [quezeshow_type, setQuezeshow_type] = useState();
     const [img,setImg] = useState('data:image/jpeg;base64,');
     const [quezeshow_title, setQuezeshow_title] = useState('');
     const [explain_text,setExplain_text] = useState('');
     const comment_input_ref = useRef();
     const comment_input_title_ref = useRef();
     const [popup_state, setPopup_state] = useState(false);
+    const {roomnum} = useParams();
 
     useEffect(()=>{
+        // const { param } = match;
+        console.log('params',roomnum);
         axios({
             url : process.env.REACT_APP_SERVER_URL + '/quezeshowtitle',
             method : 'GET',
@@ -37,7 +40,9 @@ const Quezeshow_before = ({}) => {
             console.log(res);
             setImg(img => 'data:image/jpeg;base64,'+res.data[0].img);
             setQuezeshow_title(quezeshow_title => res.data[0].title);
-            setExplain_text(explain_text => res.data[0].explainText);
+            setExplain_text(explain_text => res.data[0].explain_text);
+            setUuid(uuid => res.data[0].uuid);
+            setQuezeshow_type(quezeshow_type => res.data[0].quezeshow_type);
         })
         // axios({
         //     url : process.env.REACT_APP_SERVER_URL+'/quezeshowcomment',

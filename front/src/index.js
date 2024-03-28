@@ -43,6 +43,7 @@ root.render(
               <Route path='/ayoworldrankaqueze' element={<Main2_a_queze/>}></Route>
               <Route path='/makeaquezemodify' element={<Make_a_queze_modify/>}></Route>
               <Route path='/makequezeshowmodify' element={<Make_quezeshow_modify/>}></Route>
+              <Route path='/quezeshow_before/:roomnum' element={<Quezeshow_before/>}></Route>
               <Route path='/quezeshow_before' element={<Quezeshow_before/>}></Route>
               <Route path='/choosequezetype' element={<Choose_queze_type/>}></Route>
               <Route path='/oneandeone' element={<Main2_a_queze_1and1/>}></Route>

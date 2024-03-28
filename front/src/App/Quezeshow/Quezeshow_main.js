@@ -5,7 +5,7 @@ import Quezeshow_main_content from "./Quezeshow_main_content";
 import axios from "axios";
 import Adfit from "../Adfit";
 import { useNavigate, useSearchParams } from "react-router-dom";
-const Quezeshow_main= () => {
+const Quezeshow_main= ({match}) => {
     const [content_state,setContent_state] = useState([]);
     const navigate = useNavigate();
     const [seachParams, setSearchParams] = useSearchParams();
