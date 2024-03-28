@@ -125,7 +125,7 @@ const Make_quezeshow_basic = ({type, server_url, uuid_props, quezeshow_type_prop
             const uuid_ = uuidv4();
             // console.log('uuid',uuid_);
             setUuid(uuid=> uuid_);
-            const random_modify_password = Math.random().toString(36).substr(2,10);
+            const random_modify_password = Math.random().toString(36).substr(2,5);
             console.log('random_modify_password',random_modify_password);
             setPassword(password => random_modify_password);
             if(content_type === 'Continue_speaking'){

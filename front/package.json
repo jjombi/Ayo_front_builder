@@ -25,6 +25,7 @@
     "react": "^18.3.0-canary-c5b937576-20231219",
     "react-cookie": "^6.1.1",
     "react-dom": "^18.3.0-canary-c5b937576-20231219",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "^7.48.2",
     "react-router-dom": "^6.16.0",
     "uuid": "^9.0.1",

@@ -10,6 +10,7 @@ import Header from '../ayo_world_rank_header';
 import Password_popup from "../Password_popup";
 import {chenge_textarea_height} from '../public/WorldRank';
 import Quezeshow_comment from "./Quezeshow_comment";
+import {Helmet} from "react-helmet";
 const Quezeshow_before = ({}) => {
     const [result_comment_state, setResult_comment_state] = useState([]);
     const navigate = useNavigate();
@@ -152,6 +153,15 @@ const Quezeshow_before = ({}) => {
     }
     return(
         <section className="Quezeshow_before_root">
+            <Helmet>
+                <meta charset="UTF-8"/>
+                {/* <meta name="viewport" content="width=device-width, initial-scale=1.0" content="ayo, 이상형 월드컵과 퀴즈쇼를 즐겨보세요."> */}
+                <title>{quezeshow_title}</title>
+                <meta name="title" content={quezeshow_title}/>
+                <meta name="referrer" content="no-referrer-when-downgrade" />
+                <meta name="description" content={explain_text}></meta>
+                {/* <meta name="keywords" content="ayo, ay0, 이상형 월드컵, 이상형월드컵, 맞추기, 마추기, 퀴즈쇼, " /> */}
+            </Helmet>
             {
                 popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={uuid} roomName={''} title={quezeshow_title} publicAccess={null} type={null} typeWhere={'modify_password'} quezeshow_type={quezeshow_type}/> : null// queze_type={queze_type}
             }
