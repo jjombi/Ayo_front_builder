@@ -10,7 +10,7 @@ import Header from '../ayo_world_rank_header';
 import Password_popup from "../Password_popup";
 import {chenge_textarea_height} from '../public/WorldRank';
 import Quezeshow_comment from "./Quezeshow_comment";
-import {Helmet} from "react-helmet";
+import {Helmet} from "react-helmet-async";
 const Quezeshow_before = (props) => {
     const [result_comment_state, setResult_comment_state] = useState([]);
     const navigate = useNavigate();
@@ -165,11 +165,25 @@ const Quezeshow_before = (props) => {
                 <meta name="title" content={quezeshow_title}/>
                 <meta name="referrer" content="no-referrer-when-downgrade" />
                 <meta name="description" content={explain_text}></meta>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={quezeshow_title} />
+                <meta property="og:site_name" content={quezeshow_title} />
+                <meta property="og:description" content={explain_text} />
+
+                <meta name="twitter:title" content={quezeshow_title} />
+                <meta name="twitter:description" content={explain_text} />
                 {/* <meta name="keywords" content="ayo, ay0, 이상형 월드컵, 이상형월드컵, 맞추기, 마추기, 퀴즈쇼, " /> */}
             </Helmet>
             {
                 popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={uuid} roomName={''} title={quezeshow_title} publicAccess={null} type={null} typeWhere={'modify_password'} quezeshow_type={quezeshow_type}/> : null// queze_type={queze_type}
             }
+            {/*     "babel-preset-react-hmre": "^1.1.1", 
+                npm install --save-dev babel-cli 
+                npm install --save-dev babel-preset-es2015 
+                npm install --save-dev babel-preset-react 
+                npm install --save-dev babel-register
+                https://jjombi.github.io/jjombi.github.io
+            */}
             <Header></Header>
             <header className="Main2_a_queze_header">
                 <button type="button" title="수정하기." className="all_btn a_queze_header_btn" onClick={password_checker}>

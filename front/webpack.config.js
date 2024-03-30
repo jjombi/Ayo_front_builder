@@ -10,7 +10,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, './dist') 
+    path: path.resolve(__dirname, './build') 
   },
   devtool: 'eval-cheap-source-map',
 //// 아까 설치한 loader를 설정해줌

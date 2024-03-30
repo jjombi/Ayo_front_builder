@@ -2,6 +2,9 @@ import React,{Suspense, lazy} from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
+import { HelmetProvider } from 'react-helmet-async';
+import { hydrate } from 'react-dom';
+import { hydrateRoot } from 'react-dom/client';
 
 const Main2 = lazy(()=> import('./App/Main2'));
 const Main2_a_queze = lazy(()=> import('./App/Main2_a_queze'));
@@ -28,13 +31,16 @@ const New_word_queze = lazy(()=>import('./App/new_word_queze/New_word_queze.js')
 const Quezeshow_before = lazy(()=>import('./App/Quezeshow/Quezeshow_before.js'));
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
-root.render(
+
+
+const app = (
   <div className='Main_root_'>
     <BrowserRouter>
       {/* <Header props={<School_choose/>}></Header> */}
       {/* <div className='line'></div> */}
       <Suspense fallback={<div>loadind...</div>}>
       <CookiesProvider>
+        <HelmetProvider>
           <Routes>
             {/* <Route path='/queze' element={<Queze />}></Route> */}
               <Route path='/' element={<Main2/>}></Route>
@@ -63,13 +69,23 @@ root.render(
               {/* <Route path='/make_space_quezeshow' element={<Make_space_quezeshow/>}></Route> */}
 
           </Routes>  
-        </CookiesProvider> 
+        </HelmetProvider>
+      </CookiesProvider> 
       </Suspense>
       {/* <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
       <Footer/> */}
     </BrowserRouter>
   </div>
-);
+)
+if (rootElement?.hasChildNodes()) {
+  // 이미 child nodes가 있는 경우, 기존 root를 사용하여 업데이트
+  // hydrate(app, rootElement);
+  hydrateRoot(rootElement, app);
+} else {
+  // child nodes가 없는 경우, root를 render로 초기화
+  root.render(app,rootElement);
+}
+// root.render(app);
 // if (module.hot){
 //   module.hot.accept()
 // }

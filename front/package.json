@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://jjombi.github.io/jjombi.github.io",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --progress --mode development",
     "build": "webpack --progress --mode production",
     "sass": "node-sass styles/main.scss style.css",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "postbuild": "react-hydratable"
   },
   "author": "",
   "license": "ISC",
@@ -25,17 +25,17 @@
     "react": "^18.3.0-canary-c5b937576-20231219",
     "react-cookie": "^6.1.1",
     "react-dom": "^18.3.0-canary-c5b937576-20231219",
-    "react-helmet": "^6.1.0",
+    "react-helmet-async": "^2.0.4",
     "react-hook-form": "^7.48.2",
     "react-router-dom": "^6.16.0",
     "uuid": "^9.0.1",
     "webpack-dev-server": "^4.15.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.22.15",
-    "@babel/core": "^7.22.20",
-    "@babel/preset-env": "^7.22.20",
-    "@babel/preset-react": "^7.22.15",
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "@babel/preset-react": "^7.24.1",
     "@svgr/webpack": "^8.1.0",
     "babel-loader": "^9.1.3",
     "clean-webpack-plugin": "^4.0.0",
@@ -44,6 +44,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
     "process": "^0.11.10",
+    "react-hydratable": "^1.3.0",
     "style-loader": "^3.3.3",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
