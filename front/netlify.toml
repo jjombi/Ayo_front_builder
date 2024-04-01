@@ -15,12 +15,6 @@
   force = true
 
 [[redirects]]
-  from = "/quezeshow_before/*"
-  to = "/.netlify/function/ssr/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
