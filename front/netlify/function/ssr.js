@@ -1,11 +1,11 @@
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const App = require('../../src/App/Main2'); // Import your root React component
+// const App = require('../../src/App/Main2'); // Import your root React component
 
 exports.handler = async (event, context) => {
   try {
     // Render your React component to HTML
-    const html = ReactDOMServer.renderToString(<App />);
+    // const html = ReactDOMServer.renderToString(<App />);
 
     // Return the HTML content as the response
     return {
@@ -22,7 +22,7 @@ exports.handler = async (event, context) => {
           <title>SSR React App</title>
         </head>
         <body>
-          <div id="root">${html}</div>
+          <div id="root">ssr</div>
           <!-- Include any necessary scripts -->
           <script src="/bundle.js"></script>
         </body>
