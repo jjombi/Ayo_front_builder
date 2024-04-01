@@ -64,6 +64,27 @@ exports.handler = async (event, context) => {
             `,
           };
     })
+    return {
+        statusCode: 200,
+        headers: {
+          'Content-Type': 'text/html',
+        },
+        body: `
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            
+          </head>
+          <body>
+              <div id="root">
+              lkfbaerb
+              </div>
+              <!-- Include any necessary scripts -->
+              <script src="/bundle.js"></script>
+          </body>
+          </html>
+        `,
+      };
   } catch (error) {
     // Handle errors
     return {
