@@ -1,17 +1,4 @@
 [[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
-
-[build]
-  functions = "netlify-functions"
-
-[[redirects]]
-  from = "/build/*"
-  to = "/:splat"
-  status = 200
-
-[[redirects]]
   from = "/*"
-  to = "/.netlify/functions/serverless"
+  to = "/.netlify/functions/ssr"
   status = 200

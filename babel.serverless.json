@@ -1,0 +1,13 @@
+{
+    "presets": [
+      "@babel/typescript",
+      "@babel/preset-react",
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "transform-html-import-to-string",
+      ["@babel/plugin-transform-runtime", {
+        "regenerator": true
+      }]
+    ]
+  }

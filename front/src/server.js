@@ -47,7 +47,50 @@ app.listen(3000, () => {
     https://jjombi.github.io/jjombi.github.io
     "postbuild": "react-hydratable"
     "postbuild": "node ./src/server.js"
+        "dev": "node ./build/server.js",
     "dev": "webpack-dev-server --progress --mode development",
     webpack --progress --mode production && 
+     && webpack --config webpack.server.js && npm run start-server
+         "build": "webpack --progress --mode production",
+         "build:serverless": "npx babel --config-file ./babel.serverless.json --out-dir netlify-functions ./src --extensions \".js,.jsx,mjs,.ts,.tsx\" && npm tool:remove-env-d-js",
+    "build:netlify": "npm run build && npm run build:serverless",
+    "tool:remove-env-d-js": "rm lambda/react-app-env.d.js"
 
+  [[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+[build]
+  functions = "netlify-functions"
+
+[[redirects]]
+  from = "/build/*"
+  to = "/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/serverless"
+  status = 200
+
+[build]
+  base = "/"
+  command = "npm run build"
+  publish = "/dist/"
+  functions = "functions/"
+  [build.environment]
+    NODE_VERSION = "16"
+[functions]
+  external_node_modules = ["express"]
+  node_bundler = "esbuild"
+[[redirects]]
+  force = true
+  from = "/api/*"
+  status = 200
+  to = "/.netlify/functions/app/:splat"
+[[redirects]]
+  from = "/*"
+  status = 200
+  to = "/index.html"
 */}
