@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
           <title>SSR React App</title>
         </head>
         <body>
-          <div id="root">ssr</div>
+          <div id="root">${path}</div>
           <!-- Include any necessary scripts -->
           <script src="/bundle.js"></script>
         </body>
