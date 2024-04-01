@@ -5,6 +5,8 @@ import { CookiesProvider } from 'react-cookie';
 import { HelmetProvider } from 'react-helmet-async';
 import { hydrate } from 'react-dom';
 import { hydrateRoot } from 'react-dom/client';
+import axios from 'axios';
+import ReactDOMServer from 'react-dom/server';
 
 const Main2 = lazy(()=> import('./App/Main2'));
 const Main2_a_queze = lazy(()=> import('./App/Main2_a_queze'));
@@ -77,11 +79,12 @@ const app = (
     </BrowserRouter>
   </div>
 )
+
 if (rootElement?.hasChildNodes()) {
   // 이미 child nodes가 있는 경우, 기존 root를 사용하여 업데이트
   // hydrate(app, rootElement);
-  console.log('hydrateRoot');
-  hydrateRoot(rootElement, app);
+  console.log('hydrateRoot',rootElement.childNodes,rootElement);
+  hydrateRoot(rootElement,<doby>(app)</doby>);
 } else {
   // child nodes가 없는 경우, root를 render로 초기화
   root.render(app,rootElement);

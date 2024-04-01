@@ -37,3 +37,16 @@ app.use("/", express.static("build"));
 app.listen(3000, () => {
   console.log('Server is listening on port 3000');
 });
+
+{/*       
+    "babel-preset-react-hmre": "^1.1.1", 
+    npm install --save-dev babel-cli 
+    npm install --save-dev babel-preset-es2015 
+    npm install --save-dev babel-preset-react 
+    npm install --save-dev babel-register
+    https://jjombi.github.io/jjombi.github.io
+    "postbuild": "react-hydratable"
+    "postbuild": "node ./src/server.js"
+    "dev": "webpack-dev-server --progress --mode development",
+
+*/}

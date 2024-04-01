@@ -184,14 +184,6 @@ const Quezeshow_before = () => {
             {
                 popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={uuid} roomName={''} title={quezeshow_title} publicAccess={null} type={null} typeWhere={'modify_password'} quezeshow_type={quezeshow_type}/> : null// queze_type={queze_type}
             }
-            {/*     "babel-preset-react-hmre": "^1.1.1", 
-                npm install --save-dev babel-cli 
-                npm install --save-dev babel-preset-es2015 
-                npm install --save-dev babel-preset-react 
-                npm install --save-dev babel-register
-                https://jjombi.github.io/jjombi.github.io
-                "postbuild": "react-hydratable"
-            */}
             <Header></Header>
             <header className="Main2_a_queze_header">
                 <button type="button" title="수정하기." className="all_btn a_queze_header_btn" onClick={password_checker}>

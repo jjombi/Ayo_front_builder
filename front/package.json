@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --progress --mode development",
+    "dev": "node ./src/server.js",
     "build": "webpack --progress --mode production",
     "build-server": "node server.js",
     "sass": "node-sass styles/main.scss style.css",
-    "deploy": "gh-pages -d build",
-    "postbuild": "node ./src/server.js"
+    "deploy": "gh-pages -d build"
   },
   "author": "",
   "license": "ISC",
