@@ -21,9 +21,26 @@ exports.handler = async (event, context) => {
         <!DOCTYPE html>
         <html lang="en">
         <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>SSR React App</title>
+            <meta charset="UTF-8"/>
+            <title>adshdbjashbflsj</title>
+            <meta name="title" content="adshdbjashbflsj"/>
+            <meta name="referrer" content="no-referrer-when-downgrade" />
+            <meta name="description" content="description"></meta>
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content="quezeshow_title" />
+            <meta property="og:site_name" content="quezeshow_title" />
+            <meta property="og:description" content="explain_text" />
+
+            <meta name="twitter:title" content="quezeshow_title" />
+            <meta name="twitter:description" content="explain_text" />
+            
+            <link rel="icon" sizes="16x16" type="image/x-icon" href="/favicon.ico?">
+            <link rel="apple-touch-icon" sizes="16x16" href="/favicon.ico?">
+            <meta name="referrer" content="no-referrer-when-downgrade" />
+            <meta name="google-adsense-account" content="ca-pub-7471498859383871">
+    
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7471498859383871"
+            crossorigin="anonymous"></script>
         </head>
         <body>
           <!-- Include any necessary scripts -->
