@@ -2,7 +2,7 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const axios = require('axios');
 // const App = require('../../src/App/Main2'); // Import your root React component
-exports.handler = async (event, context) => {
+exports.handler = (event, context) => {
   try {
     const { path } = event;
     let script = '';
@@ -61,36 +61,37 @@ exports.handler = async (event, context) => {
         `
     })
     });
-    promise.then(()=>{
+    const promise_result = promise.then(()=>{
       return {
         statusCode: 200,
         headers: {
           'Content-Type': 'text/html',
         },
-        body: script,
+        body: script, 
       };
     })
-    // return {
-    //     statusCode: 200,
-    //     headers: {
-    //       'Content-Type': 'text/html',
-    //     },
-    //     body: `
-    //       <!DOCTYPE html>
-    //       <html lang="en">
-    //       <head>
+    // return promise_result;
+    return {
+        statusCode: 200,
+        headers: {
+          'Content-Type': 'text/html',
+        },
+        body: `
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
             
-    //       </head>
-    //       <body>
-    //           <div id="root">
-    //           lkfbaerb
-    //           </div>
-    //           <!-- Include any necessary scripts -->
-    //           <script src="/bundle.js"></script>
-    //       </body>
-    //       </html>
-    //     `,
-    //   };
+          </head>
+          <body>
+              <div id="root">
+              lkfbaerb
+              </div>
+              <!-- Include any necessary scripts -->
+              <script src="/bundle.js"></script>
+          </body>
+          </html>
+        `,
+      };
   } catch (error) {
     // Handle errors
     return {
