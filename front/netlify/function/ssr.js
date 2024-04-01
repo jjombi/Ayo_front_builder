@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const App = require('./src/App'); // Import your root React component
+const App = require('../../src/App/Main2'); // Import your root React component
 
 exports.handler = async (event, context) => {
   try {
