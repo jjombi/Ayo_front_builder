@@ -5,8 +5,8 @@ const ReactDOMServer = require('react-dom/server');
 exports.handler = async (event, context) => {
   try {
     const { path } = event;
-    const parameter = extractParameterFromPath(path);
-    console.log('path',path,'parameter',parameter);
+    // const parameter = extractParameterFromPath(path);
+    console.log('path',path,'parameter',);
     // Render your React component to HTML
     // const html = ReactDOMServer.renderToString(<App />);
 
