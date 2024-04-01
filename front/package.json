@@ -10,7 +10,7 @@
     "build-server": "node server.js",
     "sass": "node-sass styles/main.scss style.css",
     "deploy": "gh-pages -d build",
-    "postbuild": "nodemon ./src/server.js"
+    "postbuild": "node ./src/server.js"
   },
   "author": "",
   "license": "ISC",
