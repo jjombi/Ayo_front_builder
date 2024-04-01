@@ -9,6 +9,11 @@
   node_bundler = "esbuild"
   
 [[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  
+[[redirects]]
   from = "/quezeshow_before"
   to = "/.netlify/functions/ssr"
   status = 200
@@ -19,8 +24,3 @@
   to = "/.netlify/functions/ssr/:splat"
   status = 200
   force = true
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
