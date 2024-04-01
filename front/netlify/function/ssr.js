@@ -16,13 +16,11 @@ exports.handler = (event, context) => {
     const promise = new Promise((resolve, reject) => {
       axios({
         url : 'https://ayo-world-rank.site/quezeshowtitle',
-        method : 'POST',
-        data : {
+        method : 'GET',
+        params : {
             roomnum : path.replace('/',''),
+            type    : 'likes'
         },
-        headers : {
-            'Content-Type' : 'application/json'
-        }
       }).then(res=>{        
         const quezeshow_title = res.data[0].title;
         const explain_text= res.data[0].explain_text
