@@ -1,9 +1,7 @@
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const fs = require('fs');
-const path = require('path');
+const axios = require('axios');
 // const App = require('../../src/App/Main2'); // Import your root React component
-const App = require('../../src/App/Quezeshow/Quezeshow_main');
 exports.handler = async (event, context) => {
   try {
     const { path } = event;
@@ -28,7 +26,6 @@ exports.handler = async (event, context) => {
           <title>SSR React App</title>
         </head>
         <body>
-          <div id="root">${html}</div>
           <!-- Include any necessary scripts -->
           <script src="/bundle.js"></script>
         </body>
