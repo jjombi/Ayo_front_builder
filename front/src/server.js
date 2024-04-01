@@ -93,4 +93,13 @@ status = 200
   from = "/*"
   status = 200
   to = "/index.html"
+
+
+
+  or
+
+  [[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/ssr"
+  status = 200
 */}
