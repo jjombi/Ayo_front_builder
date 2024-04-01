@@ -11,7 +11,7 @@ exports.handler = async (event, context) => {
     console.log('path',path,'parameter',);
     // const html = fs.readFileSync(path.resolve(__dirname, "../../build/index.html"), "utf-8");
     // Render your React component to HTML
-    const html = ReactDOMServer.renderToString(<App />);
+    // const html = ReactDOMServer.renderToString(<App />);
 
     // Return the HTML content as the response
     return {
