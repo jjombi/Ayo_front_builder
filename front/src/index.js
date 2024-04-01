@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
 import { HelmetProvider } from 'react-helmet-async';
-import { hydrate } from 'react-dom';
 import { hydrateRoot } from 'react-dom/client';
 import axios from 'axios';
 import ReactDOMServer from 'react-dom/server';
