@@ -43,8 +43,10 @@ exports.handler = async (event, context) => {
             crossorigin="anonymous"></script>
         </head>
         <body>
-          <!-- Include any necessary scripts -->
-          <script src="/bundle.js"></script>
+            <div id="root">
+            </div>
+            <!-- Include any necessary scripts -->
+            <script src="/bundle.js"></script>
         </body>
         </html>
       `,
