@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node ./build/server.js",
-    "build": "webpack --progress --mode production && webpack --config webpack.server.js",
+    "build": "webpack --progress --mode production && webpack --config webpack.server.js && node ./build/server.js",
     "build-server": "node server.js",
     "sass": "node-sass styles/main.scss style.css",
     "deploy": "gh-pages -d build"
@@ -24,6 +24,7 @@
     "fs": "^0.0.1-security",
     "gh-pages": "^6.0.0",
     "jimp": "^0.22.10",
+    "netlify-cli": "^17.21.1",
     "react": "^18.3.0-canary-c5b937576-20231219",
     "react-cookie": "^6.1.1",
     "react-dom": "^18.3.0-canary-c5b937576-20231219",

@@ -48,5 +48,6 @@ app.listen(3000, () => {
     "postbuild": "react-hydratable"
     "postbuild": "node ./src/server.js"
     "dev": "webpack-dev-server --progress --mode development",
+    webpack --progress --mode production && 
 
 */}
