@@ -10,6 +10,11 @@
   
 [[redirects]]
   from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/quezeshow_before"
   to = "/.netlify/functions/ssr"
   status = 200
   force = true
