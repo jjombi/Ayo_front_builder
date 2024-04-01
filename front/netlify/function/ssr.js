@@ -2,7 +2,7 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const axios = require('axios');
 // const App = require('../../src/App/Main2'); // Import your root React component
-exports.handler =  function(event, context){
+exports.handler =  async (event, context) => {
   try {
     const { path } = event;
     let script = '';
