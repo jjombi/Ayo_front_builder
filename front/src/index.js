@@ -4,8 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
 import { HelmetProvider } from 'react-helmet-async';
 import { hydrateRoot } from 'react-dom/client';
-import axios from 'axios';
-import ReactDOMServer from 'react-dom/server';
 
 const Main2 = lazy(()=> import('./App/Main2'));
 const Main2_a_queze = lazy(()=> import('./App/Main2_a_queze'));

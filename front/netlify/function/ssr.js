@@ -1,14 +1,14 @@
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-// const App = require('../../src/App/Main2'); // Import your root React component
-
+const App = require('../../src/App/Main2'); // Import your root React component
+import App from '../../src/App/Quezeshow/Quezeshow_main';
 exports.handler = async (event, context) => {
   try {
     const { path } = event;
     // const parameter = extractParameterFromPath(path);
     console.log('path',path,'parameter',);
     // Render your React component to HTML
-    // const html = ReactDOMServer.renderToString(<App />);
+    const html = ReactDOMServer.renderToString(<App />);
 
     // Return the HTML content as the response
     return {
@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
           <title>SSR React App</title>
         </head>
         <body>
-          <div id="root">p: ${path},e : ${event}</div>
+          <div id="root">${html}</div>
           <!-- Include any necessary scripts -->
           <script src="/bundle.js"></script>
         </body>
