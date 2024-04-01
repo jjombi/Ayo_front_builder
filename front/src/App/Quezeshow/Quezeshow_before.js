@@ -159,12 +159,7 @@ const Quezeshow_before = () => {
     return(
         <section className="Quezeshow_before_root">
             <Helmet>
-                {   
-                    1 === 1 ?
-                    <title>{window.location.search}</title>
-                    :
-                    <title>adjhbdlgbleln</title>
-                }
+                <title>quezeshow_title</title>
                 <meta charset="UTF-8"/>
                 {/* <meta name="viewport" content="width=device-width, initial-scale=1.0" content="ayo, 이상형 월드컵과 퀴즈쇼를 즐겨보세요."> */}
                 {/* <title>{quezeshow_title}</title> */}

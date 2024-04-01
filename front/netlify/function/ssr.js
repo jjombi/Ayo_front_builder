@@ -12,45 +12,58 @@ exports.handler = async (event, context) => {
     // const html = ReactDOMServer.renderToString(<App />);
 
     // Return the HTML content as the response
-    return {
-      statusCode: 200,
-      headers: {
-        'Content-Type': 'text/html',
-      },
-      body: `
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8"/>
-            <title>adshdbjashbflsj</title>
-            <meta name="title" content="adshdbjashbflsj"/>
-            <meta name="referrer" content="no-referrer-when-downgrade" />
-            <meta name="description" content="description"></meta>
-            <meta property="og:type" content="website" />
-            <meta property="og:title" content="quezeshow_title" />
-            <meta property="og:site_name" content="quezeshow_title" />
-            <meta property="og:description" content="explain_text" />
-
-            <meta name="twitter:title" content="quezeshow_title" />
-            <meta name="twitter:description" content="explain_text" />
-            
-            <link rel="icon" sizes="16x16" type="image/x-icon" href="/favicon.ico?">
-            <link rel="apple-touch-icon" sizes="16x16" href="/favicon.ico?">
-            <meta name="referrer" content="no-referrer-when-downgrade" />
-            <meta name="google-adsense-account" content="ca-pub-7471498859383871">
-    
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7471498859383871"
-            crossorigin="anonymous"></script>
-        </head>
-        <body>
-            <div id="root">
-            </div>
-            <!-- Include any necessary scripts -->
-            <script src="/bundle.js"></script>
-        </body>
-        </html>
-      `,
-    };
+    axios({
+        url : 'https://ayo-world-rank.site/quezeshowtitle',
+        method : 'POST',
+        data : {
+            roomnum : path.replace('/',''),
+        },
+        headers : {
+            'Content-Type' : 'application/json'
+        }
+    }).then(res=>{        
+        const quezeshow_title = res.data[0].title;
+        const explain_text= res.data[0].explain_text
+        return {
+            statusCode: 200,
+            headers: {
+              'Content-Type': 'text/html',
+            },
+            body: `
+              <!DOCTYPE html>
+              <html lang="en">
+              <head>
+                  <meta charset="UTF-8"/>
+                  <title>${quezeshow_title}</title>
+                  <meta name="title" content="${quezeshow_title}"/>
+                  <meta name="referrer" content="no-referrer-when-downgrade" />
+                  <meta name="description" content="${quezeshow_title}, ${explain_text}"></meta>
+                  <meta property="og:type" content="website" />
+                  <meta property="og:title" content="${quezeshow_title}" />
+                  <meta property="og:site_name" content="${quezeshow_title}" />
+                  <meta property="og:description" content="${explain_text}" />
+      
+                  <meta name="twitter:title" content="${quezeshow_title}" />
+                  <meta name="twitter:description" content="${explain_text}" />
+                  
+                  <link rel="icon" sizes="16x16" type="image/x-icon" href="/favicon.ico?">
+                  <link rel="apple-touch-icon" sizes="16x16" href="/favicon.ico?">
+                  <meta name="referrer" content="no-referrer-when-downgrade" />
+                  <meta name="google-adsense-account" content="ca-pub-7471498859383871">
+          
+                  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7471498859383871"
+                  crossorigin="anonymous"></script>
+              </head>
+              <body>
+                  <div id="root">
+                  </div>
+                  <!-- Include any necessary scripts -->
+                  <script src="/bundle.js"></script>
+              </body>
+              </html>
+            `,
+          };
+    })
   } catch (error) {
     // Handle errors
     return {
