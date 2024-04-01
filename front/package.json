@@ -7,9 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --progress --mode development",
     "build": "webpack --progress --mode production",
+    "build-server": "node server.js",
     "sass": "node-sass styles/main.scss style.css",
     "deploy": "gh-pages -d build",
-    "postbuild": "react-hydratable"
+    "postbuild": "nodemon ./src/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +21,8 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-hmre": "^1.1.1",
+    "express": "^4.19.2",
+    "fs": "^0.0.1-security",
     "gh-pages": "^6.0.0",
     "jimp": "^0.22.10",
     "react": "^18.3.0-canary-c5b937576-20231219",

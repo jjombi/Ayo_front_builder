@@ -11,7 +11,7 @@ import Password_popup from "../Password_popup";
 import {chenge_textarea_height} from '../public/WorldRank';
 import Quezeshow_comment from "./Quezeshow_comment";
 import {Helmet} from "react-helmet-async";
-const Quezeshow_before = (props) => {
+const Quezeshow_before = () => {
     const [result_comment_state, setResult_comment_state] = useState([]);
     const navigate = useNavigate();
     const [searchParams,setSearchParams] = useSearchParams();
@@ -159,10 +159,17 @@ const Quezeshow_before = (props) => {
     return(
         <section className="Quezeshow_before_root">
             <Helmet>
+                {   
+                    1 === 1 ?
+                    <title>{window.location.search}</title>
+                    :
+                    <title>adjhbdlgbleln</title>
+                }
                 <meta charset="UTF-8"/>
                 {/* <meta name="viewport" content="width=device-width, initial-scale=1.0" content="ayo, 이상형 월드컵과 퀴즈쇼를 즐겨보세요."> */}
-                <title>{quezeshow_title}</title>
-                <meta name="title" content={quezeshow_title}/>
+                {/* <title>{quezeshow_title}</title> */}
+                {/* <meta name="title" content={quezeshow_title}/> */}
+                <meta name="title" content="adjhbdlgbleln"/>
                 <meta name="referrer" content="no-referrer-when-downgrade" />
                 <meta name="description" content={explain_text}></meta>
                 <meta property="og:type" content="website" />
@@ -183,6 +190,7 @@ const Quezeshow_before = (props) => {
                 npm install --save-dev babel-preset-react 
                 npm install --save-dev babel-register
                 https://jjombi.github.io/jjombi.github.io
+                "postbuild": "react-hydratable"
             */}
             <Header></Header>
             <header className="Main2_a_queze_header">

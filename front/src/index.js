@@ -80,6 +80,7 @@ const app = (
 if (rootElement?.hasChildNodes()) {
   // 이미 child nodes가 있는 경우, 기존 root를 사용하여 업데이트
   // hydrate(app, rootElement);
+  console.log('hydrateRoot');
   hydrateRoot(rootElement, app);
 } else {
   // child nodes가 없는 경우, root를 render로 초기화
