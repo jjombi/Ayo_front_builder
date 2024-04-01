@@ -10,7 +10,7 @@
   
 [[redirects]]
   from = "/quezeshow_before"
-  to = "/.netlify/function/ssr"
+  to = "/.netlify/functions/ssr"
   status = 200
   force = true
 
