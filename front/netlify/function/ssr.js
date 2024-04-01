@@ -1,7 +1,7 @@
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const App = require('../../src/App/Main2'); // Import your root React component
-import App from '../../src/App/Quezeshow/Quezeshow_main';
+// const App = require('../../src/App/Main2'); // Import your root React component
+const App = require('../../src/App/Quezeshow/Quezeshow_main');
 exports.handler = async (event, context) => {
   try {
     const { path } = event;
