@@ -35,7 +35,7 @@ exports.handler =  async (event, context) => {
         const buffer = Buffer.from(base64Data, 'base64');
         
         // Write the image data to a file (temporarily)
-        const tempImagePath = '/tmp/decodedImage.jpg'; // Temporary file path
+        const tempImagePath = `https://ay0.site${path}/decodedImage.jpg`; // Temporary file path
         fs.writeFileSync(tempImagePath, buffer);
 
         // Set the image URL to the temporary file path
