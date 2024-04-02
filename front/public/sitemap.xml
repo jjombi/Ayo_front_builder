@@ -1,47 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://ay0.site/</loc>
-  <lastmod>2024-03-13T02:29:22+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://ay0.site/ayoworldrankmakequeze</loc>
-  <lastmod>2024-03-13T02:29:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://ay0.site/result</loc>
-  <lastmod>2024-03-13T02:29:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://ay0.site/ayoworldrankaqueze</loc>
-  <lastmod>2024-03-13T02:29:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://ay0.site/quezeshow_main</loc>
-  <lastmod>2024-03-13T02:29:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://ay0.site/make_quezeshow</loc>
-  <lastmod>2024-03-13T02:29:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://ay0.site/community</loc>
-  <lastmod>2024-03-13T02:29:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://ay0.site/</loc> </url>
+<url> <loc>https://ay0.site/</loc> </url>
+<url> <loc>https://ay0.site/ayoworldrankmakequeze</loc> </url>
+<url> <loc>https://ay0.site/result</loc> </url>
+<url> <loc>https://ay0.site/ayoworldrankaqueze</loc> </url>
+<url> <loc>https://ay0.site/makeaquezemodify</loc> </url>
+<url> <loc>https://ay0.site/makequezeshowmodify</loc> </url>
+<url> <loc>https://ay0.site/quezeshow_before/:roomnum</loc> </url>
+<url> <loc>https://ay0.site/choosequezetype</loc> </url>
+<url> <loc>https://ay0.site/oneandeone</loc> </url>
+<url> <loc>https://ay0.site/community</loc> </url>
+<url> <loc>https://ay0.site/quezeshow_result</loc> </url>
+<url> <loc>https://ay0.site/make_quezeshow</loc> </url>
+<url> <loc>https://ay0.site/quezeshow_main</loc> </url>
+<url> <loc>https://ay0.site/machugi</loc> </url>
+<url> <loc>https://ay0.site/quezeshow_queze</loc> </url>
+<url> <loc>https://ay0.site/guide</loc> </url>
+<url> <loc>https://ay0.site/continue_speaking</loc> </url>
+<url> <loc>https://ay0.site/new_word_queze</loc> </url>
+<url> <loc>https://ay0.site/guide_main</loc> </url>
 </urlset>
