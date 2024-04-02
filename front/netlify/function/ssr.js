@@ -23,7 +23,20 @@ exports.handler =  async (event, context) => {
         },
       }).then(res=>{        
         const quezeshow_title = res.data[0].title;
-        const explain_text= res.data[0].explain_text
+        const explain_text= res.data[0].explain_text;
+        let img = 'https://ay0.site/assets/no_image.jpg';
+        if(res.data[0].img !== ''){
+          const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
+          const binary = window.atob(base64img.split(',')[1]);
+          const arraybuffer = new ArrayBuffer(binary.length);
+          let bytes = new Uint8Array(arraybuffer);
+          for(let i=0;i < binary.length; i++){
+              bytes[i] = binary.charCodeAt(i);
+          }
+          const blob = new Blob([arraybuffer], { type: 'image/jpeg' });
+          const url = window.URL.createObjectURL(blob);
+          img = url;
+      }
         // let img;
         // if(res.data[0].img === ''){
         //   img = `https://ay0.site/assets/no_image.jpg`
@@ -46,6 +59,7 @@ exports.handler =  async (event, context) => {
               <meta property="og:title" content="${quezeshow_title}" />
               <meta property="og:site_name" content="${quezeshow_title}" />
               <meta property="og:description" content="${explain_text}" />
+              <meta property="og:image" content="${img}" />
 
               <meta name="twitter:title" content="${quezeshow_title}" />
               <meta name="twitter:description" content="${explain_text}" />
