@@ -18,7 +18,7 @@ const Quezeshow_before = () => {
     // const roomnum = searchParams.get('roomnum');
     const [uuid,setUuid] = useState();
     const [quezeshow_type, setQuezeshow_type] = useState();
-    const [img,setImg] = useState('https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png');
+    const [img,setImg] = useState('');
     const [quezeshow_title, setQuezeshow_title] = useState('');
     const [explain_text,setExplain_text] = useState('');
     const comment_input_ref = useRef();
@@ -38,19 +38,19 @@ const Quezeshow_before = () => {
             }
         }).then(res=>{
             console.log(res);
-            // if(res.data[0].img !== ''){
-            //     const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
-            //     const binary = window.atob(base64img.split(',')[1]);
-            //     const arraybuffer = new ArrayBuffer(binary.length);
-            //     let bytes = new Uint8Array(arraybuffer);
-            //     for(let i=0;i < binary.length; i++){
-            //         bytes[i] = binary.charCodeAt(i);
-            //     }
-            //     const blob = new Blob([arraybuffer], { type: 'image/jpeg' });
-            //     const url = window.URL.createObjectURL(blob);
-            //     console.log(url);
-            //     setImg(img => url);
-            // }
+            if(res.data[0].img !== ''){
+                const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
+                const binary = window.atob(base64img.split(',')[1]);
+                const arraybuffer = new ArrayBuffer(binary.length);
+                let bytes = new Uint8Array(arraybuffer);
+                for(let i=0;i < binary.length; i++){
+                    bytes[i] = binary.charCodeAt(i);
+                }
+                const blob = new Blob([arraybuffer], { type: 'image/jpeg' });
+                const url = window.URL.createObjectURL(blob);
+                console.log(url);
+                setImg(img => url);
+            }
             setQuezeshow_title(quezeshow_title => res.data[0].title);
             setExplain_text(explain_text => res.data[0].explain_text);
             setUuid(uuid => res.data[0].uuid);
