@@ -5,7 +5,7 @@ const axios = require('axios');
 exports.handler =  async (event, context) => {
   try {
     const { path } = event;
-    // let script = '';
+    let script = '';
     // const parameter = extractParameterFromPath(path);
     console.log('path',path,'parameter',);
     // const html = fs.readFileSync(path.resolve(__dirname, "../../build/index.html"), "utf-8");
@@ -14,62 +14,7 @@ exports.handler =  async (event, context) => {
 
     // Return the HTML content as the response
     // const promise = new Promise((resolve, reject) => {
-    //   axios({
-    //     url : 'https://ayo-world-rank.site/quezeshowtitle',
-    //     method : 'GET',
-    //     params : {
-    //         roomnum : path.replace('/quezeshow_before/',''),
-    //         type    : 'likes'
-    //     },
-    //   }).then(res=>{        
-    //     const quezeshow_title = res.data[0].title;
-    //     const explain_text= res.data[0].explain_text
-    //     script = `
-    //     <!DOCTYPE html>
-    //       <html lang="en">
-    //       <head>
-    //           <meta charset="UTF-8"/>
-    //           <title>${quezeshow_title}</title>
-    //           <meta name="title" content="${quezeshow_title}"/>
-    //           <meta name="referrer" content="no-referrer-when-downgrade" />
-    //           <meta name="description" content="${quezeshow_title}, ${explain_text}"></meta>
-    //           <meta property="og:type" content="website" />
-    //           <meta property="og:title" content="${quezeshow_title}" />
-    //           <meta property="og:site_name" content="${quezeshow_title}" />
-    //           <meta property="og:description" content="${explain_text}" />
-  
-    //           <meta name="twitter:title" content="${quezeshow_title}" />
-    //           <meta name="twitter:description" content="${explain_text}" />
-              
-    //           <link rel="icon" sizes="16x16" type="image/x-icon" href="/favicon.ico?">
-    //           <link rel="apple-touch-icon" sizes="16x16" href="/favicon.ico?">
-    //           <meta name="referrer" content="no-referrer-when-downgrade" />
-    //           <meta name="google-adsense-account" content="ca-pub-7471498859383871">
-      
-    //           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7471498859383871"
-    //           crossorigin="anonymous"></script>
-    //       </head>
-    //       <body>
-    //           <div id="root">
-    //           </div>
-    //           <!-- Include any necessary scripts -->
-    //           <script src="/bundle.js"></script>
-    //       </body>
-    //       </html>
-    //     `
-    // })
-    // });
-    // const promise_result = promise.then(()=>{
-    //   return {
-    //     statusCode: 200,
-    //     headers: {
-    //       'Content-Type': 'text/html',
-    //     },
-    //     body: script, 
-    //   };
-    // })
-    return await (() => {
-      axios({
+      await axios({
         url : 'https://ayo-world-rank.site/quezeshowtitle',
         method : 'GET',
         params : {
@@ -79,7 +24,7 @@ exports.handler =  async (event, context) => {
       }).then(res=>{        
         const quezeshow_title = res.data[0].title;
         const explain_text= res.data[0].explain_text
-        return `
+        script = `
         <!DOCTYPE html>
           <html lang="en">
           <head>
@@ -112,8 +57,18 @@ exports.handler =  async (event, context) => {
           </body>
           </html>
         `
-      })
     })
+    // });
+    // const promise_result = promise.then(()=>{
+      return {
+        statusCode: 200,
+        headers: {
+          'Content-Type': 'text/html',
+        },
+        body: script, 
+      };
+    // })
+    // return promise_result;
     // return {
     //     statusCode: 200,
     //     headers: {
