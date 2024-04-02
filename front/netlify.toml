@@ -1,8 +1,13 @@
 
-  [build]
+[build]
   command = "npm run build"
   functions = "netlify/function/"
   publish = "build"
+
+[[plugins]]
+  package = '@netlify/plugin-sitemap'
+  [plugins.inputs]
+  buildDir = "."
 
 [functions]
   external_node_modules = ["express"]
