@@ -28,14 +28,14 @@ exports.handler =  async (event, context) => {
         if(res.data[0].img !== ''){
           const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
           const binary = window.atob(base64img.split(',')[1]);
-          const arraybuffer = new ArrayBuffer(binary.length);
-          let bytes = new Uint8Array(arraybuffer);
-          for(let i=0;i < binary.length; i++){
-              bytes[i] = binary.charCodeAt(i);
-          }
-          const blob = new Blob([arraybuffer], { type: 'image/jpeg' });
-          const url = window.URL.createObjectURL(blob);
-          img = url;
+          // const arraybuffer = new ArrayBuffer(binary.length);
+          // let bytes = new Uint8Array(arraybuffer);
+          // for(let i=0;i < binary.length; i++){
+          //     bytes[i] = binary.charCodeAt(i);
+          // }
+          // const blob = new Blob([arraybuffer], { type: 'image/jpeg' });
+          // const url = window.URL.createObjectURL(blob);
+          // img = url;
       }
         // let img;
         // if(res.data[0].img === ''){
