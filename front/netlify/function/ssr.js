@@ -25,7 +25,7 @@ exports.handler =  async (event, context) => {
         const quezeshow_title = res.data[0].title;
         const explain_text= res.data[0].explain_text
         let img;
-        if(res.data[0].img !== ''){
+        if(res.data[0].img === ''){
           img = `https://ay0.site/assets/no_image.jpg`
         }else {
           img = 'data:image/jpeg;base64,'+res.data[0].img
