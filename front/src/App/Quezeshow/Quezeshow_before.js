@@ -18,7 +18,7 @@ const Quezeshow_before = () => {
     // const roomnum = searchParams.get('roomnum');
     const [uuid,setUuid] = useState();
     const [quezeshow_type, setQuezeshow_type] = useState();
-    const [img,setImg] = useState('data:image/jpeg;base64,');
+    const [img,setImg] = useState('');
     const [quezeshow_title, setQuezeshow_title] = useState('');
     const [explain_text,setExplain_text] = useState('');
     const comment_input_ref = useRef();
@@ -38,7 +38,7 @@ const Quezeshow_before = () => {
             }
         }).then(res=>{
             console.log(res);
-            const imgurl = canvas_ref.current.canvas.toDataURL("image/jpeg", 0.5);
+            const imgurl = canvas_ref.current.toDataURL("image/jpeg", 0.5);
             setImg(img => imgurl);
             setQuezeshow_title(quezeshow_title => res.data[0].title);
             setExplain_text(explain_text => res.data[0].explain_text);
