@@ -18,7 +18,7 @@ exports.handler =  async (event, context) => {
         url : 'https://ayo-world-rank.site/quezeshowtitle',
         method : 'GET',
         params : {
-            roomnum : path.replace('/quezeshow_before',''),
+            roomnum : path.replace('/quezeshow_before/',''),
             type    : 'likes'
         },
       }).then(res=>{        
