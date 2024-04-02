@@ -28,8 +28,9 @@ exports.handler =  async (event, context) => {
         if(res.data[0].img === ''){
           img = `https://ay0.site/assets/no_image.jpg`
         }else {
-          img = 'data:image/jpeg;base64,'+res.data[0].img
+          img = res.data[0].img
         }
+        //'data:image/jpeg;base64,'+
         script = `
         <!DOCTYPE html>
           <html lang="en">
