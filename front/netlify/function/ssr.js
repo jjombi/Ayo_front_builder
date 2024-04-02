@@ -6,6 +6,7 @@ exports.handler =  async (event, context) => {
   try {
     const { path } = event;
     let script = '';
+    let img = 'https://ay0.site/assets/no_image.jpg';
     // const parameter = extractParameterFromPath(path);
     console.log('path',path,'parameter',);
     // const html = fs.readFileSync(path.resolve(__dirname, "../../build/index.html"), "utf-8");
@@ -24,7 +25,6 @@ exports.handler =  async (event, context) => {
       }).then(res=>{        
         const quezeshow_title = res.data[0].title;
         const explain_text= res.data[0].explain_text;
-        let img = 'https://ay0.site/assets/no_image.jpg';
         if(res.data[0].img !== ''){
           const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
           const binary = window.atob(base64img.split(',')[1]);
