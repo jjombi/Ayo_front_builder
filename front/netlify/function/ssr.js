@@ -18,6 +18,7 @@ exports.handler =  async (event, context) => {
       }).then(res=>{        
         const quezeshow_title = res.data[0].title;
         const explain_text= res.data[0].explain_text;
+        const img = res.data[0].img;
         // if(res.data[0].img !== ''){
         //   const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
         //   const binary = window.atob(base64img.split(',')[1]); 
@@ -31,7 +32,21 @@ exports.handler =  async (event, context) => {
         //   img = url;
         //              <meta property="og:image" content="${img}" />
         // }
+        // AWS.config.update({
+        //   accessKeyId: 'AKIA4VUTOQPSRDZAKDHS',
+        //   secretAccessKey: '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',
+        //   region: 'ap-northeast-2'
+        // });
 
+        // const s3 = new AWS.S3();
+
+        // // Generate a pre-signed URL for the image in S3
+        // const params = {
+        //     Bucket: 'dlworjs',
+        //     Key: 'path/to/your/image.jpg', // Replace with the key of your image in S3
+        //     Expires: 3600, // URL expiration time in seconds (adjust as needed)
+        // };
+        // const imageUrl = s3.getSignedUrlPromise('getObject', params);
         script = `
         <!DOCTYPE html>
           <html lang="en">
@@ -48,7 +63,8 @@ exports.handler =  async (event, context) => {
 
               <meta name="twitter:title" content="${quezeshow_title}" />
               <meta name="twitter:description" content="${explain_text}" />
-              
+              <meta name="twitter:image" content="${img}" />
+
               <link rel="icon" sizes="16x16" type="image/x-icon" href="/favicon.ico?">
               <link rel="apple-touch-icon" sizes="16x16" href="/favicon.ico?">
               <meta name="referrer" content="no-referrer-when-downgrade" />

@@ -38,19 +38,19 @@ const Quezeshow_before = () => {
             }
         }).then(res=>{
             console.log(res);
-            if(res.data[0].img !== ''){
-                const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
-                const binary = window.atob(base64img.split(',')[1]);
-                const arraybuffer = new ArrayBuffer(binary.length);
-                let bytes = new Uint8Array(arraybuffer);
-                for(let i=0;i < binary.length; i++){
-                    bytes[i] = binary.charCodeAt(i);
-                }
-                const blob = new Blob([arraybuffer], { type: 'image/jpeg' });
-                const url = window.URL.createObjectURL(blob);
-                console.log(url);
-                setImg(img => url);
-            }
+            // if(res.data[0].img !== ''){
+            //     const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
+            //     const binary = window.atob(base64img.split(',')[1]);
+            //     const arraybuffer = new ArrayBuffer(binary.length);
+            //     let bytes = new Uint8Array(arraybuffer);
+            //     for(let i=0;i < binary.length; i++){
+            //         bytes[i] = binary.charCodeAt(i);
+            //     }
+            //     const blob = new Blob([arraybuffer], { type: 'image/jpeg' });
+            //     const url = window.URL.createObjectURL(blob);
+            //     console.log(url);
+                setImg(img => res.data[0].img);
+            // }
             setQuezeshow_title(quezeshow_title => res.data[0].title);
             setExplain_text(explain_text => res.data[0].explain_text);
             setUuid(uuid => res.data[0].uuid);
