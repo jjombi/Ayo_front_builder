@@ -1,20 +1,14 @@
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const axios = require('axios');
-// const App = require('../../src/App/Main2'); // Import your root React component
+const fs = require('fs');
 exports.handler =  async (event, context) => {
   try {
     const { path } = event;
     let script = '';
     let img = 'https://ay0.site/assets/no_image.jpg';
-    // const parameter = extractParameterFromPath(path);
     console.log('path',path,'parameter',);
-    // const html = fs.readFileSync(path.resolve(__dirname, "../../build/index.html"), "utf-8");
-    // Render your React component to HTML
-    // const html = ReactDOMServer.renderToString(<App />);
 
-    // Return the HTML content as the response
-    // const promise = new Promise((resolve, reject) => {
       await axios({
         url : 'https://ayo-world-rank.site/quezeshowtitle',
         method : 'GET',
@@ -26,7 +20,7 @@ exports.handler =  async (event, context) => {
         const quezeshow_title = res.data[0].title;
         const explain_text= res.data[0].explain_text;
         if(res.data[0].img !== ''){
-          const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
+          // const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
           // const binary = window.atob(base64img.split(',')[1]); 
           // const arraybuffer = new ArrayBuffer(binary.length);
           // let bytes = new Uint8Array(arraybuffer);
@@ -35,16 +29,18 @@ exports.handler =  async (event, context) => {
           // }
           // const blob = new Blob([arraybuffer], { type: 'image/jpeg' });
           // const url = window.URL.createObjectURL(blob);
-          // img = url;
+          // img = url; 
+          const base64img = response.data[0].img;
+          const base64Data = base64img.replace(/^data:image\/\w+;base64,/, '');
+          const buffer = Buffer.from(base64Data, 'base64');
+          
+          // Write the image data to a file (temporarily)
+          const tempImagePath = '/tmp/decodedImage.jpg'; // Temporary file path
+          fs.writeFileSync(tempImagePath, buffer);
+
+          // Set the image URL to the temporary file path
+          img = tempImagePath;
       }
-        // let img;
-        // if(res.data[0].img === ''){
-        //   img = `https://ay0.site/assets/no_image.jpg`
-        // }else {
-        //   img = res.data[0].img
-        // }
-        //'data:image/jpeg;base64,'+ 
-        //              <meta property="og:image" content="${img}" />
 
         script = `
         <!DOCTYPE html>
@@ -81,8 +77,7 @@ exports.handler =  async (event, context) => {
           </html>
         `
     })
-    // });
-    // const promise_result = promise.then(()=>{
+
       return {
         statusCode: 200,
         headers: {
@@ -90,29 +85,7 @@ exports.handler =  async (event, context) => {
         },
         body: script, 
       };
-    // })
-    // return promise_result;
-    // return {
-    //     statusCode: 200,
-    //     headers: {
-    //       'Content-Type': 'text/html',
-    //     },
-    //     body: `
-    //       <!DOCTYPE html>
-    //       <html lang="en">
-    //       <head>
-            
-    //       </head>
-    //       <body>
-    //           <div id="root">
-    //           ${path} , ${path.replace('/','')}
-    //           </div>
-    //           <!-- Include any necessary scripts -->
-    //           <script src="/bundle.js"></script>
-    //       </body>
-    //       </html>
-    //     `,
-    //   };
+
   } catch (error) {
     // Handle errors
     return {
