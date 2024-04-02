@@ -63,6 +63,7 @@ exports.handler =  async (event, context) => {
               <meta property="og:title" content="${quezeshow_title}" />
               <meta property="og:site_name" content="${quezeshow_title}" />
               <meta property="og:description" content="${explain_text}" />
+              <meta property="og:url" content="https://ay0.site${path}" />
               <meta name="og:image" content="${img}" />
 
               <meta name="twitter:title" content="${quezeshow_title}" />
