@@ -25,7 +25,7 @@ const Quezeshow_before = () => {
     const comment_input_title_ref = useRef();
     const [popup_state, setPopup_state] = useState(false);
     const {roomnum} = useParams();
-
+    const canvas_ref = useRef();
     useEffect(()=>{
         // const { param } = match;
         console.log('params',roomnum);
@@ -38,7 +38,8 @@ const Quezeshow_before = () => {
             }
         }).then(res=>{
             console.log(res);
-            setImg(img => 'data:image/jpeg;base64,'+res.data[0].img);
+            const imgurl = canvas_ref.current.canvas.toDataURL("image/jpeg", 0.5);
+            setImg(img => imgurl);
             setQuezeshow_title(quezeshow_title => res.data[0].title);
             setExplain_text(explain_text => res.data[0].explain_text);
             setUuid(uuid => res.data[0].uuid);
@@ -158,6 +159,7 @@ const Quezeshow_before = () => {
     }
     return(
         <section className="Quezeshow_before_root">
+            <canvas ref={canvas_ref}></canvas>
             {/* <Helmet>
                 <title>quezeshow_title</title>
                 <meta charset="UTF-8"/>
@@ -187,7 +189,7 @@ const Quezeshow_before = () => {
 
             </header>
             <section className="Quezeshow_before_main">
-                <img src={img === 'data:image/jpeg;base64,' ? no_img : img}></img>
+                <img src={img === '' ? no_img : img}></img>
                 <h1>{quezeshow_title}</h1>
                 <p>{explain_text}asdasdasd</p>
                 <button className="Quezeshow_before_start_btn" onClick={navi_to_quezeshow_queze}>시작하기</button>
