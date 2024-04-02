@@ -30,16 +30,16 @@ exports.handler =  async (event, context) => {
         // const blob = new Blob([arraybuffer], { type: 'image/jpeg' });
         // const url = window.URL.createObjectURL(blob);
         // img = url; 
-        const base64img = res.data[0].img;
-        const base64Data = base64img.replace(/^data:image\/\w+;base64,/, '');
-        const buffer = Buffer.from(base64Data, 'base64');
+        // const base64img = res.data[0].img;
+        // const base64Data = base64img.replace(/^data:image\/\w+;base64,/, '');
+        // const buffer = Buffer.from(base64Data, 'base64');
         
         // Write the image data to a file (temporarily)
-        const tempImagePath = `https://ay0.site/image.jpg`; // Temporary file path
-        fs.writeFileSync(tempImagePath, buffer);
+        // const tempImagePath = `https://ay0.site/image.jpg`; // Temporary file path
+        // fs.writeFileSync(tempImagePath, buffer);
 
         // Set the image URL to the temporary file path
-        img = tempImagePath;
+        // img = tempImagePath;
       }
       script = `
       <!DOCTYPE html>
@@ -54,7 +54,7 @@ exports.handler =  async (event, context) => {
             <meta property="og:title" content="${quezeshow_title}" />
             <meta property="og:site_name" content="${quezeshow_title}" />
             <meta property="og:description" content="${explain_text}" />
-            <meta property="og:image" content="${img}" />
+            <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png"/>
 
             <meta name="twitter:title" content="${quezeshow_title}" />
             <meta name="twitter:description" content="${explain_text}" />
