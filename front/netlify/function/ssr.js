@@ -5,6 +5,7 @@ exports.handler =  async (event, context) => {
   try {
     const { path } = event;
     let script = '';
+    let img = 'https://ay0.site/assets/no_image.jpg';
     // let img = 'https://ay0.site/assets/no_image.jpg';
     console.log('path',path,'parameter',);
 
@@ -18,9 +19,8 @@ exports.handler =  async (event, context) => {
       }).then(res=>{        
         const quezeshow_title = res.data[0].title;
         const explain_text= res.data[0].explain_text;
-        let img = res.data[0].img;
-        if(img = ''){
-          img = 'https://ay0.site/assets/no_image.jpg';
+        if(res.data[0].img !== ''){
+          img = res.data[0].img;
         }
         // if(res.data[0].img !== ''){
         //   const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
