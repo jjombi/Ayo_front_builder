@@ -32,7 +32,8 @@ exports.handler =  async (event, context) => {
                 <div id="root">
                 
                 </div>
-
+                <!-- Include any necessary scripts -->
+                <script src="/bundle.js"></script>
             </body>
             </html>
             `, 
