@@ -8,17 +8,13 @@
   external_node_modules = ["express"]
   node_bundler = "esbuild"
 
-[functions]
-  name = "ssrMain"
-  path = "netlify/function/ssrMain.js"
-
 [[redirects]]
   from = "/quezeshow_before"
   to = "/.netlify/functions/ssr"
   status = 200
 
 [[redirects]]
-  from = "/"
+  from = "/machugi"
   to = "/.netlify/functions/ssrMain"
   status = 200
 
