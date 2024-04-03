@@ -5,6 +5,7 @@ require("@babel/register")({
 ]});
    
   const router = require("./sitemap-routes").default;
+//   import router from "./sitemap-routes";
   const Sitemap = require("react-router-sitemap").default;
   
   function generateSitemap() {
@@ -12,6 +13,7 @@ require("@babel/register")({
         new Sitemap(router)
             .build("https://ay0.site")
             .save("./build/sitemap.xml")
+            .save("./public/sitemap.xml")
       );
   }
   
