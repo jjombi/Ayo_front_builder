@@ -19,11 +19,6 @@
   status = 200
 
 [[redirects]]
-  from = "/"
-  to = "/.netlify/functions/ssrMain:splat"
-  status = 200
-
-[[redirects]]
   from = "/quezeshow_before/*"
   to = "/.netlify/functions/ssr/:splat"
   status = 200
