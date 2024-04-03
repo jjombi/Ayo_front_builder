@@ -15,7 +15,12 @@
 
 [[redirects]]
   from = "/machugi"
-  to = "/.netlify/functions/ssrMain"
+  to = "/.netlify/functions/Main2"
+  status = 200
+
+[[redirects]]
+  from = "/quezeshow_queze"
+  to = "/.netlify/function/Main2"
   status = 200
 
 [[redirects]]
