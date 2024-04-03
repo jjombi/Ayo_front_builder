@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --progress --mode development",
+    "dev": "  ",
     "build": "webpack --progress --mode production",
     "sitemap": "babel-node ./src/sitemap-generator.js",
-    "prebuild": "npm run sitemap",
+    "postbuild": "npm run sitemap",
     "sass": "node-sass styles/main.scss style.css",
     "deploy": "gh-pages -d build"
   },

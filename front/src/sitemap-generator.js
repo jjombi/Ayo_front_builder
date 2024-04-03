@@ -11,7 +11,7 @@ require("@babel/register")({
       return (
         new Sitemap(router)
             .build("https://ay0.site")
-            .save("./public/sitemap.xml")
+            .save("./build/sitemap.xml")
       );
   }
   
