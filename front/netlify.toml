@@ -24,8 +24,8 @@
   status = 200
 
 [[redirects]]
-  from = "/quezeshow_queze"
-  to = "/.netlify/functions/Quezeshow_queze"
+  from = "/quezeshow_main"
+  to = "/.netlify/functions/Quezeshow_main"
   status = 200
 
 [[redirects]]
