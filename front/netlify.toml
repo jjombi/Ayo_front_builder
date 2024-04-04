@@ -14,7 +14,7 @@
   status = 200
 
 [[redirects]]
-  from = "/"
+  from = "https://ay0.site"
   to = "/.netlify/functions/Main2"
   status = 200
 
@@ -41,6 +41,16 @@
 [[redirects]]
   from = "/quezeshow_before/*"
   to = "/.netlify/functions/ssr/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/community"
+  to = "/.netlify/functions/Community"
+  status = 200
+
+[[redirects]]
+  from = "/guide_main"
+  to = "/.netlify/functions/Guide_main"
   status = 200
 
 [[redirects]]

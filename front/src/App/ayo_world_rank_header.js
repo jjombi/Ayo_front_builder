@@ -34,7 +34,7 @@ const ayo_world_rank_header = () => {
         navigate('/continue_speaking');
     }
     const navi_to_New_word_queze = () => {
-        navigate('/New_word_queze');
+        navigate('/new_word_queze');
     }
     return(
         <header className="Main2_header">
