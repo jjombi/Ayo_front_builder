@@ -14,13 +14,28 @@
   status = 200
 
 [[redirects]]
-  from = "/machugi"
+  from = "/"
   to = "/.netlify/functions/Main2"
   status = 200
 
 [[redirects]]
+  from = "/machugi"
+  to = "/.netlify/functions/Machugi"
+  status = 200
+
+[[redirects]]
   from = "/quezeshow_queze"
-  to = "/.netlify/function/Main2"
+  to = "/.netlify/functions/Quezeshow_queze"
+  status = 200
+
+[[redirects]]
+  from = "/continue_speaking"
+  to = "/.netlify/functions/Continue_speaking"
+  status = 200
+
+[[redirects]]
+  from = "/new_word_queze"
+  to = "/.netlify/functions/New_word_queze"
   status = 200
 
 [[redirects]]
