@@ -3,6 +3,7 @@ import Headers from "../ayo_world_rank_header";
 import '../css.css';
 import axios from "axios";
 import Community_content from "./Community_content";
+import { Helmet } from "react-helmet-async";
 const Community = () => {
     const comment_input_ref = useRef();
     const [community_content_state, setCommunity_content_state] = useState([]);
@@ -41,6 +42,20 @@ const Community = () => {
     }
     return(
         <div className="community_root">
+            <Helmet>
+                <title>{"개발자에게 제안하기"}</title>
+                <meta charset="UTF-8"/>
+                <meta name="title" content="adjhbdlgbleln"/>
+                <meta name="referrer" content="no-referrer-when-downgrade" />
+                <meta name="description" content={"개발자에게 제안하거나 사용자와 소통할 수 있습니다"}></meta>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={"개발자에게 제안하기"} />
+                <meta property="og:site_name" content={"개발자에게 제안하기"} />
+                <meta property="og:description" content={"개발자에게 제안하거나 사용자와 소통할 수 있습니다"} />
+
+                <meta name="twitter:title" content={"개발자에게 제안하기"} />
+                <meta name="twitter:description" content={"개발자에게 제안하거나 사용자와 소통할 수 있습니다"} />
+            </Helmet>
             <Headers></Headers>
             <h1>
                 개발자에게 전할 말을 작성해 주세요,<br/>

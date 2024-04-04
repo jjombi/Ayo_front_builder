@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import Main2_content from "./Main2_content";
 import Adfit from "./Adfit";
 import { useNavigate } from "react-router-dom";
-
+import { Helmet } from "react-helmet-async";
 const Main2 = () => {
     const search_value_ref = useRef();
     const [main_content_state,setMain_content_state] = useState([]);
@@ -90,6 +90,20 @@ const Main2 = () => {
     return(
         <div className="Main2_root">
             <Header></Header>
+            <Helmet>
+                <title>이상형 월드컵</title>
+                <meta charset="UTF-8"/>
+                <meta name="title" content="adjhbdlgbleln"/>
+                <meta name="referrer" content="no-referrer-when-downgrade" />
+                <meta name="description" content=""></meta>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content="이상형 월드컵" />
+                <meta property="og:site_name" content="이상형 월드컵" />
+                <meta property="og:description" content="이상형월드컵을 토너먼드로 진행하거나 티어 나누기로 진행할 수 있습니다" />
+
+                <meta name="twitter:title" content={'이상형 월드컵'} />
+                <meta name="twitter:description" content="이상형월드컵을 토너먼드로 진행하거나 티어 나누기로 진행할 수 있습니다" />
+            </Helmet>
             <header className="Main2_a_queze_header">
                 <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/ayoworldrankmakequeze')}}>이상형 월드컵 만들기</button>
             </header>

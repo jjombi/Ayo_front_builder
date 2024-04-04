@@ -11,6 +11,7 @@ import Shar_content from "./Shar_content";
 import Quezeshow_queze_content_type_queze from "./Quezeshow_queze_content_type_queze";
 import Quezeshow_queze_content_type_text from './Quezeshow_queze_content_type_text';
 import Quezeshow_result_correct from "./Quezeshow_result_correct";
+import { Helmet } from "react-helmet-async";
 const Quezeshow_queze= () => {
     const navigate = useNavigate();
     const [seachParams, setSearchParams] = useSearchParams();
@@ -455,6 +456,20 @@ const Quezeshow_queze= () => {
     // }
     return(
         <div className="quezeshow_queze_root">
+            <Helmet>
+                <title>{"Super easy한 퀴즈쇼"}</title>
+                <meta charset="UTF-8"/>
+                <meta name="title" content="adjhbdlgbleln"/>
+                <meta name="referrer" content="no-referrer-when-downgrade" />
+                <meta name="description" content={"나락퀴즈쇼 아이돌퀴즈쇼 애니퀴즈쇼 상식퀴즈쇼 정치퀴즈쇼 등 웃기고 재미있는 퀴즈쇼를 만나보세요"}></meta>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={"Super easy한 퀴즈쇼"} />
+                <meta property="og:site_name" content={"Super easy한 퀴즈쇼"} />
+                <meta property="og:description" content={"나락퀴즈쇼 아이돌퀴즈쇼 애니퀴즈쇼 상식퀴즈쇼 정치퀴즈쇼 등 웃기고 재미있는 퀴즈쇼를 만나보세요"} />
+
+                <meta name="twitter:title" content={"Super easy한 퀴즈쇼"} />
+                <meta name="twitter:description" content={"나락퀴즈쇼 아이돌퀴즈쇼 애니퀴즈쇼 상식퀴즈쇼 정치퀴즈쇼 등 웃기고 재미있는 퀴즈쇼를 만나보세요"} />
+            </Helmet>
             {
                 popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={uuid} roomName={''} title={quezeshow_title} publicAccess={null} type={null} typeWhere={'modify_password'} quezeshow_type={quezeshow_type} queze_type={queze_type}/> : null
             }

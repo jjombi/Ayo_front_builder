@@ -171,8 +171,8 @@ const Quezeshow_before = () => {
     return(
         <section className="Quezeshow_before_root">
             <canvas ref={canvas_ref}></canvas>
-            {/* <Helmet>
-                <title>quezeshow_title</title>
+            <Helmet>
+                <title>{quezeshow_title}</title>
                 <meta charset="UTF-8"/>
                 <meta name="title" content="adjhbdlgbleln"/>
                 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -184,7 +184,7 @@ const Quezeshow_before = () => {
 
                 <meta name="twitter:title" content={quezeshow_title} />
                 <meta name="twitter:description" content={explain_text} />
-            </Helmet> */}
+            </Helmet>
             {
                 popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={uuid} roomName={''} title={quezeshow_title} publicAccess={null} type={null} typeWhere={'modify_password'} quezeshow_type={quezeshow_type}/> : null// queze_type={queze_type}
             }

@@ -5,6 +5,7 @@ import Quezeshow_main_content from "../Quezeshow/Quezeshow_main_content";
 import axios from "axios";
 import Adfit from "../Adfit";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 const New_word_queze= () => {
     const [content_state,setContent_state] = useState([]);
     const navigate = useNavigate();
@@ -36,6 +37,20 @@ const New_word_queze= () => {
 
     return(
         <div className="quezeshow_main_root">
+            <Helmet>
+                <title>{"신조어 맞추기"}</title>
+                <meta charset="UTF-8"/>
+                <meta name="title" content="adjhbdlgbleln"/>
+                <meta name="referrer" content="no-referrer-when-downgrade" />
+                <meta name="description" content={"신조어 맞추기"}></meta>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={"신조어 맞추기"} />
+                <meta property="og:site_name" content={"신조어 맞추기"} />
+                <meta property="og:description" content={"신조어 맞추기"} />
+
+                <meta name="twitter:title" content={"신조어 맞추기"} />
+                <meta name="twitter:description" content={"신조어 맞추기"} />
+            </Helmet>
             <Header></Header>
                 <header className="Main2_a_queze_header">
                     <button className="all_btn a_queze_header_btn" type="button" onClick={()=>navigate('/make_quezeshow?ty=New_word_queze')}>문제 제작</button>

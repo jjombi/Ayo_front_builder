@@ -5,6 +5,7 @@ import Quezeshow_main_content from "../Quezeshow/Quezeshow_main_content";
 import axios from "axios";
 import Adfit from "../Adfit";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 const Continue_speaking= () => {
     const [content_state,setContent_state] = useState([]);
     const navigate = useNavigate();
@@ -37,10 +38,24 @@ const Continue_speaking= () => {
 
     return(
         <div className="quezeshow_main_root">
+            <Helmet>
+                <title>{"이어말하기"}</title>
+                <meta charset="UTF-8"/>
+                <meta name="title" content="adjhbdlgbleln"/>
+                <meta name="referrer" content="no-referrer-when-downgrade" />
+                <meta name="description" content={"4세대 아이돌 이어말하기 애니 이어말하기 유튜버 이어말하기 중국음식 이어말하기 등 주어진 시간안에 주어진 단어를 이어말하는 게임입니다"}></meta>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={"이어말하기"} />
+                <meta property="og:site_name" content={"이어말하기"} />
+                <meta property="og:description" content={"4세대 아이돌 이어말하기 애니 이어말하기 유튜버 이어말하기 중국음식 이어말하기 등 주어진 시간안에 주어진 단어를 이어말하는 게임입니다"} />
+
+                <meta name="twitter:title" content={"이어말하기"} />
+                <meta name="twitter:description" content={"4세대 아이돌 이어말하기 애니 이어말하기 유튜버 이어말하기 중국음식 이어말하기 등 주어진 시간안에 주어진 단어를 이어말하는 게임입니다"} />
+            </Helmet>
             <Header></Header>
-                <header className="Main2_a_queze_header">
-                    <button className="all_btn a_queze_header_btn" type="button" onClick={()=>navigate('/make_quezeshow?ty=Continue_speaking')}>문제 제작</button>
-                </header>
+            <header className="Main2_a_queze_header">
+                <button className="all_btn a_queze_header_btn" type="button" onClick={()=>navigate('/make_quezeshow?ty=Continue_speaking')}>문제 제작</button>
+            </header>
             <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
             <div className="queze_list">
                 {
