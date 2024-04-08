@@ -6,7 +6,6 @@ exports.handler =  async (event, context) => {
     const { path } = event;
     let script = '';
     let img = 'https://ay0.site/assets/no_image.jpg';
-    // let img = 'https://ay0.site/assets/no_image.jpg';
     console.log('path',path,'parameter',);
 
       await axios({
@@ -22,34 +21,6 @@ exports.handler =  async (event, context) => {
         if(res.data[0].img !== ''){
           img = res.data[0].img;
         }
-        // if(res.data[0].img !== ''){
-        //   const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
-        //   const binary = window.atob(base64img.split(',')[1]); 
-        //   const arraybuffer = new ArrayBuffer(binary.length);
-        //   let bytes = new Uint8Array(arraybuffer);
-        //   for(let i=0;i < binary.length; i++){
-        //       bytes[i] = binary.charCodeAt(i);
-        //   }
-        //   const blob = new Blob([arraybuffer], { type: 'image/jpeg' });
-        //   const url = window.URL.createObjectURL(blob);
-        //   img = url;
-        //              <meta property="og:image" content="${img}" />
-        // }
-        // AWS.config.update({
-        //   accessKeyId: 'AKIA4VUTOQPSRDZAKDHS',
-        //   secretAccessKey: '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',
-        //   region: 'ap-northeast-2'
-        // });
-
-        // const s3 = new AWS.S3();
-
-        // // Generate a pre-signed URL for the image in S3
-        // const params = {
-        //     Bucket: 'dlworjs',
-        //     Key: 'path/to/your/image.jpg', // Replace with the key of your image in S3
-        //     Expires: 3600, // URL expiration time in seconds (adjust as needed)
-        // };
-        // const imageUrl = s3.getSignedUrlPromise('getObject', params);
         script = `
         <!DOCTYPE html>
           <html lang="en">
