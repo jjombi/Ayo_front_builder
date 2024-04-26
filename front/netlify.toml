@@ -16,7 +16,7 @@
 [[redirects]]
   from = "/"
   to =".netlify/functions/Quezeshow_main"
-  status : 200
+  status = 200
 
 [[redirects]]
   from = "/community"
