@@ -2,9 +2,9 @@ import React,{useEffect, useRef, useState} from 'react';
 // import Main2_make_queze_basic from "./Main2_make_queze_basic";
 import Make_quezeshow_basic from './Make_quezeshow_basic';
 import { useSearchParams,useLocation } from "react-router-dom";
-import Header from "../ayo_world_rank_header";
-import Footer from '../Footer';
-import Adfit from '../Adfit';
+import Header from "../../ayo_world_rank_header";
+import Footer from '../../Footer';
+import Adfit from '../../Adfit';
 import axios from 'axios';
 // import Make_queze_modify from './Make_queze_modify';
 const Make_quezeshow_modify = () => {

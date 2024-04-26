@@ -63,7 +63,7 @@ const Community = () => {
             </h1>
 
             <div className="comment_area">
-                <div>
+                <div className="quezeshow_result_div">
                     <textarea type="text" ref={comment_input_ref} id={1} placeholder="의견" onChange={chenge_comment_area_height}></textarea>
                     <button onClick={upload_comment} className="all_btn" >^</button>
                 </div>

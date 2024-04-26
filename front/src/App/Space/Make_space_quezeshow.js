@@ -1,5 +1,5 @@
 import React from "react";
-import Make_quezeshow_basic from "../Quezeshow/Make_quezeshow_basic";
+import Make_quezeshow_basic from "../Quezeshow/Make_quezeshow/Make_quezeshow_basic";
 import { useSearchParams } from "react-router-dom";
 
 const Make_space_quezeshow = () => {

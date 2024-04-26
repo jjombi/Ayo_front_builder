@@ -1,7 +1,7 @@
 import React from 'react';
-import { processChange } from "../public/WorldRank";
-import no_img from '../Img_folder/no_image.jpg';
-import {chenge_textarea_height} from '../public/WorldRank';
+import { processChange } from "../../public/WorldRank";
+import no_img from '../../Img_folder/no_image.jpg';
+import {chenge_textarea_height} from '../../public/WorldRank';
 const Make_quezeshow_modify_content = ({img,early_text, early_title, uuid, changed_object_ref, index,answer,v1,v2,v3,v4,quezeshow_type, queze_type}) => {
     console.log('make queze modify ',quezeshow_type,queze_type,img);
     const explain_text_change_vote = (e) => {

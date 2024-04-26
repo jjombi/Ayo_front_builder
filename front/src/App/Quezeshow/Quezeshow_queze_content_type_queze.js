@@ -1,33 +1,32 @@
 import React, { useEffect, useState, useRef, forwardRef } from "react";
 import no_img from "../Img_folder/no_image.jpg";
-
-const Quezeshow_queze_content_type_queze = ({img,v1,v2,v3,v4,answer,title,text, clicked, setClicked,queze_type, correct,descriptive_input_ref,next_queze}) => {
+import axios from "axios";
+import {canvas_func} from '../public/WorldRank';
+import Quezeshow_queze_content_video from './Quezeshow_queze_content_video';
+const Quezeshow_queze_content_type_queze = ({img,data_type,uuid2,start, end, title,text, clicked, setClicked, correct_choice,setCorrect_choice, correct_state}) => {
     // const [is_correct, setIs_correct] = useState(false);
+    const [choice, setChoice] = useState([]); 
+    const canvas_ref = useRef();
     const btn_click = (e) => {
         console.log('clicked',e.target.id,'--',clicked);
         setClicked(clicked => e.target.id);
     }
-    useEffect(()=>{
-        console.log('correct',correct);
-    })
     
-    // useEffect(()=>{
-    //     if(!correct){
-    //         // console.log(correct_checker());
-    //         console.log('2');
-    //         if(correct_checker()){
-    //             setIs_correct(is_correct => true);
-    //         }else{
-    //             setIs_correct(is_correct => false);
-    //         }
-    //     }
-    // },[correct])
-    const enter_event = (e) => {
-        if(e.key === 'Enter'){
-            console.log('lieranale');
-            next_queze();
-        }
-    }
+    useEffect(()=>{
+        // canvas_func(canvas_ref);
+        axios({
+            url : process.env.REACT_APP_SERVER_URL + '/select_choice_correct',
+            method : 'get',
+            params : {
+                uuid : uuid2
+            }
+
+        }).then(res=>{
+            console.log(res);
+            setChoice(choice => res.data.choice);
+            setCorrect_choice(correct_choice => res.data.correct_choice[0].correct_choice);
+        })
+    },[])
     return(
         <section className="Quezeshow_queze_content_type_queze_root" style={{color : 'black'}}>
             <h1>
@@ -36,43 +35,41 @@ const Quezeshow_queze_content_type_queze = ({img,v1,v2,v3,v4,answer,title,text, 
             <h4>
                 {text}
             </h4>
+            <Quezeshow_queze_content_video data_type={data_type} start={start} end={end} img={img}></Quezeshow_queze_content_video>
             {
-                img === 'data:image/jpeg;base64,' ? <img src={no_img}></img> : <img src={img}></img>
-            }
-            {
-                console.log(queze_type,typeof(queze_type),)
-            }
-            {
-                Number(queze_type) === 1 
+
+                correct_state.queze_state === true
                 ?
-                    correct.is === true
-                    ?
-                    <>
-                    <h1> {correct.answer ? '정답' : '오답'}</h1>
-                    <p>{answer}</p>
-                    </>
-                    :
-                    <section>
-                    <button type="button" id={'1'} style={clicked === '1' ? {backgroundColor : '#828282'} : null} onClick={btn_click}>{v1}</button>
-                    <button type="button" id={'2'} style={clicked === '2' ? {backgroundColor : '#828282'} : null} onClick={btn_click}>{v2}</button>
-                    <button type="button" id={'3'} style={clicked === '3' ? {backgroundColor : '#828282'} : null} onClick={btn_click}>{v3}</button>
-                    <button type="button" id={'4'} style={clicked === '4' ? {backgroundColor : '#828282'} : null} onClick={btn_click}>{v4}</button>
-                    </section>
+                <>
+                <h1>{correct_state.is_correct ? '정답' : '오답'}</h1>
+                <p>{choice[correct_choice].choice}</p>
+                </>
                 :
-                    correct.is === true
-                    ?
-                    <>
-                    <h1> {correct.answer ? '정답' : '오답'}</h1>
-                    <p>{answer}</p>
-                    </>
-                    :
-                    <>
-                    <input type="text" autoFocus ref={descriptive_input_ref} onKeyUp={enter_event}></input>
-                    <h6>입력후 Enter를 눌러주세요</h6>
-                    </>
+                <section>
+                    {
+                        choice.map((e,i)=>{
+                            return (
+                                <button key={i} type="button" id={i} style={clicked == i ? {backgroundColor : '#828282'} : null} onClick={btn_click}>{e.choice}</button>
+                            )
+                        })
+                    }
+                </section>
+
             }
         </section> 
     )
 }
 
 export default forwardRef(Quezeshow_queze_content_type_queze);
+                // :
+                    // correct.is === true
+                    // ?
+                    // <>
+                    // <h1> {correct.answer ? '정답' : '오답'}</h1>
+                    // <p>{answer}</p>
+                    // </>
+                    // :
+                    // <>
+                    // <input type="text" autoFocus ref={descriptive_input_ref} onKeyUp={enter_event}></input>
+                    // <h6>입력후 Enter를 눌러주세요</h6>
+                    // </>

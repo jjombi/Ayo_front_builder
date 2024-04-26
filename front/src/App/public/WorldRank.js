@@ -99,6 +99,47 @@ const chenge_textarea_height = (e) => {
     e.target.style.height = 'auto'; //height 초기화
     e.target.style.height = e.target.scrollHeight + 'px';
 }
+const canvas_func = (canvas_ref) => {
+    const el = canvas_ref;
+    const ctx = el.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const pi = Math.PI;
+    const points = 12;
+    const radius = 200 * dpr;
+    const h = 600 * dpr;
+    const w = 600 * dpr;
+    const center = {
+        x: w / 2 * dpr, 
+        y: h / 2 * dpr
+    };
+    const circles = [];
+    const rangeMin = 1;
+    const rangeMax = 30;
+    const showPoints = true;
+
+    let mouseY = 0;
+    let tick = 0;
+
+    const gradient1 = ctx.createLinearGradient(0, 0, w, 0);
+    gradient1.addColorStop(0, '#96fbc4');
+    gradient1.addColorStop(1, '#f9f586');
+
+    const gradient2 = ctx.createLinearGradient(0, 0, w, 0);
+    gradient2.addColorStop(0, '#48c6ef');
+    gradient2.addColorStop(1, '#6f86d6');
+
+    const gradient3 = ctx.createLinearGradient(0, 0, w, 0);
+    gradient3.addColorStop(0, '#9795f0');
+    gradient3.addColorStop(1, '#9be15d');
+
+    const gradient4 = ctx.createLinearGradient(0, 0, w, 0);
+    gradient4.addColorStop(0, '#f6d365');
+    gradient4.addColorStop(1, '#fda085');
+
+    const gradients = [ gradient1, gradient2, gradient3, gradient4 ];
+
+
+}
 // const server_url = 'http://3.34.129.99:45509';   
 // const server_url = 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app';
-export {dragenter, dragover, processChange, upload_comment,handleCopyClipBoard,chenge_textarea_height}
+export {dragenter, dragover, processChange, upload_comment,handleCopyClipBoard,chenge_textarea_height, canvas_func}

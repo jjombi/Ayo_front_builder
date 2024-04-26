@@ -83,15 +83,15 @@ const Quezeshow_before = () => {
     // console.log(roomnum,uuid,quezeshow_type,quezeshow_title,explain_text);
     const navi_to_quezeshow_queze = () => {
         console.log('navi',quezeshow_type);
-        if(quezeshow_type === 'Continue_speak'){
+        // if(quezeshow_type === 'Continue_speak'){
             navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
-        }else if(quezeshow_type === 'New_word_queze'){
-            navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
-        }else if(quezeshow_type === 'queze'){
-            navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
-        }else if(quezeshow_type === 'vote'){
-            navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
-        }
+        // }else if(quezeshow_type === 'New_word_queze'){
+        //     navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
+        // }else if(quezeshow_type === 'queze'){
+        //     navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
+        // }else if(quezeshow_type === 'vote'){
+        //     navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
+        // }
     }
     const upload_comment = (e) => {
         e.preventDefault();
@@ -202,7 +202,7 @@ const Quezeshow_before = () => {
             <section className="Quezeshow_before_main">
                 <img src={img === '' ? no_img : img}></img>
                 <h1>{quezeshow_title}</h1>
-                <p>{explain_text}asdasdasd</p>
+                <p>{explain_text}</p>
                 <button className="Quezeshow_before_start_btn" onClick={navi_to_quezeshow_queze}>시작하기</button>
             </section>
             <div className="comment_area">

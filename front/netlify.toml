@@ -14,29 +14,9 @@
   status = 200
 
 [[redirects]]
-  from = "https://ay0.site"
-  to = "/.netlify/functions/Main2"
-  status = 200
-
-[[redirects]]
-  from = "/machugi"
-  to = "/.netlify/functions/Machugi"
-  status = 200
-
-[[redirects]]
-  from = "/quezeshow_main"
-  to = "/.netlify/functions/Quezeshow_main"
-  status = 200
-
-[[redirects]]
-  from = "/continue_speaking"
-  to = "/.netlify/functions/Continue_speaking"
-  status = 200
-
-[[redirects]]
-  from = "/new_word_queze"
-  to = "/.netlify/functions/New_word_queze"
-  status = 200
+  from = "/"
+  to =".netlify/functions/Quezeshow_main"
+  status : 200
 
 [[redirects]]
   from = "/community"

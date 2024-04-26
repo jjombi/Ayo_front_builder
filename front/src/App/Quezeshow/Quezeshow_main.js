@@ -49,7 +49,7 @@ const Quezeshow_main= ({match}) => {
                 <title>{"Super easy한 퀴즈쇼"}</title>
                 <meta charset="UTF-8"/>
                 <meta name="title" content="adjhbdlgbleln"/>
-                <meta name="referrer" content="no-referrer-when-downgrade" />
+                <meta name="referrer" content="no-referrer-when-downgrade"/>
                 <meta name="description" content={"나락퀴즈쇼 아이돌퀴즈쇼 애니퀴즈쇼 상식퀴즈쇼 정치퀴즈쇼 등 웃기고 재미있는 퀴즈쇼를 만나보세요"}></meta>
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content={"Super easy한 퀴즈쇼"} />
@@ -79,7 +79,7 @@ const Quezeshow_main= ({match}) => {
                 <header className="Main2_a_queze_header">
                     {/* <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/space')}}>스페이스</button>
                     <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/make_space')}}>스페이스 만들기</button> */}
-                    <button className="all_btn a_queze_header_btn" type="button" onClick={()=>navigate('/make_quezeshow?ty=vote')}>퀴즈쇼 제작</button>
+                    <button className="all_btn a_queze_header_btn" type="button" onClick={()=>navigate('/produce')}>퀴즈쇼 제작</button>
                 </header>
             {/* } */}
             {/* <header className="Main2_header2"> */}

@@ -9,15 +9,16 @@ const Quezeshow_main_content= ({index,src,uuid,title,roomnum,quezeshow_type,expl
         navigate(`/quezeshow_result?roomnum=${roomnum}&uuid=${uuid}&quezeshow_type=${quezeshow_type}&title=${title}`);
     }
     const A_queze_click = () => {
-        if(quezeshow_type === 'Continue_speak'){
+        console.log('click');
+        // if(quezeshow_type === 'Continue_speak'){
             navigate(`/quezeshow_before/${roomnum}`);
-        }else if(quezeshow_type === 'New_word_queze'){
-            navigate(`/quezeshow_before/${roomnum}`);
-        }else if(quezeshow_type === 'queze'){
-            navigate(`/quezeshow_before/${roomnum}`);
-        }else if(quezeshow_type === 'vote'){
-            navigate(`/quezeshow_before/${roomnum}`);
-        }
+        // }else if(quezeshow_type === 'New_word_queze'){
+        //     navigate(`/quezeshow_before/${roomnum}`);
+        // }else if(quezeshow_type === 'queze'){
+        //     navigate(`/quezeshow_before/${roomnum}`);
+        // }else if(quezeshow_type === 'vote'){
+        //     navigate(`/quezeshow_before/${roomnum}`);
+        // }
     }
     return(
         <button className="plus_queze">

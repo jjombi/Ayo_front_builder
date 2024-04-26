@@ -20,7 +20,7 @@ exports.handler =  async (event, context) => {
         const explain_text= res.data[0].explain_text;
         if(res.data[0].img !== ''){
           img = res.data[0].img;
-        }
+        } 
         script = `
         <!DOCTYPE html>
           <html lang="en">

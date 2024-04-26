@@ -229,7 +229,7 @@ const Quezeshow_result = () => {
             </section>
             <section className="comment">
                 <div className="comment_area">
-                    <div>
+                    <div className="quezeshow_result_div">
                         <input type="text" ref={comment_input_ref} id={1} placeholder="댓글 입력"></input>
                         <button onClick={upload_comment} className="all_btn" >^</button>
                     </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import '../css.css';
 import Header from "../ayo_world_rank_header";
 import axios from "axios";
-const Quezeshow_queze_content = ({index,img,text,title,uuid, clicked, setClicked, value}) => {
+const Quezeshow_queze_content = ({index,img,text,title,uuid, clicked, setClicked, value,data_type}) => {
     const [style_, setStyle_] = useState('rgb(239, 239, 239)');
     useEffect(()=>{
         // axios({
@@ -28,7 +28,7 @@ const Quezeshow_queze_content = ({index,img,text,title,uuid, clicked, setClicked
             <button type="button" className="quezeshow_queze_content_root all_btn" onClick={content_click}>
                 <h1>{index+1}</h1>
                 {
-                    img === 'data:image/jpeg;base64,' ? null : 
+                    img === 'data:image/jpeg;base64,' || data_type === 'text' ? null : 
                     <div className="img_area">
                         <img src={img}></img>
                         <div></div>
@@ -41,14 +41,14 @@ const Quezeshow_queze_content = ({index,img,text,title,uuid, clicked, setClicked
                 </div>
             </button>
             :
-            <div className="quezeshow_queze_content_root">
+            <div className="quezeshow_queze_content_root quezeshow_queze_content_root_color">
                 {/* <h1>{index+1}</h1> */}
                 <div className="quezeshow_queze_content_value_p">
                     <p>{value}%</p>
                     <div></div>
                 </div>
                 {
-                    img === 'data:image/jpeg;base64,' ? null : 
+                    img === 'data:image/jpeg;base64,' || data_type === 'text' ? null : 
                     <div className="img_area">
                         <img src={img}></img>
                         <div></div>

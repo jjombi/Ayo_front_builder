@@ -1,24 +1,24 @@
 import React, { useState, useRef, useEffect } from "react";
-import '../css.css';
+import '../../css.css';
 import Make_quezeshow_content from "./Make_quezeshow_content";
 import Make_quezeshow_content_queze from "./Make_quezeshow_content_queze";
 import { v4 as uuidv4 } from 'uuid';
 import AWS from "aws-sdk";
-import Loading_popup from "../Loading_popup";
+import Loading_popup from "../../Loading_popup";
 import { useFormStatus } from 'react-dom';
-import Header from "../ayo_world_rank_header";
-import Adfit from "../Adfit";
+import Header from "../../ayo_world_rank_header";
+import Adfit from "../../Adfit";
 import Make_quezeshow_modify_content from './Make_quezeshow_modify_content';
 import axios from "axios";
-import {chenge_textarea_height} from '../public/WorldRank';
+import {chenge_textarea_height} from '../../public/WorldRank';
 // import Modify_password_popup from "../public/modify_password_popup";
 import Make_quezeshow_content_text from './Make_quezeshow_content_text';
 import { useSearchParams } from "react-router-dom";
 import Make_quezeshow_content_continue_speaking from './Make_quezeshow_content_continue_speaking';
 import Make_quezeshow_content_new_word_queze from "./Make_quezeshow_content_new_word_queze";
 const Make_quezeshow_basic = ({type, server_url, uuid_props, quezeshow_type_props, queze_type}) => {
-    const [content_state,setContent_state] = useState([]);
-    const [searchParams,setSearchParams] = useSearchParams();
+    const [content_state, setContent_state] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
     const file_ref = useRef([]);
     const canvas_ref = useRef();
     const queze_title_ref = useRef();
@@ -141,7 +141,7 @@ const Make_quezeshow_basic = ({type, server_url, uuid_props, quezeshow_type_prop
         }
     },[])
 
-    const add_content = (e) => {
+    const add_content = (e,) => {
         e.preventDefault();
         const content_state_ = [...content_state,content_state.length+1];
         setContent_state(content_state=>[...content_state_]);

@@ -16,27 +16,25 @@ const Quezeshow_queze= () => {
     const [seachParams, setSearchParams] = useSearchParams();
     const roomnum = seachParams.get('roomnum');
     const uuid = seachParams.get('uuid');
-    // const uuid2 = seachParams.get('uuid2');
-    // const type = seachParams.get('type');
     const quezeshow_type = seachParams.get('quezeshow_type');
     const quezeshow_title = seachParams.get('title');
     const explain_text = seachParams.get('explain_text');
+
     const [content_state, setContent_state] = useState([]);
     const [comment_state, setComment_state] = useState([]);
     const [submit_state, setSubmit_state] = useState(false);
     const [submit_object_state, setSubmit_object_state] = useState({img : 'data:image/jpeg;base64,', title : '', text : ''})
     const [clicked, setClicked] = useState(null);
-    const descriptive_input_ref = useRef();
-    // const [shar_state, setShar_state] = useState(false);
-    const comment_input_ref = useRef();
-    const [queze_type,setQueze_type] = useState();
-    // const search_value_ref = useRef();
     const [popup_state, setPopup_state] = useState(false);
-    // const [shar_content_state, setShar_content_state] = useState([]);
-    const[show_index,setShow_index] = useState(0);
-    const[correct, setCorrect] = useState({is : false, answer : null});
-    const[correct_queze_checker,setCorrect_queze_checker] = useState([]);
-    const[queze_is_done_state,setQueze_is_done_state] = useState({tinyint : false, count : null});
+    const [show_index,setShow_index] = useState(0);
+    const [correct_state, setCorrect_state] = useState({queze_state : false, is_correct : null});
+    
+    const [correct_choice,setCorrect_choice] = useState(null);
+    const [correct_count,setCorrect_count] = useState(0);
+
+    const descriptive_input_ref = useRef();
+    const comment_input_ref = useRef();
+
     useEffect(()=>{
         console.log(quezeshow_type,typeof(quezeshow_type));
         // console.log('utl : ',window.location.href);
@@ -51,7 +49,7 @@ const Quezeshow_queze= () => {
             }).then(res=>{
                 if(res.data.length !== 0){
                     console.log('quezeshow_checking_existence',res,res.data[0].queze_type);
-                    setQueze_type(queze_type => res.data[0].queze_type);
+                    // setQueze_type(queze_type => res.data[0].queze_type);
                     // setQueze_type(queze_type => 0); 
                     // if(res.data[0].existence === 0){// 삭제된 콘텐츠 이면
                     //     const direction = seachParams.get('direction');
@@ -65,7 +63,7 @@ const Quezeshow_queze= () => {
                     }else{
 
                         // quezeshow_title.current = res.data[0].title;
-                        if(quezeshow_type === 'vote'){ // quezeshow typ is vote
+                        // if(quezeshow_type === 'vote'){ // quezeshow typ is vote
                             axios({
                                 url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze',
                                 method : 'GET',
@@ -73,7 +71,7 @@ const Quezeshow_queze= () => {
                                 
                             }).then(res=>{
                                 console.log('content',res);
-                                setContent_state( content_state => [...res.data]);
+                                setContent_state( content_state => [...res.data]);//content_state.length === 퀴즈 문제 수
                                 
                             })
                             axios({
@@ -85,66 +83,66 @@ const Quezeshow_queze= () => {
                                 // console.log('comment',res);
                                 setComment_state( content_state => [...res.data]);
                             })
-                        }else if(quezeshow_type === 'queze'){ // quezeshow type is queze
-                            axios({
-                                url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze_type_queze',
-                                method : 'GET',
-                                params : {roomnum : roomnum,uuid : uuid}
+                        // }else if(quezeshow_type === 'queze'){ // quezeshow type is queze
+                        //     axios({
+                        //         url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze_type_queze',
+                        //         method : 'GET',
+                        //         params : {roomnum : roomnum,uuid : uuid}
                                 
-                            }).then(res=>{
-                                console.log('content',res);
-                                setContent_state( content_state => [...res.data]);
+                        //     }).then(res=>{
+                        //         console.log('content',res);
+                        //         setContent_state( content_state => [...res.data]);
                                 
-                            })
-                            // setContent_state( content_state => [
-                            //     {
-                            //         uuid : 'e.uuid',
-                            //         uuid2 : 'e.uuid2',
-                            //         roomnum : 'e.roomnum',
-                            //         title : 'e.title',
-                            //         text : 'e.text',
-                            //         value1 : 'e.value1',
-                            //         value2 : 'e.value2',
-                            //         value3 : 'e.value3',
-                            //         value4 : 'e.value4',
-                            //         answer : 'e.value4',
-                            //         img : ''
-                            //     }
-                            // ]);
-                        }else if(quezeshow_type === 'Continue_speak'){
-                            axios({
-                                url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze_type_text',
-                                method : 'GET',
-                                params : {roomnum : roomnum,uuid : uuid}
+                        //     })
+                        //     // setContent_state( content_state => [
+                        //     //     {
+                        //     //         uuid : 'e.uuid',
+                        //     //         uuid2 : 'e.uuid2',
+                        //     //         roomnum : 'e.roomnum',
+                        //     //         title : 'e.title',
+                        //     //         text : 'e.text',
+                        //     //         value1 : 'e.value1',
+                        //     //         value2 : 'e.value2',
+                        //     //         value3 : 'e.value3',
+                        //     //         value4 : 'e.value4',
+                        //     //         answer : 'e.value4',
+                        //     //         img : ''
+                        //     //     }
+                        //     // ]);
+                        // }else if(quezeshow_type === 'Continue_speak'){
+                        //     axios({
+                        //         url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze_type_text',
+                        //         method : 'GET',
+                        //         params : {roomnum : roomnum,uuid : uuid}
                                 
-                            }).then(res=>{
-                                console.log('content',res);
-                                setContent_state( content_state => [...res.data]);
+                        //     }).then(res=>{
+                        //         console.log('content',res);
+                        //         setContent_state( content_state => [...res.data]);
                                 
-                            })
-                            // const asdadada = [{
-                            //     uuid     : 'uuid',
-                            //     uuid2    : 'uuid2',
-                            //     roomnum  : 10,
-                            //     title    : '바나나',
-                            //     answer   : '차차',
-                            // }]
-                            // setContent_state(content_state => [...asdadada])
-                        }
-                        else if(quezeshow_type === 'New_word_queze'){
-                            axios({
-                                url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze_type_text',
-                                method : 'GET',
-                                params : {roomnum : roomnum,uuid : uuid}
+                        //     })
+                        //     // const asdadada = [{
+                        //     //     uuid     : 'uuid',
+                        //     //     uuid2    : 'uuid2',
+                        //     //     roomnum  : 10,
+                        //     //     title    : '바나나',
+                        //     //     answer   : '차차',
+                        //     // }]
+                        //     // setContent_state(content_state => [...asdadada])
+                        // }
+                        // else if(quezeshow_type === 'New_word_queze'){
+                        //     axios({
+                        //         url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze_type_text',
+                        //         method : 'GET',
+                        //         params : {roomnum : roomnum,uuid : uuid}
                                 
-                            }).then(res=>{
-                                console.log('content',res.data[0].answer.split(','));
-                                setContent_state( content_state => [...res.data]);
+                        //     }).then(res=>{
+                        //         console.log('content',res.data[0].answer.split(','));
+                        //         setContent_state( content_state => [...res.data]);
                                 
-                            })
-                        }else{
-                            alert('quezeshow type err')
-                        }
+                        //     })
+                        // }else{
+                        //     alert('quezeshow type err')
+                        // }
                         
                     }
                 }
@@ -349,96 +347,55 @@ const Quezeshow_queze= () => {
     }
     const correct_checker = () => {
         let result;
-        console.log(content_state[show_index],descriptive_input_ref.current,'clicked',clicked);
-        // if(descriptive_input_ref !== null){
-            if(quezeshow_type === 'queze'){
-                if(Number(queze_type) === 1){
-                    if(clicked === ''){
-                        result = false;
-                    }
-                    else if(clicked === content_state[show_index].answer){
-                        result = true
-                    }else{
-                        result = false
-                    }
-                }
-                else{
-                    if(descriptive_input_ref.current.value === ''){
-                        result = false;
-                    }
-                    else if(content_state[show_index].value1.trim() === descriptive_input_ref.current.value.trim()){
-                        result = true
-                    }else if(content_state[show_index].value2.trim() === descriptive_input_ref.current.value.trim()){
-                        result = true
-                    }else if(content_state[show_index].value3.trim() === descriptive_input_ref.current.value.trim()){
-                        result = true
-                    }else if(content_state[show_index].value4.trim() === descriptive_input_ref.current.value.trim()){
-                        result = true
-                    }else if(content_state[show_index].answer.trim() === descriptive_input_ref.current.value.trim()){
-                        result = true
-                    }else{
-                        result = false
-                    }
-                }
+        console.log('correct_checker',quezeshow_type);
+        if(quezeshow_type === 'multiple'){
+            if(clicked === correct_choice){
+                result = true;
+            }else{
+                result = false;
             }
-            else if(quezeshow_type === 'Continue_speak'){
-                // console.log(descriptive_input_ref.current.value.trim(), content_state[show_index].answer.trim());
-                if(descriptive_input_ref.current.value.trim() === content_state[show_index].answer.trim()){
+        }
+        else if(quezeshow_type === 'descriptive'){
+            for(let i = 0; i<=correct_choice.length;i++){
+                console.log('descriptive :',descriptive_input_ref.current.value,correct_choice[i]);
+                if(descriptive_input_ref.current.value.trim() === correct_choice[i].trim()){
                     result = true;
-                }else{
-                    result = false;
-                }
-            }else if(quezeshow_type === 'New_word_queze'){
-                // console.log(descriptive_input_ref.current.value.split(' ').join(''),content_state[show_index].answer.split(',').join('').split(' ').join(''));
-                if(descriptive_input_ref.current.value.split(' ').join('') === content_state[show_index].answer.split(',').join('').split(' ').join('')){
-                    result = true;
+                    break
                 }else{
                     result = false;
                 }
             }
-        // }
-        console.log('correct result',result);
+        }else if(quezeshow_type === 'vote'){
+            if(descriptive_input_ref.current.value.split(' ').join('') === content_state[show_index].answer.split(',').join('').split(' ').join('')){
+                result = true;
+            }else{
+                result = false;
+            }
+        }
         return result;
     }
     const next_queze = () => {
         console.log('next queze 실행됨');   
-        if(!correct.is){
+        if(!correct_state.queze_state){//문제 창
             console.log('1');
             if(correct_checker()){
-                const correct_queze_checker_ = [...correct_queze_checker,true];
-                setCorrect_queze_checker(correct_queze_checker => correct_queze_checker_); 
-                const correct_ = {is : true, answer : true}
-                setCorrect(correct => correct_);
+                const data = {queze_state : true, is_correct : true};
+                setCorrect_state(correct_state => data);
+                setCorrect_count(correct_count => correct_count+1);
             }else{
-                const correct_queze_checker_ = [...correct_queze_checker,false];
-                setCorrect_queze_checker(correct_queze_checker => correct_queze_checker_);
-                const correct_ = {is : true, answer : false}
-                setCorrect(correct => correct_);           
+                const data = {queze_state : true, is_correct : false};
+                setCorrect_state(correct_state => data);
             }
-            // setShow_index(show_index => show_index+1);
-        }else{
-            if(show_index+1 >= content_state.length){
-                let count = 0;
-                correct_queze_checker.map((e,i)=>{
-                    if(e){
-                        count = count + 1; 
-                    }
-                })
-                // alert('마지막 문제'+count+'맞춤');
-                const ad = {
-                    tinyint : true,
-                    count   : count
-                }
-                setQueze_is_done_state(queze_is_done_state => ad);
-            }else{
+        }else{// 결과 창
+            console.log('content_state.length',content_state.length,show_index);
+            if(show_index+1 >= content_state.length){// 마지막 문제 끝남
+                console.log('퀴즈 끝남',show_index+1 >= content_state.length, correct_state.queze_state);
+            }else{ // 다음 문제로
+                console.log('다음 문제',show_index);
                 setShow_index(show_index => show_index+1);
                 setClicked(clicked => '');
-                // setCorrect(correct => false);
-                const correct_ = {is : false, answer : correct.answer}
-                setCorrect(correct => correct_);
-                // if(quezeshow_type === 'text'){
-                //     descriptive_input_ref.current.value = '';
-                // } 
+                const data = {queze_state : false, is_correct : null};
+                setCorrect_state(correct_state => data);
             }
         }
         
@@ -478,15 +435,13 @@ const Quezeshow_queze= () => {
                 null
             }
             {
-                console.log('show_index',show_index,typeof(show_index),'content_state.length',content_state.length,typeof(content_state.length),correct,typeof(correct),queze_is_done_state)
-            }
-            {
-                queze_is_done_state.tinyint
+                show_index+1 >= content_state.length & correct_state.queze_state
                 ?
-                <Quezeshow_result_correct all_queze_num={content_state.length} correct_all_queze_num={queze_is_done_state.count} setCorrect_queze_checker={setCorrect_queze_checker} setShow_index={setShow_index} setClicked={setClicked} setCorrect={setCorrect} setQueze_is_done_state={setQueze_is_done_state}></Quezeshow_result_correct>
+                <Quezeshow_result_correct all_queze_num={content_state.length} correct_all_queze_num={correct_count} setShow_index={setShow_index} setClicked={setClicked} setCorrect_state={setCorrect_state}></Quezeshow_result_correct>
                 :
                 <>
-                <h1>{explain_text === 'null' ? quezeshow_title : explain_text  }</h1>
+                <h1>{quezeshow_title}</h1>
+                <h1>{explain_text}</h1>
                 { 
                     submit_state
                     ?   
@@ -502,7 +457,7 @@ const Quezeshow_queze= () => {
                             {
                                 quezeshow_type === 'vote' ?
                                 <div className="comment_area quezeshow_after_submi_comment_area">
-                                    <div>
+                                    <div className="quezeshow_result_div">
                                         <input type="text" ref={comment_input_ref} id={1} placeholder={`${submit_object_state.title}을/를 선택한 이유`}></input>
                                         <button type="button" onClick={upload_comment} className="all_btn" >^</button>
                                     </div>
@@ -541,28 +496,28 @@ const Quezeshow_queze= () => {
                                 {
                                 content_state.map((e,i)=>{
                                     return(
-                                        <Quezeshow_queze_content key={i} index={i} img={'data:image/jpeg;base64,'+e.img} text={e.text} title={e.title} uuid={e.uuid} clicked={clicked} setClicked={setClicked} uuid2={e.uuid2} value={null}/>
+                                        <Quezeshow_queze_content key={i} index={i} img={e.img} text={e.text} title={e.title} uuid={e.uuid} clicked={clicked} setClicked={setClicked} uuid2={e.uuid2} value={null} data_type={e.data_type}/>
                                     )
                                 })
                                 }
                             </div>
                             :
-                            quezeshow_type === 'queze'
+                            quezeshow_type === 'multiple'
                             ?
                             <>
                             {
                                 content_state.length !== 0 ?
-                                <Quezeshow_queze_content_type_queze img={'data:image/jpeg;base64,'+content_state[show_index].img} v1={content_state[show_index].value1} v2={content_state[show_index].value2} v3={content_state[show_index].value3} v4={content_state[show_index].value4} answer={content_state[show_index].answer} title={content_state[show_index].title} text={content_state[show_index].text} clicked={clicked} setClicked={setClicked} queze_type={queze_type} descriptive_input_ref={descriptive_input_ref} correct={correct} correct_checker={correct_checker} next_queze={next_queze}></Quezeshow_queze_content_type_queze>
+                                <Quezeshow_queze_content_type_queze img={content_state[show_index].img} uuid2={content_state[show_index].uuid2} data_type={content_state[show_index].data_type} start={content_state[show_index].start} end={content_state[show_index].end} title={content_state[show_index].title} text={content_state[show_index].text} clicked={clicked} setClicked={setClicked} correct_choice={correct_choice} setCorrect_choice={setCorrect_choice} correct_state={correct_state}></Quezeshow_queze_content_type_queze>
                                 : null
                             }
                             </>
                             :
-                            quezeshow_type === 'Continue_speak' || quezeshow_type === 'New_word_queze'
+                            quezeshow_type === 'descriptive'
                             ?
                             <>
                             {
                                 content_state.length !== 0 ?
-                                <Quezeshow_queze_content_type_text title={content_state[show_index].title} descriptive_input_ref={descriptive_input_ref} correct={correct} correct_checker={correct_checker} answer={content_state[show_index].answer} quezeshow_type={quezeshow_type} next_queze={next_queze}></Quezeshow_queze_content_type_text>
+                                <Quezeshow_queze_content_type_text title={content_state[show_index].title} descriptive_input_ref={descriptive_input_ref} correct_checker={correct_checker} next_queze={next_queze} img={content_state[show_index].img} uuid2={content_state[show_index].uuid2} data_type={content_state[show_index].data_type} start={content_state[show_index].start} end={content_state[show_index].end} text={content_state[show_index].text} correct_choice={correct_choice} setCorrect_choice={setCorrect_choice} correct_state={correct_state}></Quezeshow_queze_content_type_text>
                                 : null
                             }
                             </>
@@ -588,25 +543,6 @@ const Quezeshow_queze= () => {
                 }
                 </>
             }
-            
-            {/* {
-            quezeshow_type === 0 
-            ? 
-            <>
-            <button className="quezeshow_queze_leftbtn all_btn" onClick={l_btn_click}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
-                    <path d="M7 1L1 7L7 13" stroke="#222222"/>
-                </svg>
-            </button>
-            <button className="quezeshow_queze_rightbtn all_btn" onClick={r_btn_click}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M9 6L15 12L9 18" stroke="#222222"/>
-                </svg>
-            </button>
-            </>
-            :
-            null
-            } */}
         </div>
     )
 
