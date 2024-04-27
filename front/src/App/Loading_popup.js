@@ -24,7 +24,7 @@ const Loading_popup = ({setLoading_popup_state, pending,password,setPassword_pop
                 <span>{password}</span>는 콘텐츠 수정시 사용되는 비밀번호 입니다. <br/>잘 기억해 주세요
             </p>
             <input className='all_btn' type='button' onClick={()=>{handleCopyClipBoard(password)}} value={'비밀번호 복사하기'} readOnly></input>
-            <button type='button' className='all_btn' onClick={()=>{setpopup}}>닫기</button>
+            <button type='button' className='all_btn' onClick={setpopup}>닫기</button>
             {
                 // console.log(pending)
             }

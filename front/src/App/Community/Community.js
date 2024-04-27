@@ -4,6 +4,7 @@ import '../css.css';
 import axios from "axios";
 import Community_content from "./Community_content";
 import { Helmet } from "react-helmet-async";
+import Adfit from "../Adfit";
 const Community = () => {
     const comment_input_ref = useRef();
     const [community_content_state, setCommunity_content_state] = useState([]);
@@ -47,7 +48,7 @@ const Community = () => {
                 <meta charset="UTF-8"/>
                 <meta name="title" content="adjhbdlgbleln"/>
                 <meta name="referrer" content="no-referrer-when-downgrade" />
-                <meta name="description" content={"개발자에게 제안하거나 사용자와 소통할 수 있습니다"}></meta>
+                <meta name="description" content={"예능 게임 개발자에게 제안하거나 사용자와 소통할 수 있습니다"}></meta>
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content={"개발자에게 제안하기"} />
                 <meta property="og:site_name" content={"개발자에게 제안하기"} />
@@ -57,6 +58,7 @@ const Community = () => {
                 <meta name="twitter:description" content={"개발자에게 제안하거나 사용자와 소통할 수 있습니다"} />
             </Helmet>
             <Headers></Headers>
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
             <h1>
                 개발자에게 전할 말을 작성해 주세요,<br/>
                 빠른 시일 내에 공지사항을 통해 답변해 드립니다

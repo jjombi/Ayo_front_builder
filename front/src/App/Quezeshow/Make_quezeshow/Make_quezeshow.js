@@ -28,7 +28,7 @@ const Make_quezeshow = () => {
     const [correct_choice,setCorrect_choice] = useState([]);
     const [max_video_length,setMax_video_length] = useState(0);
     const [main_img,setMain_img] = useState([null, null]);
-    const [tag, setTag] = useState('없음');
+    const [tag, setTag] = useState('');
     const [password_popup, setPassword_popup] = useState(false);
     // const [hint,setHint] = useState([]); 
 
@@ -609,7 +609,7 @@ const Make_quezeshow = () => {
                                         <p id="video">영상</p>
                                     </div>
                                     <div id="video">
-                                        
+
                                     </div>
                                 </div>
                                 <div className="make_quezeshow_queze_option1">

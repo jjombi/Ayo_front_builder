@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import Header from "../../ayo_world_rank_header";
 import '../../css.css';
 import no_img from '../../Img_folder/no_image.jpg';
+import Adfit from "../../Adfit";
 const Make_quezeshow_step1 = () => {
     const navigate = useNavigate();
     const click_func = (e) => {
@@ -12,6 +13,9 @@ const Make_quezeshow_step1 = () => {
     return(
         <div className="Make_quezeshow_step1_root">
             <Header/>
+            
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
+        
             <section>
                 <div id="vote" onClick={click_func} className="all_btn">
                     <img id="vote" src={no_img}></img>
