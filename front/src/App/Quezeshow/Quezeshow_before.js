@@ -15,7 +15,6 @@ const Quezeshow_before = () => {
     const [result_comment_state, setResult_comment_state] = useState([]);
     const navigate = useNavigate();
     const [searchParams,setSearchParams] = useSearchParams();
-    // const roomnum = searchParams.get('roomnum');
     const [uuid,setUuid] = useState();
     const [quezeshow_type, setQuezeshow_type] = useState();
     const [img,setImg] = useState('');
@@ -186,7 +185,7 @@ const Quezeshow_before = () => {
                 <meta name="twitter:description" content={explain_text} />
             </Helmet>
             {
-                popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={uuid} roomName={''} title={quezeshow_title} publicAccess={null} type={null} typeWhere={'modify_password'} quezeshow_type={quezeshow_type}/> : null// queze_type={queze_type}
+                popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={uuid} roomnum={roomnum} title={quezeshow_title} publicAccess={null} type={null} typeWhere={'modify_password'} quezeshow_type={quezeshow_type}/> : null// queze_type={queze_type}
             }
             <Header></Header>
             <header className="Main2_a_queze_header">

@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import '../../css.css';
-import Make_quezeshow_content from "./Make_quezeshow_content";
 import Make_quezeshow_content_queze from "./Make_quezeshow_content_queze";
 import { v4 as uuidv4 } from 'uuid';
 import AWS from "aws-sdk";
@@ -14,7 +13,6 @@ import {chenge_textarea_height} from '../../public/WorldRank';
 import YouTubeComponent from './Youtube_component';
 import { useSearchParams, useLocation  } from "react-router-dom";
 import Make_quezeshow_content_text from './Make_quezeshow_content_text';
-import password_popup from '../../Password_popup';
 const Make_quezeshow = () => {
     const [uuid,setUuid] = useState('');
     const location = useLocation(); 
@@ -23,14 +21,12 @@ const Make_quezeshow = () => {
     const [content_state,setContent_state] = useState([]);
     const [content_object, setContent_object] = useState([]);
     const [time_checkbox,setTime_checkbox] = useState(false);
-    const [loading_popup_state,setLoading_popup_state] = useState(false);
     const [choice,setChoice] = useState([]);
     const [correct_choice,setCorrect_choice] = useState([]);
     const [max_video_length,setMax_video_length] = useState(0);
     const [main_img,setMain_img] = useState([null, null]);
     const [tag, setTag] = useState('');
     const [password_popup, setPassword_popup] = useState(false);
-    // const [hint,setHint] = useState([]); 
 
     const file_ref = useRef([]);
     const queze_title_ref = useRef();
@@ -39,8 +35,7 @@ const Make_quezeshow = () => {
     const queze_explain_text_ref = useRef();
     const time_ref = useRef();
     const user_id_ref = useRef();
-    // const main_img_ref = useRef([null,null]);
-    
+
     const region = "ap-northeast-2";
     const bucket = "dlworjs";
     const accessKey = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
@@ -55,9 +50,6 @@ const Make_quezeshow = () => {
     useEffect(()=>{
         const uuid_ = uuidv4();
         const random_modify_password = Math.random().toString(36).substr(2,5);
-        // const today = new Date();
-        // console.log('location.state.quezeshow_type',location.state,today.getUTCFullYear(),today.getUTCMonth(),today.getUTCDate(),today.getUTCHours(),today.getUTCMinutes(),today.getUTCSeconds());
-        // console.log(Date.now());
         setUuid(uuid=> uuid_);
         setPassword(password => random_modify_password);
         setQuezeshow_type_clicked_btn(quezeshow_type_clicked_btn => location.state.quezeshow_type); // vote, multiple, descriptive, 투표, 객관, 서술
@@ -69,7 +61,7 @@ const Make_quezeshow = () => {
         if(queze_title_ref.current.value === ''){
             alert('제목입력해 주세요');
         }else if(user_id_ref.current.value === ''){
-            alert('유저 아이디를 입력해 주세요');
+            // alert('유저 아이디를 입력해 주세요');
         }
         else{
             const content_object_ = content_object.map((e,i)=>{
@@ -96,7 +88,7 @@ const Make_quezeshow = () => {
     }
 
     const new_img_upload_func = (content_object_) => {
-        console.log('퀴즈쇼 업로드',[...file_ref.current],'퀴즈쇼 type',quezeshow_type_clicked_btn,'password',password,'queze_title',queze_title_ref.current.value,'queze_explain_text',queze_explain_text_ref.current.value,'content_object_',content_object_,'choice',choice,'correct_choice',correct_choice,'time_ref',time_ref.current.value,'main_img',main_img);
+        // console.log('퀴즈쇼 업로드',[...file_ref.current],'퀴즈쇼 type',quezeshow_type_clicked_btn,'password',password,'queze_title',queze_title_ref.current.value,'queze_explain_text',queze_explain_text_ref.current.value,'content_object_',content_object_,'choice',choice,'correct_choice',correct_choice,'time_ref',time_ref.current.value,'main_img',main_img);
         Promise.all([...file_ref.current].map((e,i)=>{
             // console.log('이미지 s3에 올리기 위해 for문 돌리는 중 i : ',i,'e',e,' and body :',file_ref.current[i]);
             if(e !== undefined){
@@ -112,6 +104,7 @@ const Make_quezeshow = () => {
             }
         })).then(()=>{
             // form_dom_ref.current.submit();  
+            // console.log(tag);
             let main_img_tinyint = false;
             if(main_img[0] !== null){
                 const upload = new AWS.S3.ManagedUpload({
@@ -167,7 +160,7 @@ const Make_quezeshow = () => {
             setCorrect_choice(correct_choice => [...correct_choice,[]]);
         }
         
-        console.log('문제 추가하는 중 content object :',content_object,'quezeshow_type_clicked_btn',quezeshow_type_clicked_btn);
+        // console.log('문제 추가하는 중 content object :',content_object,'quezeshow_type_clicked_btn',quezeshow_type_clicked_btn);
     }
     const onpaste = (e,index,type) => {
         // console.log('onpaste');
@@ -201,7 +194,7 @@ const Make_quezeshow = () => {
                 content_object_[index].src = reader.result;
                 setContent_object(content_object => [...content_object_]);
             }else{
-                console.log('type is main img');
+                // console.log('type is main img');
                 const main_img_ = main_img;
                 main_img_[1] = reader.result;
                 setMain_img(main_img => [...main_img_]);
@@ -210,11 +203,11 @@ const Make_quezeshow = () => {
         }
     }
     const delete_ = (index) => {
-        console.log('delete_ index',index,'file_ref.current',file_ref.current,'content_state',content_state,'content_object',content_object);
+        // console.log('delete_ index',index,'file_ref.current',file_ref.current,'content_state',content_state,'content_object',content_object);
         file_ref.current = file_ref.current.filter((e,i)=>{return(i !== Number(index))});
         const content_state_ = content_state.filter((e,i)=>{return(i !== Number(index))});
         const content_object_ = content_object.filter((e,i)=>{return(i !== Number(index))});
-        console.log(file_ref.current,content_state_,content_object_);
+        // console.log(file_ref.current,content_state_,content_object_);
         setContent_state(content_state => [...content_state_]);
         setContent_object(content_object => [...content_object_]);
         if(quezeshow_type_clicked_btn === 'multiple'){
@@ -271,11 +264,11 @@ const Make_quezeshow = () => {
         const file = new File([bytes.buffer],image.name+'.jpg',{
             type : 'image/jpeg'
         });
-        console.log('type',type);
+        // console.log('type',type);
         if(type !== 'main_img'){
             file_ref.current[index] = file;
         }else {
-            console.log('type is main img');
+            // console.log('type is main img');
             const main_img_ = main_img;
             main_img_[0] = file;
             setMain_img(main_img => [...main_img_]);
@@ -285,7 +278,7 @@ const Make_quezeshow = () => {
     const change_title = (e,index) => {
         let content_object_ = [...content_object];
 
-        console.log(index,content_object_[index]);
+        // console.log(index,content_object_[index]);
         content_object_[index].title = e.target.value;
         setContent_object(content_object => [...content_object_]);
     }
@@ -298,28 +291,28 @@ const Make_quezeshow = () => {
         let content_object_ = [...content_object];
         if(e.target.id === 'v1'){
             content_object_[index].v1 = e.target.value;
-            console.log(e.target.id,'change value, e.target.id === v1');
+            // console.log(e.target.id,'change value, e.target.id === v1');
         }else if(e.target.id === 'v2'){
             content_object_[index].v2 = e.target.value;
-            console.log(e.target.id,'change value, e.target.id === v2');
+            // console.log(e.target.id,'change value, e.target.id === v2');
         }else if(e.target.id === 'v3'){
             content_object_[index].v3 = e.target.value;
-            console.log(e.target.id,'change value, e.target.id === v3');
+            // console.log(e.target.id,'change value, e.target.id === v3');
         }else if(e.target.id === 'v4'){
             content_object_[index].v4 = e.target.value;
-            console.log(e.target.id,'change value, e.target.id === v4');
+            // console.log(e.target.id,'change value, e.target.id === v4');
         }else if(e.target.id === 'answer'){
             content_object_[index].answer = e.target.value;
-            console.log(e.target.id,'change value, e.target.id === answer');
+            // console.log(e.target.id,'change value, e.target.id === answer');
         }
         else{
-            console.log(e.target.id,'change value, e.target.id != ');
+            // console.log(e.target.id,'change value, e.target.id != ');
         }
         // content_object_[index] = content_object_;
         setContent_object(content_object => [...content_object_]);
     }
     const queze_option_click = (type,index) => {
-        console.log(type);
+        // console.log(type);
         const content_object_ = content_object;
         content_object_[index].data_type = type;
         setContent_object(content_object => [...content_object_]);
@@ -333,7 +326,7 @@ const Make_quezeshow = () => {
         //https://www.youtube.com/shorts/ijjrV_Pa_hQ
         //https://www.youtube.com/live/M7lc1UVf-VE?si=RtdUT6IOoLprQUPZ
         // content_object_[index].src = e.target.value;
-        // setContent_object(content_object => [...content_object_]); 
+        // setContent   _object(content_object => [...content_object_]); 
 
         if(e.target.value.includes('?v=')){
 
@@ -423,7 +416,7 @@ const Make_quezeshow = () => {
     }
     const change_correct_choice_descriptive = (e,index) => {
         if(e.key === 'Enter'){
-            console.log('enter');
+            // console.log('enter');
             const correct_choice_ = correct_choice;
             correct_choice_[index] = [...correct_choice[index],e.target.value];
             setCorrect_choice(correct_choice => [...correct_choice_]);
@@ -431,19 +424,20 @@ const Make_quezeshow = () => {
         }
     }
     const delete_correct_choice_descriptive = (ev,index) => {
-        console.log('delete_correct_choice_descriptive');
+        // console.log('delete_correct_choice_descriptive');
         const correct_choice_ = correct_choice;
         correct_choice_[index] = correct_choice[index].filter((e,i)=>{return i !== Number(ev.target.id)});
-        console.log('after',correct_choice_);
+        // console.log('after',correct_choice_);
         setCorrect_choice(correct_choice => [...correct_choice_]);        
         
     }
     const change_tag = (e) => {
         if(e.target.value === '없음'){
-            setTag(tag => {''});
+            setTag(tag => '');
         }else{
-            setTag(tag => {'('+e.target.value+')'});
+            setTag(tag => '('+e.target.value+')');
         }
+        // console.log('new tag :','('+e.target.value+')');
         e.target.style.backgroundColor = '#8b8b8b';
     }
     return(
@@ -766,48 +760,6 @@ const Make_quezeshow = () => {
                         )
                     })
                 }
-                
-
-            {/* {   
-                
-                quezeshow_type_clicked_btn === 'vote'//투표 형식
-                ?
-                <>
-                {
-                content_state.map((e,i)=>{
-                    return(
-                        <Make_quezeshow_content key={i} index={i} quezeshow_type={quezeshow_type_clicked_btn} file_ref={file_ref} content_object={content_object} onpaste={onpaste} delete_={delete_} change_text={change_text} change_title={change_title} change_img={change_img} queze_option_click={queze_option_click} change_video_url={change_video_url} change_video_end_input_number={change_video_end_input_number} change_video_start_input_number={change_video_start_input_number} change_video_start={change_video_start} change_video_end={change_video_end} setMax_video_length_func={setMax_video_length_func}/>
-                    )
-                })
-                }
-                </>
-                :   
-                quezeshow_type_clicked_btn === 'multiple'//퀴즈 형식
-                ?
-                <>
-                {
-                content_state.map((e,i)=>{
-                    return(
-                        <Make_quezeshow_content_queze key={i} index={i} quezeshow_type={quezeshow_type_clicked_btn} file_ref={file_ref} content_object={content_object} onpaste={onpaste} delete_={delete_type_queze} change_text={change_text} change_title={change_title} change_img={change_img} queze_option_click={queze_option_click} change_video_url={change_video_url} change_video_end_input_number={change_video_end_input_number} change_video_start_input_number={change_video_start_input_number} change_video_start={change_video_start} change_video_end={change_video_end} setMax_video_length_func={setMax_video_length_func} change_value={change_value} choice={choice} setChoice={setChoice} correct_choice={correct_choice} setCorrect_choice={setCorrect_choice}/>
-                    )
-                })
-                }
-                </>
-                :
-                quezeshow_type_clicked_btn === 'descriptive'
-                ?
-                <>
-                {
-                content_state.map((e,i)=>{
-                    return(
-                        <Make_quezeshow_content_continue_speaking key={i} index={i} quezeshow_type={quezeshow_type_clicked_btn} file_ref={file_ref} content_object={content_object} onpaste={onpaste} delete_={delete_} change_text={change_text} change_title={change_title} change_img={change_img}  queze_option_click={queze_option_click} change_video_url={change_video_url} change_video_end_input_number={change_video_end_input_number} change_video_start_input_number={change_video_start_input_number} change_video_start={change_video_start} change_video_end={change_video_end} setMax_video_length_func={setMax_video_length_func}/>
-                    )
-                })
-                }
-                </>
-                :
-                null
-            }    */}
             </div>            
             <input type="button" className="all_btn make_quezeshow_addbtn" onClick={add_content} value={'+'} title="선택지 추가"></input>
             <input type="button" value="완료" className="all_btn make_quezeshow_submintbtn" onClick={(e)=>{

@@ -356,7 +356,7 @@ const Quezeshow_queze= () => {
             }
         }
         else if(quezeshow_type === 'descriptive'){
-            for(let i = 0; i<=correct_choice.length;i++){
+            for(let i = 0; i<correct_choice.length;i++){
                 console.log('descriptive :',descriptive_input_ref.current.value,correct_choice[i]);
                 if(descriptive_input_ref.current.value.trim() === correct_choice[i].trim()){
                     result = true;
@@ -416,7 +416,7 @@ const Quezeshow_queze= () => {
                 popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={uuid} roomName={''} title={quezeshow_title} publicAccess={null} type={null} typeWhere={'modify_password'} quezeshow_type={quezeshow_type} queze_type={queze_type}/> : null
             }
             <Header></Header>
-            <header className="Main2_a_queze_header">
+            {/* <header className="Main2_a_queze_header">
                 <button type="button" title="퀴즈쇼 수정하기." className="all_btn a_queze_header_btn" onClick={password_checker}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                     <path d="M3 3V2.5H2.5V3H3ZM12.6464 13.3536C12.8417 13.5488 13.1583 13.5488 13.3536 13.3536C13.5488 13.1583 13.5488 12.8417 13.3536 12.6464L12.6464 13.3536ZM3.5 11V3H2.5V11H3.5ZM3 3.5H11V2.5H3V3.5ZM2.64645 3.35355L12.6464 13.3536L13.3536 12.6464L3.35355 2.64645L2.64645 3.35355Z" fill="#222222"/>
@@ -425,7 +425,7 @@ const Quezeshow_queze= () => {
                     퀴즈쇼 수정하기
                 </button>
 
-            </header>
+            </header> */}
             
             {
                 window.innerWidth <= 750

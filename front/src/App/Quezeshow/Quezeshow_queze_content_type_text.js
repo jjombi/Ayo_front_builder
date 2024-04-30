@@ -38,13 +38,13 @@ const Quezeshow_queze_content_type_text = forwardRef(({next_queze,descriptive_in
             }
 
         }).then(res=>{
-            console.log(res);
+            console.log('set new correct choice',res);
             const correct_choice_ = res.data.correct_choice.map((e,i)=>{
                 return e.correct_choice;
             })
             setCorrect_choice(correct_choice => correct_choice_);
         })
-    },[])
+    },[uuid2])
 
     const click_enter = (e) => {
         if(e.key === 'Enter'){
