@@ -140,7 +140,8 @@ const Make_quezeshow_modify = () => {
                     choice               : choice,
                     correct_choice       : correct_choice,
                     date                 : Date.now(),
-                    modify_last_img_i    : modify_last_img_i 
+                    modify_last_img_i    : modify_last_img_i,
+                    quezeshow_type       : quezeshow_type
                 }, 
                 headers : {
                     'Content-Type' : 'application/json'
@@ -444,6 +445,7 @@ const Make_quezeshow_modify = () => {
         {
             <header className='make_modify_header'>
                 <h3>{title}</h3>
+                <p>현재 퀴즈쇼 수정기능은 콘텐츠 추가만 가능합니다</p>
             </header>
         }   
         <div className="queze_list_v2">
