@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from "react";
 import YouTube from 'react-youtube';
 
-const Youtube_component_in_content = ({id,start,end,style}) => {
+const Youtube_component_in_content = ({id,start,end,style,setLoading_state}) => {
     useEffect(()=>{
         console.log(id);
     })
@@ -25,9 +25,10 @@ const Youtube_component_in_content = ({id,start,end,style}) => {
     const onPlayerReady_ = (e) => {
         console.log('onPlayerReady_');
         console.log('event',e,e.target.getDuration());
-        e.target.playVideo(); 
         e.target.hideVideoInfo();
         e.target.setLoop();
+        setLoading_state(loading_state => false);
+        e.target.playVideo(); 
     } 
     const onPlayerEnd_ = (e) => {
         console.log('onPlayerEnd_');
@@ -41,3 +42,4 @@ const Youtube_component_in_content = ({id,start,end,style}) => {
     )
 }
 export default Youtube_component_in_content;
+// issue : f5 누른후 onready 함수 작동 안함, 자동 재생 작동 안함

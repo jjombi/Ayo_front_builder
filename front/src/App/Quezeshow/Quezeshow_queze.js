@@ -36,7 +36,7 @@ const Quezeshow_queze= () => {
     const comment_input_ref = useRef();
 
     useEffect(()=>{
-        console.log(quezeshow_type,typeof(quezeshow_type));
+        // console.log(quezeshow_type,typeof(quezeshow_type));
         // console.log('utl : ',window.location.href);
         // console.log(roomnum,space_uuid,uuid2);
         // if(uuid2 == 'undefined' || uuid2 == null || uuid2 == 'null'){
@@ -48,7 +48,7 @@ const Quezeshow_queze= () => {
                 params : {roomnum : roomnum,uuid : uuid}
             }).then(res=>{
                 if(res.data.length !== 0){
-                    console.log('quezeshow_checking_existence',res,res.data[0].queze_type);
+                    // console.log('quezeshow_checking_existence',res,res.data[0].queze_type);
                     // setQueze_type(queze_type => res.data[0].queze_type);
                     // setQueze_type(queze_type => 0); 
                     // if(res.data[0].existence === 0){// 삭제된 콘텐츠 이면
@@ -70,7 +70,7 @@ const Quezeshow_queze= () => {
                                 params : {roomnum : roomnum}
                                 
                             }).then(res=>{
-                                console.log('content',res);
+                                // console.log('content',res);
                                 setContent_state( content_state => [...res.data]);//content_state.length === 퀴즈 문제 수
                                 
                             })
@@ -347,7 +347,7 @@ const Quezeshow_queze= () => {
     }
     const correct_checker = () => {
         let result;
-        console.log('correct_checker',quezeshow_type);
+        // console.log('correct_checker',quezeshow_type);
         if(quezeshow_type === 'multiple'){
             if(clicked === correct_choice){
                 result = true;
@@ -357,7 +357,7 @@ const Quezeshow_queze= () => {
         }
         else if(quezeshow_type === 'descriptive'){
             for(let i = 0; i<correct_choice.length;i++){
-                console.log('descriptive :',descriptive_input_ref.current.value,correct_choice[i]);
+                // console.log('descriptive :',descriptive_input_ref.current.value,correct_choice[i]);
                 if(descriptive_input_ref.current.value.trim() === correct_choice[i].trim()){
                     result = true;
                     break
@@ -375,9 +375,9 @@ const Quezeshow_queze= () => {
         return result;
     }
     const next_queze = () => {
-        console.log('next queze 실행됨');   
+        // console.log('next queze 실행됨');   
         if(!correct_state.queze_state){//문제 창
-            console.log('1');
+            // console.log('1');
             if(correct_checker()){
                 const data = {queze_state : true, is_correct : true};
                 setCorrect_state(correct_state => data);
@@ -387,11 +387,11 @@ const Quezeshow_queze= () => {
                 setCorrect_state(correct_state => data);
             }
         }else{// 결과 창
-            console.log('content_state.length',content_state.length,show_index);
+            // console.log('content_state.length',content_state.length,show_index);
             if(show_index+1 >= content_state.length){// 마지막 문제 끝남
-                console.log('퀴즈 끝남',show_index+1 >= content_state.length, correct_state.queze_state);
+                // console.log('퀴즈 끝남',show_index+1 >= content_state.length, correct_state.queze_state);
             }else{ // 다음 문제로
-                console.log('다음 문제',show_index);
+                // console.log('다음 문제',show_index);
                 setShow_index(show_index => show_index+1);
                 setClicked(clicked => '');
                 const data = {queze_state : false, is_correct : null};

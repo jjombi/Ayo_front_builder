@@ -29,7 +29,7 @@ const Quezeshow_queze_content_type_text = forwardRef(({next_queze,descriptive_in
     // }, [timer]);
 
     useEffect(()=>{
-        console.log('correct_state',correct_state);
+        // console.log('correct_state',correct_state);
         axios({
             url : process.env.REACT_APP_SERVER_URL + '/select_choice_correct',
             method : 'get',
@@ -38,7 +38,7 @@ const Quezeshow_queze_content_type_text = forwardRef(({next_queze,descriptive_in
             }
 
         }).then(res=>{
-            console.log('set new correct choice',res);
+            // console.log('set new correct choice',res);
             const correct_choice_ = res.data.correct_choice.map((e,i)=>{
                 return e.correct_choice;
             })
@@ -59,6 +59,7 @@ const Quezeshow_queze_content_type_text = forwardRef(({next_queze,descriptive_in
                 ?
                 <>
                 <h1> {correct_state.is_correct ? '정답' : '오답' }</h1>
+                <h1>정답 : {correct_choice[0]}</h1>
                 </>
                 :
                 <>

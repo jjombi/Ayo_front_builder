@@ -34,6 +34,7 @@ const root = ReactDOM.createRoot(rootElement);
 
 
 const app = (
+  <React.StrictMode>
   <div className='Main_root_'>
     <BrowserRouter>
       {/* <Header props={<School_choose/>}></Header> */}
@@ -78,6 +79,7 @@ const app = (
       <Footer/> */}
     </BrowserRouter>
   </div>
+  </React.StrictMode>
 )
 
 // if (rootElement?.hasChildNodes()) {

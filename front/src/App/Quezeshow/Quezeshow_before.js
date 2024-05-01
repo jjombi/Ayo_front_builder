@@ -27,7 +27,7 @@ const Quezeshow_before = () => {
     const canvas_ref = useRef();
     useEffect(()=>{
         // const { param } = match;
-        console.log('params',roomnum);
+        // console.log('params',roomnum);
         axios({
             url : process.env.REACT_APP_SERVER_URL + '/quezeshowtitle',
             method : 'GET',
@@ -36,7 +36,7 @@ const Quezeshow_before = () => {
                 roomnum : roomnum
             }
         }).then(res=>{
-            console.log(res);
+            // console.log(res);
             // if(res.data[0].img !== ''){
             //     const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
             //     const binary = window.atob(base64img.split(',')[1]);
@@ -81,7 +81,7 @@ const Quezeshow_before = () => {
     },[])
     // console.log(roomnum,uuid,quezeshow_type,quezeshow_title,explain_text);
     const navi_to_quezeshow_queze = () => {
-        console.log('navi',quezeshow_type);
+        // console.log('navi',quezeshow_type);
         // if(quezeshow_type === 'Continue_speak'){
             navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
         // }else if(quezeshow_type === 'New_word_queze'){
@@ -136,7 +136,7 @@ const Quezeshow_before = () => {
             const seconds = ('0' + today.getSeconds()).slice(-2); 
 
             const timeString = year + '-' + month  + '-' + day + ' ' + hours + ':' + minutes  + ':' + seconds;
-            console.log(timeString);
+            // console.log(timeString);
             axios({
                 url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment_upload',
                 method : 'POST',

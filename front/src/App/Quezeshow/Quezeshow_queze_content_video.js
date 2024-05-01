@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Youtube_component_in_content from "./Youtube_component_in_content";
-
+import Audio_canvas from './Audio_canvas';
 const Quezeshow_queze_content_video = ({data_type,img,start,end}) => {
+    const [loading_state, setLoading_state] = useState(true);
     return(
         <div className="quezeshow_video_audio_image_area">
             {
@@ -13,7 +14,17 @@ const Quezeshow_queze_content_video = ({data_type,img,start,end}) => {
                 ?
                 <div className="audio_area">
                     {/* <canvas className="audio_area_canvas" ref={canvas_ref}></canvas> */}
-                    <Youtube_component_in_content style={{display: 'none'}} id={img} start={start} end={end}/>
+                    {/* <Audio_canvas></Audio_canvas> */}
+                    {
+                    loading_state 
+                    ? 
+                    <div className="loading">
+                        <p>로딩중</p>
+                    </div>
+                    :
+                    <Audio_canvas></Audio_canvas>
+                    }
+                    <Youtube_component_in_content style={{display: 'none'}} id={img} start={start} end={end} setLoading_state={setLoading_state}/>
                 </div>
                 :
                 data_type === 'image' 

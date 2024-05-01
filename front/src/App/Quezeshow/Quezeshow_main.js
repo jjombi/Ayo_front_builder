@@ -10,6 +10,7 @@ const Quezeshow_main= ({match}) => {
     const [content_state,setContent_state] = useState([]);
     const navigate = useNavigate();
     const [seachParams, setSearchParams] = useSearchParams();
+    const search_value_ref = useRef(null);
     // const space_uuid = seachParams.get('space_uuid');
     // const space_title = seachParams.get('space_title');
     const intro_text = seachParams.get('intro_text');
@@ -26,7 +27,7 @@ const Quezeshow_main= ({match}) => {
                 // space_uuid : space_uuid,
             }
         }).then(res=>{ //res = [{src, uuid, title}]
-            console.log(res);
+            // console.log(res);
             const content_state_ = res.data.map((e,i)=>{
                 return({
                     src : 'data:image/jpeg;base64,'+e.img,
@@ -42,7 +43,44 @@ const Quezeshow_main= ({match}) => {
             setContent_state(content_state => [...content_state_]);
         })
     },[])
-
+    const search_axios = () => {
+        axios({
+            url : process.env.REACT_APP_SERVER_URL + '/search_quezeshow',
+            method : 'GET',
+            params : {
+                value : search_value_ref.current.value
+            }
+            // headers : {
+            //     'Content-Type' : 'application/json'
+            // },
+            // data : {
+            //     value : search_value_ref.current.value
+            // }
+        }).then((res)=>{
+            // console.log(res);
+            const content_state_ = res.data.map((e,i)=>{
+                return({
+                    src : 'data:image/jpeg;base64,'+e.img,
+                    uuid : e.uuid,
+                    title : e.title,
+                    likes : e.likes,
+                    roomnum : e.roomnum,
+                    quezeshow_type : e.quezeshow_type,
+                    explain_text : e.explain_text
+                })
+            })
+            setContent_state(content_state => [...content_state_]);
+        })
+    }
+    const search_enter = (e) => {
+        // console.log('seach 중',search_value_ref.current.value,e.target.id);
+        if(e.key === 'Enter'){
+            search_axios();
+        }
+    }
+    const search_btn_enter = () => {
+        search_axios();
+    }
     return(
         <div className="quezeshow_main_root">
             <Helmet>
@@ -60,13 +98,8 @@ const Quezeshow_main= ({match}) => {
                 <meta name="twitter:description" content={"나락퀴즈쇼 아이돌퀴즈쇼 애니퀴즈쇼 상식퀴즈쇼 정치퀴즈쇼 등 웃기고 재미있는 퀴즈쇼를 만나보세요"} />
             </Helmet>
             <Header></Header>
-            {/* {
-                space_uuid !== null
-                ?
                 <header className="Main2_a_queze_header">
-                    <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/space')}}>스페이스</button>
-                    <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate(`/make_space_quezeshow?space_uuid=${space_uuid}&space_title=${space_title}`)}}>{space_title} 퀴즈 만들기</button>
-                    <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate(`/modify_space_quezeshow?space_uuid=${space_uuid}&space_title=${space_title}`)}}>{space_title} 퀴즈 만들기</button>
+                    <button className="all_btn a_queze_header_btn" type="button" onClick={()=>navigate('/produce')}>퀴즈쇼 제작</button>
                     <input type="text" className="Main2_a_queze_header_input" placeholder="검색 창(입력 후 엔터)" ref={search_value_ref} onKeyUp={search_enter}></input>
                     <button className="all_btn main2_header_btn" onClick={search_btn_enter}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -75,25 +108,7 @@ const Quezeshow_main= ({match}) => {
                         </svg>
                     </button>
                 </header>
-                : */}
-                <header className="Main2_a_queze_header">
-                    {/* <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/space')}}>스페이스</button>
-                    <button className="all_btn a_queze_header_btn" title="" onClick={()=>{navigate('/make_space')}}>스페이스 만들기</button> */}
-                    <button className="all_btn a_queze_header_btn" type="button" onClick={()=>navigate('/produce')}>퀴즈쇼 제작</button>
-                </header>
-            {/* } */}
-            {/* <header className="Main2_header2"> */}
-                {/* <h1>나락퀴즈쇼  </h1> */}
-            {/* </header> */}
             <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
-            {/* {
-                space_uuid !== null ?
-                <>
-                    <h1 className="quezeshow_main_space_title">{space_title}</h1>
-                    <p className="quezeshow_main_space_intro_text">{intro_text}</p>
-                </>:
-                null
-            } */}
             <div className="queze_list">
                 {
                     content_state.map((e,i)=>{

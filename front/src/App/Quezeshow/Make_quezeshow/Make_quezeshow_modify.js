@@ -17,6 +17,7 @@ const Make_quezeshow_modify = () => {
     const [uuid,setUuid] = useState(''); 
     const [title,setTitle] = useState(''); 
     const [quezeshow_type,setQuezeshow_type] = useState('');
+    const [room_num, setRoom_num] = useState('');
     // const [queze_type,setQueze_type] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
     const { state } = useLocation();
@@ -48,7 +49,7 @@ const Make_quezeshow_modify = () => {
         setTitle(searchParams.get('title'));
         setQuezeshow_type(searchParams.get('quezeshow_type'));
         // setQueze_type(searchParams.get('queze_type'));
-        // console.log(searchParams.get('roomName'));
+        setRoom_num(room_num => searchParams.get('roomnum'))
         if(state === null){
             alert('비밀번호 입력후 수정가능 합니다');
             
@@ -141,7 +142,8 @@ const Make_quezeshow_modify = () => {
                     correct_choice       : correct_choice,
                     date                 : Date.now(),
                     modify_last_img_i    : modify_last_img_i,
-                    quezeshow_type       : quezeshow_type
+                    quezeshow_type       : quezeshow_type,
+                    room_num             : room_num
                 }, 
                 headers : {
                     'Content-Type' : 'application/json'

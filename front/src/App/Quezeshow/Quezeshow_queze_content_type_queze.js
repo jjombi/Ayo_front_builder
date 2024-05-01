@@ -8,7 +8,7 @@ const Quezeshow_queze_content_type_queze = ({img,data_type,uuid2,start, end, tit
     const [choice, setChoice] = useState([]); 
     const canvas_ref = useRef();
     const btn_click = (e) => {
-        console.log('clicked',e.target.id,'--',clicked);
+        // console.log('clicked',e.target.id,'--',clicked);
         setClicked(clicked => e.target.id);
     }
     
@@ -22,7 +22,7 @@ const Quezeshow_queze_content_type_queze = ({img,data_type,uuid2,start, end, tit
             }
 
         }).then(res=>{
-            console.log(res);
+            // console.log(res);
             setChoice(choice => res.data.choice);
             setCorrect_choice(correct_choice => res.data.correct_choice[0].correct_choice);
         })
