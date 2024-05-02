@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import '../css.css';
 import { useNavigate } from "react-router-dom";
 import img from '../Img_folder/no_image.jpg';
@@ -50,4 +50,4 @@ const Quezeshow_main_content= ({index,src,uuid,title,roomnum,quezeshow_type,expl
     )
 
 }
-export default Quezeshow_main_content;
+export default memo(Quezeshow_main_content);

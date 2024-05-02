@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef, forwardRef } from "react";
-import no_img from "../Img_folder/no_image.jpg";
+import React, { useEffect, useState, useRef, forwardRef, memo } from "react";
+// import no_img from "../Img_folder/no_image.jpg";
 import axios from "axios";
-import {canvas_func} from '../public/WorldRank';
+// import {canvas_func} from '../public/WorldRank';
 import Quezeshow_queze_content_video from './Quezeshow_queze_content_video';
 const Quezeshow_queze_content_type_queze = ({img,data_type,uuid2,start, end, title,text, clicked, setClicked, correct_choice,setCorrect_choice, correct_state}) => {
     // const [is_correct, setIs_correct] = useState(false);
@@ -60,7 +60,7 @@ const Quezeshow_queze_content_type_queze = ({img,data_type,uuid2,start, end, tit
     )
 }
 
-export default forwardRef(Quezeshow_queze_content_type_queze);
+export default memo(Quezeshow_queze_content_type_queze);
                 // :
                     // correct.is === true
                     // ?

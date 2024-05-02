@@ -5,28 +5,28 @@ import { CookiesProvider } from 'react-cookie';
 import { HelmetProvider } from 'react-helmet-async';
 import { hydrateRoot } from 'react-dom/client';
 
-const Main2 = lazy(()=> import('./App/Main2'));
-const Main2_a_queze = lazy(()=> import('./App/Main2_a_queze'));
-const Result = lazy(()=> import('./App/Result.js'));
-const Main2_make_queze = lazy(()=> import('./App/Main2_make_queze'));
-const Make_a_queze_modify = lazy(()=>import('./App/Make_a_queze_modify.js'));
-const Choose_queze_type = lazy(()=>import('./App/Choose_queze_type.js'));
-const Main2_a_queze_1and1 = lazy(()=>import('./App/Main2_a_queze_1and1.js'));
+// const Main2 = lazy(()=> import('./App/Main2'));
+// const Main2_a_queze = lazy(()=> import('./App/Main2_a_queze'));
+// const Result = lazy(()=> import('./App/Result.js'));
+// const Main2_make_queze = lazy(()=> import('./App/Main2_make_queze'));
+// const Make_a_queze_modify = lazy(()=>import('./App/Make_a_queze_modify.js'));
+// const Choose_queze_type = lazy(()=>import('./App/Choose_queze_type.js'));
+// const Main2_a_queze_1and1 = lazy(()=>import('./App/Main2_a_queze_1and1.js'));
 const Community = lazy(()=>import('./App/Community/Community.js'));
 const Quezeshow_result = lazy(()=>import('./App/Quezeshow/Quezeshow_result.js'));
 const Make_quezeshow = lazy(()=>import('./App/Quezeshow/Make_quezeshow/Make_quezeshow.js'));
 const Quezeshow_main = lazy(()=>import('./App/Quezeshow/Quezeshow_main'));
 const Guide_main = lazy(()=>import('./App/guide/Guide_main'));
 const Quezeshow_queze = lazy(()=>import('./App/Quezeshow/Quezeshow_queze'));
-const Machugi = lazy(()=>import('./App/machugi/Machugi.js'));
-const Space = lazy(()=>import('./App/Space/Space.js'));
-const Make_space = lazy(()=>import('./App/Space/Make_space.js'));
-const In_space = lazy(()=>import('./App/Space/In_space.js'));
-const Make_space_quezeshow = lazy(()=>import('./App/Space/Make_space_quezeshow.js'));
+// const Machugi = lazy(()=>import('./App/machugi/Machugi.js'));
+// const Space = lazy(()=>import('./App/Space/Space.js'));
+// const Make_space = lazy(()=>import('./App/Space/Make_space.js'));
+// const In_space = lazy(()=>import('./App/Space/In_space.js'));
+// const Make_space_quezeshow = lazy(()=>import('./App/Space/Make_space_quezeshow.js'));
 const Make_quezeshow_modify = lazy(()=>import('./App/Quezeshow/Make_quezeshow/Make_quezeshow_modify.js'));
 const Guide_basic = lazy(()=>import('./App/guide/Guide_basic.js'));
-const Continue_speaking = lazy(()=>import('./App/Continue_speaking/Continue_speaking.js'));
-const New_word_queze = lazy(()=>import('./App/new_word_queze/New_word_queze.js'));
+// const Continue_speaking = lazy(()=>import('./App/Continue_speaking/Continue_speaking.js'));
+// const New_word_queze = lazy(()=>import('./App/new_word_queze/New_word_queze.js'));
 const Quezeshow_before = lazy(()=>import('./App/Quezeshow/Quezeshow_before.js'));
 const Make_quezeshow_step1 = lazy(()=>import('./App/Quezeshow/Make_quezeshow/Make_quezeshow_step1.js'));
 const rootElement = document.getElementById('root');
@@ -52,8 +52,8 @@ const app = (
               <Route path='/makequezeshowmodify' element={<Make_quezeshow_modify/>}></Route>
               <Route path='/quezeshow_before/:roomnum' element={<Quezeshow_before/>}></Route>
               <Route path='/quezeshow_before' element={<Quezeshow_before/>}></Route>
-              <Route path='/choosequezetype' element={<Choose_queze_type/>}></Route>
-              <Route path='/oneandeone' element={<Main2_a_queze_1and1/>}></Route>
+              {/* <Route path='/choosequezetype' element={<Choose_queze_type/>}></Route> */}
+              {/* <Route path='/oneandeone' element={<Main2_a_queze_1and1/>}></Route> */}
               <Route path='/community' element={<Community/>}></Route>
               <Route path='/quezeshow_result' element={<Quezeshow_result/>}></Route>
               <Route path='/make_quezeshow' element={<Make_quezeshow/>}></Route>

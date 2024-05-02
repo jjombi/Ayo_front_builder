@@ -7,7 +7,7 @@ import Quezeshow_queze_content from "./Quezeshow_queze_content";
 import Quezeshow_comment from "./Quezeshow_comment";
 import Adfit from "../Adfit";
 import Password_popup from "../Password_popup";
-import Shar_content from "./Shar_content";
+// import Shar_content from "./Shar_content";
 import Quezeshow_queze_content_type_queze from "./Quezeshow_queze_content_type_queze";
 import Quezeshow_queze_content_type_text from './Quezeshow_queze_content_type_text';
 import Quezeshow_result_correct from "./Quezeshow_result_correct";

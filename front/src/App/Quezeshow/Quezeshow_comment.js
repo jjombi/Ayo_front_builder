@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import '../css.css';//                      queze,comment, null
 import axios from "axios";//                space, queze, comment 
 const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3, date}) => {
@@ -87,4 +87,4 @@ const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3, date}) => {
     )
 
 }
-export default Quezeshow_comment;
+export default memo(Quezeshow_comment);

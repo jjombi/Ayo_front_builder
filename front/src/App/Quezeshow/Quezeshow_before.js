@@ -1,6 +1,6 @@
 // 퀴즈 들어가기전 댓글, 여러 정보 제공하는 화면
 import React, { useEffect, useState, useRef } from "react";
-import Result_comment from "../Result_comment";
+// import Result_comment from "../Result_comment";
 import '../css.css'
 import { useNavigate } from "react-router-dom";
 import { useSearchParams, useParams } from "react-router-dom";

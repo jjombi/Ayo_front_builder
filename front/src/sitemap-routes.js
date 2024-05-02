@@ -78,7 +78,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // })
 const sitemap = (
     <Route>
-            {/* <Route path='/'></Route> */}
+            <Route path='/'></Route>
             {/* <Route path='/ayoworldrankmakequeze'></Route> */}
             {/* <Route path='/result'></Route> */}
             {/* <Route path='/ayoworldrankaqueze'></Route> */}

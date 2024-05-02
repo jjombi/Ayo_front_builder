@@ -1,5 +1,5 @@
-import React, { forwardRef, useEffect, useState } from "react";
-import no_img from "../Img_folder/no_image.jpg";
+import React, { forwardRef, useEffect, useState, memo } from "react";
+// import no_img from "../Img_folder/no_image.jpg";
 import Quezeshow_queze_content_video from './Quezeshow_queze_content_video';
 import axios from "axios";
 const Quezeshow_queze_content_type_text = forwardRef(({next_queze,descriptive_input_ref,img,data_type,uuid2,start, end, title,text, correct_choice,setCorrect_choice, correct_state}) => {
@@ -75,7 +75,7 @@ const Quezeshow_queze_content_type_text = forwardRef(({next_queze,descriptive_in
     )
 })
 
-export default Quezeshow_queze_content_type_text;
+export default memo(Quezeshow_queze_content_type_text);
 {/* {
     timer !== null
     ?

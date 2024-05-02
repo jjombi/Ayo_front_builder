@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import '../css.css';
-import Header from "../ayo_world_rank_header";
-import axios from "axios";
+// import Header from "../ayo_world_rank_header";
+// import axios from "axios";
 const Quezeshow_queze_content = ({index,img,text,title,uuid, clicked, setClicked, value,data_type}) => {
     const [style_, setStyle_] = useState('rgb(239, 239, 239)');
     useEffect(()=>{
@@ -65,4 +65,4 @@ const Quezeshow_queze_content = ({index,img,text,title,uuid, clicked, setClicked
     )
 
 }
-export default Quezeshow_queze_content;
+export default memo(Quezeshow_queze_content);

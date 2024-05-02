@@ -1,6 +1,6 @@
 import React,{useEffect, useRef, useState} from 'react';
 // import Main2_make_queze_basic from "./Main2_make_queze_basic";
-import Make_quezeshow_basic from './Make_quezeshow_basic';
+// import Make_quezeshow_basic from './Make_quezeshow_basic';
 import { useSearchParams,useLocation } from "react-router-dom";
 import Header from "../../ayo_world_rank_header";
 import Footer from '../../Footer';
@@ -8,9 +8,8 @@ import Adfit from '../../Adfit';
 import axios from 'axios';
 import Make_quezeshow_content_text from './Make_quezeshow_content_text';
 import YouTubeComponent from './Youtube_component';
-import {chenge_textarea_height} from '../../public/WorldRank';
 import Make_quezeshow_content_queze from "./Make_quezeshow_content_queze";
-import { dragenter, dragover, processChange } from "../../public/WorldRank";    
+import { dragenter, dragover, chenge_textarea_height } from "../../public/WorldRank";    
 
 // import Make_queze_modify from './Make_queze_modify';
 const Make_quezeshow_modify = () => {
@@ -49,7 +48,7 @@ const Make_quezeshow_modify = () => {
         setTitle(searchParams.get('title'));
         setQuezeshow_type(searchParams.get('quezeshow_type'));
         // setQueze_type(searchParams.get('queze_type'));
-        setRoom_num(room_num => searchParams.get('roomnum'))
+        console.log('quezeshow_type',searchParams.get('quezeshow_type'));
         if(state === null){
             alert('비밀번호 입력후 수정가능 합니다');
             
