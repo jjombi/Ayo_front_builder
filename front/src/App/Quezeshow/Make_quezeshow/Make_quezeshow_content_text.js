@@ -22,3 +22,4 @@ const Make_quezeshow_content_text = ({delete_correct_choice_descriptive,change_c
     )
 }
 export default Make_quezeshow_content_text;
+ 

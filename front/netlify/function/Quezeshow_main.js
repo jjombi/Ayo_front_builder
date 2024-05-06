@@ -19,7 +19,7 @@ exports.handler =  async (event, context) => {
                 <meta name="referrer" content="no-referrer-when-downgrade" />
                 <meta name="google-adsense-account" content="ca-pub-7471498859383871">
                 <meta name="title" content="예능 퀴즈쇼를 즐겨보세요.">
-                <meta name="description" content="나락퀴즈쇼 아이돌퀴즈쇼 애니퀴즈쇼 상식퀴즈쇼 정치퀴즈쇼 등 웃기고 재미있는 퀴즈쇼를 만나보세요">
+                <meta name="description" content="예능 퀴즈쇼 퀴즈 사이트 나락퀴즈쇼 아이돌퀴즈쇼 애니퀴즈쇼 상식퀴즈쇼 정치퀴즈쇼 등 웃기고 재미있는 퀴즈쇼를 만나보세요">
                 <meta name=”robots” content=”index,follow” />
                 <link rel="canonical" href="https://ay0.site">
                 <meta name="keywords" content="ayo, ay0, 퀴즈쇼, 나락퀴즈쇼, 아이돌퀴즈쇼, 이어말하기, 신조어퀴즈, 이모지퀴즈, 상식퀴즈" />

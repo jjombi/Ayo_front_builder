@@ -2504,6 +2504,80 @@ input[type=range] {
   margin-bottom: 10%;
 }
 
+.declaration_root {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
+  background-color: rgba(136, 136, 136, 0.4705882353);
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.declaration_root > .declaration_content_area {
+  width: 365px;
+  background-color: rgb(20, 20, 20);
+  border-radius: 10px;
+  transform: translate(0%, -30px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 4;
+  animation-name: Declaration;
+  animation: 0.15s cubic-bezier(0.1, -0.6, 0.2, 0) forwards;
+}
+
+@keyframes Declaration {
+  from {
+    transform: scale(0%);
+  }
+  to {
+    transform: scale(100%);
+  }
+}
+.declaration_root > .declaration_content_area > p {
+  font-size: 13px;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.declaration_root > .declaration_content_area > button {
+  margin-top: 10px;
+  margin-left: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.declaration_root > .declaration_content_area > button:hover, .declaration_root > .declaration_content_area > input[type=button]:hover {
+  background-color: #757575;
+}
+
+.declaration_root > .declaration_content_area > textarea {
+  width: 345px;
+  margin-left: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.declaration_root > .declaration_content_area > input[type=button] {
+  width: 60px;
+  margin-left: 152.5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
 @media (min-width: 1800px) {
   .submit_btn {
     width: 40%;
