@@ -30,7 +30,12 @@ exports.handler =  async (event, context) => {
             </head>
             <body>
                 <div id="root">
-                
+                    <h1>예능 퀴즈</h1>
+                    <a href="https://ay0.site?tag=이어말하기"></a>
+                    <a href="https://ay0.site?tag=음악퀴즈"></a>
+                    <a href="https://ay0.site?tag=아이돌퀴즈"></a>
+                    <a href="https://ay0.site?tag=신조어퀴즈"></a>
+                    <a href="https://ay0.site?tag=상식퀴즈"></a>
                 </div>
                 <!-- Include any necessary scripts -->
                 <script src="/bundle.js"></script>
