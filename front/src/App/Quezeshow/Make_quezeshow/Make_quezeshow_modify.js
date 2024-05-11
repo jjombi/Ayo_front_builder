@@ -10,6 +10,7 @@ import Make_quezeshow_content_text from './Make_quezeshow_content_text';
 import YouTubeComponent from './Youtube_component';
 import Make_quezeshow_content_queze from "./Make_quezeshow_content_queze";
 import { dragenter, dragover, chenge_textarea_height } from "../../public/WorldRank";    
+import AWS from "aws-sdk";
 
 // import Make_queze_modify from './Make_queze_modify';
 const Make_quezeshow_modify = () => {
@@ -27,7 +28,14 @@ const Make_quezeshow_modify = () => {
     const [max_video_length,setMax_video_length] = useState(0);
     const [main_img,setMain_img] = useState([null, null]);
     // const [password_popup, setPassword_popup] = useState(false);
-    const [modify_last_img_i, setModify_last_img_i] = useState(null);
+
+    const modify_last_img_i = useRef(null);
+    const original_content = useRef([]);
+    const changed_content = useRef([]);
+    const original_queze = useRef([{
+        quezeshow_type : ''
+    }]);
+    const changed_queze = useRef([]);
     const file_ref = useRef([]);
     const canvas_ref = useRef();
 
@@ -62,14 +70,25 @@ const Make_quezeshow_modify = () => {
                 // alert('성공');
                 // console.log('성공');
                 axios({
-                    url : process.env.REACT_APP_SERVER_URL + '/modify_get_img_i',
+                    url : process.env.REACT_APP_SERVER_URL + '/modify_get_content',
                     method : 'GET',
                     params : {
                         uuid : searchParams.get('uuid'),
                     }
                 }).then(res=>{
-                    console.log(res);
-                    setModify_last_img_i(modify_last_img_i => res.data);
+                    console.log('수정 콘텐츠',res);
+                    modify_last_img_i.current = res.data.length;
+                    original_content.current = res.data;
+                })
+                axios({
+                    url : process.env.REACT_APP_SERVER_URL + '/modify_get_title_text',
+                    method : 'GET',
+                    params : {
+                        uuid : searchParams.get('uuid'),
+                    }
+                }).then(res=>{
+                    console.log('수정 제목, 설명',res);
+                    original_queze.current = res.data;   
                 })
             }
         }
@@ -108,7 +127,7 @@ const Make_quezeshow_modify = () => {
                     params: {
                         ACL: 'public-read',
                         Bucket: bucket, // 버킷 이름
-                        Key: `${uuid}/${modify_last_img_i+i+1}`+".jpg", // 유저 아이디
+                        Key: `${uuid}/${modify_last_img_i.current+i+1}`+".jpg", // 유저 아이디
                         Body: file_ref.current[i], // 파일 객체
                     },
                 });
@@ -140,7 +159,7 @@ const Make_quezeshow_modify = () => {
                     choice               : choice,
                     correct_choice       : correct_choice,
                     date                 : Date.now(),
-                    modify_last_img_i    : modify_last_img_i,
+                    modify_last_img_i    : modify_last_img_i.current,
                     quezeshow_type       : quezeshow_type,
                     room_num             : room_num
                 }, 
@@ -443,12 +462,85 @@ const Make_quezeshow_modify = () => {
         <div className="make_quezeshow_root">
         <Header></Header>
         <Adfit unit={'DAN-87ortfszgGZjj16M'}></Adfit>
-        {
+        {/* {
             <header className='make_modify_header'>
                 <h3>{title}</h3>
                 <p>현재 퀴즈쇼 수정기능은 콘텐츠 추가만 가능합니다</p>
             </header>
-        }   
+        }    */}
+        <section className="make_quezeshow_queze_title_explain_section">
+                {/* {
+                    quezeshow_type_clicked_btn === 'multiple'
+                    ?
+                    <input className="title" placeholder="객관식 퀴즈 주제" ref={queze_title_ref} name="queze_title"></input>
+                    :
+                    quezeshow_type_clicked_btn === 'vote'
+                    ?
+                    <input className="title" placeholder="설문조사 주제" ref={queze_title_ref} name="queze_title"></input>
+                    :
+                    quezeshow_type_clicked_btn === 'descriptive'
+                    ?
+                    <input className="title" placeholder="서술형 퀴즈 주제" ref={queze_title_ref} name="queze_title"></input>
+                    :
+                    null
+                } */}
+                <textarea onChange={chenge_textarea_height} placeholder="부가 설명" rows={1}  maxLength={200} name="quezeshowqueze_explain_text"></textarea>  
+                <textarea onChange={chenge_textarea_height} placeholder="제작자 아이디 ex)developer" rows={1} maxLength={30} name="quezeshowqueze_explain_text"></textarea>  
+                {/* {
+                    quezeshow_type_clicked_btn !== 'vote'
+                    ?
+                    <div className="tag_area">
+                        <input type="button" id="tag" value="없음" onClick={change_tag}></input>
+                        <input type="button" id="tag" value="이어말하기" onClick={change_tag}></input>
+                        <input type="button" id="tag" value="이모지퀴즈" onClick={change_tag}></input>
+                        <input type="button" id="tag" value="신조어퀴즈" onClick={change_tag}></input>
+                        <input type="button" id="tag" value="음악퀴즈" onClick={change_tag}></input>
+
+                    </div>
+                    :
+                    null
+                } */}
+                <section className="make_quezeshow_queze_option">
+                    {
+                        quezeshow_type === 'vote'
+                        ?
+                        <div className="make_quezeshow_queze_option1">
+                        <div>
+                        </div>
+                        <div>
+                            
+                            <input type="number" hidden  defaultValue={-1} name="settime"></input>
+                            
+                        </div>
+                        </div>
+                        :
+                        <div className="make_quezeshow_queze_option1">
+                        <div>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="14" r="8" stroke="white"/>
+                            <path d="M12 14L12 11" stroke="white" strokeLinecap="round"/>
+                            <path d="M17.5 7.5L19 6" stroke="white" strokeLinecap="round"/>
+                            <path d="M10.0681 2.37059C10.1821 2.26427 10.4332 2.17033 10.7825 2.10332C11.1318 2.03632 11.5597 2 12 2C12.4403 2 12.8682 2.03632 13.2175 2.10332C13.5668 2.17033 13.8179 2.26427 13.9319 2.37059" stroke="white" strokeLinecap="round"/>
+                            </svg>
+                            <p>제한 시간</p> 
+                            <input type="checkbox" id="checkbox" onChange={()=>{}}></input>
+                        </div>
+                        <div>
+                            {/* {
+                                time_checkbox?
+                                <>
+                                <input type="number"  value={5} min={0} max={100} name="settime"></input>초
+                                </>
+                                : 
+                                <input type="number"  defaultValue={-1} name="settime"></input>
+                            } */}
+                        </div>
+                        </div>
+                    }
+                    
+
+                </section>
+            </section>
         <div className="queze_list_v2">
             {
                 content_state.map((e,index)=>{

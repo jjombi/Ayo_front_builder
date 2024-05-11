@@ -19,10 +19,10 @@ exports.handler =  async (event, context) => {
                 <meta name="referrer" content="no-referrer-when-downgrade" />
                 <meta name="google-adsense-account" content="ca-pub-7471498859383871">
                 <meta name="title" content="예능 퀴즈쇼를 즐겨보세요.">
-                <meta name="description" content="예능에서 본 게임과 퀴즈쇼를 만들어 보고 즐길수 있습니다/">
+                <meta name="description" content="신서유기/지락실/아는형님과 같은 예능에서 볼수 있었던 인물퀴즈/이어말하기/신조어퀴즈/음악퀴즈 등등 여러 게임을 만들어 보고 즐길수 있습니다/">
                 <meta name=”robots” content=”index,follow” />
                 <link rel="canonical" href="https://ay0.site">
-                <meta name="keywords" content="ayo, ay0, 퀴즈쇼, 나락퀴즈쇼, 아이돌퀴즈쇼, 이어말하기, 신조어퀴즈, 이모지퀴즈, 상식퀴즈" />
+                <meta name="keywords" content="ayo, ay0, 퀴즈쇼, 나락퀴즈쇼, 음악퀴즈, 아이돌퀴즈쇼, 이어말하기, 인물퀴즈, 이어말하기, 신조어퀴즈, 이모지퀴즈, 상식퀴즈" />
 
 
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7471498859383871"
@@ -36,6 +36,8 @@ exports.handler =  async (event, context) => {
                     <a href="https://ay0.site?tag=아이돌퀴즈"></a>
                     <a href="https://ay0.site?tag=신조어퀴즈"></a>
                     <a href="https://ay0.site?tag=상식퀴즈"></a>
+                    <a href="https://ay0.site?tag=인물퀴즈"></a>
+                    <a href="https://ay0.site?tag=이모지퀴즈"></a>
                 </div>
                 <!-- Include any necessary scripts -->
                 <script src="/bundle.js"></script>
