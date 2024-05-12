@@ -377,7 +377,7 @@ const Quezeshow_queze= () => {
     const next_queze = () => {
         // console.log('next queze 실행됨');   
         if(!correct_state.queze_state){//문제 창
-            // console.log('1');
+            // console.log('문제 정답 확인');
             if(correct_checker()){
                 const data = {queze_state : true, is_correct : true};
                 setCorrect_state(correct_state => data);
@@ -388,10 +388,10 @@ const Quezeshow_queze= () => {
             }
         }else{// 결과 창
             // console.log('content_state.length',content_state.length,show_index);
-            if(show_index+1 >= content_state.length){// 마지막 문제 끝남
-                // console.log('퀴즈 끝남',show_index+1 >= content_state.length, correct_state.queze_state);
+            if(show_index+1 > content_state.length){// 마지막 문제 끝남
+                // console.log('퀴즈 끝남');
             }else{ // 다음 문제로
-                // console.log('다음 문제',show_index);
+                // console.log('다음 문제');
                 setShow_index(show_index => show_index+1);
                 setClicked(clicked => '');
                 const data = {queze_state : false, is_correct : null};
@@ -434,8 +434,11 @@ const Quezeshow_queze= () => {
                 :
                 null
             }
+            {/* {
+                console.log('render',show_index,content_state.length,correct_state.queze_state)
+            } */}
             {
-                show_index+1 >= content_state.length & correct_state.queze_state
+                show_index >= content_state.length & !correct_state.queze_state
                 ?
                 <Quezeshow_result_correct all_queze_num={content_state.length} correct_all_queze_num={correct_count} setShow_index={setShow_index} setClicked={setClicked} setCorrect_state={setCorrect_state}></Quezeshow_result_correct>
                 :

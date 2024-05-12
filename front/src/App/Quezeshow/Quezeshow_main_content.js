@@ -9,7 +9,7 @@ const Quezeshow_main_content= ({index,src,uuid,title,roomnum,quezeshow_type,expl
         navigate(`/quezeshow_result?roomnum=${roomnum}&uuid=${uuid}&quezeshow_type=${quezeshow_type}&title=${title}`);
     }
     const A_queze_click = () => {
-        console.log('click');
+        // console.log('click');
         // if(quezeshow_type === 'Continue_speak'){
             navigate(`/quezeshow_before/${roomnum}`);
         // }else if(quezeshow_type === 'New_word_queze'){

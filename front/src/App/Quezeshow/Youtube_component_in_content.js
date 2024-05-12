@@ -3,7 +3,7 @@ import YouTube from 'react-youtube';
 
 const Youtube_component_in_content = ({id,start,end,style,setLoading_state}) => {
     useEffect(()=>{
-        console.log(id);
+        // console.log(id);
     })
     const opts = {
         height: '270',
@@ -23,16 +23,16 @@ const Youtube_component_in_content = ({id,start,end,style,setLoading_state}) => 
         },
     };
     const onPlayerReady_ = (e) => {
-        console.log('onPlayerReady_');
-        console.log('event',e,e.target.getDuration());
+        // console.log('onPlayerReady_');
+        // console.log('event',e,e.target.getDuration());
         e.target.hideVideoInfo();
         e.target.setLoop();
         setLoading_state(loading_state => false);
         e.target.playVideo(); 
     } 
     const onPlayerEnd_ = (e) => {
-        console.log('onPlayerEnd_');
-        console.log('onPlayerEnd e:',e);
+        // console.log('onPlayerEnd_');
+        // console.log('onPlayerEnd e:',e);
         e.target.playVideo();
         e.target.hideVideoInfo();
         e.target.setLoop();
