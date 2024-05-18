@@ -61,7 +61,7 @@ const Quezeshow_queze= () => {
                     if(res.data[0].existence === 0){
                         alert('없는 콘텐츠 입니다');
                     }else{
-
+                        // console.log('adasdasd');
                         // quezeshow_title.current = res.data[0].title;
                         // if(quezeshow_type === 'vote'){ // quezeshow typ is vote
                             axios({
