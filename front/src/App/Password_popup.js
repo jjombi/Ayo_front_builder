@@ -9,6 +9,10 @@ const Password_popup = ({setPopup_state , uuid, roomnum, title, publicAccess, ty
     const password_checker = () => {
         if(typeWhere === 'modify_password'){
             // if(roomnum === ''){ // 나락퀴즈쇼 수정
+            if(localStorage.getItem(uuid) != null){
+                navigate(`/makequezeshowmodify?uuid=${uuid}&title=${title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`,{state:{tinyint : true}});
+            }
+            else {
                 axios({
                     url : process.env.REACT_APP_SERVER_URL + '/modify_quezeshowqueze_password_checker',
                     method : 'POST',
@@ -27,12 +31,14 @@ const Password_popup = ({setPopup_state , uuid, roomnum, title, publicAccess, ty
                         // if(Number(queze_type) === 1 ||Number(queze_type) === 0){
                         //     navigate(`/makequezeshowmodify?uuid=${uuid}&title=${title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&queze_type=${queze_type}`,{state:{tinyint : true}});
                         // }else {
+                            localStorage.setItem(uuid,input_password_ref.current.value);
                             navigate(`/makequezeshowmodify?uuid=${uuid}&title=${title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`,{state:{tinyint : true}});
                         // }
                     }else{
                         alert('비번 불일치');
                     }
                 })
+            }
         //     }else{
         //         axios({
         //             url : process.env.REACT_APP_SERVER_URL + '/modify_password_checker',

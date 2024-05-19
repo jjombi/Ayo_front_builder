@@ -143,6 +143,7 @@ const Make_quezeshow = () => {
 
             }).then((e)=>{
                 setPassword_popup(true);
+                localStorage.setItem(uuid,password);
             })
         })  
     }
