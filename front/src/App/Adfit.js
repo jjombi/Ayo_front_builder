@@ -1,6 +1,6 @@
 import React,{useRef,useEffect} from "react";
 
-const Adfit = (props) =>{
+const Adfit = ({position_type,unit}) =>{
     const adRef = useRef(false);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const Adfit = (props) =>{
       script.async = true;
       script.type = 'text/javascript';
       script.src = '//t1.daumcdn.net/kas/static/ba.min.js';
-      ins.setAttribute('data-ad-unit',`${props.unit}`);
+      ins.setAttribute('data-ad-unit',`${unit}`);
 
       document.querySelector('.aside__kakaoAdFit').appendChild(ins);
       document.querySelector('.aside__kakaoAdFit').appendChild(script);
@@ -27,7 +27,7 @@ const Adfit = (props) =>{
       adRef.current = true;
     }, []);
     return(
-        <aside className="aside__kakaoAdFit"></aside>
+        <aside className={`aside__kakaoAdFit ${position_type}`}></aside>
     )
 }
 export default Adfit;

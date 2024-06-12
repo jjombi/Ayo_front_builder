@@ -6,7 +6,7 @@ const Loading_popup = ({setLoading_popup_state, pending,password,setPassword_pop
         // setLoading_popup_state(false);
         // alert('비밀번호는 더 이상 확인 할 수 없습니다.')
         // window.location.reload();
-        console.log('setpopup');
+        // console.log('setpopup');
         if(!confirm('비밀번호는 더이상 확인 할 수 없습니다')){
 
         }else{

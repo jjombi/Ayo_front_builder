@@ -2,8 +2,11 @@ import React, { forwardRef, useEffect, useState, memo } from "react";
 // import no_img from "../Img_folder/no_image.jpg";
 import Quezeshow_queze_content_video from './Quezeshow_queze_content_video';
 import axios from "axios";
-const Quezeshow_queze_content_type_text = forwardRef(({next_queze,descriptive_input_ref,img,data_type,uuid2,start, end, title,text, correct_choice,setCorrect_choice, correct_state}) => {
+const Quezeshow_queze_content_type_text = forwardRef(({next_queze,descriptive_input_ref,img,data_type,uuid2,start, end, title,text, correct_choice,setCorrect_choice, correct_state,hint,timer_ref}) => {
     const [timer, setTimer] = useState();
+    const [hint_state,setHint_state] = useState(false);
+
+    console.log('hint',hint);
     // useEffect(()=>{
     //     // setTimer(timer => )
     //     if(answer.length > 20){
@@ -60,6 +63,7 @@ const Quezeshow_queze_content_type_text = forwardRef(({next_queze,descriptive_in
                 <>
                 <h1> {correct_state.is_correct ? '정답' : '오답' }</h1>
                 <h1>정답 : {correct_choice[0]}</h1>
+                
                 </>
                 :
                 <>
@@ -70,6 +74,13 @@ const Quezeshow_queze_content_type_text = forwardRef(({next_queze,descriptive_in
                 <input ref={descriptive_input_ref} onKeyUp={click_enter} autoFocus></input>
                 <h6 className="guide_text">입력후 Enter를 누르세요!</h6>
                 </>
+            }
+            <button className="hint_btn all_btn" onClick={()=>{setHint_state(hint_state => !hint_state)}}>Hint</button>
+            {
+                hint_state?
+                <p className="hint_text">{hint === '' || hint === null ? '없음' : hint}</p>
+                :
+                null
             }
         </section> 
     )

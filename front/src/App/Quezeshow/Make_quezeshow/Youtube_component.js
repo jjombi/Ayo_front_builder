@@ -2,9 +2,9 @@ import React,{useEffect, useState} from "react";
 import YouTube from 'react-youtube';
 
 const Youtube_component = ({id,index,setMax_video_length,setMax_video_length_func}) => {
-    useEffect(()=>{
-        console.log(id);
-    })
+    // useEffect(()=>{
+    //     // console.log(id);
+    // })
     const opts = {
         height: '180',
         width: '320',
@@ -23,8 +23,8 @@ const Youtube_component = ({id,index,setMax_video_length,setMax_video_length_fun
         },
     };
     const onPlayerReady_ = (e) => {
-        console.log('onPlayerReady_');
-        console.log('event',e,e.target.getDuration());
+        // console.log('onPlayerReady_');
+        // console.log('event',e,e.target.getDuration());
         e.target.playVideo();
         e.target.hideVideoInfo();
         e.target.setLoop();
@@ -32,8 +32,8 @@ const Youtube_component = ({id,index,setMax_video_length,setMax_video_length_fun
         setMax_video_length_func(e.target.getDuration(),index);
     } 
     const onPlayerEnd_ = (e) => {
-        console.log('onPlayerEnd_');
-        console.log('onPlayerEnd e:',e);
+        // console.log('onPlayerEnd_');
+        // console.log('onPlayerEnd e:',e);
         e.target.playVideo();
         e.target.hideVideoInfo();
         e.target.setLoop();

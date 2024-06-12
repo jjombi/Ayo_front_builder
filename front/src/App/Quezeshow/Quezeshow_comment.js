@@ -1,7 +1,8 @@
 import React, { useEffect, useState, memo } from "react";
 import '../css.css';//                      queze,comment, null
 import axios from "axios";//                space, queze, comment 
-const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3, date}) => {
+import { isLogin, getUsertype } from "../public/WorldRank";
+const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3, date, usertype}) => {
     const [likes_state, setLikes_state] = useState(false);
     const [likes_value_state, setLikes_value_state] = useState(likes);
     // const debounce = (func, timeout = 5000) => {
@@ -68,8 +69,18 @@ const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3, date}) => {
     return(
         <div className="children_comment_area">
             <div className="children_comment">
-                <p className="title">{title}   {date}</p>
-                {/* <p className="title">asdsad</p> */}
+                <p className="title">
+                    {title} 
+                    {
+                        usertype === 0 ?
+                        null :
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="9" stroke="#12AAFF" stroke-width="2"/>
+                        <path d="M8 12L11 15L16 9" stroke="#12AAFF" stroke-width="2"/>
+                        </svg>
+
+                    }
+                <span className="title_date">{date}</span></p>
                 <p className="value">{text}</p>
                 <p className="likes">{likes_value_state}</p>
                 {

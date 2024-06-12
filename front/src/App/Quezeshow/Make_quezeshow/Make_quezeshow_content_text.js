@@ -5,7 +5,7 @@ const Make_quezeshow_content_text = ({delete_correct_choice_descriptive,change_c
     
     return(
         <section className="make_quezeshow_content_root">
-            <input type="text" className="title" placeholder="정답" onKeyUp={(e)=>change_correct_choice_descriptive(e,index)}></input>
+            <input type="text" className="title" placeholder="정답" onKeyUp={(e)=>{e.preventDefault();change_correct_choice_descriptive(e,index)}}></input>
             <div className="correct_choice_descriptive_area">
                 {
                     correct_choice.map((e,i)=>{

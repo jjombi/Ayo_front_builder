@@ -18,6 +18,8 @@ const Make_quezeshow = lazy(()=>import('./App/Quezeshow/Make_quezeshow/Make_quez
 const Quezeshow_main = lazy(()=>import('./App/Quezeshow/Quezeshow_main'));
 const Guide_main = lazy(()=>import('./App/guide/Guide_main'));
 const Quezeshow_queze = lazy(()=>import('./App/Quezeshow/Quezeshow_queze'));
+const Break_egg = lazy(()=>import('./App/Game/BreakEgg/Break_egg.js'));
+const Egg = lazy(()=>import('./App/Game/BreakEgg/Egg.js'));
 // const Machugi = lazy(()=>import('./App/machugi/Machugi.js'));
 // const Space = lazy(()=>import('./App/Space/Space.js'));
 // const Make_space = lazy(()=>import('./App/Space/Make_space.js'));
@@ -28,13 +30,16 @@ const Guide_basic = lazy(()=>import('./App/guide/Guide_basic.js'));
 // const Continue_speaking = lazy(()=>import('./App/Continue_speaking/Continue_speaking.js'));
 // const New_word_queze = lazy(()=>import('./App/new_word_queze/New_word_queze.js'));
 const Quezeshow_before = lazy(()=>import('./App/Quezeshow/Quezeshow_before.js'));
+const Login = lazy(()=>import('./App/Login/Login.js'));
+const Signup = lazy(()=>import('./App/signup/Signup.js'));
 const Make_quezeshow_step1 = lazy(()=>import('./App/Quezeshow/Make_quezeshow/Make_quezeshow_step1.js'));
+const Profile = lazy(()=>import('./App/profile/Profile.js'));
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
 
 
 const app = (
-  <React.StrictMode>
+  // <React.StrictMode>
   <div className='Main_root_'>
     <BrowserRouter>
       {/* <Header props={<School_choose/>}></Header> */}
@@ -58,6 +63,7 @@ const app = (
               <Route path='/quezeshow_result' element={<Quezeshow_result/>}></Route>
               <Route path='/make_quezeshow' element={<Make_quezeshow/>}></Route>
               <Route path='/' element={<Quezeshow_main/>}></Route>
+              <Route path='/:type' element={<Quezeshow_main/>}></Route>
               {/* <Route path='/machugi' element={<Machugi/>}></Route> */}
               <Route path='/quezeshow_queze' element={<Quezeshow_queze/>}></Route>
               <Route path='/guide' element={<Guide_basic/>}></Route>
@@ -66,6 +72,11 @@ const app = (
               {/* <Route path='/space' element={<Space/>}></Route> */}
               <Route path='/guide_main' element={<Guide_main/>}></Route>
               <Route path='/produce' element={<Make_quezeshow_step1/>}></Route>
+              <Route path='/egg' element={<Break_egg/>}></Route>
+              <Route path='/egg/game' element={<Egg/>}></Route>
+              <Route path='/login' element={<Login/>}></Route>
+              <Route path='/signup' element={<Signup/>}></Route>
+              <Route path='/profile' element={<Profile/>}></Route>
 
               {/* <Route path='/make_space' element={<Make_space/>}></Route> */}
               {/* <Route path='/in_space' element={<In_space/>}></Route> */}
@@ -79,7 +90,7 @@ const app = (
       <Footer/> */}
     </BrowserRouter>
   </div>
-  </React.StrictMode>
+  // </React.StrictMode>
 )
 
 // if (rootElement?.hasChildNodes()) {

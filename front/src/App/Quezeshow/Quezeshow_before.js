@@ -8,10 +8,11 @@ import no_img from '../Img_folder/no_image.jpg';
 import axios from "axios";
 import Header from '../ayo_world_rank_header';
 import Password_popup from "../Password_popup";
-import {chenge_textarea_height} from '../public/WorldRank';
+import {chenge_textarea_height, getUsertype, isLogin, getUserId, getUserEmailKey} from '../public/WorldRank';
 import Quezeshow_comment from "./Quezeshow_comment";
 import {Helmet} from "react-helmet-async";
 import Declaration from "../Declaration";
+import { customAxiosPost } from "../Custom_axios/Custom_axios";
 const Quezeshow_before = () => {
     const [result_comment_state, setResult_comment_state] = useState([]);
     const navigate = useNavigate();
@@ -26,7 +27,6 @@ const Quezeshow_before = () => {
     const comment_input_title_ref = useRef();
     const [popup_state, setPopup_state] = useState(false);
     const {roomnum} = useParams();
-    const canvas_ref = useRef();
     useEffect(()=>{
         // const { param } = match;
         // console.log('params',roomnum);
@@ -147,7 +147,8 @@ const Quezeshow_before = () => {
                     uuid    : uuid,
                     title   : comment_input_title_ref.current.value,
                     text    : comment_input_ref.current.value,
-                    date    : timeString
+                    date    : timeString,
+                    usertype: getUsertype(),
                 },
                 headers : {
                     'Content-Type' : 'application/json'
@@ -167,7 +168,23 @@ const Quezeshow_before = () => {
         }
     }
     const password_checker = () => {
-        setPopup_state(popup_state => !popup_state);
+        if(isLogin()){
+            customAxiosPost({
+                url : '/check_queze_is_mine',
+                data : {
+                    uuid,
+                    email : getUserEmailKey()
+                }
+            }).then(res=>{
+                if(res.data == true){
+                    navigate(`/makequezeshowmodify?uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`,{state:{tinyint : true}});
+                }else{
+                    setPopup_state(popup_state => !popup_state);
+                }
+            })
+        }else{
+            setPopup_state(popup_state => !popup_state);
+        }
     }
     const change_declaration = (e) => {
         // e.preventDefault();
@@ -175,7 +192,6 @@ const Quezeshow_before = () => {
     }
     return(
         <section className="Quezeshow_before_root">
-            <canvas ref={canvas_ref}></canvas>
             <Helmet>
                 <title>{quezeshow_title}</title>
                 <meta charset="UTF-8"/>
@@ -221,7 +237,11 @@ const Quezeshow_before = () => {
             </section>
             <div className="comment_area">
                 <div>
-                    <input type="text" ref={comment_input_title_ref} placeholder="아이디 입력"></input>
+                    {
+                        isLogin() ?
+                        <input type="text" ref={comment_input_title_ref} readOnly value={getUserId()}></input>:
+                        <input type="text" ref={comment_input_title_ref} placeholder="아이디 입력"></input>
+                    }
                 </div>  
                 <div>
                     <textarea type="text" ref={comment_input_ref} id={1} placeholder="댓글 입력" onChange={(e)=>{chenge_textarea_height(e)}}></textarea>
@@ -237,7 +257,7 @@ const Quezeshow_before = () => {
             result_comment_state.map((e,i)=>{
                 // console.log('comment',e);
                 return(
-                <Quezeshow_comment key={i} title={e.title} text={e.text} likes={e.likes} uuid={e.uuid} uuid2={e.uuid2} uuid3={e.uuid3} date={e.date}/>
+                <Quezeshow_comment key={i} title={e.title} text={e.text} likes={e.likes} uuid={e.uuid} uuid2={e.uuid2} uuid3={e.uuid3} date={e.date} usertype={e.usertype}/>
                 )
             })
             

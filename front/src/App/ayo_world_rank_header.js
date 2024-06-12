@@ -1,6 +1,7 @@
 import React from "react";
 import {useNavigate} from 'react-router-dom';
-
+import { getAccessToken, isLogin } from "./public/WorldRank";
+import new_logo from './Img_folder/NEWLOGO.png';
 const ayo_world_rank_header = () => {
 
     const navigate = useNavigate();
@@ -38,7 +39,9 @@ const ayo_world_rank_header = () => {
     }
     return(
         <header className="Main2_header">
-            <div className='header_rogo'><p>Ayo</p></div>
+            <div className='header_rogo'>
+                <img src={new_logo}></img>
+            </div>
             {/* <button className="all_btn" type="button" onClick={navi_to_main}>이상형 월드컵</button> */}
             {/* <button className="all_btn" type="button" onClick={navi_to_make_queze}>티어표 제작</button> */}
             <button className="all_btn" type="button" onClick={navi_to_quezeshow}>퀴즈쇼</button>
@@ -48,8 +51,15 @@ const ayo_world_rank_header = () => {
             {/* <button className="all_btn" type="button" onClick={navi_to_make_quezeshow}>퀴즈쇼 제작</button> */}
             <button className="all_btn " type="button" onClick={navi_to_community}>제안하기</button>
             <button className="all_btn " type="button" onClick={navi_to_guide}>공지사항</button>
+            <button className="all_btn" type="button" onClick={()=>navigate('/produce')}>퀴즈쇼 제작</button>
             {/* <button className="all_btn " type="button" title="" onClick={navi_to_space}>스페이스</button> */}
+            {
+                isLogin() ?
+                <button className="all_btn header_login_btn" type="button" onClick={()=>{navigate('/profile')}}>프로필</button>
+                :
+                <button className="all_btn header_login_btn" type="button" onClick={()=>{navigate('/login')}}>로그인<br/>회원가입</button>
 
+            }
         </header>
     )
 }

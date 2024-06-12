@@ -3,15 +3,16 @@ import React, { useEffect, useState, useRef, forwardRef, memo } from "react";
 import axios from "axios";
 // import {canvas_func} from '../public/WorldRank';
 import Quezeshow_queze_content_video from './Quezeshow_queze_content_video';
-const Quezeshow_queze_content_type_queze = ({img,data_type,uuid2,start, end, title,text, clicked, setClicked, correct_choice,setCorrect_choice, correct_state}) => {
+const Quezeshow_queze_content_type_queze = ({img,data_type,uuid2,start, end, title,text, clicked, setClicked, correct_choice,setCorrect_choice, correct_state,hint,timer_ref}) => {
     // const [is_correct, setIs_correct] = useState(false);
     const [choice, setChoice] = useState([]); 
+    const [hint_state,setHint_state] = useState(false);
     const canvas_ref = useRef();
     const btn_click = (e) => {
         // console.log('clicked',e.target.id,'--',clicked);
         setClicked(clicked => e.target.id);
     }
-    
+
     useEffect(()=>{
         // canvas_func(canvas_ref);
         axios({
@@ -22,19 +23,19 @@ const Quezeshow_queze_content_type_queze = ({img,data_type,uuid2,start, end, tit
             }
 
         }).then(res=>{
-            // console.log(res);
+            console.log(res);
             setChoice(choice => res.data.choice);
             setCorrect_choice(correct_choice => res.data.correct_choice[0].correct_choice);
+            setInterval(() => {
+                timer_ref.current += 100;
+            }, 100);
         })
     },[])
     return(
         <section className="Quezeshow_queze_content_type_queze_root" style={{color : 'black'}}>
             <h1>
                 {title}
-            </h1>
-            <h4>
-                {text}
-            </h4>
+            </h1>  
             <Quezeshow_queze_content_video data_type={data_type} start={start} end={end} img={img}></Quezeshow_queze_content_video>
             {
 
@@ -43,6 +44,7 @@ const Quezeshow_queze_content_type_queze = ({img,data_type,uuid2,start, end, tit
                 <>
                 <h1>{correct_state.is_correct ? '정답' : '오답'}</h1>
                 <p>{choice[correct_choice].choice}</p>
+                
                 </>
                 :
                 <section>
@@ -55,6 +57,13 @@ const Quezeshow_queze_content_type_queze = ({img,data_type,uuid2,start, end, tit
                     }
                 </section>
 
+            }
+            <button className="hint_btn all_btn" onClick={()=>{setHint_state(hint_state => !hint_state)}}>Hint</button>
+            {
+                hint_state?
+                <p className="hint_text">{hint === '' || hint === null ? '없음' : hint}</p>
+                :
+                null
             }
         </section> 
     )

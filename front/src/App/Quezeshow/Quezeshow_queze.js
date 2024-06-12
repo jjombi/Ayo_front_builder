@@ -32,6 +32,7 @@ const Quezeshow_queze= () => {
     const [correct_choice,setCorrect_choice] = useState(null);
     const [correct_count,setCorrect_count] = useState(0);
 
+    const timer_ref = useRef(0);
     const descriptive_input_ref = useRef();
     const comment_input_ref = useRef();
 
@@ -70,7 +71,7 @@ const Quezeshow_queze= () => {
                                 params : {roomnum : roomnum}
                                 
                             }).then(res=>{
-                                // console.log('content',res);
+                                console.log('content',res);
                                 setContent_state( content_state => [...res.data]);//content_state.length === 퀴즈 문제 수
                                 
                             })
@@ -510,7 +511,7 @@ const Quezeshow_queze= () => {
                             <>
                             {
                                 content_state.length !== 0 ?
-                                <Quezeshow_queze_content_type_queze img={content_state[show_index].img} uuid2={content_state[show_index].uuid2} data_type={content_state[show_index].data_type} start={content_state[show_index].start} end={content_state[show_index].end} title={content_state[show_index].title} text={content_state[show_index].text} clicked={clicked} setClicked={setClicked} correct_choice={correct_choice} setCorrect_choice={setCorrect_choice} correct_state={correct_state}></Quezeshow_queze_content_type_queze>
+                                <Quezeshow_queze_content_type_queze img={content_state[show_index].img} uuid2={content_state[show_index].uuid2} data_type={content_state[show_index].data_type} start={content_state[show_index].start} end={content_state[show_index].end} title={content_state[show_index].title} text={content_state[show_index].text} clicked={clicked} setClicked={setClicked} correct_choice={correct_choice} setCorrect_choice={setCorrect_choice} correct_state={correct_state} hint={content_state[show_index].hint} timer_ref={timer_ref}></Quezeshow_queze_content_type_queze>
                                 : null
                             }
                             </>
@@ -520,7 +521,7 @@ const Quezeshow_queze= () => {
                             <>
                             {
                                 content_state.length !== 0 ?
-                                <Quezeshow_queze_content_type_text title={content_state[show_index].title} descriptive_input_ref={descriptive_input_ref} correct_checker={correct_checker} next_queze={next_queze} img={content_state[show_index].img} uuid2={content_state[show_index].uuid2} data_type={content_state[show_index].data_type} start={content_state[show_index].start} end={content_state[show_index].end} text={content_state[show_index].text} correct_choice={correct_choice} setCorrect_choice={setCorrect_choice} correct_state={correct_state}></Quezeshow_queze_content_type_text>
+                                <Quezeshow_queze_content_type_text title={content_state[show_index].title} descriptive_input_ref={descriptive_input_ref} correct_checker={correct_checker} next_queze={next_queze} img={content_state[show_index].img} uuid2={content_state[show_index].uuid2} data_type={content_state[show_index].data_type} start={content_state[show_index].start} end={content_state[show_index].end} text={content_state[show_index].text} correct_choice={correct_choice} setCorrect_choice={setCorrect_choice} correct_state={correct_state} hint={content_state[show_index].hint} timer_ref={timer_ref}></Quezeshow_queze_content_type_text>
                                 : null
                             }
                             </>

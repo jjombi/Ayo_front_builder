@@ -5,6 +5,7 @@ import axios from "axios";
 import Community_content from "./Community_content";
 import { Helmet } from "react-helmet-async";
 import Adfit from "../Adfit";
+import {getUsertype} from '../public/WorldRank';
 const Community = () => {
     const comment_input_ref = useRef();
     const [community_content_state, setCommunity_content_state] = useState([]);
@@ -17,7 +18,7 @@ const Community = () => {
                 type : 'likes'
             }
         }).then((res)=>{ // 20개씩 끊어서 줌
-            console.log(res);
+            // console.log(res);
             setCommunity_content_state(community_content_state => res.data);
         })
     },[])
@@ -31,10 +32,11 @@ const Community = () => {
             },
             data : {
                 text : comment_input_ref.current.value,
-                date : Date.now()
+                date : Date.now(),
+                usertype : getUsertype()
             }
         }).then(res=>{
-            console.log(res);
+            // console.log(res);
         })
     }
     const chenge_comment_area_height = (e) => {
