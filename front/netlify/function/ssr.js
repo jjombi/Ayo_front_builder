@@ -41,8 +41,8 @@ exports.handler =  async (event, context) => {
               <meta name="twitter:description" content="${explain_text}" />
               <meta name="twitter:image" content="${img}" />
 
-              <link rel="icon" sizes="16x16" type="image/x-icon" href="/favicon.ico?">
-              <link rel="apple-touch-icon" sizes="16x16" href="/favicon.ico?">
+              <link rel="icon" sizes="16x16" type="image/x-icon" href="/NEWLOGO.ico?">
+              <link rel="apple-touch-icon" sizes="16x16" href="/NEWLOGO.ico?">
               <meta name="referrer" content="no-referrer-when-downgrade" />
               <meta name="google-adsense-account" content="ca-pub-7471498859383871">
       
