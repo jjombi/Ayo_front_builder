@@ -33,7 +33,7 @@ const Quezeshow_before = lazy(()=>import('./App/Quezeshow/Quezeshow_before.js'))
 const Login = lazy(()=>import('./App/Login/Login.js'));
 const Signup = lazy(()=>import('./App/signup/Signup.js'));
 const Make_quezeshow_step1 = lazy(()=>import('./App/Quezeshow/Make_quezeshow/Make_quezeshow_step1.js'));
-const Profile = lazy(()=>import('./App/profile/Profile.js'));
+const Profile = lazy(()=>import('./App/Profile/Profile.js'));
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
 
