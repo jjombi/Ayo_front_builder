@@ -22,7 +22,6 @@ const Guide_main = () => {
                 <meta name="twitter:title" content={"예능 게임 사이트 가이드 및 공지사항"} />
                 <meta name="twitter:description" content={"예능 게임 사이트에 대한 가이드와 공지사항를 안내 받을 수 있습니다"} />
             </Helmet>
-            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
             <Header></Header>
             <button className="all_btn" onClick={()=>{navigate('/guide?type=1')}}>
                 <p>퀴즈쇼 제작 방법</p>
@@ -36,6 +35,9 @@ const Guide_main = () => {
                 <p>퀴즈쇼 제작 방법</p>
                 <p>2024/03/11</p>
             </button>             */}
+            <footer>
+                <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
+            </footer>
         </section>
     )
 }

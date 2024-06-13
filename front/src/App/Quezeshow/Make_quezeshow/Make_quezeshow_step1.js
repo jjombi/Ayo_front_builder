@@ -16,9 +16,7 @@ const Make_quezeshow_step1 = () => {
     return(
         <div className="Make_quezeshow_step1_root">
             <Header/>
-            
-            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
-        
+                    
             <section>
                 <div id="vote" onClick={click_func} className="all_btn">
                     <img id="vote" src={vote}></img>
@@ -35,7 +33,11 @@ const Make_quezeshow_step1 = () => {
                     <h1 id="descriptive">서술형 퀴즈</h1>
                     <p id="descriptive">정답을 입력해 맞출 수 있습니다.</p>
                 </div>
+                
             </section>
+            <footer>
+                <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
+            </footer>
             {/* <button>다음</button> */}
         </div>
     )

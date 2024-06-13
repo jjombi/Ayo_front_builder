@@ -3,6 +3,7 @@ import '../css.css';
 import Header from '../ayo_world_rank_header';
 import {customAxiosPost, customAxiosGet} from '../Custom_axios/Custom_axios';
 import { useNavigate } from "react-router-dom";
+import Adfit from "../Adfit";
 // import {ReactComponent as Check} from '../Img_folder/Check_ring_light.svg';
 const Signup = () => {
 
@@ -132,6 +133,9 @@ const Signup = () => {
                 </section>
             </div>
         </section>
+        <footer>
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
+        </footer>
         </>
     )
 }

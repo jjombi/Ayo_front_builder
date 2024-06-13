@@ -3,6 +3,7 @@ import '../css.css';
 import Header from '../ayo_world_rank_header';
 import { customAxiosPost } from "../Custom_axios/Custom_axios";
 import { useNavigate } from "react-router-dom";
+import Adfit from "../Adfit";
 const Login = () => {
     
     const navigate = useNavigate();
@@ -60,6 +61,9 @@ const Login = () => {
                     <button className="signup_submit_btn all_btn" type="button" onClick={submit}>다음</button>
                 </section>
             </div>
+            <footer>
+                <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
+            </footer>
         </section>
         </>
     )
