@@ -10,6 +10,9 @@ const Community = () => {
     const comment_input_ref = useRef();
     const [community_content_state, setCommunity_content_state] = useState([]);
 
+    const margin1 = 453;
+    const margin2 = 100;
+
     useEffect(()=>{
         axios({
             url : process.env.REACT_APP_SERVER_URL + '/community',
@@ -60,7 +63,52 @@ const Community = () => {
                 <meta name="twitter:description" content={"개발자에게 제안하거나 사용자와 소통할 수 있습니다"} />
             </Helmet>
             <Headers></Headers>
-            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
+            <section className="develop_process">
+                <section className="line_section">
+                    <div style={{marginLeft : margin1+'px'}} className="line"/>
+                    <p style={{marginLeft : margin1+'px'}}>(2024-06-16)</p>
+                    <div style={{marginLeft : (margin2-2.5)+'px'}} className="line"/>
+                    <p style={{marginLeft : (margin1+margin2-2.5)+'px'}}>(2024-06-18)</p>
+                    {/* <div className="line"/> */}
+                </section>
+                <div className="content content_top">
+                    <p className="font_size_12">퀴즈 수정 및 퀴즈 제작 중 임시저장 기능 (2024-06-16)완료</p>
+                </div>
+                <div className="content">
+                    <p style={{marginLeft : margin2+'px'}} className="font_size_12">제안하기 페이지에서 댓글 공감 기능 (2024-06-18)완료</p>
+                </div>
+                {/* <div className="content">
+                    <p className="font_size_12">퀴즈 수정 및 퀴즈 제작 중 임시저장 기능 (2024-06-16)완료</p>
+                </div>
+                <div className="content">
+                    <p className="font_size_12">퀴즈 수정 및 퀴즈 제작 중 임시저장 기능 (2024-06-16)완료</p>
+                </div>
+                <div className="content content_bottom">
+                    <p className="font_size_12">퀴즈 수정 및 퀴즈 제작 중 임시저장 기능 (2024-06-16)완료</p>
+                </div> */}
+                {/* <table>
+                    <tr>
+                        <td>기능 설명</td>
+                        <td>상태</td>
+                        <td>완성일</td>
+                    </tr>
+                    <tr>
+                        <td>기능 설명</td>
+                        <td>상태</td>
+                        <td>완성일</td>
+                    </tr>
+                    <tr>
+                        <td>기능 설명</td>
+                        <td>상태</td>
+                        <td>완성일</td>
+                    </tr>
+                    <tr>
+                        <td>기능 설명</td>
+                        <td>상태</td>
+                        <td>완성일</td>
+                    </tr>
+                </table> */}
+            </section>
             <h1>
                 개발자에게 전할 말을 작성해 주세요,<br/>
                 빠른 시일 내에 공지사항을 통해 답변해 드립니다
@@ -82,7 +130,9 @@ const Community = () => {
                 }) :
                 null
             }
-
+            <footer>
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
+            </footer>
         </div>
     )
 }

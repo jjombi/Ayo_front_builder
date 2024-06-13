@@ -2571,6 +2571,9 @@ input[type=range]::-webkit-slider-thumb {
     
 }
 //------------------------community_root------------------------------/
+.font_size_12 {
+    font-size: 12px;
+}
 .community_root {
     width: 100vw;
     height: 100vh;
@@ -2585,6 +2588,60 @@ input[type=range]::-webkit-slider-thumb {
     width: 100%;
     text-align: center;
     margin-top: 1%;
+}
+.develop_process {
+    width: 100%;
+    // max-width: 1000px;
+    height: 250px;
+    border-bottom: 1.5px solid #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;  
+    position: relative;
+    margin-top: 50px;
+}
+.line_section {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+}
+.line_section > .line {
+    width: 0;
+    margin-top: 20px;
+    height: 100%;
+    border: 1px dashed #a2a2a2;
+}
+.line_section > p {
+    display: inline-block;
+    position: absolute;
+    top: -5px;
+    transform: translate(-50%);
+    color: #000000;
+}
+.develop_process > .content {
+    height: 40px;
+    width: 100%;
+    margin-top: 12.5px;
+}
+.develop_process >.content_bottom {
+    margin-bottom: 0 !important;
+}
+.develop_process > .content_top {
+    margin-top: 30px;
+}
+.content > p {
+    height: 35px;
+    width: 448px;
+    padding: 2.5px;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 5px;
+    color: #000000;
+    position: relative;
+    z-index: 1;
 }
 /*------------------------------------Make_space---------------------------------*/
 .make_space_section {
