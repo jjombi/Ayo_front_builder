@@ -20,11 +20,13 @@ const Make_quezeshow_modify = () => {
     const quezeshow_type_clicked_btn = searchParams.get('quezeshow_type'); // quezeshowtype
     const roomnum = searchParams.get('roomnum');
     
+    const [before_quezeshow_queze, setBefore_quezeshow_queze] = useState(null);
+    const [before_content_object, setBefore_content_object] = useState(null);
     const [content_state,setContent_state] = useState([]);// quezecontent length
     const [content_object, setContent_object] = useState([]);//
     const [time_checkbox,setTime_checkbox] = useState(false);
-    const [choice,setChoice] = useState([]);
-    const [correct_choice,setCorrect_choice] = useState([]);
+    // const [choice,setChoice] = useState([]);
+    // const [correct_choice,setCorrect_choice] = useState([]);
     const [main_img,setMain_img] = useState([null, null]); // 0=file,1=base64
     const [tag_arr, setTag_arr] = useState([]);
 
@@ -65,6 +67,10 @@ const Make_quezeshow_modify = () => {
                         roomnum : roomnum,
                     }
                 }).then(res=>{
+                    // {
+                    //     quezeshowqueze : quezeshowqueze,
+                    //     quezeshowcontent : send_
+                    // }
                     console.log('수정전 데이터',res);
                     queze_title_ref.current.value = res.data.quezeshowqueze.title;
                     queze_explain_text_ref.current.value = res.data.quezeshowqueze.explainText;
@@ -72,15 +78,15 @@ const Make_quezeshow_modify = () => {
                     setTag_arr(tag_arr => [...tag_arr_]);
                     //시간초 
                     setMain_img(main_img => [null,`https://${bucket}.s3.${region}.amazonaws.com/${uuid}/main_img.jpg`]);
-                    let content_state_ = [];
+                    // let content_state_ = [];
                     let content_object_ = [];
-                    let correct_choice_ = [];
-                    let choice_ = [];
+                    // let correct_choice_ = [];
+                    // let choice_ = [];
                     //data_type src title text answer start end hint }]);
                     res.data.quezeshowcontent.map((e,i)=>{
 
                         console.log('e',e);
-                        content_state_[i] = [...content_state_,i];
+                        // content_state_[i] = [...content_state_,i];
                         content_object_[i] = {
                             data_type : e.data_type,
                             src : e.img,
@@ -89,28 +95,34 @@ const Make_quezeshow_modify = () => {
                             answer : e.answer,
                             start : e.start,
                             end : e.end,
-                            hint : e.hint
+                            hint : e.hint,
+                            choice : [],
+                            correct_choice : [],
                         }
                         if(quezeshow_type_clicked_btn === 'multiple'){
                             e.data.choice.map((e,index)=>{
-                                choice_[i] = [];
-                                choice_[i][index] = e.choice;
+                                // choice_[i] = [];
+                                // choice_[i][index] = e.choice;
+                                content_object_[i].choice[index] = e.choice;
                             })
                             e.data.correct_choice.map((e,index)=>{
-                                correct_choice_[i] = e.correct_choice;
+                                // correct_choice_[i] = e.correct_choice;
+                                content_object_[i].correct_choice[index] = e.correct_choice;
                             })
                         }else if(quezeshow_type_clicked_btn === 'descriptive'){
                             e.data.correct_choice.map((e,index)=>{
-                                correct_choice_[i] = [];
-                                correct_choice_[i][index] = e.correct_choice;
+                                // correct_choice_[i] = [];
+                                // correct_choice_[i][index] = e.correct_choice;
+                                content_object_[i].correct_choice[index] = e.correct_choice;
                             })
                         }
                     })
                     console.log('content_object',content_object_,'content_object',[...content_object_]);
-                    setContent_state(content_state=>[...content_state_]);
+                    // setContent_state(content_state=>[...content_state_]);
+                    setBefore_content_object(before_content_object => [...content_object_]);
                     setContent_object(content_object => [...content_object_]);
-                    setCorrect_choice(correct_choice => [...correct_choice_]);
-                    setChoice(choice => [choice_]);
+                    // setCorrect_choice(correct_choice => [...correct_choice_]);
+                    // setChoice(choice => [choice_]);
                 })
             }
         }
@@ -338,15 +350,15 @@ const Make_quezeshow_modify = () => {
     }
     const add_content = (e,) => {
         e.preventDefault();
-        const content_state_ = [...content_state,content_state.length+1];
-        setContent_state(content_state=>[...content_state_]);
+        // const content_state_ = [...content_state,content_state.length+1];
+        // setContent_state(content_state=>[...content_state_]);
         setContent_object(content_object => [...content_object,{data_type : null,src : '', title : '', text : '', answer : '',start : 0, end : 0, hint : ''}]);
         if(quezeshow_type_clicked_btn === 'multiple'){
-            setChoice(choice => [...choice,['','']]);
-            setCorrect_choice(correct_choice => [...correct_choice,'']);
+            // setChoice(choice => [...choice,['','']]);
+            // setCorrect_choice(correct_choice => [...correct_choice,'']);
             // setHint(hint => [...hint,{data_type : null, }])
         }else if(quezeshow_type_clicked_btn === 'descriptive'){
-            setCorrect_choice(correct_choice => [...correct_choice,[]]);
+            // setCorrect_choice(correct_choice => [...correct_choice,[]]);
         }
         
         // console.log('문제 추가하는 중 content object :',content_object,'quezeshow_type_clicked_btn',quezeshow_type_clicked_btn);
@@ -409,16 +421,16 @@ const Make_quezeshow_modify = () => {
             {/* <div className="queze_list"> */}
             <div className="queze_list_v2">
                 {
-                    content_state.map((e,index)=>{
+                    content_object.map((e,index)=>{
                         return(
-                        <Make_quezeshow_content key={index} file_ref={file_ref} index={index}quezeshow_type_clicked_btn={quezeshow_type_clicked_btn}content_object={content_object}setContent_object={setContent_object}change_img={change_img}onpaste={onpaste}choice={choice}setChoice={setChoice}correct_choice={correct_choice}setCorrect_choice={setCorrect_choice} setContent_state={setContent_state}content_state={content_state}></Make_quezeshow_content>
+                        <Make_quezeshow_content key={index} file_ref={file_ref} index={index} quezeshow_type_clicked_btn={quezeshow_type_clicked_btn}content_object={content_object}setContent_object={setContent_object}change_img={change_img}onpaste={onpaste}></Make_quezeshow_content>
                         )
                     })
                 }
             </div>            
             <input type="button" className="all_btn make_quezeshow_addbtn" onClick={add_content} value={'+'} title="선택지 추가"></input>
             <input type="button" value="완료" className="all_btn make_quezeshow_submintbtn" onClick={(e)=>{
-                if(content_state.length !== 0){
+                if(content_state.length !== 0){ // f
                     img_upload(e);
                 }
             }}></input>

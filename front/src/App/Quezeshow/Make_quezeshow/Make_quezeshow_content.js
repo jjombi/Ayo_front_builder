@@ -3,7 +3,7 @@ import Make_quezeshow_content_queze from './Make_quezeshow_content_queze';
 import Make_quezeshow_content_text from './Make_quezeshow_content_text';
 import YouTubeComponent from './Youtube_component';
 import {chenge_textarea_height, dragenter, dragover} from '../../public/WorldRank';
-const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object,setContent_object,file_ref,change_img,onpaste,choice,setChoice,correct_choice,setCorrect_choice,setContent_state,content_state}) => {
+const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object,setContent_object,file_ref,change_img,onpaste,}) => {
     
     const [max_video_length,setMax_video_length] = useState(0);
 
@@ -21,14 +21,6 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
     }
     const change_video_url = (e,index) => {
         const content_object_ = content_object;
-        //https://www.youtube.com/watch?v=DTodLgkj2Dc
-        //https://youtu.be/DTodLgkj2Dc?si=gb32GkBQw0Iz8P4q
-        //https://youtube.com/clip/UgkxUyojI5Id9KniSQDswABHBB4t3cEF6I4r?si=503f95X0n-FgaA8M
-        //https://youtube.com/clip/UgkxvXGvl0eCasQLBA-w_7kSGc76zCipKAf_?si=HeBAoqmKvCc6AniR
-        //https://www.youtube.com/shorts/ijjrV_Pa_hQ
-        //https://www.youtube.com/live/M7lc1UVf-VE?si=RtdUT6IOoLprQUPZ
-        // content_object_[index].src = e.target.value;
-        // setContent   _object(content_object => [...content_object_]); 
 
         if(e.target.value.includes('?v=')){
 
@@ -116,35 +108,42 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
         
         if(e.key === 'Enter'){
             // console.log('enter');
-            const correct_choice_ = correct_choice;
-            correct_choice_[index] = [...correct_choice[index],e.target.value];
-            setCorrect_choice(correct_choice => [...correct_choice_]);
+            // const correct_choice_ = correct_choice;
+            // correct_choice_[index] = [...correct_choice[index],e.target.value];
+            // setCorrect_choice(correct_choice => [...correct_choice_]);
+            const content_object_ = content_object;
+            content_object_[index].correct_choice[index] = e.target.value;
+            setContent_object(content_object => [...content_object_]);
+
             e.target.value = '';
         }
     }
     const delete_correct_choice_descriptive = (ev,index) => {
         // console.log('delete_correct_choice_descriptive');
-        const correct_choice_ = correct_choice;
-        correct_choice_[index] = correct_choice[index].filter((e,i)=>{return i !== Number(ev.target.id)});
+        // const correct_choice_ = correct_choice;
+        // correct_choice_[index] = correct_choice[index].filter((e,i)=>{return i !== Number(ev.target.id)});
         // console.log('after',correct_choice_);
-        setCorrect_choice(correct_choice => [...correct_choice_]);        
+        // setCorrect_choice(correct_choice => [...correct_choice_]);   
+        const content_object_ = content_object;
+        content_object_[index].correct_choice = content_object_[index].correct_choice.filter((e,i)=>{return i !== Number(ev.target.id)});
+        setContent_object(content_object => [...content_object_]);
         
     }
     const delete_ = (index) => {
         // console.log('delete_ index',index,'file_ref.current',file_ref.current,'content_state',content_state,'content_object',content_object);
         file_ref.current = file_ref.current.filter((e,i)=>{return(i !== Number(index))});
-        const content_state_ = content_state.filter((e,i)=>{return(i !== Number(index))});
+        // const content_state_ = content_state.filter((e,i)=>{return(i !== Number(index))});
         const content_object_ = content_object.filter((e,i)=>{return(i !== Number(index))});
         // console.log(file_ref.current,content_state_,content_object_);
-        setContent_state(content_state => [...content_state_]);
+        // setContent_state(content_state => [...content_state_]);
         setContent_object(content_object => [...content_object_]);
-        if(quezeshow_type_clicked_btn === 'multiple'){
-            const choice_ = choice.filter((e,i) => {return(i !== Number(index))});
-            setChoice(choice => [...choice_]);
-        }else if(quezeshow_type_clicked_btn === 'descriptive'){
-            const correct_choice_ = correct_choice.filter((e,i)=>{return(i !== Number(index))});
-            setCorrect_choice(correct_choice => [...correct_choice_]);
-        }
+        // if(quezeshow_type_clicked_btn === 'multiple'){
+        //     const choice_ = choice.filter((e,i) => {return(i !== Number(index))});
+        //     setChoice(choice => [...choice_]);
+        // }else if(quezeshow_type_clicked_btn === 'descriptive'){
+        //     const correct_choice_ = correct_choice.filter((e,i)=>{return(i !== Number(index))});
+        //     setCorrect_choice(correct_choice => [...correct_choice_]);
+        // }
     }
     const change_title = (e,index) => {
         let content_object_ = [...content_object];
@@ -397,7 +396,7 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
             :
             quezeshow_type_clicked_btn === 'descriptive' && content_object[index].data_type !== null
             ?
-                <Make_quezeshow_content_text key={index} change_correct_choice_descriptive={change_correct_choice_descriptive} delete_correct_choice_descriptive={delete_correct_choice_descriptive} correct_choice={correct_choice[index]} index={index}></Make_quezeshow_content_text>
+                <Make_quezeshow_content_text key={index} change_correct_choice_descriptive={change_correct_choice_descriptive} delete_correct_choice_descriptive={delete_correct_choice_descriptive} correct_choice={content_object[index].correct_choice} index={index}></Make_quezeshow_content_text>
             :
             null
         }
