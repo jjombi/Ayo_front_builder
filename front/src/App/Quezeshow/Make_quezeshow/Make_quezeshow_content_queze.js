@@ -1,6 +1,8 @@
-import React, {useEffect, memo, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import '../../css.css';
-import Choice from "./Choice";
+import { dragenter, dragover, processChange } from "../../public/WorldRank";
+import img from '../../Img_folder/no_image.jpg';
+import {chenge_textarea_height } from '../../public/WorldRank';
 
 const Make_quezeshow_content_queze = ({index,content_object,choice,setChoice,correct_choice, setCorrect_choice, content_title, setContent_title, content_explain_text, setContent_explain_text, existof_img, setExistof_img}) => {
     const [choice2, setChoice2] = useState(['','']);
@@ -40,7 +42,7 @@ const Make_quezeshow_content_queze = ({index,content_object,choice,setChoice,cor
     const change_correct_choice = (e) => {
         const correct_choice_ = correct_choice;
         correct_choice_[index] = Number(e.target.value);
-        setCorrect_choice(correct_choice => [...correct_choice_]);
+        setCorrect_choice(correct_choice => correct_choice_);
         console.log('change correct choice, correct choice :',correct_choice_);
     }
     const change_content_title = (e) => {
@@ -65,7 +67,12 @@ const Make_quezeshow_content_queze = ({index,content_object,choice,setChoice,cor
             {
                 choice2.map((e,i)=>{
                     return(
-                        <Choice key={i} correct_choice={correct_choice}index={index}i={i}change_choice_text={change_choice_text}change_correct_choice={change_correct_choice}choice={choice}delete_choice={delete_choice}/>
+                        <div key={i} className="each_choice_area" style={correct_choice[index] === i ? {borderBottom : '1px solid rgb(51, 255, 92)'} : null}>
+                            <input type="radio" name={"correct_choice"+index} value={i} onChange={(e)=>{change_correct_choice(e)}}></input>
+                            {i+1}
+                            <input type="text" id={i} name="choice" value={choice[index][i]} className="each_choice" onChange={(e)=>{change_choice_text(e)}}></input>
+                            <input type="button" id={i} value={"X"} onClick={delete_choice}></input>
+                        </div>
                     )
                 })
             }
@@ -75,4 +82,4 @@ const Make_quezeshow_content_queze = ({index,content_object,choice,setChoice,cor
         </>
     )
 }
-export default memo(Make_quezeshow_content_queze);
+export default Make_quezeshow_content_queze;
