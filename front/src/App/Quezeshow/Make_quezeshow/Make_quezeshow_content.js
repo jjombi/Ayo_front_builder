@@ -3,7 +3,8 @@ import Make_quezeshow_content_queze from './Make_quezeshow_content_queze';
 import Make_quezeshow_content_text from './Make_quezeshow_content_text';
 import YouTubeComponent from './Youtube_component';
 import {chenge_textarea_height, dragenter, dragover} from '../../public/WorldRank';
-const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object,setContent_object,file_ref,change_img,onpaste,}) => {
+import Make_quezeshow_content_ox from "./Make_quezeshow_content_ox";
+const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object,setContent_object,file_ref,change_img,onpaste,choice,setChoice,correct_choice,setCorrect_choice,setContent_state,content_state}) => {
     
     const [max_video_length,setMax_video_length] = useState(0);
 
@@ -397,6 +398,10 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
             quezeshow_type_clicked_btn === 'descriptive' && content_object[index].data_type !== null
             ?
                 <Make_quezeshow_content_text key={index} change_correct_choice_descriptive={change_correct_choice_descriptive} delete_correct_choice_descriptive={delete_correct_choice_descriptive} correct_choice={content_object[index].correct_choice} index={index}></Make_quezeshow_content_text>
+            :
+            quezeshow_type_clicked_btn === 'ox' && content_object[index].data_type !== null
+            ?
+                <Make_quezeshow_content_ox index={index}content_object={content_object}correct_choice={correct_choice} setCorrect_choice={setCorrect_choice}></Make_quezeshow_content_ox>
             :
             null
         }

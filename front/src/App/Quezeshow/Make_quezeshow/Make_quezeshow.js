@@ -279,7 +279,7 @@ const Make_quezeshow = () => {
             }, 
             headers : {
                 'Content-Type' : 'application/json',
-                'Authorization' : 'Bearer ' + getAccessToken()
+                'Authorization' : getAccessToken()
             }
 
         }).then((res)=>{
@@ -302,6 +302,8 @@ const Make_quezeshow = () => {
             // setHint(hint => [...hint,{data_type : null, }])
         }else if(quezeshow_type_clicked_btn === 'descriptive'){
             setCorrect_choice(correct_choice => [...correct_choice,[]]);
+        }else if(quezeshow_type_clicked_btn === 'ox'){
+            setCorrect_choice(correct_choice => [...correct_choice,0]);
         }
         
         // console.log('문제 추가하는 중 content object :',content_object,'quezeshow_type_clicked_btn',quezeshow_type_clicked_btn);
@@ -352,6 +354,10 @@ const Make_quezeshow = () => {
                     quezeshow_type_clicked_btn === 'descriptive'
                     ?
                     <input className="title" placeholder="서술형 퀴즈 주제" ref={queze_title_ref} name="queze_title"></input>
+                    :
+                    quezeshow_type_clicked_btn === 'ox'
+                    ?
+                    <input className="title" placeholder="O,X 퀴즈 주제" ref={queze_title_ref} name="queze_title"></input>
                     :
                     null
                 }

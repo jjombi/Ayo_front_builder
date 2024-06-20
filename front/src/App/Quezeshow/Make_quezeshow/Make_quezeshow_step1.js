@@ -33,7 +33,11 @@ const Make_quezeshow_step1 = () => {
                     <h1 id="descriptive">서술형 퀴즈</h1>
                     <p id="descriptive">정답을 입력해 맞출 수 있습니다.</p>
                 </div>
-                
+                <div id="ox" onClick={click_func} className="all_btn">
+                    <img id="ox" src={no_img}></img>
+                    <h1 id="ox">O,X 퀴즈</h1>
+                    <p id="ox">O,X중 하나를 선택하여 정답을 맞출수 있습니다.</p>
+                </div>
             </section>
             <footer>
                 <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
