@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import '../../css.css';
 import Tag_area from "./Tag_area";
 import { v4 as uuidv4 } from 'uuid';
@@ -7,14 +7,18 @@ import Loading_popup from "../../Loading_popup";
 import Header from "../../ayo_world_rank_header";
 import axios from "axios";
 import {chenge_textarea_height, getUserId, isLogin, getUserEmail, getUserEmailKey, getAccessToken, get_new_accessToken,refreshToken_expiredAt_check} from '../../public/WorldRank';
-import { useLocation  } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 import Make_quezeshow_queze_option from "./Make_quezeshow_queze_option";
 import Make_quezeshow_thumbnail from "./Make_quezeshow_thumbnail";
 import Make_quezeshow_content from "./Make_quezeshow_content";
+import { createBrowserHistory } from "history";
 
 const Make_quezeshow = () => {
+    // const history = createBrowserHistory();
+    const location = useLocation();
+    // const navigate  = useNavigate();
+
     const [uuid,setUuid] = useState('');
-    const location = useLocation(); 
     const [quezeshow_type_clicked_btn, setQuezeshow_type_clicked_btn] = useState();
     const [password, setPassword] = useState('');
     const [content_state,setContent_state] = useState([]);
@@ -53,6 +57,59 @@ const Make_quezeshow = () => {
         setQuezeshow_type_clicked_btn(quezeshow_type_clicked_btn => location.state.quezeshow_type); // vote, multiple, descriptive, 투표, 객관, 서술
         refreshToken_expiredAt_check();
     },[])
+
+    // const history_lisen = history.listen((location_) => {
+    //     console.log(location_,history);
+    //     if (history.action === "PUSH") {
+    //         alert('push')
+    //     }
+    
+    //     if (history.action === "POP") {
+    //         const confirm_ = confirm('이전으로 돌아가시겠습니까? \n변경사항이 저장되지 않을 수 있습니다');
+    //         if(!confirm_){
+    //             console.log('뒤로가기 취소');
+    //             history.push(location_);
+    //             // history_state = history_state + 1;//---
+    //             // navigate(1);
+    //             // window.history.pushState(null,'','');
+    //             // window.history.pushState(null, null, location.href);
+
+    //         }else{
+
+    //         }
+    //     }
+    // });
+
+    // useEffect(() => {
+    //     console.log('history change');
+    //     const history_lisen_ = history_lisen();
+    //     // history_state += 1;
+    //     return history_lisen_;
+    //   }, [history]);
+
+    // const preventClose = (e) => {  
+    //     e.preventDefault();  
+    //     e.returnValue = "";
+    // }
+    // const useefffunc = () => {
+    //     // window.addEventListener("popstate", function(event) {
+    //     //     if(!confirm('이전으로 돌아가시겠습니까? \n변경사항이 저장되지 않을 수 있습니다')){
+    //     //         navigate(1);
+    //     //     }
+    //     // });
+    //     window.addEventListener("beforeunload", preventClose);
+    //     return () => {    
+    //     window.removeEventListener("beforeunload", preventClose);  
+    //     // window.removeEventListener("popstate", function(event) {
+    //     //     if(!confirm('이전으로 돌아가시겠습니까? \n변경사항이 저장되지 않을 수 있습니다')){
+    //     //         navigate(1);
+    //     //     }
+    //     // });
+    //     };
+    // }
+    // useEffect(() => {  
+    //     useefffunc();
+    // }, []);
 
     const delete_thumnail = (e) => {
         e.preventDefault();
@@ -296,6 +353,7 @@ const Make_quezeshow = () => {
         const content_state_ = [...content_state,content_state.length+1];
         setContent_state(content_state=>[...content_state_]);
         setContent_object(content_object => [...content_object,{data_type : null,src : '', title : '', text : '', answer : '',start : 0, end : 0, hint : ''}]);
+        // setContent_object(content_object => [...content_object,{
         if(quezeshow_type_clicked_btn === 'multiple'){
             setChoice(choice => [...choice,['','']]);
             setCorrect_choice(correct_choice => [...correct_choice,'']);
