@@ -191,7 +191,11 @@ const Quezeshow_queze= () => {
         }
         
     }
-
+    const stop_queze = (e) => {
+        setShow_index(show_index => content_state.length);
+        console.log(e);
+        e.target.style.display = 'none';
+    }
     return(
         <div className="quezeshow_queze_root">
             {
@@ -212,6 +216,7 @@ const Quezeshow_queze= () => {
                 <Quezeshow_result_correct all_queze_num={content_state.length} correct_all_queze_num={correct_count} setShow_index={setShow_index} setClicked={setClicked} setCorrect_state={setCorrect_state}></Quezeshow_result_correct>
                 :
                 <>
+                <button className="all_btn" title={content_state.length + '문제중 ' + correct_count +'문제 정답'} onClick={stop_queze}>그만하기</button>
                 <h1>{quezeshow_title}</h1>
                 <h1>{explain_text}</h1>
                 { 

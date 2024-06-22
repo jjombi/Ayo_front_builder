@@ -83,16 +83,7 @@ const Quezeshow_before = () => {
     },[])
     // console.log(roomnum,uuid,quezeshow_type,quezeshow_title,explain_text);
     const navi_to_quezeshow_queze = () => {
-        // console.log('navi',quezeshow_type);
-        // if(quezeshow_type === 'Continue_speak'){
-            navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
-        // }else if(quezeshow_type === 'New_word_queze'){
-        //     navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
-        // }else if(quezeshow_type === 'queze'){
-        //     navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
-        // }else if(quezeshow_type === 'vote'){
-        //     navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
-        // }
+        navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&num=${num}`);
     }
     const upload_comment = (e) => {
         e.preventDefault();

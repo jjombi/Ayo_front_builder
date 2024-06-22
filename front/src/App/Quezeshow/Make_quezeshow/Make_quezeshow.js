@@ -16,7 +16,7 @@ import { createBrowserHistory } from "history";
 const Make_quezeshow = () => {
     // const history = createBrowserHistory();
     const location = useLocation();
-    // const navigate  = useNavigate();
+    // const navigate  = useNaviga   te();
 
     const [uuid,setUuid] = useState('');
     const [quezeshow_type_clicked_btn, setQuezeshow_type_clicked_btn] = useState();
@@ -353,7 +353,19 @@ const Make_quezeshow = () => {
         const content_state_ = [...content_state,content_state.length+1];
         setContent_state(content_state=>[...content_state_]);
         setContent_object(content_object => [...content_object,{data_type : null,src : '', title : '', text : '', answer : '',start : 0, end : 0, hint : ''}]);
+
         // setContent_object(content_object => [...content_object,{
+        //     data_type            : null,
+        //     src                  : '',
+        //     title                : '', 
+        //     text                 : '', 
+        //     answer               : '',
+        //     start                : 0, 
+        //     end                  : 0, 
+        //     hint                 : '',
+        //     choice               : [],
+        //     correct_choice       : correct_choice,
+        // }]);
         if(quezeshow_type_clicked_btn === 'multiple'){
             setChoice(choice => [...choice,['','']]);
             setCorrect_choice(correct_choice => [...correct_choice,'']);
