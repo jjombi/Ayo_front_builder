@@ -8,10 +8,10 @@ import no_img from '../Img_folder/no_image.jpg';
 import axios from "axios";
 import Header from '../ayo_world_rank_header';
 import Password_popup from "../Password_popup";
-import {chenge_textarea_height, getUsertype, isLogin, getUserId, getUserEmailKey} from '../public/WorldRank';
+import {chenge_textarea_height, getUsertype, isLogin, getUserId, getUserEmailKey, getQuezeshowComments} from '../public/WorldRank';
 import Quezeshow_comment from "./Quezeshow_comment";
 import {Helmet} from "react-helmet-async";
-import Declaration from "../Declaration";
+import Declaration from "../Declaration"; 
 import { customAxiosPost } from "../Custom_axios/Custom_axios";
 const Quezeshow_before = () => {
     const [result_comment_state, setResult_comment_state] = useState([]);
@@ -27,9 +27,9 @@ const Quezeshow_before = () => {
     const comment_input_title_ref = useRef();
     const [popup_state, setPopup_state] = useState(false);
     const {roomnum} = useParams();
-    useEffect(()=>{
-        // const { param } = match;
-        // console.log('params',roomnum);
+
+    const useEffectFunc = async ()=>{
+
         axios({
             url : process.env.REACT_APP_SERVER_URL + '/quezeshowtitle',
             method : 'GET',
@@ -38,84 +38,24 @@ const Quezeshow_before = () => {
                 roomnum : roomnum
             }
         }).then(res=>{
-            // console.log(res);
-            // if(res.data[0].img !== ''){
-            //     const base64img = 'data:image/jpeg;base64,'+res.data[0].img;
-            //     const binary = window.atob(base64img.split(',')[1]);
-            //     const arraybuffer = new ArrayBuffer(binary.length);
-            //     let bytes = new Uint8Array(arraybuffer);
-            //     for(let i=0;i < binary.length; i++){
-            //         bytes[i] = binary.charCodeAt(i);
-            //     }
-            //     const blob = new Blob([arraybuffer], { type: 'image/jpeg' });
-            //     const url = window.URL.createObjectURL(blob);
-            //     console.log(url);
-                setImg(img => res.data[0].img);
-            // }
+            setImg(img => res.data[0].img);
             setQuezeshow_title(quezeshow_title => res.data[0].title);
             setExplain_text(explain_text => res.data[0].explain_text);
             setUuid(uuid => res.data[0].uuid);
             setQuezeshow_type(quezeshow_type => res.data[0].quezeshow_type);
         })
-        // axios({
-        //     url : process.env.REACT_APP_SERVER_URL+'/quezeshowcomment',
-        //     method : 'get',
-        //     params : {
-        //         roomnum : roomnum
-        //     }
-        // }).then((res)=>{
-        //     // console.log('main_a_queze_comments res : ',res);
-        //     // let setResult_comment_state_ = [];
-        //     const setResult_comment_state_ = res.data.map((e,i)=>{
-        //         return {title : e.title, text : e.text, likes : e.likes, roomnum : roomnum, uuid : e.uuid, uuid2 : e.uuid2}
-        //     })
-        //     setResult_comment_state(result_comment_state => [...setResult_comment_state_]);
-        // })
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
-            method : 'GET',
-            params : {roomnum : roomnum}
-            
-        }).then(res=>{
-            // console.log('comment',res);
-            setResult_comment_state( result_comment_state => [...res.data]);
-        })
-    },[])
-    // console.log(roomnum,uuid,quezeshow_type,quezeshow_title,explain_text);
+        const comments = await getQuezeshowComments(roomnum);
+        console.log('3',comments);
+        setResult_comment_state( result_comment_state => comments);
+
+    }
+    useEffect( ()=>{useEffectFunc()},[]);
+
     const navi_to_quezeshow_queze = () => {
-        navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&num=${num}`);
+        navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
     }
     const upload_comment = (e) => {
         e.preventDefault();
-        // console.log('댓글 달기 함수 ',e);
-        // axios({
-        //     url : process.env.REACT_APP_SERVER_URL +'/main_a_queze_plus_comments',
-        //     method : 'POST',
-        //     data : {
-        //         roomName : roomnum,
-        //         type : Number(comment_input_ref.current.id),//부모인지 자식인지
-        //         value : comment_input_ref.current.value
-        //     },
-        //     headers : {
-        //         'Content-Type' : 'application/json'
-        //     }
-        // }).then(res=>{
-        //     // console.log(res);
-        //     if(res.data == 'success') {
-        //         // console.log('페이지 리로딩');
-        //         // location.reload();
-        //         const result_comment_state_ = {
-        //             title    : 'title',//fix----------
-        //             text     : comment_input_ref.current.value,
-        //             likes    : 0,
-        //             roomnum  : roomnum,
-        //             uuid     : uuid,
-        //             uuid2    : 'uuid2',//fix---------------
-
-        //         }
-        //         setResult_comment_state(result_comment_state => [result_comment_state_,...result_comment_state])
-        //     }
-        // })
         if(comment_input_title_ref.current.value === '' || comment_input_ref.current.value === ''){
             alert('아이디와 댓글 모두 입력해 주세요');
         }else{
@@ -129,7 +69,6 @@ const Quezeshow_before = () => {
             const seconds = ('0' + today.getSeconds()).slice(-2); 
 
             const timeString = year + '-' + month  + '-' + day + ' ' + hours + ':' + minutes  + ':' + seconds;
-            // console.log(timeString);
             axios({
                 url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment_upload',
                 method : 'POST',
@@ -144,17 +83,9 @@ const Quezeshow_before = () => {
                 headers : {
                     'Content-Type' : 'application/json'
                 }
-            }).then(res=>{
-                // console.log('comment upload rres',res);
-                axios({
-                    url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
-                    method : 'GET',
-                    params : {roomnum : roomnum}
-                    
-                }).then(res=>{  
-                    // console.log('comment',res);
-                    setResult_comment_state( result_comment_state => [...res.data]);
-                })
+            }).then(async res=>{
+                const comments = await getQuezeshowComments(roomnum);
+                setResult_comment_state( result_comment_state => comments);
             })
         }
     }
@@ -178,7 +109,6 @@ const Quezeshow_before = () => {
         }
     }
     const change_declaration = (e) => {
-        // e.preventDefault();
         setDeclaration(declaration => !declaration); 
     }
     return(
@@ -240,15 +170,10 @@ const Quezeshow_before = () => {
                 </div>
             </div>
             
-        {
-            // result_comment_state.map((e,i)=>{
-            //     return(<Result_comment key={i} text={e.text} likes={e.likes} roomName={e.roomName} uuid={e.uuid} ></Result_comment>)
-            // })
-            
+        {   
             result_comment_state.map((e,i)=>{
-                // console.log('comment',e);
                 return(
-                <Quezeshow_comment key={i} title={e.title} text={e.text} likes={e.likes} uuid={e.uuid} uuid2={e.uuid2} uuid3={e.uuid3} date={e.date} usertype={e.usertype}/>
+                    <Quezeshow_comment key={i} title={e.title} text={e.text} likes={e.likes} uuid={e.uuid} uuid2={e.uuid2} uuid3={e.uuid3} date={e.date} usertype={e.usertype}/>
                 )
             })
             

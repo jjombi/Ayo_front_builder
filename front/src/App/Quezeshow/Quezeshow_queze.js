@@ -11,6 +11,8 @@ import Quezeshow_queze_content_type_queze from "./Quezeshow_queze_content_type_q
 import Quezeshow_queze_content_type_text from './Quezeshow_queze_content_type_text';
 import Quezeshow_result_correct from "./Quezeshow_result_correct";
 import Quezeshow_queze_content_type_ox from "./Quezeshow_queze_content_type_ox";
+import { customAxiosGet } from "../Custom_axios/Custom_axios";
+import { getUserEmail, getUserEmailKey, getUserId, isLogin, shuffle } from "../public/WorldRank";
 const Quezeshow_queze= () => {
     const navigate = useNavigate();
     const [seachParams, setSearchParams] = useSearchParams();
@@ -36,10 +38,6 @@ const Quezeshow_queze= () => {
     const descriptive_input_ref = useRef();
     const comment_input_ref = useRef();
 
-    const shuffle = (array) => {
-        return array.sort(() => Math.random() - 0.5);
-    }
-
     useEffect(()=>{
         axios({
             url : process.env.REACT_APP_SERVER_URL + '/quezeshow_checking_existence',
@@ -56,8 +54,12 @@ const Quezeshow_queze= () => {
                         params : {roomnum : roomnum}
                         
                     }).then(res=>{
-                        const shuffle_data = shuffle(res.data);
-                        setContent_state( content_state => [...shuffle_data]);//content_state.length === 퀴즈 문제 수
+                        if(quezeshow_type === 'vote'){
+                            setContent_state( content_state => [...res.data]);
+                        }else{
+                            const shuffle_data = shuffle(res.data);
+                            setContent_state( content_state => [...shuffle_data]);//content_state.length === 퀴즈 문제 수
+                        }
                         
                     })
                     axios({
@@ -96,7 +98,7 @@ const Quezeshow_queze= () => {
     }
     
     const navi_to_quezeshowresult = () => {
-        navigate(`/quezeshow_result?roomnum=${roomnum}&uuid=${uuid.current}&quezeshow_type=${quezeshow_type}`);
+        navigate(`/quezeshow_result?uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`);
     }
     const upload_comment = () => {
         const today = new Date();
@@ -187,14 +189,25 @@ const Quezeshow_queze= () => {
                 setClicked(clicked => '');
                 const data = {queze_state : false, is_correct : null};
                 setCorrect_state(correct_state => data);
+                console.log('맞은 문제 수',correct_count);
+                
             }
         }
         
     }
     const stop_queze = (e) => {
-        setShow_index(show_index => content_state.length);
-        console.log(e);
-        e.target.style.display = 'none';
+        if(!correct_state.queze_state){
+            setShow_index(show_index => content_state.length);
+        }else{
+            setClicked(clicked => '');
+            const data = {queze_state : false, is_correct : null};
+            setCorrect_state(correct_state => data);
+            setShow_index(show_index => content_state.length);
+        }
+    }
+    const resetContent_state = () => {
+        const shuffle_data = shuffle(content_state);
+        setContent_state(content_state => [...shuffle_data]);
     }
     return(
         <div className="quezeshow_queze_root">
@@ -213,10 +226,14 @@ const Quezeshow_queze= () => {
             {
                 show_index >= content_state.length & !correct_state.queze_state
                 ?
-                <Quezeshow_result_correct all_queze_num={content_state.length} correct_all_queze_num={correct_count} setShow_index={setShow_index} setClicked={setClicked} setCorrect_state={setCorrect_state}></Quezeshow_result_correct>
+                <Quezeshow_result_correct uuid={uuid} all_queze_num={content_state.length} correct_all_queze_num={correct_count} setShow_index={setShow_index} setClicked={setClicked} setCorrect_state={setCorrect_state} setCorrect_count={setCorrect_count} resetContent_state={resetContent_state} correct_count={correct_count}></Quezeshow_result_correct>
                 :
                 <>
-                <button className="all_btn" title={content_state.length + '문제중 ' + correct_count +'문제 정답'} onClick={stop_queze}>그만하기</button>
+                {
+                    quezeshow_type !== 'vote' ?
+                    <button className="all_btn" title={content_state.length + '문제중 ' + correct_count +'문제 정답'} onClick={stop_queze}>그만하기</button>
+                    : null
+                }
                 <h1>{quezeshow_title}</h1>
                 <h1>{explain_text}</h1>
                 { 
@@ -253,7 +270,7 @@ const Quezeshow_queze= () => {
                             })
                         }
                             <div className="main2_a_queze_btn_area">
-                                <button type="button" onClick={()=>{setSubmit_state(submit_state => !submit_state);}}>다시하기</button>
+                                <button type="button" onClick={()=>{setSubmit_state(submit_state => !submit_state)}}>다시하기</button>
                                 <button type="button" onClick={navi_to_quezeshowresult}>결과 보기</button>
                             </div>
                         </section>

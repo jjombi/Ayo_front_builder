@@ -6,7 +6,7 @@ const Quezeshow_queze_content_type_text = forwardRef(({next_queze,descriptive_in
     const [timer, setTimer] = useState();
     const [hint_state,setHint_state] = useState(false);
 
-    console.log('hint',hint);
+    // console.log('hint',hint);
     // useEffect(()=>{
     //     // setTimer(timer => )
     //     if(answer.length > 20){

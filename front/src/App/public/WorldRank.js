@@ -239,6 +239,23 @@ const refreshToken_expiredAt_check = () => {
         // console.log('만료');
     }
 }
+
+const getQuezeshowComments = async (roomnum) => {
+    let return_;
+    await axios({
+        url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
+        method : 'GET',
+        params : {roomnum : roomnum}
+        
+    }).then(res=>{  
+        return_ = [...res.data];
+    })
+    return return_
+}
+
+const shuffle = (array) => {
+    return array.sort(() => Math.random() - 0.5);
+}
 // const server_url = 'http://3.34.129.99:45509';   
 // const server_url = 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app';
 export {
@@ -259,5 +276,7 @@ export {
     getrefreshToken,
     get_new_accessToken,
     getexpiredAt,
-    refreshToken_expiredAt_check
+    refreshToken_expiredAt_check,
+    getQuezeshowComments,
+    shuffle
 }
