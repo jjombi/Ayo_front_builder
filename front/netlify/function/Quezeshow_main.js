@@ -12,8 +12,8 @@ exports.handler =  async (event, context) => {
             <html lang="kr">
             <head>
                 <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" content="예능 퀴즈쇼">
-                <title>예능 퀴즈쇼</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" content="예능 게임 퀴즈쇼">
+                <title>예능 게임 퀴즈쇼</title>
                 <link rel="icon" sizes="16x16" type="image/x-icon" href="/favicon.ico?">
                 <link rel="apple-touch-icon" sizes="16x16" href="/favicon.ico?">
                 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -28,20 +28,6 @@ exports.handler =  async (event, context) => {
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7471498859383871"
                 crossorigin="anonymous"></script>
             </head>
-            <body>
-                <div id="root">
-                    <h1>예능 퀴즈</h1>
-                    <a href="https://ay0.site?tag=이어말하기"></a>
-                    <a href="https://ay0.site?tag=음악퀴즈"></a>
-                    <a href="https://ay0.site?tag=아이돌퀴즈"></a>
-                    <a href="https://ay0.site?tag=신조어퀴즈"></a>
-                    <a href="https://ay0.site?tag=상식퀴즈"></a>
-                    <a href="https://ay0.site?tag=인물퀴즈"></a>
-                    <a href="https://ay0.site?tag=이모지퀴즈"></a>
-                </div>
-                <!-- Include any necessary scripts -->
-                <script src="/bundle.js"></script>
-            </body>
             </html>
             `, 
         };
