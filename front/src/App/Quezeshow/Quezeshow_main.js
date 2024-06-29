@@ -142,11 +142,12 @@ const Quezeshow_main= ({match}) => {
                         </svg>
                     </button>
                 </header>
-            {
-                window.innerWidth <= '400px' ? 
-                <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit> :
-                <Adfit unit="DAN-vrRyUVVRZ2GLJyIR" position_type={'kakao_adfit_aside'}></Adfit>
-            }
+            {/* {
+                window.innerWidth <= '400px' ?  */}
+                <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit> 
+                {/* : */}
+                {/* <Adfit unit="DAN-vrRyUVVRZ2GLJyIR" position_type={'kakao_adfit_aside'}></Adfit>
+            } */}
             <div className="queze_list">
                 {
                     content_state.map((e,i)=>{
