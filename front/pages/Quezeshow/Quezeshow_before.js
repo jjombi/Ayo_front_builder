@@ -6,15 +6,16 @@ import React, { useEffect, useState, useRef } from "react";
 import no_img from '../../public/Img_folder/no_image.jpg';
 import axios from "axios";
 import Header from '../ayo_world_rank_header';
-import Password_popup from "../Password_popup";
+import Password_popup from "../../components/Password_popup";
 import {chenge_textarea_height, getUsertype, isLogin, getUserId, getUserEmailKey, getQuezeshowComments} from '../../functions/WorldRank';
 import Quezeshow_comment from "./Quezeshow_comment";
 import {Helmet} from "react-helmet-async";
 import Declaration from "../Declaration"; 
 import { customAxiosPost } from "../../functions/Custom_axios/Custom_axios";
+import { router } from "../../functions/WorldRank";
+
 const Quezeshow_before = () => {
     const [result_comment_state, setResult_comment_state] = useState([]);
-    const navigate = useNavigate();
     const [searchParams,setSearchParams] = useSearchParams();
     const [uuid,setUuid] = useState();
     const [quezeshow_type, setQuezeshow_type] = useState();
@@ -51,7 +52,7 @@ const Quezeshow_before = () => {
     useEffect( ()=>{useEffectFunc()},[]);
 
     const navi_to_quezeshow_queze = () => {
-        navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
+        router(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
     }
     const upload_comment = (e) => {
         e.preventDefault();

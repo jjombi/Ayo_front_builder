@@ -4,9 +4,10 @@ import { customAxiosGet, customAxiosPost } from "../../functions/Custom_axios/Cu
 // import { useNavigate, useSearchParams } from "react-router-dom";
 import { getUserEmailKey, isLogin, search_axios } from "../../functions/WorldRank";
 import Quezeshow_main_content from '../Quezeshow/Quezeshow_main_content';
+import { router } from "../../functions/WorldRank";
+import { logout } from "../../functions/profile/profile";
 const Profile = () => {
     
-    const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     
     const [content_state, setContent_state] = useState([]);
@@ -37,7 +38,7 @@ const Profile = () => {
         console.log('ㅏ오류');
         if(!isLogin()){
             alert('로그인 후 이용가능 합니다');
-            navigate('/login');
+            router('/login');
         }
     },[])
 
@@ -46,17 +47,7 @@ const Profile = () => {
         setSearchParams(searchParams);
     }
 
-    const logout = () => {
-        const logout_tinyint = confirm('로그아웃 하시겠습니다');
-        if(logout_tinyint) {
-            window.localStorage.removeItem('ay0-accessKey');
-            window.localStorage.removeItem('ay0-expiredAt');
-            window.localStorage.removeItem('ay0-user-id');
-            window.localStorage.removeItem('ay0-refreshToken');
-            window.localStorage.removeItem('ay0-user-email');
-            navigate('/');
-        }
-    }
+    
     
     return(
         <>

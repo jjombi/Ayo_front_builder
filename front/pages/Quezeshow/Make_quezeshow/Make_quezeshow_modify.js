@@ -4,7 +4,7 @@ import React,{useEffect, useRef, useState} from 'react';
 // import { useSearchParams,useLocation } from "react-router-dom";
 import Header from "../../ayo_world_rank_header";
 import Footer from '../../Footer';
-import Adfit from '../../Adfit';
+import Adfit from '../../../components/Adfit';
 import axios from 'axios';
 import Make_quezeshow_content_text from './Make_quezeshow_content_text';
 import YouTubeComponent from './Youtube_component';

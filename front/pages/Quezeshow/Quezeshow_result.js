@@ -4,8 +4,10 @@ import axios from "axios";
 import Quezeshow_queze_content from "./Quezeshow_queze_content";
 import Quezeshow_comment from "./Quezeshow_comment";
 import Header from "../ayo_world_rank_header";
-import Adfit from "../Adfit";   
-import Password_popup from "../Password_popup";
+import Adfit from "../../components/Adfit";   
+import Password_popup from "../../components/Password_popup";
+import { router } from "../../functions/WorldRank";
+
 const Quezeshow_result = () => {
     const [seachParams, setSearchParams] = useSearchParams();
     const uuid = seachParams.get('uuid'); 
@@ -22,7 +24,6 @@ const Quezeshow_result = () => {
     const allvalue = useRef(0);
     const [popup_state, setPopup_state] = useState(false);
     // const [quezeshow_type, setQuezeshow_type] = useState('');
-    const navigate = useNavigate();
     useEffect(()=>{
             // axios({
             //     url : process.env.REACT_APP_SERVER_URL + '/quezeshowtitle',
@@ -146,7 +147,7 @@ const Quezeshow_result = () => {
         // }else{
             // navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&uuid2=undefined`);
         // }
-        navigate(`/quezeshow_queze?uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`,{state:{tinyint : true}});
+        router(`/quezeshow_queze?uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`,{state:{tinyint : true}});
     }
     const password_checker = () => {
         setPopup_state(popup_state => !popup_state);

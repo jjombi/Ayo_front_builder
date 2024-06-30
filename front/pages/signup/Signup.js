@@ -2,11 +2,12 @@ import React, { useRef, useState } from "react";
 import Header from '../ayo_world_rank_header';
 import {customAxiosPost, customAxiosGet} from '../../functions/Custom_axios/Custom_axios';
 // import { useNavigate } from "react-router-dom";
-import Adfit from "../Adfit";
+import Adfit from "../../components/Adfit";
+import { router } from "../../functions/WorldRank";
+
 // import {ReactComponent as Check} from '../Img_folder/Check_ring_light.svg';
 const Signup = () => {
 
-    const navigate = useNavigate();
 
     const [password_match, setPassword_match] = useState('');
     const [email_code_state, setEmail_code_state]= useState(false);
@@ -127,7 +128,7 @@ const Signup = () => {
                         <p>비밀번호 확인</p>
                         <input ref={password2_ref} onChange={check_password_match_func} type="password"></input>
                     </div>
-                    <p className="all_btn" onClick={()=>{navigate('/login')}}>로그인 하러가기</p>
+                    <p className="all_btn" onClick={()=>{router('/login')}}>로그인 하러가기</p>
                     <button className="signup_submit_btn all_btn" type="button" onClick={submit}>다음</button>
                 </section>
             </div>

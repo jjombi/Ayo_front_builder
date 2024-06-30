@@ -2,7 +2,7 @@ import React, { useContext, useState, useRef, useEffect } from "react";
 import Tag_area from "./Tag_area";
 import { v4 as uuidv4 } from 'uuid';
 import AWS from "aws-sdk";
-import Loading_popup from "../../Loading_popup";
+import Loading_popup from "../../../components/Loading_popup";
 import Header from "../../ayo_world_rank_header";
 import axios from "axios";
 import {chenge_textarea_height, getUserId, isLogin, getUserEmail, getUserEmailKey, getAccessToken, get_new_accessToken,refreshToken_expiredAt_check} from '../../../functions/WorldRank';

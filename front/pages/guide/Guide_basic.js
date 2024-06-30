@@ -1,6 +1,7 @@
 import React from "react";
 // import { useSearchParams } from "react-router-dom";
-import { useSearchParams } from 'next/navigation'
+// import { useSearchParams } from 'next/navigation'
+
 import Header from '../ayo_world_rank_header';
 import queze_types  from '../../public/Guide_basic/queze_types.png';
 

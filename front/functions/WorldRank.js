@@ -1,5 +1,7 @@
 import axios from "axios";
 import { customAxiosPost } from "./Custom_axios/Custom_axios";
+import { useRouter } from "next/navigation"
+
 const handleCopyClipBoard = async (text) => {
 	try {
 		await navigator.clipboard.writeText(text);
@@ -256,6 +258,10 @@ const getQuezeshowComments = async (roomnum) => {
 const shuffle = (array) => {
     return array.sort(() => Math.random() - 0.5);
 }
+let router_ = useRouter();
+const router = (url) => {
+    router_.push(url);
+} 
 // const server_url = 'http://3.34.129.99:45509';   
 // const server_url = 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app';
 export {
@@ -278,5 +284,6 @@ export {
     getexpiredAt,
     refreshToken_expiredAt_check,
     getQuezeshowComments,
-    shuffle
+    shuffle,
+    router
 }

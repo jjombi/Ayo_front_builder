@@ -4,16 +4,15 @@ import Header from "../ayo_world_rank_header";
 import axios from "axios";
 import Quezeshow_queze_content from "./Quezeshow_queze_content";
 import Quezeshow_comment from "./Quezeshow_comment";
-import Adfit from "../Adfit";
-import Password_popup from "../Password_popup";
+import Adfit from "../../components/Adfit";
+import Password_popup from "../../components/Password_popup";
 import Quezeshow_queze_content_type_queze from "./Quezeshow_queze_content_type_queze";
 import Quezeshow_queze_content_type_text from './Quezeshow_queze_content_type_text';
 import Quezeshow_result_correct from "./Quezeshow_result_correct";
 import Quezeshow_queze_content_type_ox from "./Quezeshow_queze_content_type_ox";
 import { customAxiosGet } from "../../functions/Custom_axios/Custom_axios";
-import { getUserEmail, getUserEmailKey, getUserId, isLogin, shuffle } from "../../functions/WorldRank";
+import { getUserEmail, getUserEmailKey, getUserId, isLogin, shuffle, router } from "../../functions/WorldRank";
 const Quezeshow_queze= () => {
-    const navigate = useNavigate();
     const [seachParams, setSearchParams] = useSearchParams();
     const roomnum = seachParams.get('roomnum');
     const uuid = seachParams.get('uuid');
@@ -97,7 +96,7 @@ const Quezeshow_queze= () => {
     }
     
     const navi_to_quezeshowresult = () => {
-        navigate(`/quezeshow_result?uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`);
+        router(`/quezeshow_result?uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`);
     }
     const upload_comment = () => {
         const today = new Date();

@@ -8,44 +8,44 @@ const Comment_likes = ({uuid, type, likes_queze,change_queze_likes,index}) => {
 
     },[])
     const likes_plus = () => {
-        if(!isLogin()){
-            alert('로그인 후 이용가능');
-        }
-        else{
-            change_queze_likes(index,true);
-            axios({
-                url : process.env.REACT_APP_SERVER_URL+'/likes_plus',
-                method : 'POST',
-                data : {
-                    uuid : uuid,
-                    type : type,
-                    user_email : getUserEmailKey()
-                },
-                headers : {
-                    'Content-Type' : 'application/json'
-                }
-            })
-        }
+        // if(!isLogin()){
+        //     alert('로그인 후 이용가능');
+        // }
+        // else{
+        //     change_queze_likes(index,true);
+        //     axios({
+        //         url : process.env.REACT_APP_SERVER_URL+'/likes_plus',
+        //         method : 'POST',
+        //         data : {
+        //             uuid : uuid,
+        //             type : type,
+        //             user_email : getUserEmailKey()
+        //         },
+        //         headers : {
+        //             'Content-Type' : 'application/json'
+        //         }
+        //     })
+        // }
     }
 
     const likes_minus = () => {
-        if(!isLogin()){ 
-            alert('로그인 후 이용가능');
-        }else{
-            change_queze_likes(index,false);
-            axios({
-                url : process.env.REACT_APP_SERVER_URL+'/likes_minus',
-                method : 'POST',
-                data : {
-                    uuid : uuid,
-                    type : type,
-                    user_email : getUserEmailKey()
-                },
-                headers : {
-                    'Content-Type' : 'application/json'
-                }
-            })
-        }
+        // if(!isLogin()){ 
+        //     alert('로그인 후 이용가능');
+        // }else{
+        //     change_queze_likes(index,false);
+        //     axios({
+        //         url : process.env.REACT_APP_SERVER_URL+'/likes_minus',
+        //         method : 'POST',
+        //         data : {
+        //             uuid : uuid,
+        //             type : type,
+        //             user_email : getUserEmailKey()
+        //         },
+        //         headers : {
+        //             'Content-Type' : 'application/json'
+        //         }
+        //     })
+        // }
     }
 
     if(likes_queze){

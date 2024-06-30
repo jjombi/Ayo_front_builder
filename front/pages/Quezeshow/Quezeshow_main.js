@@ -2,10 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import Header from "../ayo_world_rank_header";
 import Quezeshow_main_content from "./Quezeshow_main_content";
 import axios from "axios";
-import Adfit from "../Adfit";
+import Adfit from "../../components/Adfit";
 // import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import {search_axios} from '../../functions/WorldRank';
+import {search_axios, router} from '../../functions/WorldRank';
+
 const Quezeshow_main= ({match}) => {
     const [content_state,setContent_state] = useState([
         // {
@@ -39,7 +40,7 @@ const Quezeshow_main= ({match}) => {
         //     likes_queze : 'likes_queze'
         // }
     ]);
-    const navigate = useNavigate();
+
     const params = useParams();
     const [searchParams, setSearchParams] = useSearchParams();
     const search_value_ref = useRef(null);
@@ -101,9 +102,9 @@ const Quezeshow_main= ({match}) => {
         // if(e.target.id === 0){
         // console.log('searchParams',searchParams);
         if(e.target.value === '최신순'){
-            navigate(`/1?tag=${search_tag === null ? '' : search_tag}`);
+            router(`/1?tag=${search_tag === null ? '' : search_tag}`);
         }else if(e.target.value === '인기순'){
-            navigate(`/0?tag=${search_tag === null ? '' : search_tag}`);
+            router(`/0?tag=${search_tag === null ? '' : search_tag}`);
         }
 
         // }else if(e.target.id === 1){

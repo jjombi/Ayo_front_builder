@@ -1,40 +1,39 @@
 import React from "react";
-import { getAccessToken, isLogin } from "../functions/WorldRank";
+import { getAccessToken, isLogin, router } from "../functions/WorldRank";
 import new_logo from '../public/Img_folder/NEWLOGO.png';
 const ayo_world_rank_header = () => {
 
-    const navigate = useNavigate();
 
     const navi_to_make_queze = () => {
-        navigate('/ayoworldrankmakequeze');
+        router('/ayoworldrankmakequeze');
     }
     const navi_to_main = () => {
-        navigate('/worldcup');
+        router('/worldcup');
     }
     const navi_to_quezeshow = () => {
-        navigate('/');
+        router('/');
     }
     const navi_to_make_quezeshow = () => {
-        navigate('/make_quezeshow');
+        router('/make_quezeshow');
     }
     const navi_to_community = () => {
-        navigate('/community');
+        router('/community');
     }
     const navi_to_space = () => {
-        navigate('/space');
+        router('/space');
     }
     const navi_to_guide = () => {
-        navigate('/guide_main');
+        router('/guide_main');
         
     }
     const navi_to_machugi = () => {
-        navigate('/machugi');
+        router('/machugi');
     } 
     const navi_to_Continue_speaking = () => {
-        navigate('/continue_speaking');
+        router('/continue_speaking');
     }
     const navi_to_New_word_queze = () => {
-        navigate('/new_word_queze');
+        router('/new_word_queze');
     }
     return(
         <header className="Main2_header">
@@ -50,13 +49,13 @@ const ayo_world_rank_header = () => {
             {/* <button className="all_btn" type="button" onClick={navi_to_make_quezeshow}>퀴즈쇼 제작</button> */}
             <button className="all_btn " type="button" onClick={navi_to_community}>제안하기</button>
             <button className="all_btn " type="button" onClick={navi_to_guide}>공지사항</button>
-            <button className="all_btn" type="button" onClick={()=>navigate('/produce')}>퀴즈쇼 제작</button>
+            <button className="all_btn" type="button" onClick={()=>router('/produce')}>퀴즈쇼 제작</button>
             {/* <button className="all_btn " type="button" title="" onClick={navi_to_space}>스페이스</button> */}
             {
                 isLogin() ?
-                <button className="all_btn header_login_btn" type="button" onClick={()=>{navigate('/profile')}}>프로필</button>
+                <button className="all_btn header_login_btn" type="button" onClick={()=>{router('/profile')}}>프로필</button>
                 :
-                <button className="all_btn header_login_btn" type="button" onClick={()=>{navigate('/login')}}>로그인<br/>회원가입</button>
+                <button className="all_btn header_login_btn" type="button" onClick={()=>{router('/login')}}>로그인<br/>회원가입</button>
 
             }
         </header>

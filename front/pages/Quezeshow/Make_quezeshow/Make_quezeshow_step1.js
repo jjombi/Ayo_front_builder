@@ -5,11 +5,12 @@ import descript  from '../../../public/Make_quezeshow_step1/description_queze.pn
 import multiple  from '../../../public/Make_quezeshow_step1/multiple_queze.png';
 import vote  from '../../../public/Make_quezeshow_step1/vote_queze.png';
 import ox from '../../../public/Make_quezeshow_step1/ox.png';
-import Adfit from "../../Adfit";
+import Adfit from "../../../components/Adfit";
+import { router } from "../../../functions/WorldRank";
+
 const Make_quezeshow_step1 = () => {
-    const navigate = useNavigate();
     const click_func = (e) => {
-        navigate('/make_quezeshow',{state : {'quezeshow_type' : e.target.id}});
+        router('/make_quezeshow',{state : {'quezeshow_type' : e.target.id}});
     }
 
     return(

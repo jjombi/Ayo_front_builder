@@ -1,6 +1,5 @@
 import React from 'react';
 import Svg_bug from '../public/Img_folder/Bug_light.svg';
-import Adfit from './Adfit';
 
 const Footer = ({tinyint}) => {
 

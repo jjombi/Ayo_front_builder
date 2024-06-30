@@ -3,7 +3,7 @@ import Headers from "../ayo_world_rank_header";
 import axios from "axios";
 import Community_content from "./Community_content";
 import { Helmet } from "react-helmet-async";
-import Adfit from "../Adfit";
+import Adfit from "../../components/Adfit";
 import {getUsertype} from '../../functions/WorldRank';
 const Community = () => {
     const comment_input_ref = useRef();

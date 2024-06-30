@@ -2,18 +2,19 @@ import React, {memo, useState} from "react";
 // import { useNavigate } from "react-router-dom";
 import img from '../../public/Img_folder/no_image.jpg';
 import Comment_likes from "../Comment_likes";
+import { router } from "../../functions/WorldRank";
+
 const Quezeshow_main_content= ({index,src,uuid,title,roomnum,quezeshow_type,explain_text,likes_queze,change_queze_likes}) => {
-    const navigate = useNavigate();
 
     const [mouse_hover, setMouse_hover] = useState(false);
 
     const result_click = () => {
-        navigate(`/quezeshow_result?roomnum=${roomnum}&uuid=${uuid}&quezeshow_type=${quezeshow_type}&title=${title}`);
+        router(`/quezeshow_result?roomnum=${roomnum}&uuid=${uuid}&quezeshow_type=${quezeshow_type}&title=${title}`);
     }
     const A_queze_click = () => {
         // console.log('click');
         // if(quezeshow_type === 'Continue_speak'){
-            navigate(`/quezeshow_before/${roomnum}`);
+            router(`/quezeshow_before/${roomnum}`);
         // }else if(quezeshow_type === 'New_word_queze'){
         //     navigate(`/quezeshow_before/${roomnum}`);
         // }else if(quezeshow_type === 'queze'){
