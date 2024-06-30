@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useEffect, useRef } from 'react';
-import {useNavigate} from 'react-router-dom';
 
 const Password_popup = ({setPopup_state , uuid, roomnum, title, publicAccess, type, typeWhere, explain_text, quezeshow_type, queze_type}) => {
     const input_password_ref = useRef(window.localStorage.getItem(uuid));

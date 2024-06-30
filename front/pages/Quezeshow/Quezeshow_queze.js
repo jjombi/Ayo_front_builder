@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Header from "../ayo_world_rank_header";
-import { useNavigate, useSearchParams } from "react-router-dom";
+// import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Quezeshow_queze_content from "./Quezeshow_queze_content";
 import Quezeshow_comment from "./Quezeshow_comment";
@@ -10,8 +10,8 @@ import Quezeshow_queze_content_type_queze from "./Quezeshow_queze_content_type_q
 import Quezeshow_queze_content_type_text from './Quezeshow_queze_content_type_text';
 import Quezeshow_result_correct from "./Quezeshow_result_correct";
 import Quezeshow_queze_content_type_ox from "./Quezeshow_queze_content_type_ox";
-import { customAxiosGet } from "../Custom_axios/Custom_axios";
-import { getUserEmail, getUserEmailKey, getUserId, isLogin, shuffle } from "../public/WorldRank";
+import { customAxiosGet } from "../../functions/Custom_axios/Custom_axios";
+import { getUserEmail, getUserEmailKey, getUserId, isLogin, shuffle } from "../../functions/WorldRank";
 const Quezeshow_queze= () => {
     const navigate = useNavigate();
     const [seachParams, setSearchParams] = useSearchParams();

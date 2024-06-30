@@ -1,9 +1,8 @@
 import '../css/css.css';
 
-const MyApp = ({ Component, pageProps }) => {
-	console.log(Component, pageProps);
+const MyApp = () => {
 	// return <Component {...pageProps} />;
-	return null
+	return <div>main page</div>
 }
 
 export default MyApp;

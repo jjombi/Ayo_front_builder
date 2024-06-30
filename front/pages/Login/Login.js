@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Header from '../ayo_world_rank_header';
-import { customAxiosPost } from "../Custom_axios/Custom_axios";
-import { useNavigate } from "react-router-dom";
+import { customAxiosPost } from "../../functions/Custom_axios/Custom_axios";
+// import { useNavigate } from "react-router-dom";
 import Adfit from "../Adfit";
 const Login = () => {
     

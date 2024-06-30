@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import {isLogin} from '../public/WorldRank';
-import { customAxiosGet } from "../Custom_axios/Custom_axios";
+import {isLogin} from '../../functions/WorldRank';
+import { customAxiosGet } from "../../functions/Custom_axios/Custom_axios";
 const Quezeshow_result_correct = ({uuid,all_queze_num, correct_all_queze_num, setShow_index, setClicked, setCorrect_state, setCorrect_count, resetContent_state, correct_count}) => {
     const replay = () => {
         console.log('replay');

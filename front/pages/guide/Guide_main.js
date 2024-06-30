@@ -1,10 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Header from '../ayo_world_rank_header';
 import { Helmet } from "react-helmet-async";
 import Adfit from "../Adfit";
 const Guide_main = () => {
     const navigate = useNavigate();
+    
     return(
         <section className="Guide_main_root">
             <Helmet>

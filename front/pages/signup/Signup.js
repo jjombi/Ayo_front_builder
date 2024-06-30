@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Header from '../ayo_world_rank_header';
-import {customAxiosPost, customAxiosGet} from '../Custom_axios/Custom_axios';
-import { useNavigate } from "react-router-dom";
+import {customAxiosPost, customAxiosGet} from '../../functions/Custom_axios/Custom_axios';
+// import { useNavigate } from "react-router-dom";
 import Adfit from "../Adfit";
 // import {ReactComponent as Check} from '../Img_folder/Check_ring_light.svg';
 const Signup = () => {

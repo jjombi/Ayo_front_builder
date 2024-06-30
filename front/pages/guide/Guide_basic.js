@@ -1,5 +1,6 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from 'next/navigation'
 import Header from '../ayo_world_rank_header';
 import queze_types  from '../../public/Guide_basic/queze_types.png';
 
@@ -10,8 +11,8 @@ import queze_types  from '../../public/Guide_basic/queze_types.png';
 // import vote from '../Img_folder/vote.png';
 // import queze_type from '../Img_folder/queze_type.png';
 const Guide_basic = ({text}) => {
-    const [seachParams, setSearchParams] = useSearchParams();
-    const type = seachParams.get('type');
+    const searchParams = useSearchParams();
+    const type = searchParams.get('type');
     return(
     <>  
         <Header></Header>

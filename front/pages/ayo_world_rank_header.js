@@ -1,6 +1,5 @@
 import React from "react";
-import {useNavigate} from 'react-router-dom';
-import { getAccessToken, isLogin } from "./public/WorldRank";
+import { getAccessToken, isLogin } from "../functions/WorldRank";
 import new_logo from '../public/Img_folder/NEWLOGO.png';
 const ayo_world_rank_header = () => {
 

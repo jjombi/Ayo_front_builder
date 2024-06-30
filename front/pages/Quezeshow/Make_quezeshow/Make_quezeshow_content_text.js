@@ -1,5 +1,4 @@
 import React, {useEffect, useRef, useState} from "react";
-import {chenge_textarea_height} from '../../public/WorldRank';
 const Make_quezeshow_content_text = ({delete_correct_choice_descriptive,change_correct_choice_descriptive,correct_choice,index}) => {
     
     return(

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import process from 'process';
 import React, { useEffect, useState } from 'react';
-import { getUserEmailKey, isLogin } from './public/WorldRank';
+import { getUserEmailKey, isLogin } from '../functions/WorldRank';
 const Comment_likes = ({uuid, type, likes_queze,change_queze_likes,index}) => {
 
     useEffect(()=>{

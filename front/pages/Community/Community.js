@@ -4,7 +4,7 @@ import axios from "axios";
 import Community_content from "./Community_content";
 import { Helmet } from "react-helmet-async";
 import Adfit from "../Adfit";
-import {getUsertype} from '../public/WorldRank';
+import {getUsertype} from '../../functions/WorldRank';
 const Community = () => {
     const comment_input_ref = useRef();
     const [community_content_state, setCommunity_content_state] = useState([]);

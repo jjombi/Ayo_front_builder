@@ -1,6 +1,5 @@
 import React, { useEffect, useState, memo } from "react";
 import axios from "axios";//                space, queze, comment 
-import { isLogin, getUsertype } from "../public/WorldRank";
 const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3, date, usertype}) => {
     const [likes_state, setLikes_state] = useState(false);
     const [likes_value_state, setLikes_value_state] = useState(likes);

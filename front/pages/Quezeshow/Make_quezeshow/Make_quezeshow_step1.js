@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useNavigate} from 'react-router-dom';
+// import {useNavigate} from 'react-router-dom';
 import Header from "../../ayo_world_rank_header";
 import descript  from '../../../public/Make_quezeshow_step1/description_queze.png';
 import multiple  from '../../../public/Make_quezeshow_step1/multiple_queze.png';

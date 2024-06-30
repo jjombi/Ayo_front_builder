@@ -1,6 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import { dragenter, dragover, processChange } from "../../public/WorldRank";
-import {chenge_textarea_height } from '../../public/WorldRank';
+
 
 const Make_quezeshow_content_ox = ({index,content_object,correct_choice, setCorrect_choice}) => {
     const [choice2, setChoice2] = useState(['','']);

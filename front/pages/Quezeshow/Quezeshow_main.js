@@ -3,9 +3,9 @@ import Header from "../ayo_world_rank_header";
 import Quezeshow_main_content from "./Quezeshow_main_content";
 import axios from "axios";
 import Adfit from "../Adfit";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+// import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import {search_axios} from '../public/WorldRank';
+import {search_axios} from '../../functions/WorldRank';
 const Quezeshow_main= ({match}) => {
     const [content_state,setContent_state] = useState([
         // {

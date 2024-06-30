@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Header from '../ayo_world_rank_header';
-import { customAxiosGet, customAxiosPost } from "../Custom_axios/Custom_axios";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { getUserEmailKey, isLogin, search_axios } from "../public/WorldRank";
+import { customAxiosGet, customAxiosPost } from "../../functions/Custom_axios/Custom_axios";
+// import { useNavigate, useSearchParams } from "react-router-dom";
+import { getUserEmailKey, isLogin, search_axios } from "../../functions/WorldRank";
 import Quezeshow_main_content from '../Quezeshow/Quezeshow_main_content';
 const Profile = () => {
     

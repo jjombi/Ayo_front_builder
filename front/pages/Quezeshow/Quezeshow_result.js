@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
+// import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import Quezeshow_queze_content from "./Quezeshow_queze_content";
 import Quezeshow_comment from "./Quezeshow_comment";
 import Header from "../ayo_world_rank_header";
