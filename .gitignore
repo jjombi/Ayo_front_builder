@@ -1,4 +1,4 @@
 front/node_modules
 /build
-/.next
+front/.next
 # front/.env
