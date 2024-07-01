@@ -1,4 +1,4 @@
-import { router } from "../WorldRank";
+import { router } from "@functions/WorldRank";
 const logout = () => {
     const logout_tinyint = confirm('로그아웃 하시겠습니다');
     if(logout_tinyint) {

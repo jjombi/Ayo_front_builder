@@ -1,17 +1,14 @@
 import React,{useEffect, useRef, useState} from 'react';
-// import Main2_make_queze_basic from "./Main2_make_queze_basic";
-// import Make_quezeshow_basic from './Make_quezeshow_basic';
-// import { useSearchParams,useLocation } from "react-router-dom";
-import Header from "../../ayo_world_rank_header";
-import Footer from '../../Footer';
-import Adfit from '../../../components/Adfit';
+import { useSearchParams } from 'next/navigation'
+import Header from "@header/ayo_world_rank_header";
+import Adfit from '@components/Adfit';
 import axios from 'axios';
-import Make_quezeshow_content_text from './Make_quezeshow_content_text';
-import YouTubeComponent from './Youtube_component';
-import Make_quezeshow_content_queze from "./Make_quezeshow_content_queze";
-import { dragenter, dragover, chenge_textarea_height } from "../../../functions/WorldRank";    
+import Make_quezeshow_content_text from '@make_quezeshow/Make_quezeshow_content_text';
+import YouTubeComponent from '@make_quezeshow/Youtube_component';
+import Make_quezeshow_content_queze from "@make_quezeshow/Make_quezeshow_content_queze";
+import { dragenter, dragover, chenge_textarea_height } from "@functions/WorldRank";    
 import AWS from "aws-sdk";
-
+import { router } from '@functions/WorldRank';
 // import Make_queze_modify from './Make_queze_modify';
 const Make_quezeshow_modify = () => {
     const [uuid,setUuid] = useState(''); 
@@ -19,8 +16,7 @@ const Make_quezeshow_modify = () => {
     const [quezeshow_type,setQuezeshow_type] = useState('');
     const [room_num, setRoom_num] = useState('');
     // const [queze_type,setQueze_type] = useState('');
-    const [searchParams, setSearchParams] = useSearchParams();
-    const { state } = useLocation();
+    const searchParams = useSearchParams();
     const [content_state,setContent_state] = useState([]);
     const [content_object, setContent_object] = useState([]);
     const [choice,setChoice] = useState([]);

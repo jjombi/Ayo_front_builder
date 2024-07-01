@@ -1,10 +1,11 @@
 import React from "react";
 // import { useNavigate } from "react-router-dom";
-import Header from '../ayo_world_rank_header';
+import Header from '@header/ayo_world_rank_header';
 import { Helmet } from "react-helmet-async";
-import Adfit from "../../components/Adfit";
+import Adfit from "@components/Adfit";
+import { router } from "@functions/WorldRank";
 const Guide_main = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     
     return(
         <section className="Guide_main_root">
@@ -23,7 +24,7 @@ const Guide_main = () => {
                 <meta name="twitter:description" content={"예능 게임 사이트에 대한 가이드와 공지사항를 안내 받을 수 있습니다"} />
             </Helmet>
             <Header></Header>
-            <button className="all_btn" onClick={()=>{navigate('/guide?type=1')}}>
+            <button className="all_btn" onClick={()=>{router('/guide?type=1')}}>
                 <p>퀴즈쇼 제작 방법</p>
                 <p>2024/03/11</p>
             </button>

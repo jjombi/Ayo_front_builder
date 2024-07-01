@@ -1,5 +1,5 @@
 import React from "react";
-import { dragenter, dragover, processChange } from "../../../functions/WorldRank";    
+import { dragenter, dragover, processChange } from "@functions/WorldRank";    
 
 const Make_quezeshow_thumbnail = ({main_img,change_img,onpaste,delete_thumnail}) => {
 

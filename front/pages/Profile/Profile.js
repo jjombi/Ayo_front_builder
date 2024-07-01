@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import Header from '../ayo_world_rank_header';
-import { customAxiosGet, customAxiosPost } from "../../functions/Custom_axios/Custom_axios";
-// import { useNavigate, useSearchParams } from "react-router-dom";
-import { getUserEmailKey, isLogin, search_axios } from "../../functions/WorldRank";
-import Quezeshow_main_content from '../Quezeshow/Quezeshow_main_content';
-import { router } from "../../functions/WorldRank";
-import { logout } from "../../functions/profile/profile";
+import Header from '@header/ayo_world_rank_header';
+import { customAxiosGet, customAxiosPost } from "@functions/Custom_axios/Custom_axios";
+import { getUserEmailKey, isLogin, search_axios } from "@functions/WorldRank";
+import Quezeshow_main_content from '@quezeshow/Quezeshow_main_content';
+import { router } from "@functions/WorldRank";
+import { logout } from "@functions/profile/Profile";
+import { useSearchParams } from 'next/navigation'
+
 const Profile = () => {
     
-    const [searchParams, setSearchParams] = useSearchParams();
+    const searchParams = useSearchParams();
     
     const [content_state, setContent_state] = useState([]);
     const profile_path = searchParams.get('path');

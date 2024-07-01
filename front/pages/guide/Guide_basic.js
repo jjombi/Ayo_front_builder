@@ -1,9 +1,9 @@
 import React from "react";
 // import { useSearchParams } from "react-router-dom";
 // import { useSearchParams } from 'next/navigation'
-
-import Header from '../ayo_world_rank_header';
-import queze_types  from '../../public/Guide_basic/queze_types.png';
+import { useSearchParams } from 'next/navigation'
+import Header from '@header/ayo_world_rank_header';
+import queze_types  from '@image/Guide_basic/queze_types.png';
 
 // import quezeshosw_type from '../Img_folder/quezshow_type.png';
 // import queze1 from '../Img_folder/queze_queze.png';

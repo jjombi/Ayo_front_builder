@@ -1,22 +1,18 @@
 // 퀴즈 들어가기전 댓글, 여러 정보 제공하는 화면
 import React, { useEffect, useState, useRef } from "react";
-// import Result_comment from "../Result_comment";
-// import { useNavigate } from "react-router-dom";
-// import { useSearchParams, useParams } from "react-router-dom";
-import no_img from '../../public/Img_folder/no_image.jpg';
+import no_img from '@image/Img_folder/no_image.jpg';
 import axios from "axios";
-import Header from '../ayo_world_rank_header';
-import Password_popup from "../../components/Password_popup";
-import {chenge_textarea_height, getUsertype, isLogin, getUserId, getUserEmailKey, getQuezeshowComments} from '../../functions/WorldRank';
-import Quezeshow_comment from "./Quezeshow_comment";
+import Header from '@header/ayo_world_rank_header';
+import Password_popup from "@password_popup/Password_popup";
+import {chenge_textarea_height, getUsertype, isLogin, getUserId, getUserEmailKey, getQuezeshowComments} from '@functions/WorldRank';
+import Quezeshow_comment from "@quezeshow/Quezeshow_comment";
 import {Helmet} from "react-helmet-async";
-import Declaration from "../Declaration"; 
-import { customAxiosPost } from "../../functions/Custom_axios/Custom_axios";
-import { router } from "../../functions/WorldRank";
+import Declaration from "../../components/declaraion/Declaration"; 
+import { customAxiosPost } from "@functions/Custom_axios/Custom_axios";
+import { router } from "@functions/WorldRank";
 
 const Quezeshow_before = () => {
     const [result_comment_state, setResult_comment_state] = useState([]);
-    const [searchParams,setSearchParams] = useSearchParams();
     const [uuid,setUuid] = useState();
     const [quezeshow_type, setQuezeshow_type] = useState();
     const [img,setImg] = useState('');

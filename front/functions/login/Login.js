@@ -1,5 +1,5 @@
-import { router } from "../../functions/WorldRank";
-import { customAxiosPost } from "../Custom_axios/Custom_axios";
+import { router } from "@functions/WorldRank";
+import { customAxiosPost } from "@function/Custom_axios/Custom_axios";
 
 
 const submit = (email, password) => {

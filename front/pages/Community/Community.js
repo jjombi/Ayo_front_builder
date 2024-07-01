@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import Headers from "../ayo_world_rank_header";
+import Headers from "@header/ayo_world_rank_header";
 import axios from "axios";
-import Community_content from "./Community_content";
-import { Helmet } from "react-helmet-async";
-import Adfit from "../../components/Adfit";
-import {getUsertype} from '../../functions/WorldRank';
-const Community = () => {
+import Community_content from "@community/Community_content";
+import Adfit from "@components/Adfit";
+import {getUsertype, isLogin} from '@functions/WorldRank';
+function Community () {
     const comment_input_ref = useRef();
     const [community_content_state, setCommunity_content_state] = useState([]);
 
@@ -47,20 +46,6 @@ const Community = () => {
     }
     return(
         <div className="community_root">
-            <Helmet>
-                <title>{"개발자에게 제안하기"}</title>
-                <meta charset="UTF-8"/>
-                <meta name="title" content="adjhbdlgbleln"/>
-                <meta name="referrer" content="no-referrer-when-downgrade" />
-                <meta name="description" content={"예능 게임 개발자에게 제안하거나 사용자와 소통할 수 있습니다"}></meta>
-                <meta property="og:type" content="website" />
-                <meta property="og:title" content={"개발자에게 제안하기"} />
-                <meta property="og:site_name" content={"개발자에게 제안하기"} />
-                <meta property="og:description" content={"개발자에게 제안하거나 사용자와 소통할 수 있습니다"} />
-
-                <meta name="twitter:title" content={"개발자에게 제안하기"} />
-                <meta name="twitter:description" content={"개발자에게 제안하거나 사용자와 소통할 수 있습니다"} />
-            </Helmet>
             <Headers></Headers>
             <section className="develop_process">
                 <section className="line_section">
@@ -133,6 +118,9 @@ const Community = () => {
             <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
             </footer>
         </div>
+    )
+    return(
+        <div>community page</div>
     )
 }
 

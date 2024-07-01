@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import Header from '../ayo_world_rank_header';
+import Header from '@header/ayo_world_rank_header';
 // import Adfit from "../../components/Adfit";
-import { router } from "../../functions/WorldRank";
+import { router } from "@functions/WorldRank";
 // import { submit } from "../../functions/login/Login";
 const Login = () => {
     

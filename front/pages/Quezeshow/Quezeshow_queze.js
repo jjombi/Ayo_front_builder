@@ -1,19 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-import Header from "../ayo_world_rank_header";
-// import { useNavigate, useSearchParams } from "react-router-dom";
+import Header from "@header/ayo_world_rank_header";
+import { useSearchParams } from 'next/navigation'
 import axios from "axios";
-import Quezeshow_queze_content from "./Quezeshow_queze_content";
-import Quezeshow_comment from "./Quezeshow_comment";
-import Adfit from "../../components/Adfit";
-import Password_popup from "../../components/Password_popup";
-import Quezeshow_queze_content_type_queze from "./Quezeshow_queze_content_type_queze";
-import Quezeshow_queze_content_type_text from './Quezeshow_queze_content_type_text';
-import Quezeshow_result_correct from "./Quezeshow_result_correct";
-import Quezeshow_queze_content_type_ox from "./Quezeshow_queze_content_type_ox";
-import { customAxiosGet } from "../../functions/Custom_axios/Custom_axios";
-import { getUserEmail, getUserEmailKey, getUserId, isLogin, shuffle, router } from "../../functions/WorldRank";
+import Quezeshow_queze_content from "@quezeshow/Quezeshow_queze_content";
+import Quezeshow_comment from "@quezeshow/Quezeshow_comment";
+import Adfit from "@components/Adfit";
+import Password_popup from "@password_popup/Password_popup";
+import Quezeshow_queze_content_type_queze from "@quezeshow/Quezeshow_queze_content_type_queze";
+import Quezeshow_queze_content_type_text from '@quezeshow/Quezeshow_queze_content_type_text';
+import Quezeshow_result_correct from "@quezeshow/Quezeshow_result_correct";
+import Quezeshow_queze_content_type_ox from "@quezeshow/Quezeshow_queze_content_type_ox";
+import { shuffle, router } from "@functions/WorldRank";
 const Quezeshow_queze= () => {
-    const [seachParams, setSearchParams] = useSearchParams();
+    const seachParams = useSearchParams();
     const roomnum = seachParams.get('roomnum');
     const uuid = seachParams.get('uuid');
     const quezeshow_type = seachParams.get('quezeshow_type');

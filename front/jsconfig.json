@@ -1,0 +1,18 @@
+{
+    "compilerOptions":{
+        "baseUrl": ".",
+        "paths":{
+            "@components/*" : ["components/*"],
+            "@comments_likes/*" : ["components/comments_likes/*"],
+            "@community/*" : ["components/community/*"],
+            "@declaration/*" : ["components/declaration/*"],
+            "@explain_popup/*" : ["components/explain_popup/*"],
+            "@header/*" : ["components/header/*"],
+            "@make_quezeshow/*" : ["components/make_quezeshow/*"],
+            "@quezeshow/*" : ["components/quezeshow/*"],
+            "@password_popup/*" : ["components/password_popup/*"],
+            "@functions/*" : ["functions/*"],
+            "@image/*" : ["public/*"]
+        }
+    }   
+}

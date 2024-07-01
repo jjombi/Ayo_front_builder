@@ -1,21 +1,22 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
-import Tag_area from "./Tag_area";
+import Tag_area from "@make_quezeshow/Tag_area";
 import { v4 as uuidv4 } from 'uuid';
 import AWS from "aws-sdk";
-import Loading_popup from "../../../components/Loading_popup";
-import Header from "../../ayo_world_rank_header";
+import Loading_popup from "@components/Loading_popup";
+import Header from "@header/ayo_world_rank_header";
 import axios from "axios";
-import {chenge_textarea_height, getUserId, isLogin, getUserEmail, getUserEmailKey, getAccessToken, get_new_accessToken,refreshToken_expiredAt_check} from '../../../functions/WorldRank';
+import {chenge_textarea_height, getUserId, isLogin, getUserEmail, getUserEmailKey, getAccessToken, get_new_accessToken,refreshToken_expiredAt_check} from '@functions/WorldRank';
 // import { useLocation, useNavigate} from "react-router-dom";
-import Make_quezeshow_queze_option from "./Make_quezeshow_queze_option";
-import Make_quezeshow_thumbnail from "./Make_quezeshow_thumbnail";
-import Make_quezeshow_content from "./Make_quezeshow_content";
-import { createBrowserHistory } from "history";
+import Make_quezeshow_queze_option from "@make_quezeshow/Make_quezeshow_queze_option";
+import Make_quezeshow_thumbnail from "@make_quezeshow/Make_quezeshow_thumbnail";
+import Make_quezeshow_content from "@make_quezeshow/Make_quezeshow_content";
+import { useParams } from 'next/navigation'
 
 const Make_quezeshow = () => {
     // const history = createBrowserHistory();
-    const location = useLocation();
+    // const location = useLocation();
     // const navigate  = useNaviga   te();
+    const prams = useParams();//////////////////////////////////////modify
 
     const [uuid,setUuid] = useState('');
     const [quezeshow_type_clicked_btn, setQuezeshow_type_clicked_btn] = useState();
@@ -53,7 +54,7 @@ const Make_quezeshow = () => {
         const random_modify_password = Math.random().toString(36).substr(2,5);
         setUuid(uuid=> uuid_);
         setPassword(password => random_modify_password);
-        setQuezeshow_type_clicked_btn(quezeshow_type_clicked_btn => location.state.quezeshow_type); // vote, multiple, descriptive, 투표, 객관, 서술
+        setQuezeshow_type_clicked_btn(quezeshow_type_clicked_btn => prams); // vote, multiple, descriptive, 투표, 객관, 서술
         refreshToken_expiredAt_check();
     },[])
 

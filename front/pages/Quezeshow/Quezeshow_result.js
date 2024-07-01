@@ -1,20 +1,21 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 // import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
-import Quezeshow_queze_content from "./Quezeshow_queze_content";
-import Quezeshow_comment from "./Quezeshow_comment";
-import Header from "../ayo_world_rank_header";
-import Adfit from "../../components/Adfit";   
-import Password_popup from "../../components/Password_popup";
-import { router } from "../../functions/WorldRank";
+import Quezeshow_queze_content from "@quezeshow/Quezeshow_queze_content";
+import Quezeshow_comment from "@quezeshow/Quezeshow_comment";
+import Header from "@header/ayo_world_rank_header";
+import Adfit from "@components/Adfit";   
+import Password_popup from "@password_popup/Password_popup";
+import { router } from "@functions/WorldRank";
+import { useSearchParams } from 'next/navigation'
 
 const Quezeshow_result = () => {
-    const [seachParams, setSearchParams] = useSearchParams();
-    const uuid = seachParams.get('uuid'); 
-    const roomnum = seachParams.get('roomnum');
-    const quezeshow_type = seachParams.get('quezeshow_type');
-    const quezeshow_title = seachParams.get('title');
-    const explain_text = seachParams.get('explain_text');
+    const searchParams = useSearchParams()
+    const uuid = searchParams.get('uuid'); 
+    const roomnum = searchParams.get('roomnum');
+    const quezeshow_type = searchParams.get('quezeshow_type');
+    const quezeshow_title = searchParams.get('title');
+    const explain_text = searchParams.get('explain_text');
 
     const [content_state, setContent_state] = useState([]);
     const [comment_state, setComment_state] = useState([]);

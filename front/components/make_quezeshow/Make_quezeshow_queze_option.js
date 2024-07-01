@@ -1,5 +1,4 @@
 import React from "react";
-import Make_quezeshow from "./Make_quezeshow";
 
 const Make_quezeshow_queze_option = ({quezeshow_type_clicked_btn,time_ref,time_checkbox,setTime_checkbox}) => {
     return(

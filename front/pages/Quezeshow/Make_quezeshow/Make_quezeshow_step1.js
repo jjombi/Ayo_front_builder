@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 // import {useNavigate} from 'react-router-dom';
-import Header from "../../ayo_world_rank_header";
-import descript  from '../../../public/Make_quezeshow_step1/description_queze.png';
-import multiple  from '../../../public/Make_quezeshow_step1/multiple_queze.png';
-import vote  from '../../../public/Make_quezeshow_step1/vote_queze.png';
-import ox from '../../../public/Make_quezeshow_step1/ox.png';
-import Adfit from "../../../components/Adfit";
-import { router } from "../../../functions/WorldRank";
+import Header from "@header/ayo_world_rank_header";
+import descript  from '@image/Make_quezeshow_step1/description_queze.png';
+import multiple  from '@image/Make_quezeshow_step1/multiple_queze.png';
+import vote  from '@image/Make_quezeshow_step1/vote_queze.png';
+import ox from '@image/Make_quezeshow_step1/ox.png';
+import Adfit from "@components/Adfit";
+import { router } from "@functions/WorldRank";
 
 const Make_quezeshow_step1 = () => {
     const click_func = (e) => {
-        router('/make_quezeshow',{state : {'quezeshow_type' : e.target.id}});
+        router(`/make_quezeshow/${e.target.id}`);
     }
 
     return(

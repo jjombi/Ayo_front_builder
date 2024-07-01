@@ -1,5 +1,5 @@
 import React from 'react';
-import {handleCopyClipBoard} from '../functions/WorldRank';
+import {handleCopyClipBoard} from '@functions/WorldRank';
 const Loading_popup = ({setLoading_popup_state, pending,password,setPassword_popup}) => {
 
     const setpopup = () => {

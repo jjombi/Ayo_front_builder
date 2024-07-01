@@ -1,5 +1,5 @@
 import React, { memo, useRef, useState } from "react";
-import {chenge_textarea_height} from '../functions/WorldRank';
+import {chenge_textarea_height} from '@functions/WorldRank';
 import axios from "axios";
 const Declaration = ({change_declaration, roomnum}) => {
     const declaration_reasion_ref = useRef();

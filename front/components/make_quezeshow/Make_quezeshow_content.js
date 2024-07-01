@@ -2,7 +2,7 @@ import React, { memo, useState } from "react";
 import Make_quezeshow_content_queze from './Make_quezeshow_content_queze';
 import Make_quezeshow_content_text from './Make_quezeshow_content_text';
 import YouTubeComponent from './Youtube_component';
-import {chenge_textarea_height, dragenter, dragover} from '../../../functions/WorldRank';
+import {chenge_textarea_height, dragenter, dragover} from '@functions/WorldRank';
 import Make_quezeshow_content_ox from "./Make_quezeshow_content_ox";
 const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object,setContent_object,file_ref,change_img,onpaste,choice,setChoice,correct_choice,setCorrect_choice,setContent_state,content_state}) => {
     

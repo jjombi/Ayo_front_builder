@@ -1,8 +1,8 @@
 import React, {memo, useState} from "react";
 // import { useNavigate } from "react-router-dom";
-import img from '../../public/Img_folder/no_image.jpg';
-import Comment_likes from "../Comment_likes";
-import { router } from "../../functions/WorldRank";
+import img from '@image/Img_folder/no_image.jpg';
+import Comment_likes from "@comments_likes/Comment_likes";
+import { router } from "@functions/WorldRank";
 
 const Quezeshow_main_content= ({index,src,uuid,title,roomnum,quezeshow_type,explain_text,likes_queze,change_queze_likes}) => {
 
