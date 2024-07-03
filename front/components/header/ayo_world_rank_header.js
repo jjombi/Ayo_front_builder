@@ -4,7 +4,6 @@ import new_logo from '@image/Img_folder/NEWLOGO.png';
 
 const ayo_world_rank_header = () => {
 
-
     const navi_to_make_queze = () => {
         router('/ayoworldrankmakequeze');
     }
@@ -52,13 +51,16 @@ const ayo_world_rank_header = () => {
             <button className="all_btn " type="button" onClick={navi_to_guide}>공지사항</button>
             <button className="all_btn" type="button" onClick={()=>router('/produce')}>퀴즈쇼 제작</button>
             {/* <button className="all_btn " type="button" title="" onClick={navi_to_space}>스페이스</button> */}
-            {
+            
+            {   
+                typeof window === 'undefined'? 
+                <button className="all_btn header_login_btn" type="button" onClick={()=>{router('/login')}}>로그인<br/>회원가입</button>:
                 isLogin() ?
                 <button className="all_btn header_login_btn" type="button" onClick={()=>{router('/profile')}}>프로필</button>
                 :
                 <button className="all_btn header_login_btn" type="button" onClick={()=>{router('/login')}}>로그인<br/>회원가입</button>
-
             }
+
         </header>
     )
 }

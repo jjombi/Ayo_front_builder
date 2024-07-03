@@ -9,7 +9,19 @@ import Password_popup from "@password_popup/Password_popup";
 import { router } from "@functions/WorldRank";
 import { useSearchParams } from 'next/navigation'
 
-const Quezeshow_result = () => {
+
+export async function getServerSideProps(context) {
+    // 미리 정적으로 생성할 페이지 경로들을 반환.
+    return {
+      props: {
+        id: 'vote',
+        id: 'multiple',
+        id: 'descriptive',
+      },
+    };
+}
+
+const Quezeshow_result = ({params}) => {
     const searchParams = useSearchParams()
     const uuid = searchParams.get('uuid'); 
     const roomnum = searchParams.get('roomnum');
@@ -154,20 +166,14 @@ const Quezeshow_result = () => {
         setPopup_state(popup_state => !popup_state);
     }
     return(
+        typeof window === 'undefined' ?
+        <></>
+        :
         <>
         {
             popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={uuid} roomName={''} title={quezeshow_title.current} publicAccess={null} type={null} typeWhere={'modify_password'} explain_text={quezeshow_explain_text.current} quezeshow_type={quezeshow_type}/> : null
         }
         <Header/>
-        {/* <header className="Main2_a_queze_header">
-            <button title="퀴즈쇼 수정하기." className="all_btn a_queze_header_btn" onClick={password_checker}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                <path d="M3 3V2.5H2.5V3H3ZM12.6464 13.3536C12.8417 13.5488 13.1583 13.5488 13.3536 13.3536C13.5488 13.1583 13.5488 12.8417 13.3536 12.6464L12.6464 13.3536ZM3.5 11V3H2.5V11H3.5ZM3 3.5H11V2.5H3V3.5ZM2.64645 3.35355L12.6464 13.3536L13.3536 12.6464L3.35355 2.64645L2.64645 3.35355Z" fill="#222222"/>
-                <path d="M4 15V15C4 16.8692 4 17.8038 4.40192 18.5C4.66523 18.9561 5.04394 19.3348 5.5 19.5981C6.19615 20 7.13077 20 9 20H14C16.8284 20 18.2426 20 19.1213 19.1213C20 18.2426 20 16.8284 20 14V9C20 7.13077 20 6.19615 19.5981 5.5C19.3348 5.04394 18.9561 4.66523 18.5 4.40192C17.8038 4 16.8692 4 15 4V4" stroke="#222222" strokeLinecap="round"/>
-                </svg>
-                퀴즈쇼 수정하기
-            </button>
-        </header> */}
         <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
         <div className="quezeshow_result_root">
             <section className="content">
@@ -196,7 +202,6 @@ const Quezeshow_result = () => {
                 }
                 <div className="main2_a_queze_btn_area">
                     <button onClick={navi}>퀴즈쇼 참여하기</button>
-                    {/* <button >결과 보기</button> */}
                 </div>
             </section>
         </div>
