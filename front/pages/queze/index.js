@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Header from "@header/ayo_world_rank_header";
 import { useSearchParams } from 'next/navigation'
-import axios from "axios";
 import Quezeshow_queze_content from "@quezeshow/Quezeshow_queze_content";
 import Quezeshow_comment from "@quezeshow/Quezeshow_comment";
 import Adfit from "@components/Adfit";
@@ -11,20 +10,11 @@ import Quezeshow_queze_content_type_text from '@quezeshow/Quezeshow_queze_conten
 import Quezeshow_result_correct from "@quezeshow/Quezeshow_result_correct";
 import Quezeshow_queze_content_type_ox from "@quezeshow/Quezeshow_queze_content_type_ox";
 import { shuffle, router } from "@functions/WorldRank";
+import { customAxiosPost, customAxiosGet } from "@functions/Custom_axios/Custom_axios";
+import { useParams } from "next/navigation";
 
-
-export async function getServerSideProps(context) {
-    // 미리 정적으로 생성할 페이지 경로들을 반환.
-    return {
-      props: {
-        id: 0,
-        id: 1,
-        id: 2,
-      },
-    };
-}
-
-const Quezeshow_queze= ({params}) => {
+const Quezeshow_queze= () => {
+    const params = useParams();
     const seachParams = useSearchParams();
     const roomnum = seachParams.get('roomnum');
     const uuid = seachParams.get('uuid');
@@ -51,18 +41,18 @@ const Quezeshow_queze= ({params}) => {
 
     
     useEffect(()=>{
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/quezeshow_checking_existence',
-            method : 'GET',
+        console.log('rromnum__:',roomnum,seachParams.get('roomnum'));
+        console.log('params__:',params);
+        customAxiosGet({
+            url : '/quezeshow_checking_existence',
             params : {roomnum : roomnum}
         }).then(res=>{
             if(res.data.length !== 0){
                 if(res.data[0].existence === 0){
                     alert('없는 콘텐츠 입니다');
                 }else{
-                    axios({
-                        url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze',
-                        method : 'GET',
+                    customAxiosGet({
+                        url : '/quezeshowqueze',
                         params : {roomnum : roomnum}
                         
                     }).then(res=>{
@@ -74,9 +64,8 @@ const Quezeshow_queze= ({params}) => {
                         }
                         
                     })
-                    axios({
-                        url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
-                        method : 'GET',
+                    customAxiosGet({
+                        url : '/quezeshowcomment',
                         params : {roomnum : roomnum}
                         
                     }).then(res=>{
@@ -92,9 +81,8 @@ const Quezeshow_queze= ({params}) => {
     },[roomnum])
     const submit_click = () => {
         if(clicked !== null){
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze_plus_value',
-                method : 'POST',
+            customAxiosPost({
+                url : '/quezeshowqueze_plus_value',
                 data : {
                     uuid2 : content_state[clicked].uuid2,
                 }
@@ -123,9 +111,8 @@ const Quezeshow_queze= ({params}) => {
         const seconds = ('0' + today.getSeconds()).slice(-2); 
 
         const timeString = year + '-' + month  + '-' + day + ' ' + hours + ':' + minutes  + ':' + seconds;
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment_upload',
-            method : 'POST', 
+        customAxiosPost({
+            url : '/quezeshowcomment_upload',
             data : {
                 roomnum : roomnum,
                 uuid : uuid,
@@ -133,13 +120,9 @@ const Quezeshow_queze= ({params}) => {
                 text : comment_input_ref.current.value,
                 date : timeString
             },
-            headers : {
-                'Content-Type' : 'application/json'
-            }
         }).then(res=>{
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
-                method : 'GET',
+            customAxiosGet({
+                url : '/quezeshowcomment',
                 params : {roomnum : roomnum}
                 
             }).then(res=>{
@@ -228,13 +211,13 @@ const Quezeshow_queze= ({params}) => {
             }
             <Header></Header>
         
-            {
+            {/* {
                 window.innerWidth <= 750
                 ?
                 <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
                 :
                 null
-            }
+            } */}
             {
                 show_index >= content_state.length & !correct_state.queze_state
                 ?
@@ -318,7 +301,8 @@ const Quezeshow_queze= ({params}) => {
                             <>
                             {
                                 content_state.length !== 0 ?
-                                <Quezeshow_queze_content_type_text title={content_state[show_index].title} descriptive_input_ref={descriptive_input_ref} correct_checker={correct_checker} next_queze={next_queze} img={content_state[show_index].img} uuid2={content_state[show_index].uuid2} data_type={content_state[show_index].data_type} start={content_state[show_index].start} end={content_state[show_index].end} text={content_state[show_index].text} correct_choice={correct_choice} setCorrect_choice={setCorrect_choice} correct_state={correct_state} hint={content_state[show_index].hint} timer_ref={timer_ref}></Quezeshow_queze_content_type_text>
+                                // <Quezeshow_queze_content_type_text title={content_state[show_index].title} descriptive_input_ref={descriptive_input_ref} correct_checker={correct_checker} next_queze={next_queze} img={content_state[show_index].img} uuid2={content_state[show_index].uuid2} data_type={content_state[show_index].data_type} start={content_state[show_index].start} end={content_state[show_index].end} text={content_state[show_index].text} correct_choice={correct_choice} setCorrect_choice={setCorrect_choice} correct_state={correct_state} hint={content_state[show_index].hint} timer_ref={timer_ref}></Quezeshow_queze_content_type_text>
+                                <></>
                                 : null
                             }
                             </>

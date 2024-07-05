@@ -139,27 +139,19 @@ const getUsertype = () => {
 }
 
 const search_axios = async (type,tag,email,search_value) => {
+    console.log('server url__:',process.env.SERVER_URL);
     //type : 0 = 최신, 1 = 인기
     //tag : null or str val
     //email : null or str val
     //search_value : null or str val
     let result;
-    // console.log(type,tag,email,search_value);
     const promise = new Promise((resolve,reject)=>{
-        const user_email = getUserEmail();
         let user_email_ = null;
-        user_email !== null ? 
-        user_email_ = getUserEmail().replace('@','').split('.').join('')
-        : null
-        // console.log({
-        //     value : search_value,
-        //     tag   : tag,
-        //     type  : type,
-        //     email : email,
-        //     user_email : user_email_
-        // });
+        typeof window !== 'undefined' ?
+        user_email_ = getUserEmailKey() === undefined || getUserEmailKey() === null ? null : getUserEmailKey() :
+        null
         axios({
-            url : process.env.REACT_APP_SERVER_URL + '/search_quezeshow',
+            url : process.env.NEXT_PUBLIC_SERVER_URL + '/search_quezeshow',
             method : 'GET',
             params : {
                 value : search_value,
@@ -206,7 +198,7 @@ const refreshToken_expiredAt_check = () => {
 const getQuezeshowComments = async (roomnum) => {
     let return_;
     await axios({
-        url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
+        url : process.env.NEXT_PUBLIC_SERVER_URL + '/quezeshowcomment',
         method : 'GET',
         params : {roomnum : roomnum}
         
@@ -219,8 +211,7 @@ const getQuezeshowComments = async (roomnum) => {
 const shuffle = (array) => {
     return array.sort(() => Math.random() - 0.5);
 }
-const router = (url,as) => {
-    const router_ = useRouter();
+const router = (router_,url,as) => {
     router_.push({
         pathname : url,
         as

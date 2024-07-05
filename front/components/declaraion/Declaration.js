@@ -1,14 +1,15 @@
 import React, { memo, useRef, useState } from "react";
 import {chenge_textarea_height} from '@functions/WorldRank';
 import axios from "axios";
-const Declaration = ({change_declaration, roomnum}) => {
+import { customAxiosGet } from "@functions/Custom_axios/Custom_axios";
+const Declaration = ({change_declaration, roomnum, uuid}) => {
     const declaration_reasion_ref = useRef();
     const [clicked,setClicked] = useState(null);
     
     const declaration_submit = () => {
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/declaration',
-            method : 'GET',
+        console.log(roomnum,uuid);
+        customAxiosGet({
+            url : '/declaration',
             params : {
                 roomnum : roomnum,
                 type    : clicked,
@@ -20,7 +21,6 @@ const Declaration = ({change_declaration, roomnum}) => {
         change_declaration();
     }
     const change_clicked = (e) => {
-        // console.log('cllicked',e,e.target.textContent);
         setClicked(clicked => e.target.textContent);
     } 
     return(
