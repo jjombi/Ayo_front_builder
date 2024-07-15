@@ -1,8 +1,8 @@
 import { router } from "@functions/WorldRank";
-import { customAxiosPost } from "@function/Custom_axios/Custom_axios";
+import { customAxiosPost } from "@functions/Custom_axios/Custom_axios";
 
+const submit = (email, password, router_) => {
 
-const submit = (email, password) => {
     customAxiosPost({
         url : '/login',
         data : {
@@ -20,7 +20,7 @@ const submit = (email, password) => {
             window.localStorage.setItem('ay0-expiredAt',res.data.expiredAt);
             window.localStorage.setItem('ay0-user-id',res.data.userId);
             window.localStorage.setItem('ay0-user-email',res.data.userEmail);
-            router('/');
+            router(router_,'/');
         }
     })
 }

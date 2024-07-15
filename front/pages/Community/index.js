@@ -4,40 +4,42 @@ import axios from "axios";
 import Community_content from "@community/Community_content";
 import Adfit from "@components/Adfit";
 import {getUsertype, isLogin} from '@functions/WorldRank';
-function Community () {
+import { customAxiosGet, customAxiosPost } from "@functions/Custom_axios/Custom_axios";
+
+export async function getStaticProps(context) {
+
+    const res = await customAxiosGet({
+        url : '/community',
+        params : {
+            type : 'likes'
+        }
+    })
+
+    return {
+      props: {
+        data : res.data,
+      },
+    };
+}
+
+function Community ({data}) {
     const comment_input_ref = useRef();
-    const [community_content_state, setCommunity_content_state] = useState([]);
 
     const margin1 = 453;
     const margin2 = 100;
 
-    useEffect(()=>{
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/community',
-            method : "GET",
-            params : {
-                type : 'likes'
-            }
-        }).then((res)=>{ // 20개씩 끊어서 줌
-            // console.log(res);
-            setCommunity_content_state(community_content_state => res.data);
-        })
-    },[])
+
 
     const upload_comment = () => {
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/community_plus',
-            method : 'POST',
-            headers : {
-                'Content-Type' : 'application/json'
-            },
+        customAxiosPost({
+            url : '/community_plus',
             data : {
                 text : comment_input_ref.current.value,
                 date : Date.now(),
                 usertype : getUsertype()
             }
         }).then(res=>{
-            // console.log(res);
+            
         })
     }
     const chenge_comment_area_height = (e) => {
@@ -106,8 +108,8 @@ function Community () {
             </div>
 
             {   
-                community_content_state !== undefined ?
-                community_content_state.map((e,i)=>{
+                data !== undefined ?
+                data.map((e,i)=>{
                     return(
                         <Community_content uuid={e.uuid} text={e.text} date={e.uuid} likes={e.likes}></Community_content>
                     )

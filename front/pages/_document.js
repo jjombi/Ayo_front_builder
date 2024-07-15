@@ -10,7 +10,9 @@ class MyDocument extends Document {
 	render() {
 		return (
 			<Html>
-				<Head />
+				<Head>
+					{/* <link rel="icon" sizes="16x16" type="image/x-icon" href="/favicon.ico?"><link rel="apple-touch-icon" sizes="16x16" href="/favicon.ico?"><meta name="referrer" content="no-referrer-when-downgrade"/> */}
+				</Head>
 				<body>
 					<Main />
 					<NextScript />

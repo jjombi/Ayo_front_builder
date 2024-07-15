@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import axios from "axios";
 // import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import Quezeshow_queze_content from "@quezeshow/Quezeshow_queze_content";
 import Quezeshow_comment from "@quezeshow/Quezeshow_comment";
@@ -8,8 +7,8 @@ import Adfit from "@components/Adfit";
 import Password_popup from "@password_popup/Password_popup";
 import { router } from "@functions/WorldRank";
 import { useSearchParams } from 'next/navigation'
-
-
+import { customAxiosGet, customAxiosPost } from "@functions/Custom_axios/Custom_axios";
+import { useRouter } from "next/router";
 export async function getServerSideProps(context) {
     // 미리 정적으로 생성할 페이지 경로들을 반환.
     return {
@@ -22,6 +21,7 @@ export async function getServerSideProps(context) {
 }
 
 const Quezeshow_result = ({params}) => {
+    const router_ = useRouter();
     const searchParams = useSearchParams()
     const uuid = searchParams.get('uuid'); 
     const roomnum = searchParams.get('roomnum');
@@ -39,7 +39,7 @@ const Quezeshow_result = ({params}) => {
     // const [quezeshow_type, setQuezeshow_type] = useState('');
     useEffect(()=>{
             // axios({
-            //     url : process.env.REACT_APP_SERVER_URL + '/quezeshowtitle',
+            //     url : '/quezeshowtitle',
             //     method : 'GET',
             //     params : {roomnum : roomnum}
             // }).then(res=>{
@@ -50,13 +50,11 @@ const Quezeshow_result = ({params}) => {
             //         setQuezeshow_type(quezeshow_type => res.data[0].quezeshow_type);
             //     }
             // })
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/quezeshowqueze',
-                method : 'GET',
+            customAxiosGet({
+                url : '/quezeshowqueze',
                 params : {roomnum : roomnum}
                 
             }).then(res=>{
-                console.log('content',res);
                 if(res.data.length === 0){
                     alert('퀴즈쇼 없음');
                 }else{
@@ -66,9 +64,8 @@ const Quezeshow_result = ({params}) => {
                     })
                 }
             })
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
-                method : 'GET',
+            customAxiosGet({
+                url : '/quezeshowcomment',
                 params : {roomnum : roomnum}
                 
             }).then(res=>{
@@ -78,97 +75,45 @@ const Quezeshow_result = ({params}) => {
         // }
     },[roomnum])
     const upload_comment = () => {
-        // console.log(content_state[clicked].title,comment_input_ref.current.value,content_state);
-        // console.log(uuid2);
-        // if(uuid2 !== null){
-        //     console.log(uuid,uuid2,roomnum,content_state[clicked].title,comment_input_ref.current);
-        //     axios({
-        //         url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowcomment_upload',
-        //         method : 'POST',
-        //         data : {
-        //             roomnum : roomnum,
-        //             uuid : uuid.current,
-        //             uuid2 : uuid2,
-        //             title : '없음',
-        //             text : comment_input_ref.current.value
-        //         },
-        //         headers : {
-        //             'Content-Type' : 'application/json'
-        //         }
-        //     }).then(res=>{
-        //         console.log('comment upload rres',res);
-        //         axios({
-        //             url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowcomment',
-        //             method : 'GET',
-        //             params : {
-        //                 roomnum : roomnum,
-        //                 uuid : uuid.current,
-        //                 uuid2 : uuid2,
-        //                 text : comment_input_ref.current.value
-        //             }
-                    
-        //         }).then(res=>{
-        //             console.log('comment',res);
-        //             setComment_state( content_state => [...res.data]);
-        //             // return(
-        //             //   res.data
-        //             // )
-        //         })
-        //     })
-        // }
-        // else{
-            const today = new Date();
+        const today = new Date();
 
-            const year = today.getFullYear();
-            const month = ('0' + (today.getMonth() + 1)).slice(-2);
-            const day = ('0' + today.getDate()).slice(-2);
-            const hours = ('0' + today.getHours()).slice(-2); 
-            const minutes = ('0' + today.getMinutes()).slice(-2);
-            const seconds = ('0' + today.getSeconds()).slice(-2); 
+        const year = today.getFullYear();
+        const month = ('0' + (today.getMonth() + 1)).slice(-2);
+        const day = ('0' + today.getDate()).slice(-2);
+        const hours = ('0' + today.getHours()).slice(-2); 
+        const minutes = ('0' + today.getMinutes()).slice(-2);
+        const seconds = ('0' + today.getSeconds()).slice(-2); 
 
-            const timeString = year + '-' + month  + '-' + day + ' ' + hours + ':' + minutes  + ':' + seconds;
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment_upload',
-                method : 'POST',
-                data : {
-                    roomnum : roomnum,
-                    uuid : uuid.current,
-                    title : '없음',
-                    text : comment_input_ref.current.value,
-                    date : timeString
-                },
-                headers : {
-                    'Content-Type' : 'application/json'
-                }
+        const timeString = year + '-' + month  + '-' + day + ' ' + hours + ':' + minutes  + ':' + seconds;
+        customAxiosPost({
+            url : '/quezeshowcomment_upload',
+            data : {
+                roomnum : roomnum,
+                uuid : uuid.current,
+                title : '없음',
+                text : comment_input_ref.current.value,
+                date : timeString
+            },
+        }).then(res=>{
+            // console.log('comment upload rres',res);
+            customAxiosGet({
+                url : '/quezeshowcomment',
+                params : {roomnum : roomnum}
+                
             }).then(res=>{
-                // console.log('comment upload rres',res);
-                axios({
-                    url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
-                    method : 'GET',
-                    params : {roomnum : roomnum}
-                    
-                }).then(res=>{
-                    // console.log('comment',res);
-                    setComment_state( content_state => [...res.data]);
-                })
+                // console.log('comment',res);
+                setComment_state( content_state => [...res.data]);
             })
-        // }
+        })
+        
       }
     const navi = () => {
-        // if(uuid2 !== null){
-        //     navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&uuid2=${uuid2}`);
-        // }else{
-            // navigate(`/quezeshow_queze?roomnum=${roomnum}&uuid=${uuid}&uuid2=undefined`);
-        // }
-        router(`/quezeshow_queze?uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`,{state:{tinyint : true}});
+        router(router_,`/quezeshow/${roomnum}`);
     }
     const password_checker = () => {
         setPopup_state(popup_state => !popup_state);
     }
     return(
-        typeof window === 'undefined' ?
-        <></>
-        :
         <>
         {
             popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={uuid} roomName={''} title={quezeshow_title.current} publicAccess={null} type={null} typeWhere={'modify_password'} explain_text={quezeshow_explain_text.current} quezeshow_type={quezeshow_type}/> : null

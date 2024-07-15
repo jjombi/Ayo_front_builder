@@ -2,9 +2,10 @@ import React, { useRef } from "react";
 import Header from '@header/ayo_world_rank_header';
 // import Adfit from "../../components/Adfit";
 import { router } from "@functions/WorldRank";
-// import { submit } from "../../functions/login/Login";
+import { submit } from "@functions/login/Login";
+import { useRouter } from "next/router";
 const Login = () => {
-    
+    const router_ = useRouter();
     const email_ref = useRef(null);
     const password1_ref = useRef(null);
 
@@ -32,8 +33,8 @@ const Login = () => {
                         <p>비밀번호</p>
                         <input ref={password1_ref} name="password" id="password" type="password"></input>
                     </div>
-                    <p className="all_btn" onClick={()=>{router('/')}}>회원가입 하러가기</p>
-                    {/* <button className="signup_submit_btn all_btn" type="button" onClick={()=>{submit(email_ref.current.value,password1_ref.current.value)}}>다음</button> */}
+                    <p className="all_btn" onClick={()=>{router(router_,'/signup')}}>회원가입 하러가기</p>
+                    <button className="signup_submit_btn all_btn" type="button" onClick={()=>{submit(email_ref.current.value,password1_ref.current.value,router_)}}>다음</button>
                 </section>
             </div>
             <footer>

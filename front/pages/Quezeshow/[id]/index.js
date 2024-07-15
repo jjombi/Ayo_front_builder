@@ -10,6 +10,7 @@ import Declaration from "../../../components/declaraion/Declaration";
 import { customAxiosPost, customAxiosGet } from "@functions/Custom_axios/Custom_axios";
 import { router } from "@functions/WorldRank";
 import { useRouter } from "next/router";
+import Head from "next/head";
 export async function getServerSideProps(context) {
     // 미리 정적으로 생성할 페이지 경로들을 반환.
     const roomnum = context.params.id;
@@ -47,7 +48,7 @@ const Quezeshow_before = ({item,comments,roomnum_}) => {
     const [popup_state, setPopup_state] = useState(false);
 
     const navi_to_quezeshow_queze = () => {
-        router(router_,`/queze${'?'}roomnum=${roomnum}&uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}`);
+        router(router_,`/queze`,{roomnum,uuid,title:quezeshow_title,explain_text,quezeshow_type});
     }
     const upload_comment = (e) => {
         e.preventDefault();
@@ -102,6 +103,14 @@ const Quezeshow_before = ({item,comments,roomnum_}) => {
         setDeclaration(declaration => !declaration); 
     }
     return(
+        <>
+        <Head>
+            <title>{quezeshow_title}</title>
+            <meta name="description" content={explain_text}/>
+			<meta name="robots" content="index,follow"/>
+			<link rel="canonical" href={"https://ay0.site/quezeshow/"+roomnum}/>
+			{/* <meta name="keywords" content="ayo, ay0, 퀴즈쇼, 나락퀴즈쇼, 음악퀴즈, 아이돌퀴즈쇼, 이어말하기, 인물퀴즈, 이어말하기, 신조어퀴즈, 이모지퀴즈, 상식퀴즈" /> */}
+        </Head>
         <section className="Quezeshow_before_root">
             {
                 popup_state ? <Password_popup setPopup_state={setPopup_state} uuid={uuid} roomnum={roomnum} title={quezeshow_title} publicAccess={null} type={null} typeWhere={'modify_password'} quezeshow_type={quezeshow_type}/> : null// queze_type={queze_type}
@@ -148,7 +157,7 @@ const Quezeshow_before = ({item,comments,roomnum_}) => {
             
         {   
             result_comment_state.map((e,i)=>{
-                console.log('ee__',e);
+                // console.log('ee__',e);
                 return(
                     <Quezeshow_comment key={i} title={e.title} text={e.text} likes={e.likes} uuid={e.uuid} uuid2={e.uuid2} uuid3={e.uuid3} date={e.date} usertype={e.usertype}/>
                 )
@@ -156,6 +165,7 @@ const Quezeshow_before = ({item,comments,roomnum_}) => {
             
         }
         </section>
+        </>
     )
 }
 export default Quezeshow_before;

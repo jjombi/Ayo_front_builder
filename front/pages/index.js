@@ -4,6 +4,8 @@ import Quezeshow_main_content from "@quezeshow/Quezeshow_main_content";
 import Adfit from "@components/Adfit";
 import {search_axios, router} from '@functions/WorldRank';
 import {useRouter} from "next/router";
+import Head from "next/head";
+// const Header = dynamic(() => import('@header/ayo_world_rank_header'), { ssr: false })
 
 export async function getStaticProps(context) {
 
@@ -30,18 +32,18 @@ const Quezeshow_main= ({data}) => {
     }
     const search_enter = (e) => {
         if(e.key === 'Enter'){
-            router(router_,`/0/${search_value_ref.current.value}`);
+            router(router_,`/search`,{tag:search_value_ref.current.value});
         }
     }
     const search_btn_enter = () => {
-        router(router_,`/0/${search_value_ref.current.value}`);
+        router(router_,`/search`,{tag:search_value_ref.current.value});
     }
     const change_search_type_btn = (e) => {
-        router(router_,'/0');
+        router(router_,'/search',{ty:0});
     }
     return(
         <div className="quezeshow_main_root">
-            <Header></Header>
+            <Header suppressHydrationWarning></Header>
                 <header className="Main2_a_queze_header quezeshow_main_header">
                     <input type="button" className="search_type_btn all_btn" value={'인기순'} onClick={change_search_type_btn}></input>
                     <input type="text" className="Main2_a_queze_header_input" placeholder="검색 창(입력 후 엔터)" ref={search_value_ref} onKeyUp={search_enter}></input>
@@ -56,7 +58,7 @@ const Quezeshow_main= ({data}) => {
             <div className="queze_list">
                 {
                     data.map((e,i)=>{
-                        console.log('e',e);
+                        // console.log('e',e);
                         return(
                             <Quezeshow_main_content key={i} index={i} src={'data:image/jpeg;base64,'+e.img} uuid={e.uuid} title={e.title} roomnum={e.roomnum} quezeshow_type={e.quezeshow_type} explain_text={e.explain_text} likes_queze={e.likes_queze} change_queze_likes={change_queze_likes}></Quezeshow_main_content>
                         )

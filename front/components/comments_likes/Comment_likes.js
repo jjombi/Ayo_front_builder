@@ -2,6 +2,7 @@ import axios from 'axios';
 import process from 'process';
 import React, { useEffect, useState } from 'react';
 import { getUserEmailKey, isLogin } from '@functions/WorldRank';
+import { customAxiosPost } from '@functions/Custom_axios/Custom_axios';
 const Comment_likes = ({uuid, type, likes_queze,change_queze_likes,index}) => {
 
     useEffect(()=>{
@@ -13,17 +14,13 @@ const Comment_likes = ({uuid, type, likes_queze,change_queze_likes,index}) => {
         }
         else{
             change_queze_likes(index,true);
-            axios({
-                url : process.env.REACT_APP_SERVER_URL+'/likes_plus',
-                method : 'POST',
+            customAxiosPost({
+                url : '/likes_plus',
                 data : {
                     uuid : uuid,
                     type : type,
                     user_email : getUserEmailKey()
                 },
-                headers : {
-                    'Content-Type' : 'application/json'
-                }
             })
         }
     }
@@ -33,17 +30,13 @@ const Comment_likes = ({uuid, type, likes_queze,change_queze_likes,index}) => {
             alert('로그인 후 이용가능');
         }else{
             change_queze_likes(index,false);
-            axios({
-                url : process.env.REACT_APP_SERVER_URL+'/likes_minus',
-                method : 'POST',
+            customAxiosPost({
+                url : '/likes_minus',
                 data : {
                     uuid : uuid,
                     type : type,
                     user_email : getUserEmailKey()
-                },
-                headers : {
-                    'Content-Type' : 'application/json'
-                }
+                },  
             })
         }
     }

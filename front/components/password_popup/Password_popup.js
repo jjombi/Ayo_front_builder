@@ -1,38 +1,33 @@
 import axios from 'axios';
 import React, { useEffect, useRef } from 'react';
-
+import {useRouter} from 'next/router';
+import { router } from '@functions/WorldRank';
+import { customAxiosPost } from '@functions/Custom_axios/Custom_axios';
 const Password_popup = ({setPopup_state , uuid, roomnum, title, publicAccess, type, typeWhere, explain_text, quezeshow_type, queze_type}) => {
     const input_password_ref = useRef(window.localStorage.getItem(uuid));
-    const navigate = useNavigate();
+    const router_ = useRouter();
 
     useEffect(()=>{
-        // console.log(window.localStorage.getItem(uuid),uuid);
         const password = window.localStorage.getItem(uuid);
         if(password !== null) input_password_ref.current.value = window.localStorage.getItem(uuid);
     },[])
 
     const password_checker = () => {
-        if(typeWhere === 'modify_password'){
+        if(typeWhere === 'modify_password' && input_password_ref.current.value !== ''){
             if(localStorage.getItem(uuid) != null){
-                navigate(`/makequezeshowmodify?uuid=${uuid}&title=${title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`,{state:{tinyint : true}});
+                router(router_,'/produce/modify',{uuid,title,explain_text,quezeshow_type,roomnum},{state:true});
             }
             else {
-                axios({
-                    url : process.env.REACT_APP_SERVER_URL + '/modify_quezeshowqueze_password_checker',
-                    method : 'POST',
+                customAxiosPost({
+                    url : '/modify_quezeshowqueze_password_checker',
                     data : {
                         uuid : uuid,
                         password : input_password_ref.current.value
                     },
-                    headers : {
-                        'Content-Type' : 'application/json'
-                    }
                 }).then(res=>{
-                    // console.log(res);
                     if(res.data === 'success'){
                         localStorage.setItem(uuid,input_password_ref.current.value);
-                        navigate(`/makequezeshowmodify?uuid=${uuid}&title=${title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`,{state:{tinyint : true}});
-                        
+                        router(router_,'/produce/modify',{uuid,title,explain_text,quezeshow_type,roomnum},{state:true});
                     }else{
                         alert('비번 불일치');
                     }
@@ -40,26 +35,26 @@ const Password_popup = ({setPopup_state , uuid, roomnum, title, publicAccess, ty
             }
         }
         else{
-            axios({
-                url : process.env.REACT_APP_SERVER_URL + '/password_checker',
-                method : 'POST',
-                data : {
-                    uuid : uuid,
-                    password : input_password_ref.current.value
-                },
-                headers : {
-                    'Content-Type' : 'application/json'
-                }
-            }).then((res)=>{
-                if(res.data){
-                    alert('성공');
-                    if(type === 'queze') navigate(`/choosequezetype?roomName=${roomName}&title=${title}&publicAccess=${publicAccess}`);
-                    else if(type === 'result') navigate(`/result?roomName=${roomName}&title=${title}`);
-                }
-                else{
-                    alert('비밀번호 불일치');
-                }
-            })
+            // axios({
+            //     url : process.env.REACT_APP_SERVER_URL + '/password_checker',
+            //     method : 'POST',
+            //     data : {
+            //         uuid : uuid,
+            //         password : input_password_ref.current.value
+            //     },
+            //     headers : {
+            //         'Content-Type' : 'application/json'
+            //     }
+            // }).then((res)=>{
+            //     if(res.data){
+            //         alert('성공');
+            //         if(type === 'queze') router(router_,'/choosequezetype',{roomName,title,publicAccess});
+            //         else if(type === 'result') router(router_,`/result?roomName=${roomName}&title=${title}`);
+            //     }
+            //     else{
+            //         alert('비밀번호 불일치');
+            //     }
+            // })
         }
     }
     const change_popup_state = () => {

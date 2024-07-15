@@ -46,41 +46,18 @@ const Profile = ({parmas}) => {
     }
     useEffect(()=>{useEffect_func()},[profile_path]);
     useEffect(()=>{
-        console.log('ㅏ오류');
+        // console.log('ㅏ오류');
         if(!isLogin()){
             alert('로그인 후 이용가능 합니다');
             router('/login');
         }
     },[])
 
-    const change_clicked = (e) => {
-        // searchParams.set('path',e.target.id);
-        // setSearchParams(searchParams);
-    }
+
 
     
     
     return(
-        typeof window !== 'undefined'?
-        <>
-            <Header/>
-            <section className="root_basic">
-                <header className="Main2_a_queze_header">
-                        <button type="button" id="info" title="내 정보" onClick={change_clicked} className="all_btn a_queze_header_btn">
-                            내 정보
-                        </button>
-                        <button type="button" id="my_q" title="내 퀴즈" onClick={change_clicked} className="all_btn a_queze_header_btn">
-                            내 퀴즈
-                        </button>
-                        <button type="button" id="my_likes" title="좋아요" onClick={change_clicked} className="all_btn a_queze_header_btn">
-                            좋아요
-                        </button>
-                        <button type="button" id="log_out" title="로그아웃" onClick={logout} className="all_btn a_queze_header_btn">
-                            로그아웃
-                        </button>
-                    </header>
-            </section>
-        </>:
         <>
             <Header/>
             <section className="root_basic">

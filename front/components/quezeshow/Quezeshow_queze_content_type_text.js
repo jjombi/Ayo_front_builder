@@ -2,6 +2,8 @@ import React, { forwardRef, useEffect, useState, memo } from "react";
 // import no_img from "../Img_folder/no_image.jpg";
 import Quezeshow_queze_content_video from './Quezeshow_queze_content_video';
 import axios from "axios";
+import { customAxiosGet, customAxiosPost } from "@functions/Custom_axios/Custom_axios";
+
 const Quezeshow_queze_content_type_text = forwardRef(({next_queze,descriptive_input_ref,img,data_type,uuid2,start, end, title,text, correct_choice,setCorrect_choice, correct_state,hint,timer_ref}) => {
     const [timer, setTimer] = useState();
     const [hint_state,setHint_state] = useState(false);
@@ -33,9 +35,8 @@ const Quezeshow_queze_content_type_text = forwardRef(({next_queze,descriptive_in
 
     useEffect(()=>{
         // console.log('correct_state',correct_state);
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/select_choice_correct',
-            method : 'get',
+        customAxiosGet({
+            url : '/select_choice_correct',
             params : {
                 uuid : uuid2
             }

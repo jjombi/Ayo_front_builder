@@ -1,19 +1,16 @@
 import React, {useEffect, useRef, useState} from "react";
 
 
-const Make_quezeshow_content_ox = ({index,content_object,correct_choice, setCorrect_choice}) => {
-    const [choice2, setChoice2] = useState(['','']);
+const Make_quezeshow_content_ox = ({index,content_object, setCorrect_choice, setContent_object}) => {
+
+    const correct_choice = content_object[index].correct_choice;
 
     useEffect(()=>{
         console.log('Make_quezeshow_content_ox, content_obj : ',content_object,'correct choice',correct_choice);
     })
 
     const change_correct_choice = (e) => {
-        const correct_choice_ = correct_choice;
-        correct_choice_[index] = Number(e.target.value);
-        
-        setCorrect_choice(correct_choice => [...correct_choice_]);
-        console.log('change correct choice, correct choice :',correct_choice_);
+        setCorrect_choice(Number(e.target.value));
     }
     return(
         

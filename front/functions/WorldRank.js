@@ -38,7 +38,7 @@ const upload_comment = (uuid,uuid2,roomnum,content_state,clicked,comment_input_r
   if(uuid2 !== null){
     //   console.log(uuid,uuid2,roomnum,content_state[clicked].title,comment_input_ref.current);
       axios({
-          url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowcomment_upload',
+          url : process.env.NEXT_PUBLIC_SERVER_URL + '/spacequezeshowcomment_upload',
           method : 'POST',
           data : {
               roomnum : roomnum,
@@ -53,7 +53,7 @@ const upload_comment = (uuid,uuid2,roomnum,content_state,clicked,comment_input_r
       }).then(res=>{
         //   console.log('comment upload rres',res);
           axios({
-              url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowcomment',
+              url : process.env.NEXT_PUBLIC_SERVER_URL + '/spacequezeshowcomment',
               method : 'GET',
               params : {
                   roomnum : roomnum,
@@ -72,7 +72,7 @@ const upload_comment = (uuid,uuid2,roomnum,content_state,clicked,comment_input_r
   }
   else{
       axios({
-          url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment_upload',
+          url : process.env.NEXT_PUBLIC_SERVER_URL + '/quezeshowcomment_upload',
           method : 'POST',
           data : {
               roomnum : roomnum,
@@ -86,7 +86,7 @@ const upload_comment = (uuid,uuid2,roomnum,content_state,clicked,comment_input_r
       }).then(res=>{
           // console.log('comment upload rres',res);
           axios({
-              url : process.env.REACT_APP_SERVER_URL + '/quezeshowcomment',
+              url : process.env.NEXT_PUBLIC_SERVER_URL + '/quezeshowcomment',
               method : 'GET',
               params : {roomnum : roomnum}
               
@@ -139,7 +139,7 @@ const getUsertype = () => {
 }
 
 const search_axios = async (type,tag,email,search_value) => {
-    console.log('server url__:',process.env.SERVER_URL);
+    // console.log('server url__:',process.env.SERVER_URL);
     //type : 0 = 최신, 1 = 인기
     //tag : null or str val
     //email : null or str val
@@ -147,7 +147,7 @@ const search_axios = async (type,tag,email,search_value) => {
     let result;
     const promise = new Promise((resolve,reject)=>{
         let user_email_ = null;
-        typeof window !== 'undefined' ?
+        typeof window !== 'undefined' && isLogin() ?
         user_email_ = getUserEmailKey() === undefined || getUserEmailKey() === null ? null : getUserEmailKey() :
         null
         axios({
@@ -211,10 +211,11 @@ const getQuezeshowComments = async (roomnum) => {
 const shuffle = (array) => {
     return array.sort(() => Math.random() - 0.5);
 }
-const router = (router_,url,as) => {
+const router = (router_,url,query,locale,as) => {
     router_.push({
         pathname : url,
-        as
+        query,
+        as,
     });
 } 
 // const server_url = 'http://3.34.129.99:45509';   

@@ -1,15 +1,12 @@
 import React, {useState} from "react";
 import axios from "axios";
+import { customAxiosPost } from "@functions/Custom_axios/Custom_axios";
 const Community_content = ({text,uuid,date,likes}) => {
     const [likes_state, setLikes_state] = useState(false);
 
     const change_comment = (e,type) => {
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/community_likes_change',
-            method : 'POST',
-            headers : {
-                'Content-Type' : 'application/json'
-            },
+        customAxiosPost({
+            url : '/community_likes_change',
             data : {
                 uuid : uuid,
                 type  : type

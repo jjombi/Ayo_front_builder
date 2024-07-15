@@ -8,7 +8,6 @@ const Audio_canvas = () => {
         const ctx = canvas.getContext('2d');
         const canvasWidth = canvas.clientWidth;
         const canvasHeight = canvas.clientHeight;
-        const numBars = Math.floor(canvasWidth / barWidth);
         const length = 50;
         const barWidth = (canvas.width / length) * 2.5;
         // const barWidth = 1;

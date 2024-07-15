@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getAccessToken, isLogin, router } from "@functions/WorldRank";
 import new_logo from '@image/Img_folder/NEWLOGO.png';
 import Image from 'next/image';
@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 const ayo_world_rank_header = () => {
 
     const router_ = useRouter();
+    const [client_state, setClient_state] = useState(false);
 
     const navi_to_make_queze = () => {
         router(router_,'/ayoworldrankmakequeze');
@@ -16,11 +17,11 @@ const ayo_world_rank_header = () => {
     const navi_to_quezeshow = () => {
         router(router_,'/');
     }
-    const navi_to_make_quezeshow = () => {
-        router(router_,'/Produce/step1');
+    const navi_to_make_quezeshow = (e) => {
+        router(router_,'/produce/step1');
     }
     const navi_to_community = () => {
-        router(router_,'/Community');
+        router(router_,'/community');
     }
     const navi_to_space = () => {
         router(router_,'/space');
@@ -38,6 +39,11 @@ const ayo_world_rank_header = () => {
     const navi_to_New_word_queze = () => {
         router(router_,'/new_word_queze');
     }
+
+    useEffect(()=>{
+        setClient_state(true);
+    })
+
     return(
         <header className="Main2_header">
             <div className='header_rogo'>
@@ -52,11 +58,12 @@ const ayo_world_rank_header = () => {
             {/* <button className="all_btn" type="button" onClick={navi_to_make_quezeshow}>퀴즈쇼 제작</button> */}
             <button className="all_btn " type="button" onClick={navi_to_community}>제안하기</button>
             <button className="all_btn " type="button" onClick={navi_to_guide}>공지사항</button>
-            <button className="all_btn" type="button" onClick={()=>router(router_,'/produce')}>퀴즈쇼 제작</button>
+            <button className="all_btn" type="button" onClick={(e)=>navi_to_make_quezeshow(e)}>퀴즈쇼 제작</button>
             {/* <button className="all_btn " type="button" title="" onClick={navi_to_space}>스페이스</button> */}
             
             {   
-                typeof window === 'undefined'? 
+                // typeof window === 'undefined'?
+                !client_state ? 
                 <button className="all_btn header_login_btn" type="button" onClick={()=>{router(router_,'/login')}}>로그인<br/>회원가입</button>:
                 isLogin() ?
                 <button className="all_btn header_login_btn" type="button" onClick={()=>{router(router_,'/profile')}}>프로필</button>

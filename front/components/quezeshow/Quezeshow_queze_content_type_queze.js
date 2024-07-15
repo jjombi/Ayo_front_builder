@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef, forwardRef, memo } from "react";
 import axios from "axios";
 // import {canvas_func} from '../public/WorldRank';
 import Quezeshow_queze_content_video from './Quezeshow_queze_content_video';
+import { customAxiosGet, customAxiosPost } from "@functions/Custom_axios/Custom_axios";
+
 const Quezeshow_queze_content_type_queze = ({img,data_type,uuid2,start, end, title,text, clicked, setClicked, correct_choice,setCorrect_choice, correct_state,hint,timer_ref}) => {
     // const [is_correct, setIs_correct] = useState(false);
     const [choice, setChoice] = useState([]); 
@@ -15,9 +17,8 @@ const Quezeshow_queze_content_type_queze = ({img,data_type,uuid2,start, end, tit
 
     useEffect(()=>{
         // canvas_func(canvas_ref);
-        axios({
-            url : process.env.REACT_APP_SERVER_URL + '/select_choice_correct',
-            method : 'get',
+        customAxiosGet({
+            url : '/select_choice_correct',
             params : {
                 uuid : uuid2
             }

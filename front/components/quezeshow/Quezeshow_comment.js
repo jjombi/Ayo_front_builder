@@ -1,8 +1,10 @@
 import React, { useEffect, useState, memo } from "react";
 import axios from "axios";//                space, queze, comment 
+import { customAxiosGet, customAxiosPost } from "@functions/Custom_axios/Custom_axios";
 const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3, date, usertype}) => {
     const [likes_state, setLikes_state] = useState(false);
     const [likes_value_state, setLikes_value_state] = useState(likes);
+    
     // const debounce = (func, timeout = 5000) => {
     //     setLikes_state(likes_state => !likes_state);
     //     let timer;
@@ -22,32 +24,24 @@ const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3, date, usertype}
         // console.log('result comment change function uuid3 :',uuid3,typeof(uuid3),likes_state);
         // setTimeout(()=>{
             // if(likes_state === false){
-                if(uuid3 !== undefined){
-                    axios({
-                        url : process.env.REACT_APP_SERVER_URL + '/spacequezeshowcommentchange',
-                        method : 'POST',
-                        headers : {
-                            'Content-Type' : 'application/json'
-                        },
-                        data : {
-                            uuid3 : uuid3,
-                            type  : type
-                        }
-                    }).then((res)=>{
-                        // console.log(res);
-                        setLikes_state(likes_state => !likes_state);
-                        type === 'minus' ? 
-                        setLikes_value_state(likes_value_state => likes_value_state - 1):
-                        setLikes_value_state(likes_value_state => likes_value_state + 1)
-                    })
-                }
-                else{
-                    axios({
-                        url : process.env.REACT_APP_SERVER_URL + '/quezeshowcommentchange',
-                        method : 'POST',
-                        headers : {
-                            'Content-Type' : 'application/json'
-                        },
+                // if(uuid3 !== undefined){
+                //     customAxiosPost({
+                //         url : '/spacequezeshowcommentchange',
+                //         data : {
+                //             uuid3 : uuid3,
+                //             type  : type
+                //         }
+                //     }).then((res)=>{
+                //         // console.log(res);
+                //         setLikes_state(likes_state => !likes_state);
+                //         type === 'minus' ? 
+                //         setLikes_value_state(likes_value_state => likes_value_state - 1):
+                //         setLikes_value_state(likes_value_state => likes_value_state + 1)
+                //     })
+                // }
+                // else{
+                    customAxiosPost({
+                        url : '/quezeshowcommentchange',
                         data : {
                             uuid2 : uuid2,
                             type  : type
@@ -59,7 +53,7 @@ const Quezeshow_comment = ({title,text,likes,uuid, uuid2, uuid3, date, usertype}
                         setLikes_value_state(likes_value_state => likes_value_state - 1):
                         setLikes_value_state(likes_value_state => likes_value_state + 1)
                     })
-                }
+                // }
             // }
         // },10000)
     }

@@ -11,10 +11,9 @@ import Quezeshow_result_correct from "@quezeshow/Quezeshow_result_correct";
 import Quezeshow_queze_content_type_ox from "@quezeshow/Quezeshow_queze_content_type_ox";
 import { shuffle, router } from "@functions/WorldRank";
 import { customAxiosPost, customAxiosGet } from "@functions/Custom_axios/Custom_axios";
-import { useParams } from "next/navigation";
-
+import { useRouter } from "next/router";
 const Quezeshow_queze= () => {
-    const params = useParams();
+    const router_ = useRouter();
     const seachParams = useSearchParams();
     const roomnum = seachParams.get('roomnum');
     const uuid = seachParams.get('uuid');
@@ -41,43 +40,43 @@ const Quezeshow_queze= () => {
 
     
     useEffect(()=>{
-        console.log('rromnum__:',roomnum,seachParams.get('roomnum'));
-        console.log('params__:',params);
-        customAxiosGet({
-            url : '/quezeshow_checking_existence',
-            params : {roomnum : roomnum}
-        }).then(res=>{
-            if(res.data.length !== 0){
-                if(res.data[0].existence === 0){
-                    alert('없는 콘텐츠 입니다');
-                }else{
-                    customAxiosGet({
-                        url : '/quezeshowqueze',
-                        params : {roomnum : roomnum}
-                        
-                    }).then(res=>{
-                        if(quezeshow_type === 'vote'){
-                            setContent_state( content_state => [...res.data]);
-                        }else{
-                            const shuffle_data = shuffle(res.data);
-                            setContent_state( content_state => [...shuffle_data]);//content_state.length === 퀴즈 문제 수
-                        }
-                        
-                    })
-                    customAxiosGet({
-                        url : '/quezeshowcomment',
-                        params : {roomnum : roomnum}
-                        
-                    }).then(res=>{
-                        setComment_state( content_state => [...res.data]);
-                    })
-            
+        if(roomnum !== null){
+            customAxiosGet({
+                url : '/quezeshow_checking_existence',
+                params : {roomnum : roomnum}
+            }).then(res=>{
+                if(res.data.length !== 0){
+                    if(res.data[0].existence === 0){
+                        alert('없는 콘텐츠 입니다, not exist content err');
+                    }else{
+                        customAxiosGet({
+                            url : '/quezeshowqueze',
+                            params : {roomnum : Number(roomnum)}
+                            
+                        }).then(res=>{
+                            if(quezeshow_type === 'vote'){
+                                setContent_state( content_state => [...res.data]);
+                            }else{
+                                const shuffle_data = shuffle(res.data);
+                                setContent_state( content_state => [...shuffle_data]);//content_state.length === 퀴즈 문제 수
+                            }
+                            
+                        })
+                        customAxiosGet({
+                            url : '/quezeshowcomment',
+                            params : {roomnum : roomnum}
+                            
+                        }).then(res=>{
+                            setComment_state( content_state => [...res.data]);
+                        })
+                
+                    }
                 }
-            }
-            else {
-                alert('없는 콘텐츠 입니다');
-            }
-        })
+                else {
+                    alert('없는 콘텐츠 입니다, data null err');
+                }
+            })
+        }
     },[roomnum])
     const submit_click = () => {
         if(clicked !== null){
@@ -98,7 +97,7 @@ const Quezeshow_queze= () => {
     }
     
     const navi_to_quezeshowresult = () => {
-        router(`/quezeshow_result?uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`);
+        router(router_,`/quezeshow/result`,{uuid,title:quezeshow_title,explain_text,quezeshow_type,roomnum});
     }
     const upload_comment = () => {
         const today = new Date();
@@ -183,9 +182,7 @@ const Quezeshow_queze= () => {
                 setShow_index(show_index => show_index+1);
                 setClicked(clicked => '');
                 const data = {queze_state : false, is_correct : null};
-                setCorrect_state(correct_state => data);
-                console.log('맞은 문제 수',correct_count);
-                
+                setCorrect_state(correct_state => data);                
             }
         }
         
@@ -301,8 +298,8 @@ const Quezeshow_queze= () => {
                             <>
                             {
                                 content_state.length !== 0 ?
-                                // <Quezeshow_queze_content_type_text title={content_state[show_index].title} descriptive_input_ref={descriptive_input_ref} correct_checker={correct_checker} next_queze={next_queze} img={content_state[show_index].img} uuid2={content_state[show_index].uuid2} data_type={content_state[show_index].data_type} start={content_state[show_index].start} end={content_state[show_index].end} text={content_state[show_index].text} correct_choice={correct_choice} setCorrect_choice={setCorrect_choice} correct_state={correct_state} hint={content_state[show_index].hint} timer_ref={timer_ref}></Quezeshow_queze_content_type_text>
-                                <></>
+                                <Quezeshow_queze_content_type_text title={content_state[show_index].title} descriptive_input_ref={descriptive_input_ref} correct_checker={correct_checker} next_queze={next_queze} img={content_state[show_index].img} uuid2={content_state[show_index].uuid2} data_type={content_state[show_index].data_type} start={content_state[show_index].start} end={content_state[show_index].end} text={content_state[show_index].text} correct_choice={correct_choice} setCorrect_choice={setCorrect_choice} correct_state={correct_state} hint={content_state[show_index].hint} timer_ref={timer_ref}></Quezeshow_queze_content_type_text>
+                                // <></>
                                 : null
                             }
                             </>

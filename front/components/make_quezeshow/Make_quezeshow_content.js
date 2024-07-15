@@ -1,11 +1,17 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import Make_quezeshow_content_queze from './Make_quezeshow_content_queze';
 import Make_quezeshow_content_text from './Make_quezeshow_content_text';
 import YouTubeComponent from './Youtube_component';
 import {chenge_textarea_height, dragenter, dragover} from '@functions/WorldRank';
 import Make_quezeshow_content_ox from "./Make_quezeshow_content_ox";
-const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object,setContent_object,file_ref,change_img,onpaste,choice,setChoice,correct_choice,setCorrect_choice,setContent_state,content_state}) => {
-    
+const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object,setContent_object,file_ref,change_img,onpaste}) => {
+
+    useEffect(()=>{
+        console.log('rendering... content_object',content_object);
+    })
+
+    const correct_choice = content_object[index].correct_choice;
+    const choice = content_object[index].choice;
     const [max_video_length,setMax_video_length] = useState(0);
 
     const setMax_video_length_func = (value,index) => {
@@ -14,13 +20,12 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
         setContent_object(content_object => [...content_object_]);
     }
 
-    const queze_option_click = (type,index) => {
-        // console.log(type);
+    const queze_option_click = (type,index) => { // 이미지, 영상, 음악, 텍스트 선택
         const content_object_ = content_object;
         content_object_[index].data_type = type;
         setContent_object(content_object => [...content_object_]);
     }
-    const change_video_url = (e,index) => {
+    const change_video_url = (e,index) => { // 영상 url 변경
         const content_object_ = content_object;
 
         if(e.target.value.includes('?v=')){
@@ -51,7 +56,7 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
             // alert('url이 잘못되었습니다');
         }
     }
-    const change_video_start_input_number = (e,first_video_start,type,index) => {
+    const change_video_start_input_number = (e,first_video_start,type,index) => { // 영상 시작점 변경(선움직여서)
         const after_video_start = e.target.value;
         const content_object_ = content_object;
         if(first_video_start >= after_video_start){
@@ -71,7 +76,7 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
         }else console.log('err');
         setContent_object(content_object => [...content_object_]);
     }
-    const change_video_end_input_number = (e,first_video_end,type,index) => {
+    const change_video_end_input_number = (e,first_video_end,type,index) => { // 영상 종료지점 변경(선움직여서)
         const after_video_end = e.target.value;
         const content_object_ = content_object;
         if(first_video_end >= after_video_end){
@@ -94,97 +99,64 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
         }else alter('err');
         setContent_object(content_object => [...content_object_]);
     }
-    const change_video_start = (e,index) => {
+    const change_video_start = (e,index) => { // 영상 시작 지점 변경(숫자 입력해서)
         const content_object_ = content_object;
         content_object_[index].start = e.target.value;
         setContent_object(content_object => [...content_object_]);
     }
-    const change_video_end = (e,index) => {
+    const change_video_end = (e,index) => { // 영상 종료 지점 변경(숫자 입력해서)
         const content_object_ = content_object;
         content_object_[index].end = e.target.value;
         setContent_object(content_object => [...content_object_]);    
     }
 
-    const change_correct_choice_descriptive = (e,index) => {
-        
+    const change_correct_choice_descriptive = (e,index) => { // 서술형 퀴즈 정답 작성 및 추가
         if(e.key === 'Enter'){
-            // console.log('enter');
-            // const correct_choice_ = correct_choice;
-            // correct_choice_[index] = [...correct_choice[index],e.target.value];
-            // setCorrect_choice(correct_choice => [...correct_choice_]);
             const content_object_ = content_object;
-            content_object_[index].correct_choice[index] = e.target.value;
+            content_object_[index].correct_choice = [...content_object_[index].correct_choice,e.target.value];
             setContent_object(content_object => [...content_object_]);
-
             e.target.value = '';
         }
     }
-    const delete_correct_choice_descriptive = (ev,index) => {
-        // console.log('delete_correct_choice_descriptive');
-        // const correct_choice_ = correct_choice;
-        // correct_choice_[index] = correct_choice[index].filter((e,i)=>{return i !== Number(ev.target.id)});
-        // console.log('after',correct_choice_);
-        // setCorrect_choice(correct_choice => [...correct_choice_]);   
+    const delete_correct_choice_descriptive = (ev,index) => { // 정답 전부 없앰
         const content_object_ = content_object;
         content_object_[index].correct_choice = content_object_[index].correct_choice.filter((e,i)=>{return i !== Number(ev.target.id)});
         setContent_object(content_object => [...content_object_]);
         
     }
-    const delete_ = (index) => {
-        // console.log('delete_ index',index,'file_ref.current',file_ref.current,'content_state',content_state,'content_object',content_object);
+    const delete_ = (index) => { // 퀴즈 한개 삭제
         file_ref.current = file_ref.current.filter((e,i)=>{return(i !== Number(index))});
-        // const content_state_ = content_state.filter((e,i)=>{return(i !== Number(index))});
         const content_object_ = content_object.filter((e,i)=>{return(i !== Number(index))});
-        // console.log(file_ref.current,content_state_,content_object_);
-        // setContent_state(content_state => [...content_state_]);
         setContent_object(content_object => [...content_object_]);
-        // if(quezeshow_type_clicked_btn === 'multiple'){
-        //     const choice_ = choice.filter((e,i) => {return(i !== Number(index))});
-        //     setChoice(choice => [...choice_]);
-        // }else if(quezeshow_type_clicked_btn === 'descriptive'){
-        //     const correct_choice_ = correct_choice.filter((e,i)=>{return(i !== Number(index))});
-        //     setCorrect_choice(correct_choice => [...correct_choice_]);
-        // }
     }
-    const change_title = (e,index) => {
-        let content_object_ = [...content_object];
-
-        // console.log(index,content_object_[index]);
+    const change_title = (e,index) => { // 퀴즈 제목 변경
+        const content_object_ = [...content_object];
         content_object_[index].title = e.target.value;
         setContent_object(content_object => [...content_object_]);
     }
-    const change_hint = (e,index) => {
-        let content_object_ = [...content_object];
+    const change_hint = (e,index) => { // 퀴즈 힌트 변경
+        const content_object_ = [...content_object];
         content_object_[index].hint = e.target.value;
         setContent_object(content_object => [...content_object_]);
     }
-    const change_text = (e,index) => {
-        let content_object_ = [...content_object];
+    const change_text = (e,index) => { // 퀴즈 설명글 변경----현재 사용 안함
+        const content_object_ = [...content_object];
         content_object_[index].text = e.target.value;
         setContent_object(content_object => [...content_object_]);
     }
-    const change_value = (e,index) => {
-        let content_object_ = [...content_object];
-        if(e.target.id === 'v1'){
-            content_object_[index].v1 = e.target.value;
-            // console.log(e.target.id,'change value, e.target.id === v1');
-        }else if(e.target.id === 'v2'){
-            content_object_[index].v2 = e.target.value;
-            // console.log(e.target.id,'change value, e.target.id === v2');
-        }else if(e.target.id === 'v3'){
-            content_object_[index].v3 = e.target.value;
-            // console.log(e.target.id,'change value, e.target.id === v3');
-        }else if(e.target.id === 'v4'){
-            content_object_[index].v4 = e.target.value;
-            // console.log(e.target.id,'change value, e.target.id === v4');
-        }else if(e.target.id === 'answer'){
-            content_object_[index].answer = e.target.value;
-            // console.log(e.target.id,'change value, e.target.id === answer');
-        }
-        else{
-            // console.log(e.target.id,'change value, e.target.id != ');
-        }
-        // content_object_[index] = content_object_;
+    const add_choice = () => { // 퀴즈 타입 queze인 퀴즈 선택지 추가 
+        const content_object_ = [...content_object];
+        content_object_[index].choice = [...content_object_[index].choice,''];
+        setContent_object(content_object => [...content_object_]);
+    }
+    const setChoice = (value) => { // 퀴즈 선택지 변경
+        const content_object_ = [...content_object];
+        content_object_[index].choice = value;
+        setContent_object(content_object => [...content_object_]);
+    }
+    const setCorrect_choice = (value) => { // 퀴즈 정답 변경
+        const content_object_ = [...content_object];
+        content_object_[index].correct_choice = value;
         setContent_object(content_object => [...content_object_]);
     }
     return(
@@ -195,20 +167,16 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
             ?
             <>
                 <textarea type="text" rows={1} maxLength={80} name="content_title" className="title" placeholder={"선택지"+(index+1)+'제목'} value={content_object[index].title} onChange={(e)=>{change_title(e,index);chenge_textarea_height(e)}}></textarea>
-                {/* <textarea type="text" rows={1} maxLength={3000} name="explain_text" className="text" placeholder="부가 설명" value={content_object[index].text} onChange={(e)=>{change_text(e,index);chenge_textarea_height(e)}}></textarea> */}
             </>
             :
             <>
                 <textarea type="text" rows={1} maxLength={80} name="content_title" className="title" placeholder={"문제"+(index+1)+'설명'} value={content_object[index].title} onChange={(e)=>{change_title(e,index);chenge_textarea_height(e)}}></textarea>
-                {/* <textarea type="text" rows={1} maxLength={3000} name="explain_text" className="text" placeholder="부가 설명" value={content_object[index].text} onChange={(e)=>{change_text(e,index);chenge_textarea_height(e)}}></textarea> */}
                 <textarea type="text" rows={1} maxLength={80} name="content_hint" className="text" placeholder={"힌트"} value={content_object[index].hint} onChange={(e)=>{change_hint(e,index);chenge_textarea_height(e)}}></textarea>
             </>
         }
         {   
         content_object[index].data_type === null
         ?
-        
-            
         quezeshow_type_clicked_btn === 'vote'
         ?
         <section className="make_quezeshow_queze_option">
@@ -385,11 +353,14 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
         :
         null
         }
+        {
+            console.log('correct_choice-1',correct_choice,content_object[index],content_object[index].correct_choice)
+        }
         {   
             
             quezeshow_type_clicked_btn === 'multiple' && content_object[index].data_type !== null
             ?
-                <Make_quezeshow_content_queze key={index} index={index} quezeshow_type={quezeshow_type_clicked_btn} file_ref={file_ref} content_object={content_object} onpaste={onpaste} change_text={change_text} change_title={change_title} change_img={change_img} queze_option_click={queze_option_click} change_video_url={change_video_url} change_video_end_input_number={change_video_end_input_number} change_video_start_input_number={change_video_start_input_number} change_video_start={change_video_start} change_video_end={change_video_end} setMax_video_length_func={setMax_video_length_func} change_value={change_value} choice={choice} setChoice={setChoice} correct_choice={correct_choice} setCorrect_choice={setCorrect_choice} />                                   
+                <Make_quezeshow_content_queze key={index} index={index} content_object={content_object} setChoice={setChoice} setCorrect_choice={setCorrect_choice} add_choice={add_choice}/>                                   
             :
             quezeshow_type_clicked_btn === 'vote' && content_object[index].data_type !== null
             ?
@@ -397,11 +368,11 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
             :
             quezeshow_type_clicked_btn === 'descriptive' && content_object[index].data_type !== null
             ?
-                <Make_quezeshow_content_text key={index} change_correct_choice_descriptive={change_correct_choice_descriptive} delete_correct_choice_descriptive={delete_correct_choice_descriptive} correct_choice={content_object[index].correct_choice} index={index}></Make_quezeshow_content_text>
-            :
+                <Make_quezeshow_content_text key={index} content_object={content_object} change_correct_choice_descriptive={change_correct_choice_descriptive} delete_correct_choice_descriptive={delete_correct_choice_descriptive} index={index} setCorrect_choice={setCorrect_choice}></Make_quezeshow_content_text>
+            :   
             quezeshow_type_clicked_btn === 'ox' && content_object[index].data_type !== null
             ?
-                <Make_quezeshow_content_ox index={index}content_object={content_object}correct_choice={correct_choice} setCorrect_choice={setCorrect_choice}></Make_quezeshow_content_ox>
+                <Make_quezeshow_content_ox index={index}content_object={content_object} setContent_object={setContent_object} setCorrect_choice={setCorrect_choice}></Make_quezeshow_content_ox>
             :
             null
         }

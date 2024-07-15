@@ -4,17 +4,18 @@ import img from '@image/Img_folder/no_image.jpg';
 import Comment_likes from "@comments_likes/Comment_likes";
 import Image from 'next/image';
 import { useRouter } from "next/router";
+import { router } from "@functions/WorldRank";
 const Quezeshow_main_content= ({index,src,uuid,title,roomnum,quezeshow_type,explain_text,likes_queze,change_queze_likes}) => {
 
 
     const router_ = useRouter();
     const [mouse_hover, setMouse_hover] = useState(false);
     const result_click = () => {
-        router_(`/quezeshow_result?roomnum=${roomnum}&uuid=${uuid}&quezeshow_type=${quezeshow_type}&title=${title}`);
+        router(router_,`/quezeshow/result`,{roomnum,uuid,quezeshow_type,title});
     }
     const A_queze_click = () => {
         router_.push({
-            pathname : `Quezeshow/${roomnum}`,
+            pathname : `quezeshow/${roomnum}`,
         });
     }
     const onMouseOver = () => {

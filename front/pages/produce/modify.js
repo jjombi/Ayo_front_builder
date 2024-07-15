@@ -8,34 +8,32 @@ import YouTubeComponent from '@make_quezeshow/Youtube_component';
 import Make_quezeshow_content_queze from "@make_quezeshow/Make_quezeshow_content_queze";
 import { dragenter, dragover, chenge_textarea_height } from "@functions/WorldRank";    
 import AWS from "aws-sdk";
+import { useRouter } from 'next/router';
 import { router } from '@functions/WorldRank';
-// import Make_queze_modify from './Make_queze_modify';
-
-export async function getServerSideProps(context) {
-    // 미리 정적으로 생성할 페이지 경로들을 반환.
-    return {
-      props: {
-        uuid: 'vote',
-        title: 'multiple',
-        type: 'descriptive',
-      },
-    };
-}
+import { customAxiosGet, customAxiosPost } from '@functions/Custom_axios/Custom_axios';
+// export async function getServerSideProps(context) {
+//     // 미리 정적으로 생성할 페이지 경로들을 반환.
+//     return {
+//       props: {
+//         uuid: 'vote',
+//         title: 'multiple',
+//         type: 'descriptive',
+//       },
+//     };
+// }
 
 const Make_quezeshow_modify = ({params}) => {
-    const [uuid,setUuid] = useState(''); 
-    const [title,setTitle] = useState(''); 
-    const [quezeshow_type,setQuezeshow_type] = useState('');
+    const router_ = useRouter();
+    const uuid = router_.query.uuid;
+    const title = router_.query.title; 
+    const quezeshow_type = router_.query.ty;
     const [room_num, setRoom_num] = useState('');
-    // const [queze_type,setQueze_type] = useState('');
-    const searchParams = useSearchParams();
     const [content_state,setContent_state] = useState([]);
     const [content_object, setContent_object] = useState([]);
     const [choice,setChoice] = useState([]);
     const [correct_choice, setCorrect_choice] = useState([]);
     const [max_video_length,setMax_video_length] = useState(0);
     const [main_img,setMain_img] = useState([null, null]);
-    // const [password_popup, setPassword_popup] = useState(false);
 
     const modify_last_img_i = useRef(null);
     const original_content = useRef([]);
@@ -49,8 +47,8 @@ const Make_quezeshow_modify = ({params}) => {
 
     const region = "ap-northeast-2";
     const bucket = "dlworjs";
-    const accessKey = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
-    const secretAccessKey = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;
+    const accessKey = process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID;
+    const secretAccessKey = process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY;
     
     AWS.config.update({
         region: region,
@@ -59,49 +57,31 @@ const Make_quezeshow_modify = ({params}) => {
     });
 
     useEffect(()=>{
-        // console.log('make quezeshow modify',state);
-        // setUuid(searchParams.get('uuid'));
-        // setTitle(searchParams.get('title'));
-        // setQuezeshow_type(searchParams.get('quezeshow_type'));
-        setUuid(params.uuid);
-        setTitle(params.title);
-        setQuezeshow_type(params);
-        // setQueze_type(searchParams.get('queze_type'));
-        console.log('quezeshow_type',searchParams.get('quezeshow_type'));
-        if(state === null){
+        if(window.localStorage.getItem(uuid) !== null){
             alert('비밀번호 입력후 수정가능 합니다');
             
         }
         else{
-            if(!state.tinyint){
-                alert('비밀번호 입력후 수정가능 합니다');
-            }
-            else{
-                // console.log(roomName,'roomName');
-                // alert('성공');
-                // console.log('성공');
-                axios({
-                    url : process.env.REACT_APP_SERVER_URL + '/modify_get_content',
-                    method : 'GET',
-                    params : {
-                        uuid : searchParams.get('uuid'),
-                    }
-                }).then(res=>{
-                    console.log('수정 콘텐츠',res);
-                    modify_last_img_i.current = res.data.length;
-                    original_content.current = res.data;
-                })
-                axios({
-                    url : process.env.REACT_APP_SERVER_URL + '/modify_get_title_text',
-                    method : 'GET',
-                    params : {
-                        uuid : searchParams.get('uuid'),
-                    }
-                }).then(res=>{
-                    console.log('수정 제목, 설명',res);
-                    original_queze.current = res.data;   
-                })
-            }
+            customAxiosGet({
+                url : '/modify_get_content',
+                params : {
+                    uuid
+                }
+            }).then(res=>{
+                // console.log('수정 콘텐츠',res);
+                modify_last_img_i.current = res.data.length;
+                original_content.current = res.data;
+            })
+            customAxiosGet({
+                url : '/modify_get_title_text',
+                params : {
+                    uuid
+                }
+            }).then(res=>{
+                // console.log('수정 제목, 설명',res);
+                original_queze.current = res.data;   
+            })
+            
         }
     },[])
 
@@ -161,9 +141,8 @@ const Make_quezeshow_modify = ({params}) => {
                 main_img_tinyint = true;
             }
 
-            axios({
-                url : process.env.REACT_APP_SERVER_URL+"/add_quezeshowcontent",
-                method : 'POST',
+            customAxiosPost({
+                url : "/add_quezeshowcontent",
                 data   : {
                     uuid                 : uuid,
                     content_object       : content_object_, //콘텐츠 제못, 설명, 이미지 판별
@@ -173,11 +152,7 @@ const Make_quezeshow_modify = ({params}) => {
                     modify_last_img_i    : modify_last_img_i.current,
                     quezeshow_type       : quezeshow_type,
                     room_num             : room_num
-                }, 
-                headers : {
-                    'Content-Type' : 'application/json'
                 }
-
             }).then((e)=>{
                 // setPassword_popup(true);
             })
@@ -186,7 +161,7 @@ const Make_quezeshow_modify = ({params}) => {
 
     const add_content = (e,) => {
         e.preventDefault();
-        console.log('add content');
+        // console.log('add content');
         const content_state_ = [...content_state,content_state.length+1];
         setContent_state(content_state=>[...content_state_]);
         setContent_object(content_object => [...content_object,{data_type : null,src : '', title : '', text : '', answer : '',start : 0, end : 0}]);
@@ -470,17 +445,6 @@ const Make_quezeshow_modify = ({params}) => {
     }
         
     return(
-        typeof window === 'undefined'?
-        <div className="make_quezeshow_root">
-        <Header></Header>
-        <header className='make_modify_header'>
-            <h3>{title}</h3>
-            <p>현재 퀴즈쇼 수정기능은 콘텐츠 추가만 가능합니다</p>
-        </header>
-        <input type="button" className="all_btn make_quezeshow_addbtn" onClick={add_content} value={'+'} title="선택지 추가"></input>
-        <input type="button" value="완료" className="all_btn make_quezeshow_submintbtn"></input>
-        </div>
-        :
         <div className="make_quezeshow_root">
         <Header></Header>
         <Adfit unit={'DAN-87ortfszgGZjj16M'}></Adfit>

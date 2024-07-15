@@ -3,8 +3,8 @@ import YouTube from 'react-youtube';
 
 const Youtube_component_in_content = ({id,start,end,style,setLoading_state}) => {
     useEffect(()=>{
-        // console.log(id);
-    })
+       setLoading_state(false); 
+    },[])
     const opts = {
         height: '270',
         width: '480',
@@ -23,22 +23,41 @@ const Youtube_component_in_content = ({id,start,end,style,setLoading_state}) => 
         },
     };
     const onPlayerReady_ = (e) => {
-        // console.log('onPlayerReady_');
+        console.log('onPlayerReady_');
+        
         // console.log('event',e,e.target.getDuration());
         e.target.hideVideoInfo();
-        e.target.setLoop();
-        setLoading_state(loading_state => false);
+        // e.target.setLoop();
         e.target.playVideo(); 
     } 
     const onPlayerEnd_ = (e) => {
         // console.log('onPlayerEnd_');
         // console.log('onPlayerEnd e:',e);
         e.target.playVideo();
+        e.target.pauseVideo();
         e.target.hideVideoInfo();
         e.target.setLoop();
     }
+    const onPause = e => {
+        console.log('pause');
+        e.target.playVideo();
+    }
+    const onStateChange = e => {
+        console.log('onState change',e.data);
+        // if(e.data === 3){
+        //     console.log('pause');
+        //     e.target.pauseVideo();
+        // }
+        // if(e.data === -1){
+        //     console.log('비디오 시작 state changed');
+            // setLoading_state(loading_state => false);
+        //     // e.target.pauseVideo();
+        //     e.target.playVideo();
+        //     e.target.playVideoAt();
+        // }
+    }
     return(
-        <YouTube style={style} videoId={id} opts={opts} onReady={onPlayerReady_}  onEnd={onPlayerEnd_}/>
+        <YouTube style={style} videoId={id} opts={opts} onReady={(e)=>{onPlayerReady_(e)}}  onEnd={onPlayerEnd_}/>
     )
 }
 export default Youtube_component_in_content;

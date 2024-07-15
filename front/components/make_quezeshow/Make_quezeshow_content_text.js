@@ -1,6 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
-const Make_quezeshow_content_text = ({delete_correct_choice_descriptive,change_correct_choice_descriptive,correct_choice,index}) => {
-    
+const Make_quezeshow_content_text = ({content_object,delete_correct_choice_descriptive,change_correct_choice_descriptive,index}) => {
+
+    const correct_choice = content_object[index].correct_choice; //[number] ex [0]
+
     return(
         <section className="make_quezeshow_content_root">
             <input type="text" className="title" placeholder="정답" onKeyUp={(e)=>change_correct_choice_descriptive(e,index)}></input>
