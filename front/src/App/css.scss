@@ -7,50 +7,117 @@
     color: white;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-body {
-    // background-color: black;
+.root_h1 {
+    display: hidden;
 }
-$display_width : 100vw;
-$display_height : 100vh;
-
+canvas  {
+    display:none ;
+}
 input {
     text-align: center;
-    color: black;
+    color: #2B2A2A;
 }
 input:focus {
     outline: none;
 }
-select,option {
-    color: black;
-}
-p {
-    z-index: 1;
-}
-.svg_, .svg_2 {
-    width: 25px;
-    height: 25px;
-}
-.svg_ {
-    transform: rotate(-45deg);
-}
-.svg_2 {
-    transform: rotate(135deg);
 
-}
-/*----------icon--logo------------------*/
-header {
-    height: 5%;
+footer {
+    margin-top: 100%;
     width: 100%;
-    // background-color: aqua;
+    text-align: center;
+    color: #000000;
+}
+.margin {
+    margin-bottom: 300px;
+}
+footer > div:nth-child(1){
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+}
+footer > div:nth-child(1) > p{
+    align-items: center;
+    color: #000000;
+}
+footer > div:nth-child(2){
+    display: flex;
+    flex-direction: column;
+    
+}
+footer > div:nth-child(2) > li, footer > div:nth-child(2) > li > ul{
+    align-items: center;
+    color: #000000;
+}
+aside {
+    margin-bottom: 0%;  
+}
+article { // min2 소개 페이지
+    width: 100%;
+    height: 40%;
+    background-color: #2B2A2A;
+}
+/*********************************  Main2  ******************************************/
+//공통 요소
+.all_btn {
+    cursor: pointer;
+}
+.all_btn_hover:hover {
+    background-color: rgb(107, 104, 255);
+}
+//asd
+.Main2_root{
+    color: black;
+    // width: 100vw;
+    height: 100vh;
+    align-items: center;
+    // justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.Main2_toogle {
+    height: 30px;
+    width: 120px;
+    background-color: white;
+    color: #000000;
+    border-radius: 10px;
+    margin-left: 3%;
+}
+//header main2=-------
+header {
+    width: 100%;
+    height: 7%;
+    // background-color: #2B2A2A;
+}
+.Main2_header {
+    height: 6vh;
+    min-height: 50px;
+    width: 100vw;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 2;
+    border-bottom: 1px solid rgb(239, 239, 239);
+    position: relative;
+    
+} 
+.Main2_header > button {
+    // margin-left: auto;
+    min-width: 110px;
+    width: 10%;
+    height: 90%;
+    // border: 2px solid black;
+    // color: white;
+    color: #000000;
+    background-color: white;
+    // background-color:#282828;
 }
 .header_rogo {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: 1px solid white;
+    border: 1px solid black;
     margin-left: 3%;
     margin-right: 15%;
 }
@@ -60,614 +127,929 @@ header {
     margin-top: 45%;
     margin-left: 48%;
     transform: translate(-50%,-50%);
+    color: #000000;
 }
-header > div {
-    margin-left: auto;
-    height: 70%;
+//------------까지
+.margin_top {
+    margin-top: 20vh;
 }
-.header_btn {
-    cursor: pointer;
-    width: 30%;    
-    height: 100%;
-    margin-left: 2%;
-    background-color: white;
-    border-radius: 30px;
-    
-}
-.header_btn:hover {
-    background: linear-gradient(-45deg,rgb(204, 0, 255), #5c6aff);
-    transition: 0.3s ease-in-out;
-}
-
-/*----------------회원가입 창----------------*/
-// .signup_area {
-//     margin-left: 20%;
-//     margin-top: 5%;
-//     width: 60%;
-//     height: 100%;
-//     display: flex;
-//     flex-direction: column;
-//     text-align: center;
-//     border: 1px solid black;
-// }
-.search_school_area {  
-    width : 100%;
-    height: 20%;
-    background-color: azure;
-    margin-top: 5%;
-}
-.input_id_area {
-    width : 100%;
-    height: 20%;
-    margin-top: 5%;
-}
-
-.text-area {
-    width: 100%;
-    height: 20%;
-    
-}
-.instar_signup_btn{
-    width: 100%;
-    height: 20%;
-    margin-top: 5%;
-}
-/*------------------회원가입 창 222222222222222222 -------------------------*/
-.Main_root {
-    width: $display_width;
-    height: $display_height;
-    // background-color: black;
-    display: flex;;
-    flex-direction: column;
-    background-color: black;
-}
-.content_area {
-    //임시
+.form_main2 {
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
     position: relative;
+    // background-color: #5c6aff;
+}
+.form_main2 > button {
+    position: absolute;
+    right: 2.5%;
+    width: 30px;
+    height: 30px;
+    z-index: 11;
+}
+.main_title { // 문제 제목, 기본 이미이 선택 창 root
+    width: 100%;
+    height: 5%;
+    // background-color: blue;
+    margin-top: 3%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    margin-bottom: 5%;
+}
+.main_title > input {
+    width: 80%;
+    height:  100%;  
+    min-width: 150px;
+    max-width: 450px;
+    border: 1px solid rgb(239, 239, 239);
+    border-radius: 10px;
+    color: #000000;
+}
+.main_title > p {
+    color: black;
+}
+.label {
+    color: #000000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    position: relative;
+}
+.label > p {
     width: 30%;
     height: 100%;
-    background-color: rgb(0, 0, 0);
-    margin-left: 35%;
+    color: #000000;
+    font-size: 14px;
+    align-items: center;
+    display: flex;
+}
+
+.label > span {
+    z-index: 2;
+}
+.title_input, .img_select {
+    width: 80vw;
+    height: 4vh;
+    // background-color: #5c6aff;
+}
+.title_input {
+    // 제목 입력 창
+}
+.img_select {
+    margin-top: 2vh;
+}
+.queze_list {
+    margin-left: 1vw;
+    width: 98vw;
+    max-width: 98%;
+}
+.queze_list { // main2 문제 
+    // border: 1px red solid;
+    display: grid;
+    // grid-template-rows: repeat(auto-fill,240px);
+    gap: 10px;
+    justify-items: center;
+}
+.queze_list {
+    grid-template-columns: repeat(5,minmax(100px,400px));
+}
+.queze_list > input {
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+.Main2_sumit_btn { // queze_list > input submi
+    width: 100%;
+    height: 5%;
+    text-align: center;
+    margin-top: 2%;
+}
+.Main2_sumit_btn > input {
+    width: 20%;
+    min-width: 100px;
+    max-width: 150px;
+    border-radius: 10px;
+    height: 100%;
+    cursor: pointer;
+}
+.plus_queze { // queze_list >
+    // width: 40%;
+    // height: 20%;
+    // min-width: 300px;
+    // min-height: 200px;
+    border: 1px solid rgb(239, 239, 239);
+    background-color: white;
+    margin-top: 2.5%;
+    max-width: 400px;
+
+}
+.plus_queze > img {
+    width: 300px;
+    height: 180px;
+    object-fit: scale-down;
+
+}
+.plus_queze > div {
+    width: 300px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.plus_queze > div > p {
+    width: 100%;
+    height: 40%;
+    color: #000000;
+}
+.plus_queze > div > div {
+    width: 100%;
+    height: 60%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+}
+.plus_queze > div > div > input, .plus_queze > div > div > button {
+    width: 40%;
+    height: 90%;
+    background-color:rgb(239, 239, 239);
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 10px;
+}
+.plus_queze > div > div > svg {
+    width: 25px;
+    height: 25px;
+}
+.make_queze { //make queze 사진 부모
+    
+}
+//**************************password_popup**********************************
+.password_popup_root {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgb(194, 194, 194,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top:0;
+}
+.password_popup_root > section {
+    width: 40%;
+    height: 40%;
+    min-width: 280px;
+    min-height: 160px;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-left: 2px solid white;
-    border-right: 2px solid white;
-    text-align: center;
-    z-index: 0;
 }
-.main_line_contents {
+.password_popup_root > section >p {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    color: #000000;
+    margin-top: 10%;
+    text-align: center;
+}
+.password_popup_root > section  > input {
+    border: 1px solid rgb(239, 239, 239);
+    border-radius: 10px;
+
+}
+.password_popup_root > section  > input:nth-child(2) {
+    width: 240px;
+    height: 40px;
+    // margin-top: 20%;
+    
+}
+.password_popup_root > section  > input:nth-child(3) {
+    width: 120px;
+    height: 30px;
+    margin-top: 10%;
+}
+/***************************************************************************/
+/*------------------main2_A_queze-----------------------------*/ //웨에 #root
+.Main_root_ {
+    width: 100%;
+    height: 100%;
+}
+.Main2_a_queze_root {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    // height: 5%;
+    // height: 100vh;   
+    max-width:100%;
+    // max-height: 100%;    
+    // overflow-y: scroll;
+}
+.Main2_a_queze_header {
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    // margin-top: 1%;
+    height: 35px;
+    border-bottom: 1px solid rgb(239, 239, 239);    
+}
+.make_modify_header {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+    margin-bottom: 3%;
+
+}
+.tier_line {
+    width: 30px;
+    height: 285px;
+}
+.Main2_a_queze_section {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    margin-top: 7%;
-    height: 5%;
-    // margin-bottom: 5%;
 }
-.main_line_contents > p {
+.initialization_btn{
+    margin-left: 3%;
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+    color: #000000;
+    background-color: white;
+    border: 1px rgb(239, 239, 239) solid;
+}
+.a_queze_title{
+    color: #000000;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    transform: translate(-50%);
+    margin-left: 50%;
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+.make_modify_header > h3 {
+    color: #000000;
+}
+.Main2_header2 {
+    display: flex;
+    align-items: center;
+    margin-top: 7px;
+
+}
+.Main2_header2 > h1 {
+    color: #000000;
+    font-size: 14px;
+    width: 100%;
+    text-align: center
+    ;
+}
+.main2_header_btn  {
+    width: 30px;
+    height: 21.5px;
+    
+    // border-radius: 10px;
+}
+.a_queze_header_btn {
+    width: 180px;
+    height: 21px;
+    background-color: white;
+    color: #000000;
+    margin-left: 3%;
+    display: flex;
+    align-items: center;
+}
+.Main2_a_queze_header_input {
+    width: 300px;
+    height: 20px;
+    border: rgb(239, 239, 239) solid 1px;
+    margin-left: 3%;
+}
+.main2_a_queze_btn_area {
+    width: 100%;
+    height: 40px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+    position:static;
+    margin-bottom: 50px;
+    // overflow-y: scroll;
+}
+.main2_a_queze_btn_area > button {
+    width: 20%;
+    height: 100%;
+    min-width: 100px;
+    max-width: 150px;
+    background-color: rgb(159, 159, 159);
+    cursor: pointer;
+    border-radius: 10px;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+.drag_area {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    max-width: 100%;
+    position: fixed;
+    bottom: 0;
+    overflow-x: scroll;
+    z-index: 1;
+    background-color: white;
+
+    // box-shadow: 5px 5px 5px 5px #000000 inset;
+
+}
+.drop_area{
+    display: flex;
+    flex-direction: row;
+    background-color: rgba($color: #000000, $alpha: 0);
+    width: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+    scrollbar-color: black;
+
+} // drag 이미지가 vw를 넘으면 x scroll 가능 하게 구현 하기
+.drop_area::-webkit-scrollbar-thumb{
+    background: black;
+    border-radius: 10px;
+
+}
+.drop_area::-webkit-scrollbar-track{
+    background: white;
+}
+.drop_area > p {
+    color: white;
+    font-size: 16px;
+    width: 3%;
+    min-width: 3%;
+}
+.drag{
+    // width: 300px;
+    // height: 250px;
+    max-width: 300px;
+    max-height: 300px;
+    text-align: center;
+    // background-color: white;
+}
+.drag_img {
+    // width: 100px;
+    // height: 80px;
+    // width: 300px;
+    // height: 250px;
+    object-fit: scale-down;
+    color: black;
+    border-top: 2px solid black;
+    // background-color: white;
+}
+.drag > p {
+    color: #000000;
+    // width: 100%;
+    // height: 20%;
+}
+.drop{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba($color: #000000, $alpha: 0);
+    z-index: 1;
+    position: relative;
+    // margin-left: 3%;
+}
+.drop_rank {
+    color: #000000;
+    margin-left: 3%;
+    height: 35px;
+    align-items: center;
+    display: flex;
+    font-size: 16px;
+}
+.drop > img {
+    width: 300px;
+    height: 250px;
+    object-fit: scale-down;
+}
+.drop > p {
+    color: #282828;
     margin-left: 5%;
-    width: 5%; //75 85 5 5 
     
 }
-.line2 { //in main
-    width: 35%;
-    margin-left: 7.5%;
-    background-color: white;
-    height: 1px;
+.drop > button {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    color: #000000;
+    left: 300px;
+    transform: translate(-100%);
 }
-.line3 {
-    width: 35%;
-    margin-left: 5%;
-    background-color: white;
-    height: 1px;
+//------------------------Main2_make_queze-----------------------------
+.queze_area {
+    width: 95%;
+    margin-left: 2.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
-.line4 {
+.make_queze_guide_input {
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: #000000;
+    font-size: 12px;
+    z-index: 11;
+}
+.a_queze_img {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+    position: relative;
+    // border: 1px solid rgb(239, 239, 239);
+
+} // 이미지 왼쪽 텍스트 오른쪽 으로 바꾸고 
+// 텍스트 줄 넘으면 height 간격늘리면서 쓰게하기
+// aqueze img 는 왼쪽 정렬
+.a_queze_img > input {
+    position: absolute;
+    right: 0;
+    color: #000000;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    display: flex;
+    // right: 0;
+}
+.a_queze_img > img {
+    width: 400px;
+    height: 400px;
+    object-fit: scale-down;
+}
+.a_queze_img > textarea {
+    width: 400px;
+    height: 80px;
+    color: #000000;
+    background-color: rgb(239, 239, 239);
+    margin-top: 30px;
+}
+.drop_img_area {
+    width: 95%;
+    height: 40%;
+    margin-left: 2.5%;
+    // margin-bottom: %;
+    border: 1px rgb(239, 239, 239) solid;
+    color: black;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    position: relative;
+}
+.drop_img_area > input {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    
+}
+.drop_img_area > p {
+    position: absolute;
+    left: 50%; 
+    top: 25%;
+    transform: translate(-50%);
+    // width: 100%;
+    color: #000000;
+}
+.drop_img_area > div {
+    background-color: white;
+    width: 100%;
+    height: 50%;
+    border-top: 1px solid rgb(239, 239, 239);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.drop_img_area > div > p {
+    color: #000000;
+}
+// .tier1, .tier2, .tier3 .tier4 .tier5 {
+//     color: white;
+//     font-size: 16px;
+// }
+.tier1{
+    background-color: rgb(99, 130, 255);
+}
+.tier2{
+    background-color: rgb(102, 255, 99);
+}
+.tier3{
+    background-color: rgb(255, 229, 97);
+}
+.tier4{
+    background-color: rgb(75, 75, 75);
+}
+.tier5{
+    background-color: rgb(0, 0, 0);
+}
+//     reslur page /////////////////////////////////////////////////////
+.result_area {
+    // width: 100%;
+    display: flex;
+    flex-direction: row;
+    // margin-top: 2%;
+}
+.result_area > h3 {
+    width: 30px;
+    // height: 100%;
+}
+.result_area > h3 > p {
+    color: white;
+    margin-top: 2%;
+
+}
+.result_area > img {
+    width: 300px;
+    height: 250px;
+    object-fit: scale-down;
+    margin-bottom: 2%;
+    // border: #000000 solid 2px;
+}
+.result_area > h4 {
+    color: #000000;
+    margin-left: 3%;
+    margin-top: 2%;
+}
+.result_area > p {
+    color: #000000;
+    display: flex;
+    margin-left: 1%;
+    margin-top: 2.1%;
+    // align-items: center;
+}
+.comment_area {
+    margin-top: 5%;
+    margin-bottom: 10%;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    // justify-items: center;    
+}
+.comment_area > div {
     width: 80%;
-    height: 2px;
-    background-color: white;
-    margin-top: 4%;
-}
-.Border_radius{
+    max-width: 670px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(239, 239, 239);
     border-radius: 10px;
 }
-.Logo {
-    margin-top: 15%;
-    width: 70px;
-    height: 70px;
-    // background-color: rgb(136, 136, 136);
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    border-radius: 50%;
-    border: 1px solid white;
+.comment_area > div > input {
+    border-radius: 10px;
+    height: 100%;
+    width: 90%;
+    color: black;
+
 }
 
-.Logo > p {
-    font-size: 21px;
-    letter-spacing: 3px;
-    margin-top: 45%;
-    margin-left: 48%;
-    transform: translate(-50%,-50%);
+.comment_area > div > button {
+    // margin-left: 1%;
+    // margin-right: 1%;
+    // max-width: 110px;
+    // min-width: 95px;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(181, 181, 181);
+    border-radius: 10px;
 }
-.Input_basic { /*---기본 input 스타일-----*/
-    margin-top: 4%;
+.children_comment_area {
     width: 100%;
-    height: 7%;
-    background-color: rgb(241, 241, 241);
-    color:  black;
-    position: relative;
-    border: 2px solid;
-    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2%;
 }
-.Input_basic:focus{
-    border: 2px solid rgb(204, 0, 255);
+.children_comment_area > form {
+    width: 80%;
+    max-width: 670px;
+    margin-top: 1%;
+    align-items: center;
+    justify-content: center;
+}
+.children_comment_area > form > .value {
+    width: 90%;
+    min-width: 210px;
+    max-width: 645px;
+    border-bottom: 2px solid black;
+}
+.children_comment_area > form > .button {
+    width: 25px;
+    height: 25px;
+    background-color: #000000;
+    color: white;
+    border-radius: 10px;
+}
+.children_comment {
+    margin-top: 1%;
+    width: 80%;
+    max-width: 670px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    // border: 2px solid black;
+
+}
+.children_comment > p {
+    color: #000000;
+}
+.children_comment > .value {
+    width: 93%;
+    max-width: 645px;
+}
+.children_comment > .likes {
+    margin-right: 1%;
+    width: 7%;
+    text-align: right;
+}
+.children_comment > img {
+    width: 40px;
+    height: 40px;
+    // background-color: #000000;
+    background-image: url('./Img_folder/likes.svg');
+    background-size: 100%;
+}
+.children_comment > svg {
+    width: 25px;
+    height: 25px;
+}
+.result_title {
+    color: #000000;
+    width: 40%;
+    text-align: center;
+    margin-left: 30%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+
+}
+/*-----------------------loading popup-----------------------*/
+.loading_popup{
+    position: fixed;
+    z-index: 12;
+    width: 80vw;
+    height: 80vh;
+    max-width: 80%;
+    max-height: 80%;
+    margin-left: 10%;
+    background-color: white;
+    border: solid rgb(239, 239, 239) 1px;
+    top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.loading_popup > p {
+    color: #000000;
     
 }
-.btn_basic > div {
-    position: absolute;
-    top: 50%;
-    left: 5%;
-    transform: translate(0,-50%);
-    color: black;
+.loading_popup > button {
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 3%;
+    color: #000000;
 }
-.btn_basic > p {
+//------------------choose_queze_typr------------------
+.Choose_queze_type_root {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.589);
+    position: relative;
+}
+.choose_queze_type_adfit_area {
+    position: absolute;
+    left: 0;
+}
+.choose_queze_type_adfit_area2 {
+    position: absolute;
+    right: 0;
+}
+.Choose_queze_type_root > h1 {
+    position: absolute;
+    color: #000000;
+    top: 0%;
+    z-index: 1;
+}
+.Choose_queze_type_section{
+    min-width: 320px;
+    min-height: 610px;
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.Choose_queze_type_section > button {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #000000;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    z-index: 1;
+}
+.Choose_queze_type_section > button:nth-child(1) {
+    top: 25%;
+}
+.Choose_queze_type_section > button:nth-child(2) {
+    top: 75%;
+}
+.Choose_queze_type_section > img {
+    width: 100%;
+    height: 50%;
+    object-fit:contain;
+}
+.Choose_queze_type_section_oneandone {
+    min-width: 320px;
+    min-height: 610px;
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.Choose_queze_type_section_oneandone > button {
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #000000;
+    z-index: 1;
+    margin-top: 3%;
+}
+//---------------------oneandone---------------------------------------//
+.oneandone_root {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.oneandone_title {
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    transform: translate(-50%);
+    color: #000000;
+    z-index: 1;
+    background-color: white;
+}
+.oneandone_root > h2 {
+    position: absolute;
+    color: #000000;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1;
+    background-color: white;
+}
+.oneandone_root > section{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.oneandone_root > section > p {
+    color: #000000;
+    font-size: 18px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    color: black;
+    transform: translate(-50%,-100%);
+    background-color: white;
 }
-.btn_basic {
-    margin-top: 4%;
-    width: 50%;
-    height: 5%;
-    background-color: rgb(241, 241, 241);
-    color:  black;
-    position: relative;
-    border-radius: 30px;
-    cursor: pointer;
-}
-/*-----------------학교 찾는 창 3333333333333333333333333333-----*/
-.School_search {/*안쓰이는 중 190School_chose*/
-    margin-top: 20%;
-    width: 80%;
-    height: 7%;
-    background-color: aqua;
-}
-.guid_message{
-    width: 100%;
-    font-size: 12px;
-    //color: rgb(0, 0, 0); // 투명도 주기
-}
-.Guid_message_ {
-    margin-top: 70%;
-    font-size: 16px;
-    text-align: center;
-}
-
-.Input_id{ // 22 12 = 34 오른쪽에 버튼 있던거
+.oneandone_root > section > img {
+    object-fit:contain;
     width: 100%;
     height: 100%;
-
+    // border: 1px solid white;
 }
-// .Input_id_btn{ /*구버전 버튼 */
-//     width: 20%;
-//     height: 100%;
-// }
-.Input_id_btn{
-    margin-bottom: 3%;
-    height: 6%;
+.oneandone_root > section > img:hover {
+    // border: 1px solid rgb(107, 104, 255);
+    background-color: rgb(107, 104, 255);
 }
-.Submit_btn{
+//-----------------explain popup------------
+.explain_popup_root{
     position: absolute;
-    width: 20%;
-    height: 5%;
-    border-radius: 10px;
-    top: 80%;
-    cursor: pointer;
-}
-.Submit_btn_{
-    // margin-top: 26%;
-}
-
-
-/*----------------로그인 방식, 또는 회원가입 할지 선택하는 페이지------------*/
-.Top {
-    margin-top: 15%;
-}
-.Page_num {
-    position: absolute;
-    top: 90%;
-    font-size: 14px;
-}
-/*-------------질문 나오는 창-------------*/
-.queze_result {
-    height: 15%;
-    margin-top: 0%;
-}
-/*---------------------------------------*/
-/*--------------------추천검색어 디자인--------------*/
-// input {
-//     text-align: center;
-//     align-items: center;
-// }
-.id_area{          /*애도 추천 겁색어 디자인*/
-    margin-top: 5%;
-    width: 80%;
-    height: 7%;
-    display: flex;
-    flex-direction: row;
-    border-top: 1px solid rgb(227, 227, 227);
-    background-color: white;
-    cursor: pointer;
-} 
-.z_index {
-    z-index: 2;
-}
-.abc {
-    overflow: hidden;
-    width: 70%;
-    height: 10%;
-    background-color: aqua;
-}
-.Suggested_Search {
-    margin-top: 0%;
-    width: 100%;
-    height: 40%;
-    // border: 1px solid black;
-    font-size: 12px;
-    text-align: center;
-    align-items: center;
-}
-// .passchecker, .passchecker2 {
-//     position: absolute;
-//     width: 20px;
-//     height: 20px;
-//     background-color: rgb(0, 255, 47);
-//     z-index: 1;
-//     transition: 0.1s ease;
-//     border-radius: 50%;
-// }
-// .passchecker {
-//     top: 52.3%;
-//     left: 79%;
-// }
-// .passchecker2 {
-//     top: 61.6%;
-//     left: 79%;
-// }
-//비번 책크
-// margin-top: 4%;
-// width: 100%;
-// height: 7%;
-// background-color: rgb(241, 241, 241);
-// color:  black;
-// position: relative;
-// border: 2px solid;
-// cursor: pointer;
-//     position: absolute;
-//     width: 20px;
-//     height: 20px;
-//     background-color: rgb(0, 255, 47);
-//     z-index: 1;
-//     transition: 0.1s ease;
-//     border-radius: 50%;
-.pass_checker_area {
-    width: 100%;
-    height: 7%;
-    // background-color: rgb(241, 241, 241);
-    color:  black;
-    position: relative;
-    cursor: pointer;
-    margin-top: 4%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-.pass_cheker_input {
-    width: 70%;
-    height: 100%;
-    border-radius: 10px;
-}
-.pass_checker_icon_area{
-    width: 15%;
-    height: 100%;
-    // background-color: red;
-    display: flex;
-    align-items: center;
-}
-.pass_checker_icon_area > div{
-    width: 20px;
-    height: 20px;
-    background-color: #5c6aff;
-    margin-left: auto;
-    margin-right: 10%;
-    transition: 0.1s ease;
-    border-radius: 50%;
-}
-/*---------------------------------------------*/
-/*----------queze페잉지-----------------------*/
-.btn1, .btn2 {
-    top: 1%;
-    position: absolute;
-    width: 20%;
-    height: 90%;
-    background-color: white;
-    z-index: 0;
-    color: black;
-    cursor: pointer;
-}
-
-.btn1 {
-    left: 1%;
-
-}
-.btn2{
-    left: 99%;
-    transform: translate(-100%,);
-}
-.btn1 > p, .btn2 > p {
-    color: black;
-    z-index: 3;
-}
-.submit_btn {
-    width: 96%;
-    height: 5%;
-    margin-top: 5%;
-}
-header {
-    width: 100%;
-    height: 7%;
-    background-color: rgb(0, 0, 0);
-}
-.line {
-    width: 100%;
-    height: 1px;
-    background-color: white;
-}
-.name_input_area {
-    width: 70%;
-}
-.bottom_name_input_area {
-    width: 100%;
-    height: 2%;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background-color: white;
-    border-top: 1px solid rgb(227, 227, 227);
-}
-.show_reslut_li {
-    // margin-top: 3%;
-    width: 100%;
-    height: 30%;
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    color: black;
-    align-items: center;
-    border-top: 2px solid black;
-    // border-radius: 10px;
-}
-.result_screan {
-    margin-top: 2%;
-    width: 70%;
-    height: 15%;
-
-}
-.show_result_p, .show_result_p2 {
-    color: black;
-    align-items: center;
-    text-align: center;
-    padding-left: 3%;
-}
-.show_result_p2 {
-    margin-left: auto;
-    padding-right: 3%;
-}
-.modal {
-    height: 10%;
-    width: 70%;
-    overflow-y: auto;
-    position: absolute;
-    top : 76%;
+    transform: translate(0%,-50%);
     z-index: 1;
+    background-color: #000000;
+    border: 1px solid rgb(239, 239, 239);
 }
-.modal2 {
-    height: 10%;
-    width: 70%;
-    overflow-y: auto;
-    position: absolute;
-    top : 24%;
-    z-index: 1;
+.explain_popup_root > p {
+    color: white;
+    font-size: 12px;
 }
-// .name_input {
-//     border-radius: ;
-// }
-.option {
-    margin-top: 5%;
-}
-/*----------------------popup창 디자인-------------------*/
-.back {
-    position: absolute;
-    opacity: 1;
+//---------guide_popup-----------------------------------------
+.guide_popup_root {
     width: 100vw;
-    height: 90vh;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+    background-color: rgb(0, 0, 0,0.5);
+    position: fixed;
+    z-index: 12;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
-.popup { //공통 요소
+.guide_popup_root > button {
     position: absolute;
-    // transform: translate(0,-85%);
-    opacity: 1;
+    
 }
-.Popup_main {
-    width: 100vw;
-    height: 90vh;
-    // background-color: aquamarine;
-    background-color: rgb(255, 255, 255,0.4);
-
-}
-.Popup_main_content {
-    width: 70%;
-    height: 30%;
-    margin-top: 35%;
-    margin-left: 15%;
+.guide_popup_root > section {
+    width: 80%;
+    height: 80%;
     display: flex;
     flex-direction: column;
-    // opacity: 1 ;
-    // animation: 0.3s ease-in;
-    background-color: rgba(0,0,0, 1);
-    border-radius: 10px;
-    transition: 0.3s ease-in-out;
-}
-// .Submit_btn :visited {
-
-//     .Popup_main_content{
-//         margin-top: 35%;
-//     }
-// }
-.popup_p {
-    width: 100%;
-    height: 10%;
-    margin-top : 30%;
-    text-align: center;
-    opacity: 1;
-}
-.popup_btn {
-    width: 60%;
-    height: 15%;
-    margin-top: 5%;
-    margin-left: 20%;
-}
-/*slide 디자인*/
-.Q_main {
-    width: 100%;
-    height: 32%;
-    display: flex;
-    flex-direction: row;
-    margin-top: 4%;
-}
-.Q_area {
-    width: 100%;
-    height: 100%;
-    // background-color: white;
-    // text-align: center;
-    float: left;
-    overflow: hidden;
-    position: relative;
-}
-$Q_ul_width : 500%;
-.Q_ul {
-    // width: 100%;
-    // height: 100%;
-    float: left;
-    transition: left 0.5s ease-out; 
-    display: flex;
-    flex-direction: row;
-}
-.Queze_li {
+    align-items: center;
     background-color: white;
+    overflow-y: scroll;
     position: relative;
-    width: 30vw; //30
-    float: left;
-    list-style: none;
-    transition: 0.3s none; 
-    text-align: center;
-    align-items: center;
-    height: 32vh;
-
 }
-.ul_2 {
+.guide_popup_root > section > button {
+    position: fixed;
+    top : 10%;
+    right: 10%;
+    color: white;
+    border: 1px solid rgb(239, 239, 239);
+    width: 30px;
+    height: 30px;
+    color: #000000;
+    transform: translate(-50%,50%);
 }
-
-.Queze_p {
-    // margin-top: 30%;
-    color: black;
-    // height: 100%;
-    // width: 70%;
-    text-align: center;
-    align-items: center;
-    margin-top: 25%;
-    transform: translate(0,-100%);
-}
-.btn3, .btn4 {
+.guide_popup_root > section > div  {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 5%;
-
+    // height: 50%;
+    align-items: center;
+    margin-bottom: 5%;
 }
-.top_bottom {
-    width: 30%;
-    height: 100%;
+.guide_popup_root > section > div > p {
+    color: #000000;
 }
-/*-------학교,학급,반 설정------------*/
-.Q_chooser {
+.guide_popup_root > section > div > img {
+    object-fit: scale-down;
+}
+.guide_popup_root > section > div > h1 {
     margin-top: 3%;
-    width: 70%;
-    height: 5%;
-    background-color: white;
-    float: left;
-    overflow: hidden;
-    position: relative;
+    color: #000000;
 }
-.Q_chooser2 {
-    margin-top: 3%;
-    width: 70%;
-    height: 5%;
-    background-color: white;
-    float: left;
-    display: flex;
-    flex-direction: row;
-    color: black;
-    align-items: center;
+.bord {
     font-size: 14px;
-    // font-size: medium;
-    select {
-        margin-left: auto;
-    }
-}
-.Q_chooser_ul{
-    float: left;
-    transition: left 0.5s fease-out; 
-    display: flex;
-    flex-direction: row;
-}
-.Q_chooser_li {
-    position: relative;
-    width: 21vw;
-    height: 5vh;
-    float: left;
-    list-style: none;
-    transition: 0.3s ease-in-out; 
-    text-align: center;
-    align-items: center;
-    color: black;
-}
-option {
-    width: 30%;
-    height: 100%;
-}
-// select {
-//     width: 40%;
-//     height: 100%;
-//     margin-left: auto;
-//     cursor: pointer;
-// }
-select:focus {
-    outline: none;
-}
-//maeke queze
-.makequeze_input {
-    width: 70%; 
-    height: 30%;
-    margin-top: 5%;
-}
-//select_page 
-.select_box {
-    width: 70%;
-    height: 5%;
-    border-bottom: 2px solid rgb(148, 148, 148);
-    color: black;
-    z-index: 3;
 }
 /*----------------------------------------------*/
+//------------------------community_root------------------------------/
+.community_root {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+}
+.community_root > h1 {
+    color: #000000;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+    margin-top: 1%;
+}
 // 데스크탑
 @include desktop {
     .content_area {
@@ -686,6 +1068,28 @@ select:focus {
     .Input_basic {
         width: 70%;
     }
+    .queze_list { // main2 문제 
+        border: 1px red solid;
+        display: grid;
+        grid-template-columns: 100px 200px 300px;
+        grid-template-rows: 300px;
+        gap: 10px;
+    }
+    // make queze
+    .main_title {
+        height: 4%;
+    }
+    .drop_img_area{
+        height: 50%;
+    }
+    .Main2_sumit_btn{
+        height: 6%;
+    }
+    .drop_img_area, .Main2_sumit_btn, label, .label {
+        width: 40%;
+        margin-left: 30%;
+    }
+    // 여기 까지
     //---------------------------------------
 }
 @include desktopToLaptop2 {
@@ -699,6 +1103,10 @@ select:focus {
     .Input_basic {
         width: 70%;
     }
+    // .plus_queze {
+    //     width: 40%;
+    //     height: 60%;
+    // }
     .Queze_li {
         width: 30vw;
     }
@@ -708,9 +1116,27 @@ select:focus {
     .Popup_main_content {
         width: 25%;
         height: 30%;
-        margin-left: 35%;
+        margin-left: 37.5%;
         margin-top: 15%;
     }
+    .queze_list {
+        grid-template-columns: repeat(5,minmax(100px,400px));
+    }
+    // make queze
+    .main_title {
+        height: 4%;
+    }
+    .drop_img_area{
+        height: 50%;
+    }
+    .Main2_sumit_btn{
+        height: 7%;
+    }
+    .drop_img_area, .Main2_sumit_btn, label, .label {
+        width: 40%;
+        margin-left: 30%;
+    }
+    // 여기 까지
     //---------------------------------------
 }
 
@@ -738,6 +1164,21 @@ select:focus {
         margin-left: 37.5%;
         margin-top: 15%;
     }
+    .queze_list {
+        grid-template-columns: repeat(4,minmax(100px,400px));
+    }
+    // make queze
+    .drop_img_area{
+        height: 50%;
+    }
+    .main_title, .Main2_sumit_btn {
+        height: 4%;
+    }
+    .drop_img_area, .Main2_sumit_btn, label, .label {
+        width: 50%;
+        margin-left: 25%;
+    }
+    // 여기 까지
     //---------------------------------------
 }
 
@@ -765,6 +1206,21 @@ select:focus {
         margin-left: 35%;
         margin-top: 20%;
     }
+    .queze_list {
+        grid-template-columns: repeat(3,minmax(100px,500px));
+    }
+    // make queze
+    .drop_img_area{
+        height: 50%;
+    }
+    .main_title, .Main2_sumit_btn {
+        height: 4%;
+    }
+    .drop_img_area, .Main2_sumit_btn, label, .label {
+        width: 50%;
+        margin-left: 25%;
+    }
+    // 여기 까지
     //-----------------------------------
 }
 
@@ -776,6 +1232,9 @@ select:focus {
         // background-color: rgb(4, 255, 0);
         margin-left: 25vw;
 
+    }
+    .queze_list {
+        grid-template-columns: repeat(3,minmax(100px,400px));
     }
     .Input_basic {
         width: 70%;
@@ -792,6 +1251,19 @@ select:focus {
         margin-left: 35%;
         margin-top: 25%;
     }   
+    // make queze
+
+    .drop_img_area{
+        height: 50%;
+    }
+    .main_title, .Main2_sumit_btn {
+        height: 4%;
+    }
+    .drop_img_area, .Main2_sumit_btn, label, .label {
+        width: 50%;
+        margin-left: 25%;
+    }
+    // 여기 까지
     //---------------------------------------
 }
 
@@ -818,6 +1290,21 @@ select:focus {
         margin-left: 35%;
         margin-top: 25%;
     }
+    .queze_list {
+        grid-template-columns: repeat(2,minmax(100px,500px));
+    }
+    // make queze
+    .drop_img_area{
+        height: 50%;
+    }
+    .main_title, .Main2_sumit_btn {
+        height: 4%;
+    }
+    .drop_img_area, .Main2_sumit_btn, label, .label {
+        width: 70%;
+        margin-left: 15%;
+    }
+    // 여기 까지
     //---------------------------------------
 }
 
@@ -827,7 +1314,13 @@ select:focus {
     .content_area {
        width: 70%;
        margin-left: 15%;
-        background-color: rgb(179, 0, 255);
+        // background-color: rgb(179, 0, 255);
+    }
+    .queze_list {
+        grid-template-columns: repeat(2,minmax(100px,380px));
+    }
+    .plus_queze {/*Main2 */
+        // margin-left: 22.5%;
     }
     .Input_basic {
         width: 70%;
@@ -844,6 +1337,18 @@ select:focus {
         margin-left: 27.5%;
         margin-top: 30%;
     }
+    // make queze
+    .drop_img_area{
+        height: 50%;
+    }
+    .main_title, .Main2_sumit_btn {
+        height: 4%;
+    }
+    .drop_img_area, .Main2_sumit_btn, label, .label {
+        width: 70%;
+        margin-left: 15%;
+    }
+    // 여기 까지
     //main---------------------------------
 
     //---------------------------------------
@@ -859,6 +1364,12 @@ select:focus {
         // margin-top: 5%;
         
     }
+    .queze_list {
+        grid-template-columns: repeat(1,100%);
+    }
+    .plus_queze {/*Main2 */
+        // margin-left: 7.5%;
+    }
     .Input_basic {
         width: 70%;
     }
@@ -870,6 +1381,18 @@ select:focus {
     header > div {
         width: 60%;
     }
+    // make queze
+    .drop_img_area{
+        height: 40%;
+    }
+    .main_title, .Main2_sumit_btn {
+        height: 4%;
+    }
+    .drop_img_area, .Main2_sumit_btn, label, .label {
+        width: 70%;
+        margin-left: 15%;
+    }
+    // 여기 까지
     //main---------------------------------
 //style={{transform : `translateX(${trans_state}%)`}}
     //---------------------------------------

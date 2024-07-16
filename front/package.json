@@ -3,22 +3,31 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://jjombi.github.io/jjombi.github.io",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --progress --mode development",
     "build": "webpack --progress --mode production",
     "sass": "node-sass styles/main.scss style.css",
-    "cd." : "cd front/src/App"
+    "deploy": "gh-pages -d build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.5.0",
+    "@aws-sdk/client-s3": "^3.465.0",
+    "aws-sdk": "^2.1512.0",
+    "axios": "^1.4.0",
     "babel-preset-es2015": "^6.24.1",
-    "react": "^18.2.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-hmre": "^1.1.1",
+    "gh-pages": "^6.0.0",
+    "jimp": "^0.22.10",
+    "react": "^18.3.0-canary-c5b937576-20231219",
     "react-cookie": "^6.1.1",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0"
+    "react-dom": "^18.3.0-canary-c5b937576-20231219",
+    "react-hook-form": "^7.48.2",
+    "react-router-dom": "^6.16.0",
+    "webpack-dev-server": "^4.15.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.15",
@@ -29,11 +38,17 @@
     "babel-loader": "^9.1.3",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
+    "dotenv-webpack": "^8.0.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
+    "process": "^0.11.10",
     "style-loader": "^3.3.3",
     "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-cli": "^5.1.4"
+  },
+  "peerDependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+
   }
 }

@@ -1,94 +1,67 @@
-import React,{useState, useRef,useEffect} from "react";
+import React,{useRef,useEffect} from "react";
 import axios from 'axios'
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
-import Adfit from "./adfit";
+import { useNavigate,useParams,useSearchParams } from "react-router-dom";
+import Adfit from "./Adfit";
+
 
 const MakeQueze = () => {
-
-    const [cookie, setCookie, removeCookie] = useCookies();
     const input_value = useRef();
-    const datalist = useRef([true,false,false]);
-    const token = localStorage.getItem('token');
+    const input_maker_ref = useRef();
     const navigate = useNavigate();
-
+    const [searchParams, setSearchParams] = useSearchParams();
+    const school_name = useRef();
+    
     useEffect(()=> {
-        if(localStorage.getItem('token') != undefined){
-            if(localStorage.getItem('end_time') <= Date.now()){
-                localStorage.clear();
-                alert('로그인 만료');
-                navigate('/');
-            }
-        }else {
-            alert('로그인 만료');
+        school_name.current = searchParams.get('school_name');
+        console.log('params id ; ',school_name.current);
+        if(school_name.current === 'null'){
+            alert('학교를 다시 선택해 주세요');
             navigate('/');
         }
-        
     },[])
 
     
 
     const makeQueze = () => {
-        console.log('datalist : ',datalist.current[0],datalist.current[1],datalist.current[2]);
+     
         axios({
-            url     :'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/create_queze',
+            //url      : 'https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/create_queze',
+            url            : `https://port-0-ayo-serber-builder-12fhqa2blnl9payx.sel5.cloudtype.app/create_queze`,
+            //url     : 'http://10.80.163.67:45509/create_queze',
             method  : 'POST',
             headers : {
 
                 'Content-Type' : 'application/json'
-
+                // 'Content-Type': 'multipart/form-data'
             },
             data    : {
-
-                //학교,학급,반,질문,방번호
-                school      : datalist.current[0],
-                class       : datalist.current[1],
-                number      : datalist.current[2],
-                queze       : input_value.current.value,
-                token       : token       
-
+                queze          : input_value.current.value,
+                school         : `${school_name.current}`,
+                date           : Math.floor(Date.now() / 86400000),
+                maker          : `${input_maker_ref.current.value}`
             }
         }).then((res)=>{
             console.log('질문 올림',res);
+            navigate(`/A_queze?roomName=${res.data}&school_name=${school_name.current}`);
         })
+        console.log(Math.floor(Date.now() / 86400000));
+        
     }
 
-
-    const switch_ = (e)=>{
-        console.log('e.value : ',e.value);
-        if(e.value == 0){
-            datalist.current[0] = true;
-            datalist.current[1] = false;
-            datalist.current[2] = false;
-        }
-        else if(e.value == 1){
-            datalist.current[0] = true;
-            datalist.current[1] = true;
-            datalist.current[2] = false;
-        }
-        else if(e.value == 2){
-            datalist.current[0] = true;
-            datalist.current[1] = true;
-            datalist.current[2] = true;
-        }
-        console.log('datalist : ',datalist.current);
-    }
     return(
-        <div className='content_area'>
-            <input type='text'   ref={input_value} className='makequeze_input Border_radius' placeholder='질문을 입력하세요'></input>
-            <p className='guid_message'>범위 선택</p>
-            
-            <div className='Q_chooser2 Border_radius' title = "문제 범위를 설정할 수 있습니다">
-
-                공개 범위 선택
-                <select className='Border_radius' onChange={(e)=>{switch_(e.target)}}>
-                    <option value={0}>학교 공개</option>
-                    <option value={1}>학급 공개</option>
-                    <option value={2}>반 공개</option>
-                </select>
+        <div className="Main_root">
+            <div className='content_area'>
+                <input type='text'   ref={input_value} className='makequeze_input Border_radius' placeholder='질문을 입력하세요'></input>
+                <input type='button' onClick={makeQueze} value="질문 만들기" className='Submit_btn Submit_btn_'></input>
+                <input className="Input_basic Border_radius" ref={input_maker_ref} type="text" placeholder="작성자 소개"></input>
             </div>
-            <input type='button' onClick={makeQueze} value="질문 만들기" className='Submit_btn Submit_btn_'></input>
-            <Adfit unit="DAN-pyEL8l54ynx8GrIr"></Adfit>
+            {/* <div className='bug' title='버그 제보'>
+                <Svg_bug/>
+            </div> */}
+            {/* <a href="mailto:dlworjs6@dgsw.hs.kr?subject=버그 제보" className='bug' title='버그 제보 Gmail로 이동'>
+                <Svg_bug/>
+            </a> */}
+            <Adfit unit="DAN-aetbVRG8hI9aLyW8"></Adfit>
         </div>
     );
 }
