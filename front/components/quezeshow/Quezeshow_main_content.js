@@ -52,7 +52,7 @@ const Quezeshow_main_content= ({index,src,uuid,title,roomnum,quezeshow_type,expl
 
             }
             <div>
-                <p className="quezeshow_p">{title}</p>
+                <h1 className="quezeshow_p">{title}</h1>
             </div>
         </button>
     )
