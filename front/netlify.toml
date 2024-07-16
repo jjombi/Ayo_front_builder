@@ -2,7 +2,7 @@
 [build]
   command = "npm run build"
   functions = "netlify/function/"
-  publish = "build"
+  publish = ".next"
 
 [functions]
   external_node_modules = ["express"]
