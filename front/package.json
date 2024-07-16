@@ -38,6 +38,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.5.1",
     "@netlify/plugin-sitemap": "^0.8.1",
     "@svgr/webpack": "^8.1.0",
     "css-loader": "^6.8.1",
