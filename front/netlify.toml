@@ -8,34 +8,4 @@
   external_node_modules = ["express"]
   node_bundler = "esbuild"
 
-[[redirects]]
-  from = "/quezeshow_before"
-  to = "/.netlify/functions/ssr"
-  status = 200
-
-[[redirects]]
-  from = "/"
-  to =".netlify/functions/Quezeshow_main"
-  status = 200
-
-[[redirects]]
-  from = "/community"
-  to = "/.netlify/functions/Community"
-  status = 200
-
-[[redirects]]
-  from = "/guide_main"
-  to = "/.netlify/functions/Guide_main"
-  status = 200
-
-[[redirects]]
-  from = "/sitemap.xml"
-  to = "/sitemap.xml"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
 
