@@ -4,9 +4,3 @@
   functions = "netlify/function/"
   publish = ".next"
 
-[functions]
-  external_node_modules = ["express"]
-  node_bundler = "esbuild"
-  
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
