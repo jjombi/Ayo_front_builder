@@ -24,6 +24,7 @@ export const metadata = {
 		shortcut: ['@image/logo.ico'],
 	},
 }
+
 export const config = { amp: true };
 
 export default MyApp;
