@@ -25,6 +25,6 @@ export const metadata = {
 	},
 }
 
-export const config = { amp: true };
+// export const config = { amp: true };
 
 export default MyApp;
