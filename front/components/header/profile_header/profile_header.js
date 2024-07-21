@@ -1,10 +1,15 @@
 import React from "react";
 import { logout } from "@functions/profile/Profile";
+import { useRouter } from "next/router";
+import { router } from "@functions/WorldRank";
 
 const Profile_header = () => {
+    const router_ = useRouter();
     const change_clicked = (e) => {
-        // searchParams.set('path',e.target.id);
-        // setSearchParams(searchParams);
+        router(router_,'/profile/'+e.target.id);
+    }
+    const logout = () => {
+        alert('로그아웃');
     }
     return (
         <header className="Main2_a_queze_header">

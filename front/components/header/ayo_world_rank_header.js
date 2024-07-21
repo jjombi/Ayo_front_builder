@@ -66,7 +66,7 @@ const ayo_world_rank_header = () => {
                 !client_state ? 
                 <button className="all_btn header_login_btn" type="button" onClick={()=>{router(router_,'/login')}}>로그인<br/>회원가입</button>:
                 isLogin() ?
-                <button className="all_btn header_login_btn" type="button" onClick={()=>{router(router_,'/profile')}}>프로필</button>
+                <button className="all_btn header_login_btn" type="button" onClick={()=>{router(router_,'/profile/info')}}>프로필</button>
                 :
                 <button className="all_btn header_login_btn" type="button" onClick={()=>{router(router_,'/login')}}>로그인<br/>회원가입</button>
             }

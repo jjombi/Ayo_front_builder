@@ -3,6 +3,7 @@ import Profile_header from '@header/profile_header/profile_header';
 import { isLogin, getUserEmailKey } from "@functions/WorldRank";
 import Header from "@components/header/ayo_world_rank_header";
 import { customAxiosGet } from '@functions/Custom_axios/Custom_axios';
+import Quezeshow_main_content from "@components/quezeshow/Quezeshow_main_content";
 
 const My_likes = () => {
 
@@ -28,7 +29,6 @@ const My_likes = () => {
         <>
         <Header/>
         <Profile_header/>
-        my_likes
         <div className="queze_list">
         {
             content_state.map((e,i)=>{

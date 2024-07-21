@@ -14,7 +14,7 @@ const Info = () => {
         <>
         <Header/>
         <Profile_header/>
-        info</>
+        </>
     )
 }
 export default Info;
