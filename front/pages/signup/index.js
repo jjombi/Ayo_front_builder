@@ -5,7 +5,7 @@ import {customAxiosPost, customAxiosGet} from '@functions/Custom_axios/Custom_ax
 import Adfit from "@components/Adfit";
 import { router } from "@functions/WorldRank";
 import { useRouter } from "next/router";
-
+import Footer from "@components/footer/footer";
 // import {ReactComponent as Check} from '../Img_folder/Check_ring_light.svg';
 export default function Signup () {
     const router_ = useRouter();
@@ -134,9 +134,8 @@ export default function Signup () {
                 </section>
             </div>
         </section>
-        <footer>
-            {/* <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit> */}
-        </footer>
+        <Footer position={'absolute'}></Footer>
+
         </>
     )
 }

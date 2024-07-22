@@ -17,6 +17,7 @@ const Make_quezeshow_step1 = () => {
     }
 
     return(
+        <>
         <div className="Make_quezeshow_step1_root">
             <Header/>
                     
@@ -42,11 +43,12 @@ const Make_quezeshow_step1 = () => {
                     <p id="ox">O,X중 하나를 선택하여 정답을 맞출수 있습니다.</p>
                 </div>
             </section>
-            <footer>
-                <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
-            </footer>
             {/* <button>다음</button> */}
         </div>
+        <footer>
+            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
+        </footer>
+        </>
     )
 }
 export default Make_quezeshow_step1;

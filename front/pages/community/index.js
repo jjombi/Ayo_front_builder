@@ -5,7 +5,7 @@ import Community_content from "@community/Community_content";
 import Adfit from "@components/Adfit";
 import {getUsertype, isLogin} from '@functions/WorldRank';
 import { customAxiosGet, customAxiosPost } from "@functions/Custom_axios/Custom_axios";
-
+import Footer from "@components/footer/footer";
 export async function getStaticProps(context) {
 
     const res = await customAxiosGet({
@@ -116,9 +116,7 @@ function Community ({data}) {
                 }) :
                 null
             }
-            <footer>
-            <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
-            </footer>
+            <Footer position={'absolute'}></Footer>
         </div>
     )
     return(

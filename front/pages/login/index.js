@@ -4,6 +4,7 @@ import Header from '@header/ayo_world_rank_header';
 import { router } from "@functions/WorldRank";
 import { submit } from "@functions/login/Login";
 import { useRouter } from "next/router";
+import Footer from "@components/footer/footer";
 const Login = () => {
     const router_ = useRouter();
     const email_ref = useRef(null);
@@ -37,9 +38,7 @@ const Login = () => {
                     <button className="signup_submit_btn all_btn" type="button" onClick={()=>{submit(email_ref.current.value,password1_ref.current.value,router_)}}>다음</button>
                 </section>
             </div>
-            <footer>
-                {/* <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit> */}
-            </footer>
+            <Footer position={'absolute'}></Footer>
         </section>
         </>
     )
