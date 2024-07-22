@@ -21,4 +21,5 @@ export const getServerSideProps = async (ctx) => {
   return withXMLResponse(ctx, fields);
 };
 
-export default function Sitemap() {}
+export default function Sitemap() {} 
+//
