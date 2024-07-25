@@ -3,6 +3,7 @@ import { getAccessToken, isLogin, router } from "@functions/WorldRank";
 import new_logo from '@image/Img_folder/NEWLOGO.png';
 import Image from 'next/image';
 import { useRouter } from "next/router";
+import { logout } from "@functions/profile/Profile";
 const ayo_world_rank_header = () => {
 
     const router_ = useRouter();
@@ -40,9 +41,22 @@ const ayo_world_rank_header = () => {
         router(router_,'/new_word_queze');
     }
 
+    const check_expired = () => {
+        const expiredAt =  window.localStorage.getItem('ay0-expiredAt');
+        const date = Date.now();
+        // console.log('ex',expiredAt,'date now',date);
+        if(expiredAt <= Date.now()) {
+            alert('로그인 세션이 만료 되었습니다\n다시 로그인 해주세요');
+            logout();
+            router(router_,'/login');
+        }
+    }
+
     useEffect(()=>{
         setClient_state(true);
-    })
+        // console.log(isLogin());
+        if(isLogin()) check_expired();
+    },[])
 
     return(
         <header className="Main2_header">
