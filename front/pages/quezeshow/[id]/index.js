@@ -90,7 +90,9 @@ const Quezeshow_before = ({item,comments,roomnum_}) => {
                 }
             }).then(res=>{
                 if(res.data == true){
-                    navigate(`/makequezeshowmodify?uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`,{state:{tinyint : true}});
+                    // navigate(`/makequezeshowmodify?uuid=${uuid}&title=${quezeshow_title}&explain_text=${explain_text}&quezeshow_type=${quezeshow_type}&roomnum=${roomnum}`,{state:{tinyint : true}});
+                    router(router_,`/produce/modify`,{roomnum,uuid,title:quezeshow_title,explain_text,quezeshow_type});
+
                 }else{
                     setPopup_state(popup_state => !popup_state);
                 }

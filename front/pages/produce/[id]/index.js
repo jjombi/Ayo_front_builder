@@ -143,11 +143,21 @@ const Make_quezeshow = () => {
 
     const correct_choice_checker = () => {////////////////////////////////  수정
         let tinyint = true;
-        correct_choice.map((e,i)=>{
-            if(e === ''){
+        // console.log(content_object);
+        content_object.map((e,i)=>{
+            if(e.correct_choice === ''){
                 tinyint = false;
             }
         })
+        if(quezeshow_type_clicked_btn === 'vote'){
+        }else if(quezeshow_type_clicked_btn === 'descriptive'){
+            content_object.map((e,i)=>{
+                if(e.correct_choice.length === 0){
+                    tinyint = false;
+                }
+            })
+        }else if(quezeshow_type_clicked_btn === 'multiple'){
+        }
         return tinyint;
     }
 
@@ -168,26 +178,26 @@ const Make_quezeshow = () => {
             const content_object_ = content_object.map((e,i)=>{
                 if(e.data_type === 'image'){
                     if(e.src === '' || e.src === 'data:image/jpeg;base64,'){
-                        return {data_type: e.data_type, hint : e.hint, title : e.title, text : e.text, img : false}
+                        // return {data_type: e.data_type, hint : e.hint, title : e.title, text : e.text, img : false}
                     }else {
-                        return {data_type: e.data_type, hint : e.hint, title : e.title, text : e.text, img : true}
+                        // return {data_type: e.data_type, hint : e.hint, title : e.title, text : e.text, img : true}
                     }
                 }else if(e.data_type === 'audio'){
                     if(e.src === '') tinyint = false
-                    return {data_type : e.data_type, src : e.src, hint : e.hint, title : e.title, text : e.text, answer : e.answer,start : e.start, end : e.end}
+                    // return {data_type : e.data_type, src : e.src, hint : e.hint, title : e.title, text : e.text, answer : e.answer,start : e.start, end : e.end}
                 }else if(e.data_type === 'video'){
                     if(e.src === '') tinyint = false
-                    return {data_type : e.data_type, src : e.src, hint : e.hint, title : e.title, text : e.text, answer : e.answer,start : e.start, end : e.end}
+                    // return {data_type : e.data_type, src : e.src, hint : e.hint, title : e.title, text : e.text, answer : e.answer,start : e.start, end : e.end}
                 }else if(e.data_type === 'text'){
-                    return {data_type : e.data_type, src : e.src, hint : e.hint, title : e.title, text : e.text, answer : e.answer,start : e.start, end : e.end}
+                    // return {data_type : e.data_type, src : e.src, hint : e.hint, title : e.title, text : e.text, answer : e.answer,start : e.start, end : e.end}
                 }
             })
             if(!tinyint) alert('영상 주소를 다시 확인해 주세요');
-            else new_img_upload_func(content_object_);
+            else new_img_upload_func();
         }
     }
 
-    const new_img_upload_func = (content_object_) => {
+    const new_img_upload_func = () => {
         Promise.all([...file_ref.current].map((e,i)=>{
             if(e !== undefined){
                 const upload = new AWS.S3.ManagedUpload({
@@ -214,11 +224,11 @@ const Make_quezeshow = () => {
                 const promise = upload.promise();
                 main_img_tinyint = true;
             }
-            make_quezeshow_axios(content_object_,main_img_tinyint);
+            make_quezeshow_axios(main_img_tinyint);
         
         })  
     }
-    const make_quezeshow_axios = (content_object_,main_img_tinyint) => {
+    const make_quezeshow_axios = (main_img_tinyint) => {
         axios({
             url : process.env.NEXT_PUBLIC_SERVER_URL+"/make_quezeshow",
             method : 'POST',
@@ -228,7 +238,7 @@ const Make_quezeshow = () => {
                 uuid                 : uuid,
                 queze_title          : queze_title_ref.current.value,
                 queze_explain_text   : queze_explain_text_ref.current.value,
-                content_object       : content_object_, //콘텐츠 제못, 설명, 이미지 판별
+                content_object       : content_object, //콘텐츠 제못, 설명, 이미지 판별
                 time                 : time_ref.current.value,
                 main_img_tinyint     : main_img_tinyint,
                 user_id              : user_id_ref.current.value,
@@ -242,7 +252,7 @@ const Make_quezeshow = () => {
 
         }).then((res)=>{
             if(res.data === '토큰 만료'){
-                get_new_accessToken((content_object_,main_img_tinyint)=>{make_quezeshow_axios(content_object_,main_img_tinyint)})
+                get_new_accessToken((main_img_tinyint)=>{make_quezeshow_axios(main_img_tinyint)})
             }else{
                 setPassword_popup(true);
                 localStorage.setItem(uuid,password);

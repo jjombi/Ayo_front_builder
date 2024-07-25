@@ -6,7 +6,7 @@ import axios from 'axios';
 import Make_quezeshow_content_text from '@make_quezeshow/Make_quezeshow_content_text';
 import YouTubeComponent from '@make_quezeshow/Youtube_component';
 import Make_quezeshow_content_queze from "@make_quezeshow/Make_quezeshow_content_queze";
-import { dragenter, dragover, chenge_textarea_height } from "@functions/WorldRank";    
+import { dragenter, dragover, chenge_textarea_height, isLogin, getUserEmailKey } from "@functions/WorldRank";    
 import AWS from "aws-sdk";
 import { useRouter } from 'next/router';
 import { router } from '@functions/WorldRank';
@@ -57,34 +57,50 @@ const Make_quezeshow_modify = ({params}) => {
     });
 
     useEffect(()=>{
-        if(window.localStorage.getItem(uuid) !== null){
+        if(isLogin()){
+            customAxiosPost({
+                url : '/check_queze_is_mine',
+                data : {
+                    uuid,
+                    email : getUserEmailKey()
+                }
+            }).then(res=>{
+                if(!res.data){
+                    alert('비밀번호 입력후 수정가능 합니다');
+                }else{
+                    useEffect_func();
+                }
+            })
+        }
+        else if(window.localStorage.getItem(uuid) !== null){
             alert('비밀번호 입력후 수정가능 합니다');
             
         }
         else{
-            customAxiosGet({
-                url : '/modify_get_content',
-                params : {
-                    uuid
-                }
-            }).then(res=>{
-                // console.log('수정 콘텐츠',res);
-                modify_last_img_i.current = res.data.length;
-                original_content.current = res.data;
-            })
-            customAxiosGet({
-                url : '/modify_get_title_text',
-                params : {
-                    uuid
-                }
-            }).then(res=>{
-                // console.log('수정 제목, 설명',res);
-                original_queze.current = res.data;   
-            })
-            
+            useEffect_func();
         }
     },[])
-
+    const useEffect_func = () => {
+        customAxiosGet({
+            url : '/modify_get_content',
+            params : {
+                uuid
+            }
+        }).then(res=>{
+            // console.log('수정 콘텐츠',res);
+            modify_last_img_i.current = res.data.length;
+            original_content.current = res.data;
+        })
+        customAxiosGet({
+            url : '/modify_get_title_text',
+            params : {
+                uuid
+            }
+        }).then(res=>{
+            // console.log('수정 제목, 설명',res);
+            original_queze.current = res.data;   
+        })
+    }
     const img_upload = async (e) => {
         e.preventDefault();
         let tinyint = true;
