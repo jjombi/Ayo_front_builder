@@ -112,7 +112,8 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
 
     const change_correct_choice_descriptive = (e,index) => { // 서술형 퀴즈 정답 작성 및 추가
         if(e.key === 'Enter'){
-            const value = e.target.value.replace("'",'\'').replace('"','\"');
+            const value = e.target.value.replace(/'/g, "\\'").replace(/"/g, '\\"');
+            console.log('va;',value);
             const content_object_ = content_object;
             content_object_[index].correct_choice = [...content_object_[index].correct_choice,value];
             setContent_object(content_object => [...content_object_]);
