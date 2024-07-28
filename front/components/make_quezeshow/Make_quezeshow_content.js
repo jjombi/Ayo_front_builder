@@ -112,8 +112,9 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
 
     const change_correct_choice_descriptive = (e,index) => { // 서술형 퀴즈 정답 작성 및 추가
         if(e.key === 'Enter'){
+            const value = e.target.value.replace("'",'\'').replace('"','\"');
             const content_object_ = content_object;
-            content_object_[index].correct_choice = [...content_object_[index].correct_choice,e.target.value];
+            content_object_[index].correct_choice = [...content_object_[index].correct_choice,value];
             setContent_object(content_object => [...content_object_]);
             e.target.value = '';
         }
@@ -353,9 +354,9 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
         :
         null
         }
-        {
+        {/* {
             console.log('correct_choice-1',correct_choice,content_object[index],content_object[index].correct_choice)
-        }
+        } */}
         {   
             
             quezeshow_type_clicked_btn === 'multiple' && content_object[index].data_type !== null
