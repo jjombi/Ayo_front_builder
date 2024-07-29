@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Youtube_component_in_content from "./Youtube_component_in_content";
 import Audio_canvas from './Audio_canvas';
+import Image from "next/image";
 const Quezeshow_queze_content_video = ({data_type,img,start,end}) => {
     const [loading_state, setLoading_state] = useState(true);
     return(

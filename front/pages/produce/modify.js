@@ -19,12 +19,12 @@ const Make_quezeshow_modify = () => {
     const [content_object, setContent_object] = useState([]);
     
     const file_ref = useRef([]);
-    const queze_title_ref = useRef();
+    // const queze_title_ref = useRef();
     const form_dom_ref = useRef();
     const canvas_ref = useRef();
-    const queze_explain_text_ref = useRef();
-    const time_ref = useRef();
-    const user_id_ref = useRef();
+    // const queze_explain_text_ref = useRef();
+    // const time_ref = useRef();
+    // const user_id_ref = useRef();
     const modify_last_img_i = useRef();
     const original_content = useRef();
     const original_queze = useRef();
@@ -249,11 +249,21 @@ const Make_quezeshow_modify = () => {
         })  
     }
     const make_quezeshow_axios = () => {
+        const content_object_ = content_object.map((e,i)=>{
+            const new_e = e;
+            if(e.src === '' || e.src === 'data:image/png;base64,' || e.src === null) {
+                new_e.src = true; 
+            }
+            else {
+                new_e.src = false;
+            }
+            return new_e
+        })
         customAxiosPost({
             url : "/add_quezeshowcontent",
             data   : {
                 uuid                 : uuid,
-                content_object       : content_object, //콘텐츠 제못, 설명, 이미지 판별
+                content_object       : content_object_, //콘텐츠 제못, 설명, 이미지 판별
                 date                 : Date.now(),
                 modify_last_img_i    : modify_last_img_i.current,
                 quezeshow_type       : quezeshow_type_clicked_btn,

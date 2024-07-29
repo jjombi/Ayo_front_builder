@@ -167,6 +167,7 @@ const Quezeshow_queze= () => {
         return result;
     }
     const next_queze = () => {
+        console.log('lkrh');
         if(!correct_state.queze_state){//문제 창
             if(correct_checker()){
                 const data = {queze_state : true, is_correct : true};
@@ -227,7 +228,7 @@ const Quezeshow_queze= () => {
                     : null
                 }
                 <h1>{quezeshow_title}</h1>
-                <h1>{explain_text}</h1>
+                <h2>{explain_text}</h2>
                 { 
                     submit_state
                     ?   
@@ -325,7 +326,7 @@ const Quezeshow_queze= () => {
                                 </>
                                 :
                                 <>
-                                    <button type="button" onClick={next_queze}>{'>'}</button>
+                                    <button type="button" className="all_btn" onClick={next_queze}>{'>'}</button>
                                 </>
                             }
                             
