@@ -229,6 +229,16 @@ const Make_quezeshow = () => {
         })  
     }
     const make_quezeshow_axios = (main_img_tinyint) => {
+        const content_object_ = content_object.map((e,i)=>{
+            const new_e = e;
+            if(e.src === '' || e.src === 'data:image/png;base64,' || e.src === null) {
+                new_e.src = true; 
+            }
+            else {
+                new_e.src = false;
+            }
+            return new_e
+        })
         axios({
             url : process.env.NEXT_PUBLIC_SERVER_URL+"/make_quezeshow",
             method : 'POST',
@@ -238,7 +248,7 @@ const Make_quezeshow = () => {
                 uuid                 : uuid,
                 queze_title          : queze_title_ref.current.value,
                 queze_explain_text   : queze_explain_text_ref.current.value,
-                content_object       : content_object, //콘텐츠 제못, 설명, 이미지 판별
+                content_object       : content_object_, //콘텐츠 제못, 설명, 이미지 판별
                 time                 : time_ref.current.value,
                 main_img_tinyint     : main_img_tinyint,
                 user_id              : user_id_ref.current.value,
