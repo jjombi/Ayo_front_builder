@@ -167,7 +167,7 @@ const Quezeshow_queze= () => {
         return result;
     }
     const next_queze = () => {
-        console.log('lkrh');
+        // console.log('lkrh');
         if(!correct_state.queze_state){//문제 창
             if(correct_checker()){
                 const data = {queze_state : true, is_correct : true};
@@ -181,7 +181,7 @@ const Quezeshow_queze= () => {
             if(show_index+1 > content_state.length){// 마지막 문제 끝남
             }else{ // 다음 문제로
                 setShow_index(show_index => show_index+1);
-                setClicked(clicked => '');
+                setClicked(clicked => null);
                 const data = {queze_state : false, is_correct : null};
                 setCorrect_state(correct_state => data);                
             }

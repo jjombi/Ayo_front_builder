@@ -24,14 +24,14 @@ const Quezeshow_queze_content_type_queze = ({img,data_type,uuid2,start, end, tit
             }
 
         }).then(res=>{
-            console.log(res);
+            // console.log('selete choice, correct choice',res);
             setChoice(choice => res.data.choice);
             setCorrect_choice(correct_choice => res.data.correct_choice[0].correct_choice);
             setInterval(() => {
                 timer_ref.current += 100;
             }, 100);
         })
-    },[])
+    },[uuid2])
     return(
         <section className="Quezeshow_queze_content_type_queze_root" style={{color : 'black'}}>
             <h1>
