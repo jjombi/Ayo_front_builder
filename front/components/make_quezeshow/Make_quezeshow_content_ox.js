@@ -6,7 +6,7 @@ const Make_quezeshow_content_ox = ({index,content_object, setCorrect_choice, set
     const correct_choice = content_object[index].correct_choice;
 
     useEffect(()=>{
-        console.log('Make_quezeshow_content_ox, content_obj : ',content_object,'correct choice',correct_choice);
+        // console.log('Make_quezeshow_content_ox, content_obj : ',content_object,'correct choice',correct_choice);
     })
 
     const change_correct_choice = (e) => {

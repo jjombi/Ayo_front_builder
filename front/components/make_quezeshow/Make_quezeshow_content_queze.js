@@ -8,14 +8,15 @@ const Make_quezeshow_content_queze = ({index,content_object,add_choice,setChoice
 
     const delete_choice = (ev) => {
         const choice_ = choice.filter((e,i)=>{
+            // console.log(i,typeof i,ev.target.id, typeof ev.target.id);
             return i !== Number(ev.target.id)
         });
-        setChoice(choice2 => choice_);
+        setChoice(choice_);
     }
     const change_choice_text = (e) => {
         const choice_  = choice;
         choice_[e.target.id] = e.target.value;
-        setChoice(choice_); // ['','2','dasda']
+        setChoice(choice_); // ['','2','dasda'] 
     }
     const change_correct_choice = (e) => {
         let correct_choice_ = correct_choice;

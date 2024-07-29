@@ -20,6 +20,6 @@ const Make_quezeshow_content_text = ({content_object,delete_correct_choice_descr
             </div>
         </section>
     )
-}
+}   
 export default Make_quezeshow_content_text;
  

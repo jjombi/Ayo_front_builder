@@ -358,7 +358,7 @@ const Make_quezeshow_modify = () => {
             {/* <Make_quezeshow_thumbnail main_img={main_img}change_img={change_img}onpaste={onpaste} delete_thumnail={delete_thumnail}/> */}
             <div className="queze_list_v2">
                 {
-                    content_state.map((e,index)=>{
+                    content_object.map((e,index)=>{
                         return(
                         <Make_quezeshow_content key={index} file_ref={file_ref} index={index}quezeshow_type_clicked_btn={quezeshow_type_clicked_btn}content_object={content_object}setContent_object={setContent_object}change_img={change_img}onpaste={onpaste} setContent_state={setContent_state}content_state={content_state}></Make_quezeshow_content>
                         )

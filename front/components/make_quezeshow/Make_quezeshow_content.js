@@ -7,11 +7,8 @@ import Make_quezeshow_content_ox from "./Make_quezeshow_content_ox";
 const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object,setContent_object,file_ref,change_img,onpaste}) => {
 
     useEffect(()=>{
-        console.log('rendering... content_object',content_object);
+        // console.log('rendering... content_object',content_object);
     })
-
-    const correct_choice = content_object[index].correct_choice;
-    const choice = content_object[index].choice;
     const [max_video_length,setMax_video_length] = useState(0);
 
     const setMax_video_length_func = (value,index) => {
@@ -74,6 +71,7 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
                 content_object_[index].start = content_object[index].start+plus_video_start_value;
             }
         }else console.log('err');
+        // console.log('start값 변경 후 contobj',content_object_);
         setContent_object(content_object => [...content_object_]);
     }
     const change_video_end_input_number = (e,first_video_end,type,index) => { // 영상 종료지점 변경(선움직여서)
@@ -97,23 +95,26 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
                 alter('type err')
             }
         }else alter('err');
+        // console.log('end값 변경 후 contobj',content_object_);
         setContent_object(content_object => [...content_object_]);
     }
     const change_video_start = (e,index) => { // 영상 시작 지점 변경(숫자 입력해서)
         const content_object_ = content_object;
         content_object_[index].start = e.target.value;
+        // console.log('start값 변경 후 contobj',content_object_);
         setContent_object(content_object => [...content_object_]);
     }
     const change_video_end = (e,index) => { // 영상 종료 지점 변경(숫자 입력해서)
         const content_object_ = content_object;
         content_object_[index].end = e.target.value;
+        // console.log('end값 변경 후 contobj',content_object_);
         setContent_object(content_object => [...content_object_]);    
     }
 
     const change_correct_choice_descriptive = (e,index) => { // 서술형 퀴즈 정답 작성 및 추가
         if(e.key === 'Enter'){
             const value = e.target.value.replace(/'/g, "").replace(/"/g, '');
-            console.log('va;',value);
+            // console.log('va;',value);
             const content_object_ = content_object;
             content_object_[index].correct_choice = [...content_object_[index].correct_choice,value];
             setContent_object(content_object => [...content_object_]);
@@ -124,12 +125,15 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
         const content_object_ = content_object;
         content_object_[index].correct_choice = content_object_[index].correct_choice.filter((e,i)=>{return i !== Number(ev.target.id)});
         setContent_object(content_object => [...content_object_]);
-        
     }
     const delete_ = (index) => { // 퀴즈 한개 삭제
-        file_ref.current = file_ref.current.filter((e,i)=>{return(i !== Number(index))});
-        const content_object_ = content_object.filter((e,i)=>{return(i !== Number(index))});
+        // console.log('delete_','퀴즈 하나 삭제');
+        file_ref.current = file_ref.current.filter((e,i)=>{console.log(i,index); return i !== index});
+        const content_object_ = content_object.filter((e,i)=>{console.log(i,index); return i !== index});
+        // console.log('퀴즈 삭제 후 contentobj',content_object_,'\n',[...content_object_]);
         setContent_object(content_object => [...content_object_]);
+        // setContent_object(content_object => {console.log('변경후 setstate 안에서',content_object)})
+
     }
     const change_title = (e,index) => { // 퀴즈 제목 변경
         const content_object_ = [...content_object];
@@ -146,7 +150,7 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
         content_object_[index].text = e.target.value;
         setContent_object(content_object => [...content_object_]);
     }
-    const add_choice = () => { // 퀴즈 타입 queze인 퀴즈 선택지 추가 
+    const add_choice = (e) => { // 퀴즈 타입 queze인 퀴즈 선택지 추가 
         const content_object_ = [...content_object];
         content_object_[index].choice = [...content_object_[index].choice,''];
         setContent_object(content_object => [...content_object_]);
@@ -163,6 +167,7 @@ const Make_quezeshow_content = ({index,quezeshow_type_clicked_btn,content_object
     }
     return(
     <section key={index} className="make_quezeshow_content_root">
+
         <input className="make_quezeshow_content_deletebtn" type="button" onClick={(e)=>{delete_(index)}} value={"X"}></input>
         {
             quezeshow_type_clicked_btn === 'vote'
