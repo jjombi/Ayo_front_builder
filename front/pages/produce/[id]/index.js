@@ -232,10 +232,10 @@ const Make_quezeshow = () => {
         const content_object_ = content_object.map((e,i)=>{
             const new_e = e;
             if(e.src === '' || e.src === 'data:image/png;base64,' || e.src === null) {
-                new_e.src = true; 
+                new_e.src = false; 
             }
             else {
-                new_e.src = false;
+                new_e.src = true;
             }
             return new_e
         })
