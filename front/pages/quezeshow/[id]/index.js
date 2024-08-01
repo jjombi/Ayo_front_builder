@@ -35,17 +35,22 @@ const Quezeshow_before = ({item,comments,roomnum_}) => {
     const router_ = useRouter();
 
     const roomnum = roomnum_;
-    const result_comment_state = comments;
     const uuid = item.uuid;
     const quezeshow_type = item.quezeshow_type;
     const img = item.img;
     const quezeshow_title = item.title;
     const explain_text = item.explain_text;
 
+    const [result_comment_state,setResult_comment_state] = useState(comments);
     const [declaration,setDeclaration] = useState(false);
     const comment_input_ref = useRef();
     const comment_input_title_ref = useRef();
     const [popup_state, setPopup_state] = useState(false);
+    const [is_client, setIs_client] = useState(false);
+
+    useEffect(()=>{
+        setIs_client(true);
+    },[])
 
     const navi_to_quezeshow_queze = () => {
         router(router_,`/queze`,{roomnum,uuid,title:quezeshow_title,explain_text,quezeshow_type});
@@ -63,20 +68,20 @@ const Quezeshow_before = ({item,comments,roomnum_}) => {
             const hours = ('0' + today.getHours()).slice(-2); 
             const minutes = ('0' + today.getMinutes()).slice(-2);
             const seconds = ('0' + today.getSeconds()).slice(-2); 
-
             const timeString = year + '-' + month  + '-' + day + ' ' + hours + ':' + minutes  + ':' + seconds;
+            const data_obj = {
+                roomnum : roomnum,
+                uuid    : uuid,
+                title   : comment_input_title_ref.current.value,
+                text    : comment_input_ref.current.value,
+                date    : timeString,
+                usertype: getUsertype(),
+            };
             customAxiosPost({
                 url : '/quezeshowcomment_upload',
-                data : {
-                    roomnum : roomnum,
-                    uuid    : uuid,
-                    title   : comment_input_title_ref.current.value,
-                    text    : comment_input_ref.current.value,
-                    date    : timeString,
-                    usertype: getUsertype(),
-                },
+                data : data_obj,
             }).then(async res=>{
-
+                setResult_comment_state(result_comment_state => [{...data_obj,likes : 0},...result_comment_state])
             })
         }
     }
@@ -146,8 +151,8 @@ const Quezeshow_before = ({item,comments,roomnum_}) => {
             <div className="comment_area">
                 <div>
                     {   
-                        // typeof window !== 'undefined' &&  isLogin() ?
-                        // <input type="text" ref={comment_input_title_ref} readOnly value={getUserId()}></input>:
+                        is_client && isLogin() ?
+                        <input type="text" ref={comment_input_title_ref} readOnly value={getUserId()}></input>:
                         <input type="text" ref={comment_input_title_ref} placeholder="아이디 입력"></input>
                     }
                 </div>  
@@ -159,7 +164,6 @@ const Quezeshow_before = ({item,comments,roomnum_}) => {
             
         {   
             result_comment_state.map((e,i)=>{
-                // console.log('ee__',e);
                 return(
                     <Quezeshow_comment key={i} title={e.title} text={e.text} likes={e.likes} uuid={e.uuid} uuid2={e.uuid2} uuid3={e.uuid3} date={e.date} usertype={e.usertype}/>
                 )
