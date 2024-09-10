@@ -4,15 +4,17 @@ import { isLogin, getUserEmailKey } from "@functions/WorldRank";
 import Header from "@components/header/ayo_world_rank_header";
 import { customAxiosGet } from '@functions/Custom_axios/Custom_axios';
 import Quezeshow_main_content from "@components/quezeshow/Quezeshow_main_content";
-
+import { useRouter } from "next/router";
+import { router } from "@functions/WorldRank";
 const My_likes = () => {
 
     const [content_state, setContent_state] = useState([]);
+    const router_ = useRouter();
 
     useEffect(()=>{
         if(!isLogin()){
             alert('로그인 후 이용가능 합니다');
-            router('/login');
+            router(router_,'/login');
         }else{
             customAxiosGet({
                 url : '/search_likes_queze',

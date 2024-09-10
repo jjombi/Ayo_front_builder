@@ -116,7 +116,6 @@ const Quezeshow_before = ({item,comments,roomnum_}) => {
             <meta name="description" content={explain_text}/>
 			<meta name="robots" content="index,follow"/>
 			<link rel="canonical" href={"https://ay0.site/quezeshow/"+roomnum}/>
-			{/* <meta name="keywords" content="ayo, ay0, 퀴즈쇼, 나락퀴즈쇼, 음악퀴즈, 아이돌퀴즈쇼, 이어말하기, 인물퀴즈, 이어말하기, 신조어퀴즈, 이모지퀴즈, 상식퀴즈" /> */}
         </Head>
         <section className="Quezeshow_before_root">
             {

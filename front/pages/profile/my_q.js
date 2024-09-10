@@ -3,14 +3,17 @@ import Profile_header from '@header/profile_header/profile_header';
 import { isLogin, getUserEmailKey } from "@functions/WorldRank";
 import Header from "@components/header/ayo_world_rank_header";
 import { search_axios } from "@functions/WorldRank";
+import { useRouter } from "next/router";
+import { router } from "@functions/WorldRank";
+
 const My_q = () => {
 
     const [content_state, setContent_state] = useState([]);
-
+    const router_ = useRouter();
     const useEffect_func = async ()=>{
         if(!isLogin()){
             alert('로그인 후 이용가능 합니다');
-            router('/login');
+            router(router_,'/login');
         }else {
             const res = await search_axios(3,'',getUserEmailKey(),'');
             console.log(res);

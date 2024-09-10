@@ -11,9 +11,28 @@ import Make_quezeshow_thumbnail from "@make_quezeshow/Make_quezeshow_thumbnail";
 import Make_quezeshow_content from "@make_quezeshow/Make_quezeshow_content";
 import { useParams } from 'next/navigation'
 import { useRouter } from "next/router";
+import { useSetRecoilState, useRecoilState, atom } from "recoil";
+// import { produce_data_ } from "@recoil/index";
+
+// const produce_data_ = atom({
+//     key : 'produce_data',
+//     default : {
+//         uuid : '',
+//         quezeshow_type_clicked_btn : null,
+//         password : '',
+//         content_state : [],
+//         content_object : [],
+//         time_checkbox : false,
+//         main_img : [null,null],
+//         password_popup : false,
+//         tag_arr : []
+//     }
+// })
 
 const Make_quezeshow = () => {
     const router_ = useRouter();
+    
+    // const [produce_data, setProduce_data] = useRecoilState(produce_data_);
     const [uuid,setUuid] = useState('');
     const [quezeshow_type_clicked_btn, setQuezeshow_type_clicked_btn] = useState();
     const [password, setPassword] = useState('');
@@ -23,7 +42,7 @@ const Make_quezeshow = () => {
     const [main_img,setMain_img] = useState([null, null]);
     const [password_popup, setPassword_popup] = useState(false);
     const [tag_arr, setTag_arr] = useState([]);
-    
+
     const file_ref = useRef([]);
     const queze_title_ref = useRef();
     const form_dom_ref = useRef();
@@ -44,7 +63,7 @@ const Make_quezeshow = () => {
     });
 
     useEffect(()=>{
-        // console.log(router_.query.id);
+        // console.log(router_.query.id,produce_data);
         const uuid_ = uuidv4();
         const random_modify_password = Math.random().toString(36).substr(2,5);
         setUuid(uuid=> uuid_);

@@ -2,34 +2,59 @@ import React, { useEffect, useState, useRef } from "react";
 import Header from "@header/ayo_world_rank_header";
 import Quezeshow_main_content from "@quezeshow/Quezeshow_main_content";
 import Adfit from "@components/Adfit";
-import {search_axios, router} from '@functions/WorldRank';
+import {search_axios, search_axios_public, router, isLogin, getUserEmailKey} from '@functions/WorldRank';
 import {useRouter} from "next/router";
-import Head from "next/head";
+import useSWR from "swr";
+import { customAxiosGet } from "@functions/Custom_axios/Custom_axios";
+import { SWRConfig } from "swr";
 // const Header = dynamic(() => import('@header/ayo_world_rank_header'), { ssr: false })
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
 
     const type = 0;//인기순
     const res = await search_axios(type,null,null,null);
-
     return {
       props: {
-        data : res.data,
+        fallback: {
+            '/search_quezeshow': res.data
+        }
       },
     };
 }
-
-const Quezeshow_main= ({data}) => {
+const fetcher = async (url) => {
+    const res = isLogin() ? await customAxiosGet({url,params:{type:0,user_email:getUserEmailKey()}}) : await customAxiosGet({url,parmas:{type:0}});
+    return res.data;
+}
+ 
+const Queze_contnet = () => {
+    const { data, error, isLoading, isValidating, mutate } = useSWR( '/search_quezeshow', fetcher,{
+        revalidateIfStale: true,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false
+    });
+    console.log('queze content reload',data);
+    const change_queze_likes = (index,value) => {
+        //미완성
+    }
+    return <div className="queze_list">
+    {   
+        isLoading ?
+        <p className="loading_message">
+        Loading...
+        </p> :
+        data.map((e,i)=>{
+            console.log(e);
+            return(
+                <Quezeshow_main_content key={i} index={i} src={'data:image/jpeg;base64,'+e.img} uuid={e.uuid} title={e.title} roomnum={e.roomnum} quezeshow_type={e.quezeshow_type} explain_text={e.explain_text} likes_queze={e.likes_queze} change_queze_likes={change_queze_likes}></Quezeshow_main_content>
+            )
+        })
+    }
+    </div>
+  }
+const Quezeshow_main= ({/*data_p*/fallback }) => {
 
     const router_ = useRouter();
     const search_value_ref = useRef(null);
-    
-    const change_queze_likes = (index,value) => {
-        // i dont know how can i do
-        // const content_state_ = content_state;
-        // content_state_[index].likes_queze = value;
-        // setContent_state(content_state => [...content_state_]);
-    }
     const search_enter = (e) => {
         if(e.key === 'Enter'){
             router(router_,`/search`,{tag:search_value_ref.current.value});
@@ -42,7 +67,11 @@ const Quezeshow_main= ({data}) => {
         router(router_,'/search',{ty:0});
     }
     return(
+        <SWRConfig value={{fallback}}>
         <div className="quezeshow_main_root">
+            {
+                console.log('re rendered')
+            }
             <Header suppressHydrationWarning></Header>
                 <header className="Main2_a_queze_header quezeshow_main_header">
                     <input type="button" className="search_type_btn all_btn" value={'인기순'} onClick={change_search_type_btn}></input>
@@ -55,17 +84,9 @@ const Quezeshow_main= ({data}) => {
                     </button>
                 </header>
             <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit> 
-            <div className="queze_list">
-                {
-                    data.map((e,i)=>{
-                        // console.log('e',e);
-                        return(
-                            <Quezeshow_main_content key={i} index={i} src={'data:image/jpeg;base64,'+e.img} uuid={e.uuid} title={e.title} roomnum={e.roomnum} quezeshow_type={e.quezeshow_type} explain_text={e.explain_text} likes_queze={e.likes_queze} change_queze_likes={change_queze_likes}></Quezeshow_main_content>
-                        )
-                    })
-                }
-            </div>
+            <Queze_contnet></Queze_contnet>
         </div>
+        </SWRConfig>
     )
 
 }
