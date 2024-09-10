@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "set NODE_ENV=production & next build",
-    "start": "next start"
+    "start": "next start",
+    "analyze": "cross-env ANALYZE=true next build"
   },
   "author": "",
   "license": "ISC",
@@ -30,6 +31,7 @@
     "react-hook-form": "^7.48.2",
     "react-router-sitemap": "^1.2.0",
     "react-youtube": "^10.1.0",
+    "recoil": "^0.7.7",
     "save": "^2.9.0",
     "serverless-http": "^3.2.0",
     "sharp": "^0.33.4",
@@ -40,7 +42,9 @@
   "devDependencies": {
     "@netlify/plugin-nextjs": "^5.5.1",
     "@netlify/plugin-sitemap": "^0.8.1",
+    "@next/bundle-analyzer": "^14.2.6",
     "@svgr/webpack": "^8.1.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
     "file-loader": "^6.2.0",
     "process": "^0.11.10",

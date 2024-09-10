@@ -22,6 +22,9 @@ input:-webkit-autofill:active {
     -webkit-text-fill-color: #ffffff !important;
 }
 /////
+.loading_message {
+    margin-top: 100px;
+}
 .root_basic {
     width: 100vw;
     height: 100vh;
@@ -3172,13 +3175,6 @@ input[type=range]::-webkit-slider-thumb {
 }
 // 데스크탑
 @include desktop {
-    .content_area {
-        //width: 40%;
-        //background-color: rgb(255, 0, 0);
-    }
-    .Q_area {
-
-    }
     .submit_btn {
         width: 40%;
     }
@@ -3189,19 +3185,11 @@ input[type=range]::-webkit-slider-thumb {
         width: 70%;
     }
     .queze_list { // main2 문제 
-        // border: 1px red solid;
         display: grid;
-        // grid-template-columns: 100px 200px 300px;
-        // grid-template-rows: 300px;
-        // gap: 10px;
     }
-    // make queze
     .main_title {
         height: 4%;
     }
-    // .drop_img_area{
-    //     height: 50%;
-    // }
     .Main2_sumit_btn{
         height: 6%;
     }

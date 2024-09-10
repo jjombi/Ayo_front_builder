@@ -4,6 +4,11 @@ module.exports = {
     },
 }
 /** @type {import('next').NextConfig} */
+
+module.exports = (phase, defaultConfig) => {
+  return withBundleAnalyzer(defaultConfig)
+}
+
 module.exports = {
     reactStrictMode: true, // 개발모드에서만
     swcMinify: true, // 빌드 컴파일러 관련 설정

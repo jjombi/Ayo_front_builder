@@ -15,6 +15,10 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: #ffffff !important;
 }
 
+.loading_message {
+  margin-top: 100px;
+}
+
 .root_basic {
   width: 100vw;
   height: 100vh;

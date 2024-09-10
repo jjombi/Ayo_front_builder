@@ -169,6 +169,21 @@ const search_axios = async (type,tag,email,search_value) => {
     })
     return result
 }
+const search_axios_public = async () => {
+    let result;
+    const promise = new Promise((resolve,reject)=>{
+        axios({
+            url : process.env.NEXT_PUBLIC_SERVER_URL + '/search_quezeshow_public',
+            method : 'GET',
+        }).then((res)=>{
+            resolve(res)
+        })
+    })
+    await promise.then(res=>{
+        result = res;
+    })
+    return result
+}
 const get_new_accessToken = (callBack) => {
     customAxiosPost({
         url : '/get_accessToken',
@@ -240,5 +255,6 @@ export {
     refreshToken_expiredAt_check,
     getQuezeshowComments,
     shuffle,
-    router
+    router,
+    search_axios_public
 }

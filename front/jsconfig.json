@@ -12,7 +12,8 @@
             "@quezeshow/*" : ["components/quezeshow/*"],
             "@password_popup/*" : ["components/password_popup/*"],
             "@functions/*" : ["functions/*"],
-            "@image/*" : ["public/*"]
+            "@image/*" : ["public/*"],
+            "@recoil/*" : ["recoil/*"]
         }
     }   
 }
