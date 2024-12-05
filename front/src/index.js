@@ -1,52 +1,48 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Main from './App/Main';
-import Queze from './App/queze';
-import Signup_login from './App/Signup_login';
-import School_choose from './App/School_chose';
-import Login from './App/Login';
-import MakeQueze from './App/MakeQueze';
-import Header from './App/Header';
-
-// import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route,useNavigate } from 'react-router-dom';
+import React,{Suspense, lazy} from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
-import { createRoot } from 'react-dom/client';
 
-
-
-
+const Main2 = lazy(()=> import('./App/Main2'));
+const Main2_a_queze = lazy(()=> import('./App/Main2_a_queze'));
+const Result = lazy(()=> import('./App/Result.js'));
+const Main2_make_queze = lazy(()=> import('./App/Main2_make_queze'));
+const Make_a_queze_modify = lazy(()=>import('./App/Make_a_queze_modify.js'));
+const Choose_queze_type = lazy(()=>import('./App/Choose_queze_type.js'));
+const Main2_a_queze_1and1 = lazy(()=>import('./App/Main2_a_queze_1and1.js'));
+const Community = lazy(()=>import('./App/Community/Community.js'));
 const rootElement = document.getElementById('root');
-const root = createRoot(rootElement);
+const root = ReactDOM.createRoot(rootElement);
 root.render(
-  // <React>
-    <CookiesProvider>
-      {/* <div className='Icon'></div> */}
-      
-      <div className='Main_root'>
-        <Header></Header>
-        <div className='line'></div>
-        <BrowserRouter>
+  <div className='Main_root_'>
+    <BrowserRouter>
+      {/* <Header props={<School_choose/>}></Header> */}
+      {/* <div className='line'></div> */}
+      <Suspense fallback={<div>loadind...</div>}>
+      <CookiesProvider>
           <Routes>
-            <Route path='/'   element={<Main/>}></Route>
-            <Route path='/queze' element={<Queze />}></Route>
-            <Route path='/signup_login' element={<Signup_login />}></Route>
-            <Route path='/School_choose' element={<School_choose />}></Route>
-            <Route path='/login' element={<Login/>}></Route>
-            <Route path='/makequeze' element={<MakeQueze/>}></Route>
+            {/* <Route path='/queze' element={<Queze />}></Route> */}
+              <Route path='/' element={<Main2/>}></Route>
+              <Route path='/ayoworldrankmakequeze' element={<Main2_make_queze/>}></Route>
+              <Route path='/result' element={<Result/>}></Route>
+              <Route path='/ayoworldrankaqueze' element={<Main2_a_queze/>}></Route>
+              <Route path='/makeaquezemodify' element={<Make_a_queze_modify/>}></Route>
+              <Route path='/choosequezetype' element={<Choose_queze_type/>}></Route>
+              <Route path='/oneandeone' element={<Main2_a_queze_1and1/>}></Route>
+              <Route path='/community' element={<Community/>}></Route>
 
-          </Routes>
-        </BrowserRouter>  
-      </div>
-    
-    
-      {/* <Queze/> */}
-    </CookiesProvider>
-  
-  // </React>
+          </Routes>  
+        </CookiesProvider> 
+      </Suspense>
+      {/* <Adfit unit="DAN-87ortfszgGZjj16M"></Adfit>
+      <Footer/> */}
+    </BrowserRouter>
+  </div>
 );
-
-// If you want to start measuring performance in your app, pass a function
+// if (module.hot){
+//   module.hot.accept()
+// }
+  // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 // reportWebVitals();
